@@ -20,7 +20,7 @@
 		</tr>
 	</thead>
 	<tbody id="table1">
-		<c:forEach var="itemVO" items="${list}" varStatus="vs">
+		
 			<tr align="center" valign="middle">
 			<form action="ShoppingCart.go" method="post">
 				<td>${vs.index}</td>
@@ -46,7 +46,7 @@
 				</td>
 			</form>
 			</tr>
-		</c:forEach>
+		
 	</tbody>
 </table>
 <c:if test="${! empty Msg}"><p>${Msg}</p></c:if>

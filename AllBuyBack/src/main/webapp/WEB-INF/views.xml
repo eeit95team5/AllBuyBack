@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 	<bean id="login.success" class="org.springframework.web.servlet.view.RedirectView"> -->
+<!-- 		<property name="url" value="/pages/product.jsp"></property> -->
+<!-- 		<property name="contextRelative" value="true"></property> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="login.error" class="org.springframework.web.servlet.view.InternalResourceView"> -->
+<!-- 		<property name="url" value="/secure/login.jsp"></property> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="form.error" class="org.springframework.web.servlet.view.InternalResourceView"> -->
+<!-- 		<property name="url" value="/pages/product.jsp"></property> -->
+<!-- 	</bean> -->
+	<bean id="product" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/product.jsp"></property>
+	</bean>
+	<bean id="Country2" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/product.jsp"></property>
+	</bean>
+	<bean id="insertitem" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/insertItem.jsp"></property>
+	</bean>
+	<bean id="updateitem" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/updateItem.jsp"></property>
+	</bean>
+	<bean id="updateshop" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/updateShop.jsp"></property>
+	</bean>
+	<bean id="index" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/index.jsp"></property>
+	</bean>
+	<bean id="shopmanager" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/shopManager.jsp"></property>
+	</bean>
+	<bean id="shop" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/shop.jsp"></property>
+	</bean>
+	<bean id="item" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/item.jsp"></property>
+	</bean>
+	
+</beans>

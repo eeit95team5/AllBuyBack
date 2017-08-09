@@ -30,5 +30,15 @@
 		<input type="submit" value="查看我的賣場訂單" />
 		<input type="hidden" name="action" value="sGetAll" />
 	</form>
+	
+		<a href="<c:url value='/item.controller'/>">混合頁面</a>
+	<a href="<c:url value='/insertitem.controller'/>">新增商品</a>
+	<br/>
+	<form action="<c:url value='/shopmanager.html'/>" method="get">
+	商店：<input type="text" name="s_id" value="1000001"/><button type="submit" >管理賣場</button>	
+	</form>
+	<form action="<c:url value='/shop.html'/>" method="get">
+	商店：<input type="text" name="s_id" value="1000001"/><button type="submit" >前往賣場</button>	
+	</form>
 </body>
 </html>

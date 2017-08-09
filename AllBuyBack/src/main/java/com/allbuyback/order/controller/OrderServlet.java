@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
 
 import com.allbuyback.ItemSearch.model.ItemService;
 import com.allbuyback.ItemSearch.model.ItemVO;
+import com.allbuyback.login.model.MemberVO;
 import com.allbuyback.order.model.OrderService;
 import com.allbuyback.order.model.OrderVO;
 import com.allbuyback.orderlist.model.OrderListService;
@@ -58,15 +59,8 @@ public class OrderServlet extends HttpServlet {
 			rd.forward(request, response);
 			return;
 		}
-		Integer login = (Integer)session.getAttribute("LoginOK");
-		if(login == null){
-			request.setAttribute("errorMsgs", "請先登入");
-			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
-			rd.forward(request, response);
-//			response.sendRedirect(getServletContext().getContextPath() + "/login.jsp"  );
-			return;
-		}
-		
+		MemberVO loginOK = (MemberVO) session.getAttribute("LoginOK");
+		Integer login = loginOK.getM_id();
 		
 		//買方查詢所有訂單
 		if("cGetAll".equals(action)) {
