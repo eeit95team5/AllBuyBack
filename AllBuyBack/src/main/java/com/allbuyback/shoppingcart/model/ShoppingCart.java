@@ -55,7 +55,7 @@ public class ShoppingCart {
 			}
 		}
 	}
-	
+
 	// 修改商品的數量
 //	public boolean modifyQty(int i_id, ShoppingCartVO  shoppingCartVO) {
 //		if ( cart.get(i_id) != null && shoppingCartVO.getOl_quantity() > 0 ) {
