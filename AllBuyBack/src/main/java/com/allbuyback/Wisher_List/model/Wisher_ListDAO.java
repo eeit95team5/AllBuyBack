@@ -17,7 +17,7 @@ public class Wisher_ListDAO implements Wisher_ListDAOI{
 	static{
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/TestDB");
+			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/ABB");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}

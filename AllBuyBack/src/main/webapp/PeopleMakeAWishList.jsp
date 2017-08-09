@@ -11,7 +11,7 @@
 	<h1>全願望列表</h1>
 	<a href="MakeAWishForm.jsp"><input type="button" value="許願"></a><br>
 	<br>
-	<a href="Index.jsp"><input type="button" value="回首頁"></a>
+	<a href="index.jsp"><input type="button" value="回首頁"></a>
 	<br>
 	<table>
 		<thead>

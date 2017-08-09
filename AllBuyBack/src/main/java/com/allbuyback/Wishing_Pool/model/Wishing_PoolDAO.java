@@ -22,7 +22,7 @@ public class Wishing_PoolDAO implements Wishing_PoolDAOI{
 	static{
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/TestDB");
+			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/ABB");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}

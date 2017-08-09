@@ -20,7 +20,7 @@
 		<tr><td><button type="submit" name="prodaction" value="Update">送出修改</button></td></tr>
 	</table>
 </form>
-<form action="<c:url value='/shopManager.controller'/>" method="get">
+<form action="<c:url value='/shopmanager.html'/>" method="get">
 			<button type="submit" name="s_id" value="${shopbean.s_id }">回到商店</button>
 </form>
 </body>

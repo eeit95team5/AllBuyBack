@@ -13,7 +13,7 @@
 <body>
 
 您已經登出<br>
-<a href="Index.jsp">回首頁</a>
+<a href="index.jsp">回首頁</a>
 
 </body>
 </html>

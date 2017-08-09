@@ -49,7 +49,7 @@
 		    <td height="50" colspan="2" align="center">
 		       <input type="submit" value="許願" >
 		       <a href="CheckYourList"><input type="button" value="回個人願望列表"></a>
-		       <a href="Index.jsp"><input type="button" value="回首頁"></a>
+		       <a href="index.jsp"><input type="button" value="回首頁"></a>
 		    </td>
 		</tr>	
 	</tbody>

@@ -18,7 +18,7 @@ public class Achieve_ShopDAO implements Achieve_ShopDAOI{
 	static{
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/TestDB");
+			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/ABB");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}	
