@@ -78,7 +78,7 @@
 <div id="msgBoby" align="center">
 	<c:if test="${empty cartlist}">
 		<p>購物車還是空的喔!快開始購物吧!</p>
-		<a href="item.jsp">開始購物</a><br>
+		<a href="index.jsp">開始購物</a><br>
 	</c:if>
 	<c:if test="${!empty Msg}">
 		<p>${Msg}</p>
@@ -87,7 +87,7 @@
 		<p>${errorMsgs}</p>
 	</c:if>
 	<p>${errorMsg}</p>
-	<a href="Item.go?action=getItems">我要繼續買</a><br>
+	<a href="index.jsp">我要繼續買</a><br>
 </div>
 </body>
 </html>
