@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<a href="login.jsp">登入</a><br>
 	<a href="logout.jsp">登出</a><br>
 	<br>
