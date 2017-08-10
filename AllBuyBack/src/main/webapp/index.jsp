@@ -42,7 +42,7 @@
 	商店：<input type="text" name="s_id" value="1000001"/><button type="submit" >前往賣場</button>	
 	</form><br>
 	
-	<h3><a href="<c:url value="/checkGB.do"/>">時尚金頭腦</a></h3>
+	<h3><a href="<c:url value="/checkGB.controller"/>">時尚金頭腦</a></h3>
 <br>
 
 

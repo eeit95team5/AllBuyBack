@@ -83,10 +83,7 @@
 		    <td width="120" height="40">實現願望賣家:</td>
 		    <td width="600" height="40" align="left" >
 		    	<c:forEach var="as" items="${asVO}">
-		    		${as.m_account}實現願望的內容: <a href="SingleItemContent">${iVO.i_name}</a>
-		    		<c:if test="${not empty iVO.i_name}">
-		    			<input type="button" value="加入購物車">
-		    		</c:if>
+		    		${as.m_account}<br>
 		    	</c:forEach>
 		    </td>
 		</tr>
@@ -94,7 +91,7 @@
 		    <td height="50" colspan="2" align="center">
 		       <a href="AddOne?w_Id=${wVO.w_id}"><input type="button" value="+1" ></a>
 		       <a href="CheckPeopleList"><input type="button" value="返回列表"></a>
-		       <a href="index.jsp"><input type="button" value="回首頁"></a>
+		       <a href="Index.jsp"><input type="button" value="回首頁"></a>
 		       <a href="MakeWishComeTrue?w_Id=${wVO.w_id}"><input type="button" value="接受願望"></a>
 		       <br>
 		       <font color='red' size='-1'>${errorMsg.login}</font>

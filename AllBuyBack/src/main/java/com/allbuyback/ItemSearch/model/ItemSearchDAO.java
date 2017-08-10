@@ -36,8 +36,6 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 	private static final String GET_THIRD_LAYER_STMT = "select * from ITEM join COUNTRY on ITEM.country_id = COUNTRY.country_id where ITEM.i_class1=? and ITEM.i_class2=? and ITEM.i_class3=?";
 	private static final String GET_COUNTRY_STMT = "select * from ITEM join COUNTRY on ITEM.country_id = COUNTRY.country_id where ITEM.country_id=?";
 	private static final String SELECT_BY_ID = "select * from item where i_id=?";
-	private static final String SELECT_BY_SID = "select * from ITEM join COUNTRY on ITEM.country_id = COUNTRY.country_id where s_id=?";
-	
 	@Override
 	public List<ItemVO> findByKeyWord(String keyword) {
 		List<ItemVO> list = new ArrayList<ItemVO>();
@@ -535,61 +533,6 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 				}
 			}
 			return itemVO;
-	}
-
-	@Override
-	public List<ItemVO> selectByS_Id(int s_id) {
-		List<ItemVO> list = new ArrayList<ItemVO>();
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		ItemVO itemVO = null;
-		ResultSet rs = null;
-		try{
-				conn = ds.getConnection();
-				stmt = conn.prepareStatement(SELECT_BY_SID);
-				
-				stmt.setInt(1, s_id);
-				rs = stmt.executeQuery();
-				
-				while(rs.next()) {
-					itemVO = new ItemVO();
-					itemVO.setI_id(rs.getInt("i_id"));
-					itemVO.setS_id(rs.getInt("s_id"));					
-					itemVO.setI_name(rs.getString("i_name"));
-					itemVO.setI_describe(rs.getString("i_describe"));
-					itemVO.setI_picture1(rs.getBytes("i_picture1"));
-					itemVO.setI_picture2(rs.getBytes("i_picture2"));
-					itemVO.setI_picture3(rs.getBytes("i_picture3"));
-					itemVO.setI_picture4(rs.getBytes("i_picture4"));
-					itemVO.setI_picture5(rs.getBytes("i_picture5"));
-					itemVO.setI_price(rs.getInt("i_price"));
-					itemVO.setI_quantity(rs.getInt("i_quantity"));
-					itemVO.setCountry_id(rs.getInt("country_id"));
-					itemVO.setI_arrivedDate(rs.getTimestamp("i_arrivedDate"));
-					itemVO.setI_onSellDate(rs.getTimestamp("i_onSellDate"));
-					itemVO.setI_soldQuantity(rs.getInt("i_soldQuantity"));
-					itemVO.setI_status(rs.getInt("i_status"));
-					itemVO.setI_class1(rs.getInt("i_class1"));
-					itemVO.setI_class2(rs.getInt("i_class2"));
-					itemVO.setI_class3(rs.getInt("i_class3"));
-					itemVO.setI_popular(rs.getInt("i_popular"));
-					itemVO.setI_click(rs.getInt("i_click"));
-					itemVO.setCountry_name(rs.getString("country_name"));
-					
-					list.add(itemVO);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				if (conn != null) {
-					try {
-						conn.close();
-					} catch (Exception e) {
-						e.printStackTrace(System.err);
-					}
-				}
-			}
-			return list;
 	}
 
 }

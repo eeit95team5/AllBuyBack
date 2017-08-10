@@ -313,8 +313,7 @@ function selecthideConti3(){
 </head>
 
 <body>
-<a href="index.jsp"><input type="button" value="回首頁"></a><br>
-<br>
+
 <form id="showItems1" name="showItems1" action="ItemSearch" method="POST">
 <input type="text" id="kw" name="keyword">
 <input type="submit" value="關鍵字查詢">
