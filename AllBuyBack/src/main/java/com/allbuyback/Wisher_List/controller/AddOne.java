@@ -78,10 +78,22 @@ public class AddOne extends HttpServlet {
 				request.setAttribute("asVO", asVO);
 				}
 			}
-			//已上傳圖片數目重新送回
-			PicturesDAO pDAO = new PicturesDAO();
-			int picture_num = 5-pDAO.calculatePictureSpace(w_id);
-			request.setAttribute("picture_num", picture_num);
+			// 已上傳圖片數目重新送回
+			if(wpDAO.selectWish(w_id).getW_picture1().length != 0){
+				request.setAttribute("p1", 1);
+			}
+			if(wpDAO.selectWish(w_id).getW_picture2().length != 0){
+				request.setAttribute("p2", 2);
+			}
+			if(wpDAO.selectWish(w_id).getW_picture3().length != 0){
+				request.setAttribute("p3", 3);
+			}
+			if(wpDAO.selectWish(w_id).getW_picture4().length != 0){
+				request.setAttribute("p4", 4);
+			}
+			if(wpDAO.selectWish(w_id).getW_picture5().length != 0){
+				request.setAttribute("p5", 5);
+			}
 			
 			RequestDispatcher rd = request.getRequestDispatcher("PeopleWishContent.jsp");
 			rd.forward(request, response);

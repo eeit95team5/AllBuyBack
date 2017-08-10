@@ -52,12 +52,6 @@ public class MakeAWish extends HttpServlet {
 		if (content == null || content.length() == 0) {
 			errorMessage.put("content", "許願內容必須輸入");
 		}
-
-		Collection<Part> plist = request.getParts();
-		if(plist.size() >= 8){
-			errorMessage.put("picture", "圖片最多五張");
-		}
-		
 		
 		if (!errorMessage.isEmpty()) {
 			RequestDispatcher rd = request.getRequestDispatcher("MakeAWishForm.jsp");
@@ -70,25 +64,30 @@ public class MakeAWish extends HttpServlet {
 		wp.setM_id(m_id);
 		wp.setW_title(title);
 		wp.setW_content(content);
-//		Part part = request.getPart("file");   //讀單張圖片
+//		Part part = request.getPart("file1");   //讀單張圖片
 //		byte[] b = wpDAO.getByte(part);
 //		wp.setW_picture1(b);
-		for (Part part2 : plist) {         //讀多張圖片
-			if (part2.getSize() > 1000) {
-				byte[] b = wpDAO.getByte(part2);
-				if (wp.getW_picture1() == null) {
-					wp.setW_picture1(b);
-				} else if (wp.getW_picture2() == null) {
-					wp.setW_picture2(b);
-				} else if (wp.getW_picture3() == null) {
-					wp.setW_picture3(b);
-				} else if (wp.getW_picture4() == null) {
-					wp.setW_picture4(b);
-				} else if (wp.getW_picture5() == null) {
-					wp.setW_picture5(b);
-				}
-			}
-		}
+		wp.setW_picture1(wpDAO.getByte(request.getPart("file1")));
+		wp.setW_picture2(wpDAO.getByte(request.getPart("file2")));
+		wp.setW_picture3(wpDAO.getByte(request.getPart("file3")));
+		wp.setW_picture4(wpDAO.getByte(request.getPart("file4")));
+		wp.setW_picture5(wpDAO.getByte(request.getPart("file5")));
+//		for (Part part2 : plist) {         //讀多張圖片
+//			if (part2.getSize() > 1000) {
+//				byte[] b = wpDAO.getByte(part2);
+//				if (wp.getW_picture1() == null) {
+//					wp.setW_picture1(b);
+//				} else if (wp.getW_picture2() == null) {
+//					wp.setW_picture2(b);
+//				} else if (wp.getW_picture3() == null) {
+//					wp.setW_picture3(b);
+//				} else if (wp.getW_picture4() == null) {
+//					wp.setW_picture4(b);
+//				} else if (wp.getW_picture5() == null) {
+//					wp.setW_picture5(b);
+//				}
+//			}
+//		}
 
 		wpDAO.insertWish(wp);
 
