@@ -98,18 +98,23 @@
 		    <td width="600" height="40" align="left" >
 			    	<c:if test="${not empty p1}">
 						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPicture?w_Id=${wVO.w_id}&pic_id=${p1}'>
+						<input type="checkbox" name="checkbox1" id="checkbox1" value="1">刪除
 					</c:if>
 					<c:if test="${not empty p2}">
 						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPicture?w_Id=${wVO.w_id}&pic_id=${p2}'>
+						<input type="checkbox" name="checkbox2" id="checkbox2" value="2">刪除
 					</c:if>
 					<c:if test="${not empty p3}">
 						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPicture?w_Id=${wVO.w_id}&pic_id=${p3}'>
+						<input type="checkbox" name="checkbox3" id="checkbox3" value="3">刪除
 					</c:if>
 					<c:if test="${not empty p4}">
 						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPicture?w_Id=${wVO.w_id}&pic_id=${p4}'>
+						<input type="checkbox" name="checkbox4" id="checkbox4" value="4">刪除
 					</c:if>
 					<c:if test="${not empty p5}">
 						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPicture?w_Id=${wVO.w_id}&pic_id=${p5}'>
+						<input type="checkbox" name="checkbox5" id="checkbox5" value="5">刪除
 					</c:if>
 		    </td>
 		</tr>

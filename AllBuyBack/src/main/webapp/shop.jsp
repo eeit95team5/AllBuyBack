@@ -18,6 +18,6 @@
 			</c:forEach>
 		</tr>
 	</table>
-	<a href="<c:url value='/index.jsp'/>"> <input type="button" value="回首頁" ></a>
+	<a href="<c:url value='/Index.jsp'/>"> <input type="button" value="回首頁" ></a>
 </body>
 </html>
