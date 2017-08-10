@@ -46,6 +46,33 @@
 				</td>
 			</form>
 			</tr>
+			<tr>
+				<c:if test="${!empty LoginOK}">
+					<td><form method="post"
+							action="<c:url value="/ItemController"/>">
+							<input type="submit" value="檢舉"> <input type="hidden"
+								name="m_id" value="${LoginOK.m_id}"> <input
+								type="hidden" name="i_id" value="${itemVO.i_id}"> <input
+								type="hidden" name="action" value="product_accuse">
+
+						</form>
+				</c:if>
+			</tr>
+			<tr>
+							<c:if test="${!empty LoginOK }">
+					<td><form method="post"
+							action="<c:url value="/ChatController"/>">
+							<input type="submit" value="議價"> <input type="hidden"
+								name="m_id" value="${LoginOK.m_id}"> 
+								<input type="hidden"
+								name="m_account" value="${LoginOK.m_account}">
+								<input
+								type="hidden" name="s_id" value="${itemVO.s_id}"> <input
+								type="hidden" name="action" value="price_bargain">
+
+						</form>
+				</c:if>
+			</tr>
 		
 	</tbody>
 </table>

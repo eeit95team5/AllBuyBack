@@ -51,6 +51,21 @@ public class LoginServlet extends HttpServlet {
 		MemberVO mVO = ls.checkIdPassword(userId, password);
 		if(mVO != null){
 			session.setAttribute("LoginOK", mVO);
+			if ((mVO.getM_authority()) == 9) {
+				
+				session.setAttribute("AdminOK", mVO);
+
+				request.getRequestDispatcher("/Admin.jsp").forward(request, response);
+				
+			}else if((mVO.getM_authority()) == 2){
+				
+				session.setAttribute("SellerOK", mVO);
+				
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
+			}else if((mVO.getM_authority()) == 0){
+				request.setAttribute("msg", "沒有登錄權限");
+				request.getRequestDispatcher("/login.jsp").forward(request, response);
+			}
 		}else{
 			errorMsg.put("LoginError", "帳號不存在或密碼錯誤");
 		}

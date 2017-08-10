@@ -44,8 +44,23 @@
 	
 	<h3><a href="<c:url value="/checkGB.controller"/>">時尚金頭腦</a></h3>
 <br>
-
-
 <h4>${alreadyPlay}</h4>
+
+
+<c:if test="${ !empty LoginOK}">
+<a href="ChatController?action=MessageFromSeller&id=${LoginOK.m_id}">來自賣家的訊息</a>
+</c:if>
+<c:if test="${ !empty SellerOK}">
+<a href="ChatController?action=MessageFromBuyer&id=${SellerOK.m_id}">來自買家的訊息</a>
+</c:if>
+<c:if test="${ !empty AdminOK}">
+<a href="Admin.jsp">管理頁面</a>
+</c:if>
+<c:if test="${ !empty LoginOK}">
+<a href="MallInsert.jsp">申請賣家</a>
+</c:if>
+<c:if test="${ !empty LoginOK}">
+<a href="RepController?action=GetReply&id=${LoginOK.m_id }">檢舉回覆</a>
+</c:if>
 </body>
 </html>
