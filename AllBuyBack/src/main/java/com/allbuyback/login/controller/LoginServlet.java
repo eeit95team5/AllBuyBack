@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 				session.removeAttribute("target");
 				response.sendRedirect(contextPath + target);
 			}else{
-				response.sendRedirect(contextPath + "/Index.jsp");				
+				response.sendRedirect(contextPath + "/index.jsp");				
 			}
 		}else{
 			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
