@@ -91,7 +91,7 @@
 		    <td height="50" colspan="2" align="center">
 		       <a href="AddOne?w_Id=${wVO.w_id}"><input type="button" value="+1" ></a>
 		       <a href="CheckPeopleList"><input type="button" value="返回列表"></a>
-		       <a href="Index.jsp"><input type="button" value="回首頁"></a>
+		       <a href="index.jsp"><input type="button" value="回首頁"></a>
 		       <a href="MakeWishComeTrue?w_Id=${wVO.w_id}"><input type="button" value="接受願望"></a>
 		       <br>
 		       <font color='red' size='-1'>${errorMsg.login}</font>
