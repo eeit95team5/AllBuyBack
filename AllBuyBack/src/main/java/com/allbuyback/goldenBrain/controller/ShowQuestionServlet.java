@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.allbuyback.goldenBrain.model.GoldenBrainService;
 
 
-@WebServlet(urlPatterns={"/showQuestion.do"})
+@WebServlet(urlPatterns={"/showQuestion.controller"})
 
 public class ShowQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

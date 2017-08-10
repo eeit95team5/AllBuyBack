@@ -17,7 +17,7 @@ import javax.servlet.http.Part;
 
 import com.allbuyback.Achieve_Shop.model.Achieve_ShopDAO;
 import com.allbuyback.Achieve_Shop.model.Achieve_ShopVO;
-import com.allbuyback.PicturesForWishing_Pool.model.PicturesDAO;
+import com.allbuyback.Pictures.model.PicturesDAO;
 import com.allbuyback.Wisher_List.model.Wisher_ListDAO;
 import com.allbuyback.Wisher_List.model.Wisher_ListVO;
 import com.allbuyback.Wishing_Pool.model.Wishing_PoolDAO;
@@ -59,9 +59,9 @@ public class UpdateWish extends HttpServlet {
 		if (content == null || content.length() == 0) {
 			errorMessage.put("content", "許願內容必須輸入");
 		}
-		
 		Wishing_PoolDAO wpDAO = new Wishing_PoolDAO();
 		PicturesDAO pDAO = new PicturesDAO();
+		
 		if (!errorMessage.isEmpty()) {
 			// 願望內容重新送回
 			Wishing_PoolVO wVO = wpDAO.selectWish(w_id);
@@ -86,14 +86,28 @@ public class UpdateWish extends HttpServlet {
 				}
 			}
 			// 已上傳圖片數目重新送回
-			pDAO.showUpLoadedPicture(request, w_id);
+			if(wpDAO.selectWish(w_id).getW_picture1().length != 0){
+				request.setAttribute("p1", 1);
+			}
+			if(wpDAO.selectWish(w_id).getW_picture2().length != 0){
+				request.setAttribute("p2", 2);
+			}
+			if(wpDAO.selectWish(w_id).getW_picture3().length != 0){
+				request.setAttribute("p3", 3);
+			}
+			if(wpDAO.selectWish(w_id).getW_picture4().length != 0){
+				request.setAttribute("p4", 4);
+			}
+			if(wpDAO.selectWish(w_id).getW_picture5().length != 0){
+				request.setAttribute("p5", 5);
+			}
 
 			RequestDispatcher rd = request.getRequestDispatcher("PersonalWishContent.jsp");
 			rd.forward(request, response);
 			return;
 		}
 
-		Wishing_PoolVO wp = new Wishing_PoolVO();		
+		Wishing_PoolVO wp = new Wishing_PoolVO();
 		wp.setW_id(w_id);
 		wp.setM_id(m_id);
 		wp.setW_title(title);
@@ -101,9 +115,32 @@ public class UpdateWish extends HttpServlet {
 		// Part part = request.getPart("file"); //讀單張圖片
 		// byte[] b = wpDAO.getByte(part);
 		// wp.setW_picture1(b);
-		//重新寫進多張圖片
-		pDAO.rewritePictures(request, wp, w_id);		
-		
+		//讀多張圖片
+		if(wpDAO.selectWish(w_id).getW_picture1().length != 0){
+			wp.setW_picture1(wpDAO.selectWish(w_id).getW_picture1());
+		}else{
+			wp.setW_picture1(wpDAO.getByte(request.getPart("file1")));			
+		}
+		if(wpDAO.selectWish(w_id).getW_picture2().length != 0){
+			wp.setW_picture2(wpDAO.selectWish(w_id).getW_picture2());
+		}else{
+			wp.setW_picture2(wpDAO.getByte(request.getPart("file2")));			
+		}
+		if(wpDAO.selectWish(w_id).getW_picture3().length != 0){
+			wp.setW_picture3(wpDAO.selectWish(w_id).getW_picture3());
+		}else{
+			wp.setW_picture3(wpDAO.getByte(request.getPart("file3")));			
+		}
+		if(wpDAO.selectWish(w_id).getW_picture4().length != 0){
+			wp.setW_picture4(wpDAO.selectWish(w_id).getW_picture4());
+		}else{
+			wp.setW_picture4(wpDAO.getByte(request.getPart("file4")));			
+		}
+		if(wpDAO.selectWish(w_id).getW_picture5().length != 0){
+			wp.setW_picture5(wpDAO.selectWish(w_id).getW_picture5());
+		}else{
+			wp.setW_picture5(wpDAO.getByte(request.getPart("file5")));			
+		}
 		wpDAO.updateWish(wp);
 
 		List<Wishing_PoolVO> list = wpDAO.selectPersonAllWishes(m_id);
