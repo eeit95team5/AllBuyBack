@@ -134,7 +134,7 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 					m0.put("i_click", rs.getString(21));
 					m0.put("country_name", rs.getString(25));
 					m0.put("i_id", rs.getInt("i_id"));
-					m0.put("i_picture1", rs.getInt("i_picture1"));
+					m0.put("i_picture1", rs.getBytes("i_picture1"));
 					
 					list.add(m0);
 				}
@@ -209,7 +209,7 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 					m1.put("i_click", rs.getString(21));
 					m1.put("country_name", rs.getString(25));
 					m1.put("i_id", rs.getInt("i_id"));
-					m1.put("i_picture1", rs.getInt("i_picture1"));
+					m1.put("i_picture1", rs.getBytes("i_picture1"));
 					list.add(m1);
 				}
 			}
@@ -284,7 +284,7 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 					m2.put("i_click", rs.getString(21));
 					m2.put("country_name", rs.getString(25));
 					m2.put("i_id", rs.getInt("i_id"));
-					m2.put("i_picture1", rs.getInt("i_picture1"));
+					m2.put("i_picture1", rs.getBytes("i_picture1"));
 					list.add(m2);
 				}
 			}
@@ -360,7 +360,7 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 					m3.put("i_click", rs.getString(21));
 					m3.put("country_name", rs.getString(25));
 					m3.put("i_id", rs.getInt("i_id"));
-					m3.put("i_picture1", rs.getInt("i_picture1"));
+					m3.put("i_picture1", rs.getBytes("i_picture1"));
 					list.add(m3);
 				}
 			}
@@ -434,7 +434,7 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 					m4.put("i_click", rs.getString(21));
 					m4.put("country_name", rs.getString(25));
 					m4.put("i_id", rs.getInt("i_id"));
-					m4.put("i_picture1", rs.getInt("i_picture1"));
+					m4.put("i_picture1", rs.getBytes("i_picture1"));
 					list.add(m4);
 				}
 			}

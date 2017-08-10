@@ -54,6 +54,12 @@ public class ShipwayServlet extends HttpServlet {
 			return;
 		}
 		MemberVO loginOK = (MemberVO) session.getAttribute("LoginOK");
+		if (loginOK == null) {      // 使用逾時
+			request.setAttribute("errorMsgs", "請先登入");
+			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
+			rd.forward(request, response);
+			return;
+		}
 		Integer login = loginOK.getM_id();
 
 		if("getWay".equals(action)){

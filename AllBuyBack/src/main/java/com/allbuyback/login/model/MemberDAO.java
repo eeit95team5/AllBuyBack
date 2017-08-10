@@ -23,6 +23,7 @@ public class MemberDAO implements MemberDAOI{
 	
 	private static final String GET_ONE_STMT = "select * from MEMBER where m_account=?";
 	private static final String GET_ONE_BY_ID_STMT = "select * from MEMBER where m_id=?";
+	private static final String UPDATE_ONE_COMMENT = "UPDATE MEMBER SET m_scoreCount=?,m_avgScore=? WHERE m_id=?";
 	
 	
 	@Override
@@ -53,7 +54,7 @@ public class MemberDAO implements MemberDAOI{
 				memberVO.setM_photo(rs.getBytes("m_photo"));
 				memberVO.setM_background(rs.getBytes("m_background"));
 				memberVO.setM_scoreCount(rs.getInt("m_scoreCount"));
-				memberVO.setM_avgScore(rs.getInt("m_avgScore"));
+				memberVO.setM_avgScore(rs.getDouble("m_avgScore"));
 				memberVO.setM_lastUsed(rs.getTimestamp("m_lastUsed"));
 				memberVO.setM_point(rs.getInt("m_point"));
 				memberVO.setM_times_gb(rs.getInt("m_times_gb"));
@@ -116,7 +117,7 @@ public class MemberDAO implements MemberDAOI{
 				memberVO.setM_photo(rs.getBytes("m_photo"));
 				memberVO.setM_background(rs.getBytes("m_background"));
 				memberVO.setM_scoreCount(rs.getInt("m_scoreCount"));
-				memberVO.setM_avgScore(rs.getInt("m_avgScore"));
+				memberVO.setM_avgScore(rs.getDouble("m_avgScore"));
 				memberVO.setM_lastUsed(rs.getTimestamp("m_lastUsed"));
 				memberVO.setM_point(rs.getInt("m_point"));
 				memberVO.setM_times_gb(rs.getInt("m_times_gb"));
@@ -149,6 +150,34 @@ public class MemberDAO implements MemberDAOI{
 			}
 		}
 		return memberVO;
+	}
+
+	@Override
+	public void updateComment(MemberVO memberVO) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(UPDATE_ONE_COMMENT);
+			pstmt.setInt(1, memberVO.getM_scoreCount());
+			pstmt.setDouble(2, memberVO.getM_avgScore());
+			pstmt.setInt(3, memberVO.getM_id());
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally{
+			if(conn != null){
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
 	}
 
 }

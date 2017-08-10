@@ -15,7 +15,7 @@ public class ShopService {
 	public List<ShopBean> select(){
 		return shopDao.select();
 	}
-	public ShopBean select(int s_id){		
+	public ShopBean select(int s_id){
 		return shopDao.select(s_id);		
 	}
 	

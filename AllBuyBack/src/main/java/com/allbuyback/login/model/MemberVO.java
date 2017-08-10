@@ -13,7 +13,7 @@ public class MemberVO implements java.io.Serializable{
 	private byte[] m_photo;
 	private byte[] m_background;
 	private int m_scoreCount;
-	private int m_avgScore;
+	private double m_avgScore;
 	private java.sql.Timestamp m_lastUsed;
 	private int m_point;
 	private int m_times_gb;
@@ -90,10 +90,10 @@ public class MemberVO implements java.io.Serializable{
 	public void setM_scoreCount(int m_scoreCount) {
 		this.m_scoreCount = m_scoreCount;
 	}
-	public int getM_avgScore() {
+	public double getM_avgScore() {
 		return m_avgScore;
 	}
-	public void setM_avgScore(int m_avgScore) {
+	public void setM_avgScore(double m_avgScore) {
 		this.m_avgScore = m_avgScore;
 	}
 	public java.sql.Timestamp getM_lastUsed() {

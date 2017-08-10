@@ -12,7 +12,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.FilterConfig;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +22,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.WebApplicationContext;
+
+import com.allbuyback.AllBuyBack.model.ShopBean;
+import com.allbuyback.AllBuyBack.model.ShopService;
 import com.allbuyback.ItemSearch.model.ItemService;
 import com.allbuyback.ItemSearch.model.ItemVO;
+import com.allbuyback.login.model.MemberDAO;
 import com.allbuyback.login.model.MemberVO;
 import com.allbuyback.order.model.OrderService;
 import com.allbuyback.order.model.OrderVO;
@@ -37,7 +47,15 @@ import com.allbuyback.shopshipway.model.ShopShipwayVO;
 @WebServlet("/Order.do")
 public class OrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private ShopService shopService;
+	@Override
+	public void init() throws ServletException {
+		ServletContext application = this.getServletContext();
+		ApplicationContext context = (ApplicationContext)
+				application.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+		shopService = (ShopService) context.getBean("shopService");
+	}
+	
     public OrderServlet() {
         super();
     }
@@ -60,6 +78,12 @@ public class OrderServlet extends HttpServlet {
 			return;
 		}
 		MemberVO loginOK = (MemberVO) session.getAttribute("LoginOK");
+		if (loginOK == null) {      // 使用逾時
+			request.setAttribute("errorMsgs", "請先登入");
+			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
+			rd.forward(request, response);
+			return;
+		}
 		Integer login = loginOK.getM_id();
 		
 		//買方查詢所有訂單
@@ -602,6 +626,7 @@ public class OrderServlet extends HttpServlet {
 			//取得原始資料
 			OrderVO orderVO = orderService.select(o_id);
 			int m_id = orderVO.getM_id();
+			int s_id = orderVO.getS_id();
 			//驗證狀態
 			if(orderVO.getS_commentStatus()!=1 ){
 				errorMsgs.add("您已經評價過囉！");
@@ -616,6 +641,18 @@ public class OrderServlet extends HttpServlet {
 			orderVO.setO_id(o_id);
 			orderVO.setS_comment(s_comment);
 			orderVO.setS_score(s_score);
+			//先將資料更新至賣場(避免原始資料覆蓋計算)
+			ShopBean shopBean = shopService.select(s_id);
+			double avgS = shopBean.getS_avgScore();
+			int cS = shopBean.getS_score();
+			double score = cS*avgS;
+			score = score + s_score;
+			cS = cS +1;
+			avgS = score/cS;
+			shopBean.setS_avgScore(avgS);
+			shopBean.setS_score(cS);
+			shopService.update(shopBean);
+			
 			//更新並取得更新後資料
 			OrderVO newOrderVO = orderService.updateCustomerDoComment(orderVO);
 			int m_commentStatus = newOrderVO.getM_commentStatus();
@@ -649,6 +686,7 @@ public class OrderServlet extends HttpServlet {
 			//取得原始資料
 			OrderVO orderVO = orderService.select(o_id);
 			int s_id = orderVO.getS_id();
+			int m_id = orderVO.getM_id();
 			//驗證評價狀態
 			if(orderVO.getM_commentStatus()!=1 ){
 				errorMsgs.add("您已經評價過囉！");
@@ -666,6 +704,22 @@ public class OrderServlet extends HttpServlet {
 			//更新並取得更新後資料
 			OrderVO newOrderVO = orderService.updateShopDoComment(orderVO);
 			int s_commentStatus = newOrderVO.getS_commentStatus();
+			//資料更新至會員
+//			MemberService memberService = new MemberService();
+//			MemberVO memberVO = memberService.select(m_id);
+			MemberDAO memberDAO = new MemberDAO();
+			MemberVO memberVO = memberDAO.selectById(m_id);
+
+			double avgS = memberVO.getM_avgScore();
+			int cS = memberVO.getM_scoreCount();
+			double score = cS*avgS;
+			score = score + m_score;
+			cS = cS +1;
+			avgS = score/cS;
+			memberVO.setM_avgScore(avgS);
+			memberVO.setM_scoreCount(cS);
+//			shopService.update(shopBean);
+			memberDAO.updateComment(memberVO);
 			//如果買家已完成評價則更新o_procss為7完成交易
 			if(s_commentStatus==0){
 				newOrderVO.setO_procss(7);
