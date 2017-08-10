@@ -35,8 +35,7 @@ public class CountryJSON{
 		this.a(req,resp);
 	}
 	
-	private void a(HttpServletRequest req, HttpServletResponse response) throws IOException{		
-		System.out.println("aa");
+	private void a(HttpServletRequest req, HttpServletResponse response) throws IOException{
 		List<CountryBean> country = countryService.select();
 		
 		response.setHeader("Access-Control-Allow-Origin", "*");
@@ -58,6 +57,5 @@ public class CountryJSON{
 		m2.put("country", l1);
 		String jsonString = JSONValue.toJSONString(m2);
 		out.println(jsonString);
-		
 	}
 }

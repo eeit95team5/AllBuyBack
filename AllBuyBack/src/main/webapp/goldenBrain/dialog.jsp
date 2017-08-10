@@ -207,7 +207,7 @@ var ansIsFalse=0;//紀錄答錯題數(用不到)
 var getBonus=0;//紀錄傳回Servlet的點數
 
 function getJSON(){
-	$.getJSON('<c:url value="/showQuestion.controller"/>', function(datas) {
+	$.getJSON('<c:url value="/showQuestion.do"/>', function(datas) {
 		
 		//$("#countDown").attr("style","color:red");
 		
@@ -456,7 +456,7 @@ function _testBysetInterval(timer) {
         <div id="view6" style="display:none">
         
 	        <div id="showAns"></div>
-	        <form action='<c:url value="/seeMyBonus.controller"/>' method="post">	        
+	        <form action='<c:url value="/seeMyBonus.do"/>' method="post">	        
 	          <input type="hidden" id="bonus" name="bonus" value="" >
 	          <input type="submit" value="查看紅利" style="font-family:標楷體;font-size:25px;background-color:#EE9572;border-radius:5px;border:#EE9572">
 	        </form>
