@@ -53,21 +53,64 @@
 		         <div style="color:#FF0000; display: inline">${ErrorMsg.content}</div>
 		    </td>
 		</tr>
+		<c:if test="${empty p1}">
 		<tr bgcolor='tan' >
-		    <td width="120" height="40">圖片上傳:</td>
+		    <td width="120" height="40">圖片上傳1:</td>
 		    <td width="600" height="40" align="left" >
-		         <input type="file" name="file" id="file1" multiple accept="image/*">
-		         <div style="color:#FF0000; display: inline">${ErrorMsg.picture}</div>
+		         <input type="file" name="file1" id="file1" multiple accept="image/*">
 		    </td>
 		</tr>
+		</c:if>
+		<c:if test="${empty p2}">
+		<tr bgcolor='tan' >
+		    <td width="120" height="40">圖片上傳2:</td>
+		    <td width="600" height="40" align="left" >
+		         <input type="file" name="file2" id="file2" multiple accept="image/*">
+		    </td>
+		</tr>
+		</c:if>
+		<c:if test="${empty p3}">
+		<tr bgcolor='tan' >
+		    <td width="120" height="40">圖片上傳3:</td>
+		    <td width="600" height="40" align="left" >
+		         <input type="file" name="file3" id="file3" multiple accept="image/*">
+		    </td>
+		</tr>
+		</c:if>
+		<c:if test="${empty p4}">
+		<tr bgcolor='tan' >
+		    <td width="120" height="40">圖片上傳4:</td>
+		    <td width="600" height="40" align="left" >
+		         <input type="file" name="file4" id="file4" multiple accept="image/*">
+		    </td>
+		</tr>
+		</c:if>
+		<c:if test="${empty p5}">
+		<tr bgcolor='tan' >
+		    <td width="120" height="40">圖片上傳5:</td>
+		    <td width="600" height="40" align="left" >
+		         <input type="file" name="file5" id="file5" multiple accept="image/*">
+		    </td>
+		</tr>
+		</c:if>
 		<tr bgcolor='tan' >
 		    <td width="120" height="40">前次上傳圖片:</td>
 		    <td width="600" height="40" align="left" >
-		    	<c:if test="${picture_num >0}">
-			    	<c:forEach var="i" begin="1" end="${picture_num}">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPicture?w_Id=${wVO.w_id}&pic_id=${i}'>
-					</c:forEach>
-				</c:if>
+			    	<c:if test="${not empty p1}">
+						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPicture?w_Id=${wVO.w_id}&pic_id=${p1}'>
+					</c:if>
+					<c:if test="${not empty p2}">
+						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPicture?w_Id=${wVO.w_id}&pic_id=${p2}'>
+					</c:if>
+					<c:if test="${not empty p3}">
+						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPicture?w_Id=${wVO.w_id}&pic_id=${p3}'>
+					</c:if>
+					<c:if test="${not empty p4}">
+						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPicture?w_Id=${wVO.w_id}&pic_id=${p4}'>
+					</c:if>
+					<c:if test="${not empty p5}">
+						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPicture?w_Id=${wVO.w_id}&pic_id=${p5}'>
+					</c:if>
 		    </td>
 		</tr>
 		<tr bgcolor='tan' >

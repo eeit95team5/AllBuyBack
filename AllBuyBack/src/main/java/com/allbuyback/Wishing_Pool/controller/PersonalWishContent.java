@@ -1,6 +1,7 @@
 package com.allbuyback.Wishing_Pool.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -31,8 +32,8 @@ public class PersonalWishContent extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int w_id = Integer.parseInt(request.getParameter("w_id"));
 		//show願望內容
-		Wishing_PoolDAO wDAO = new Wishing_PoolDAO();
-		Wishing_PoolVO wVO = wDAO.selectWish(w_id);
+		Wishing_PoolDAO wpDAO = new Wishing_PoolDAO();
+		Wishing_PoolVO wVO = wpDAO.selectWish(w_id);
 		MemberDAO mDAO = new MemberDAO();
 		String m_account = mDAO.selectById(wVO.getM_id()).getM_account();
 		wVO.setM_account(m_account);
@@ -57,10 +58,22 @@ public class PersonalWishContent extends HttpServlet {
 				request.setAttribute("asVO", asVO);
 			}
 		}
-		//已上傳圖片數目
-		PicturesDAO pDAO = new PicturesDAO();
-		int picture_num = 5-pDAO.calculatePictureSpace(w_id);
-		request.setAttribute("picture_num", picture_num);
+		//show已上傳圖片
+		if(wpDAO.selectWish(w_id).getW_picture1().length != 0){
+			request.setAttribute("p1", 1);
+		}
+		if(wpDAO.selectWish(w_id).getW_picture2().length != 0){
+			request.setAttribute("p2", 2);
+		}
+		if(wpDAO.selectWish(w_id).getW_picture3().length != 0){
+			request.setAttribute("p3", 3);
+		}
+		if(wpDAO.selectWish(w_id).getW_picture4().length != 0){
+			request.setAttribute("p4", 4);
+		}
+		if(wpDAO.selectWish(w_id).getW_picture5().length != 0){
+			request.setAttribute("p5", 5);
+		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/PersonalWishContent.jsp");
 		rd.forward(request, response);
