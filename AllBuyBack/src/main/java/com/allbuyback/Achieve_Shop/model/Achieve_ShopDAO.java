@@ -29,6 +29,7 @@ public class Achieve_ShopDAO implements Achieve_ShopDAOI{
 	private static final String DELETE_STMT = "delete ACHIEVE_SHOP where w_id=?";
 	private static final String GET_ALL_SId_STMT = "select * from ACHIEVE_SHOP where s_id=?";
 	private static final String GET_ALL_WId_STMT = "select * from ACHIEVE_SHOP where w_id=?";
+	private static final String GET_ALL_WId_SID_STMT = "select * from ACHIEVE_SHOP where w_id=? and s_id=?";
 	
 	
 	@Override
@@ -242,6 +243,58 @@ public class Achieve_ShopDAO implements Achieve_ShopDAOI{
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public Achieve_ShopVO selectAchieveByWId_SId(int w_id, int s_id) {
+		Achieve_ShopVO achieve_shopVO = null;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(GET_ALL_WId_STMT);
+			pstmt.setInt(1, w_id);
+			pstmt.setInt(2, s_id);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				achieve_shopVO = new Achieve_ShopVO();
+				achieve_shopVO.setW_id(rs.getInt("w_id"));
+				achieve_shopVO.setS_id(rs.getInt("s_id"));
+				achieve_shopVO.setI_id(rs.getInt("i_id"));
+				achieve_shopVO.setAs_date(rs.getTimestamp("as_date"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally{
+			if(rs != null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if(pstmt != null){
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if(conn != null){
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return achieve_shopVO;
 	}
 
 }
