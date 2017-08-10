@@ -1,4 +1,4 @@
-package com.allbuyback.Wishing_Pool.controller;
+package com.allbuyback.Achieve_Shop.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,8 +22,8 @@ import com.allbuyback.Wishing_Pool.model.Wishing_PoolVO;
 import com.allbuyback.login.model.MemberDAO;
 import com.allbuyback.login.model.MemberVO;
 
-@WebServlet("/PeopleWishContent")
-public class PeopleWishContent extends HttpServlet {
+@WebServlet("/ItemPickUpCheck")
+public class ItemPickUpCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,10 +33,29 @@ public class PeopleWishContent extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int w_id = Integer.parseInt(request.getParameter("w_id"));
-		// show願望內容
+		request.setCharacterEncoding("UTF-8");
+		int i_id = Integer.parseInt(request.getParameter("radio1"));
+		request.getSession().setAttribute("i_id", i_id);
+		
+		Wishing_PoolVO wVO = new Wishing_PoolVO();
 		Wishing_PoolDAO wpDAO = new Wishing_PoolDAO();
-		Wishing_PoolVO wVO = wpDAO.selectWish(w_id);
+		Achieve_ShopDAO asDAO = new Achieve_ShopDAO();
+		MemberVO mVO = (MemberVO)request.getSession().getAttribute("LoginOK");
+		int w_id = Integer.parseInt(request.getParameter("w_id"));
+
+		//將status改為2
+		wVO = wpDAO.selectWish(w_id);
+		int w_status = wVO.getW_status();
+		w_status = 2;
+		wpDAO.updateStatus(w_status, w_id);
+		
+		//此筆存進Achieve_Shop		
+		int m_id = mVO.getM_id();
+		asDAO.insertAchieve(w_id, m_id, i_id);
+		
+		
+		//----------------------資料往願望內容傳------------------------------
+		// show願望內容
 		MemberDAO mDAO = new MemberDAO();
 		String m_account = mDAO.selectById(wVO.getM_id()).getM_account();
 		wVO.setM_account(m_account);
@@ -46,35 +65,33 @@ public class PeopleWishContent extends HttpServlet {
 		Wisher_ListDAO wlDAO = new Wisher_ListDAO();
 		List<Wisher_ListVO> wlList = wlDAO.selectWisher(w_id);
 		for (int i = 0; i < wlList.size(); i++) {
-			MemberVO mVO = mDAO.selectById(wlList.get(i).getM_id());
-			wlList.get(i).setM_account(mVO.getM_account());
+			MemberVO mVO2 = mDAO.selectById(wlList.get(i).getM_id());
+			wlList.get(i).setM_account(mVO2.getM_account());
 		}
 		request.setAttribute("wlList", wlList);
 
 		// show接單賣家
-		Achieve_ShopDAO asDAO = new Achieve_ShopDAO();
 		List<Achieve_ShopVO> asVO = asDAO.selectAchieveByWId(w_id);
 		if (asVO != null) {
-			for (int i = 0; i < asVO.size(); i++) {
+			for (int i=0; i < asVO.size(); i++) {
 				MemberVO mVO2 = mDAO.selectById(asVO.get(i).getS_id());
 				asVO.get(i).setM_account(mVO2.getM_account());
 				request.setAttribute("asVO", asVO);
 			}
 		}
-		// show已上傳圖片
+		//show已上傳圖片
 		PicturesDAO pDAO = new PicturesDAO();
 		pDAO.showUpLoadedPicture(request, w_id);
-
-		// show實現願望的賣家選擇的商品
+		
+		//show實現願望的賣家選擇的商品
 		ItemSearchDAO isDAO = new ItemSearchDAO();
-		if (request.getSession().getAttribute("i_id") != null) {
-			int i_id = (int) request.getSession().getAttribute("i_id");
-			ItemVO iVO = isDAO.select(i_id);
-			request.setAttribute("iVO", iVO);
-		}
+		ItemVO iVO = isDAO.select(i_id);
+		request.setAttribute("iVO", iVO);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/PeopleWishContent.jsp");
 		rd.forward(request, response);
+
+		//-----------------------------------------------------------------
 	}
 
 }
