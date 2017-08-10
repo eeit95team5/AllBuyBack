@@ -7,12 +7,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.allbuyback.AllBuyBack.model.ItemService;
 import com.allbuyback.AllBuyBack.model.ShopBean;
 import com.allbuyback.AllBuyBack.model.ShopService;
 
 @Controller
-@RequestMapping(path={"/updateShop.controller"})
+@RequestMapping(path={"/updateShop.SPRINGcontroller"})
 public class UpdateShopController {
 	
 	@Autowired

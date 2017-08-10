@@ -20,7 +20,7 @@ import com.allbuyback.AllBuyBack.model.ShopService;
 import com.allbuyback.AllBuyBack.model.misc.PrimitiveNumberEditor;
 
 @Controller
-@RequestMapping(path={"/shop.controller"}) 
+@RequestMapping(path={"/shop.SPRINGcontroller"}) 
 public class ShopController {
 	@Autowired
 	private ShopService shopService;

@@ -8,7 +8,7 @@
 <title>修改商店資訊</title>
 </head>
 <body>
-<form action="<c:url value='/shop.controller'/>" method="get">
+<form action="<c:url value='/shop.SPRINGcontroller'/>" method="get">
 	<table>		
 		<tr><td>商店編號：</td><td>${shopbean.s_id}<input type="hidden" name="s_id" id="s_id" value="${shopbean.s_id}" /></td></tr>
 		<tr><td>關於商店：</td><td><input type="text" name="s_aboutMe" id="s_aboutMe" value="${shopbean.s_aboutMe}"/></td></tr>

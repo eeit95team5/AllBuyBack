@@ -1,8 +1,6 @@
 package com.allbuyback.AllBuyBack.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,7 +10,7 @@ public class ShopBean {
 	private int s_id;
 	private String s_aboutMe;
 	private int s_score;
-	private int s_avgScore;
+	private double s_avgScore;
 	private int s_popular;
 	private int s_click;
 	private int s_point;
@@ -36,10 +34,10 @@ public class ShopBean {
 	public void setS_score(int s_score) {
 		this.s_score = s_score;
 	}
-	public int getS_avgScore() {
+	public double getS_avgScore() {
 		return s_avgScore;
 	}
-	public void setS_avgScore(int s_avgScore) {
+	public void setS_avgScore(double s_avgScore) {
 		this.s_avgScore = s_avgScore;
 	}
 	public int getS_popular() {

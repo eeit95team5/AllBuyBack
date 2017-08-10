@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.allbuyback.AllBuyBack.model.ItemBean;
 import com.allbuyback.AllBuyBack.model.ItemService;
-import com.allbuyback.AllBuyBack.model.ShopBean;
 import com.allbuyback.AllBuyBack.model.ShopService;
 
 @Controller
@@ -23,9 +22,10 @@ public class GoItemController {
 	
 	@RequestMapping(method={RequestMethod.GET, RequestMethod.POST})
 	public String doGet(ItemBean itemBean,BindingResult bindingResult, Model model){
+		ItemBean item = itemService.selectByI_Id(itemBean.getI_id());
 		System.out.println("===============");
-		System.out.println(itemBean.getS_id());
-		System.out.println(itemBean.getI_id());
+		System.out.println("shop s_id = "+ item.getS_id());
+		System.out.println("item i_id = "+ item.getI_id());
 		System.out.println("===============");
 		
 		ItemBean a = itemService.selectByI_Id(itemBean.getI_id());

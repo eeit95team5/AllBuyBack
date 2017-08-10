@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,7 +24,7 @@ import com.allbuyback.AllBuyBack.model.dao.CountryDAOHibernate;
 import com.allbuyback.AllBuyBack.model.misc.PrimitiveNumberEditor;
 
 @Controller
-@RequestMapping(path={"/item.controller"})  
+@RequestMapping(path={"/item.SPRINGcontroller"})  
 public class ItemController {
 	
 	@Autowired
@@ -56,16 +55,22 @@ public class ItemController {
 	@RequestMapping(method={RequestMethod.GET, RequestMethod.POST})
 	public String doGet(ItemBean bean,BindingResult bindingResult,String prodaction, Model model){
 		
-		System.out.println("=============");
-		System.out.println(bean.getI_id());
-		System.out.println(bean.getS_id());
-		System.out.println(bean.getI_name());
-		System.out.println(bean.getI_arrivedDate());
-		System.out.println("=============");
+		System.out.println("=====BEGIN=====");
+		System.out.println("i_id = " + bean.getI_id());
+		System.out.println("s_id = " + bean.getS_id());
+		System.out.println("i_name = " + bean.getI_name());
+		System.out.println("i_arrivedDate = " + bean.getI_arrivedDate());
+		System.out.println("======END======");
+		
 		
 		if(prodaction==null){						
 			return "product";
 		}
+		if("Update".equals(prodaction)&&(bean.getI_status()==0)){
+			model.addAttribute("action", "不能修改被停權的商品");
+			model.addAttribute("itembean", bean);
+			return this.returnX(prodaction);
+		}				
 		
 		List<CountryBean> country = countryDAOHibernate.select();
 		model.addAttribute("country", country);					
@@ -160,7 +165,7 @@ public class ItemController {
 			model.addAttribute("insert", bean);
 			model.addAttribute("itembean", bean);
 			System.out.println("=============");
-			System.out.println(bean.getI_id());
+			System.out.println("error id=" + bean.getI_id());
 			System.out.println("=============");
 			return this.returnX(prodaction);
 		}

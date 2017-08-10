@@ -18,12 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.allbuyback.AllBuyBack.model.Item_Class1Bean;
-import com.allbuyback.AllBuyBack.model.Item_Class3Bean;
 import com.allbuyback.AllBuyBack.model.dao.Item_Class1DAOHibernate;
-import com.allbuyback.AllBuyBack.model.dao.Item_Class3DAOHibernate;
 
 @Controller
-@RequestMapping(path={"/item_class1json.controller"})
+@RequestMapping(path={"/item_class1json.SPRINGcontroller"})
 public class Item_Class1JSON {
 	@Autowired
 	private Item_Class1DAOHibernate item_Class1DAOHibernate;

@@ -1,6 +1,5 @@
 package com.allbuyback.AllBuyBack.model.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -8,8 +7,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.allbuyback.AllBuyBack.model.CountryBean;
-import com.allbuyback.AllBuyBack.model.ItemDAOI;
 import com.allbuyback.AllBuyBack.model.Item_Class1Bean;
 import com.allbuyback.AllBuyBack.model.Item_Class1DAOI;
 

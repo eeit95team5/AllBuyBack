@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.allbuyback.AllBuyBack.model.Item_Class2Bean;
 import com.allbuyback.AllBuyBack.model.ShopBean;
 import com.allbuyback.AllBuyBack.model.ShopDAOI;
 
@@ -21,7 +20,7 @@ public class ShopDAOHibernate implements ShopDAOI{
 		return sessionFactory.getCurrentSession();		
 	}
 
-	private static final String QC1STMT = "from ShopBean where i_class1=?";
+//	private static final String QC1STMT = "from ShopBean where i_class1=?";
 	
 	@Override
 	public ShopBean select(int s_id) {

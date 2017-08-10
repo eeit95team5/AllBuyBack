@@ -19,6 +19,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
+import com.allbuyback.login.model.MemberVO;
 import com.allbuyback.shopshipway.model.ShopShipwayService;
 import com.allbuyback.shopshipway.model.ShopShipwayVO;
 
@@ -47,14 +48,9 @@ public class ShopShipwayServlet extends HttpServlet {
 			rd.forward(request, response);
 			return;
 		}
-		Integer login = (Integer)session.getAttribute("LoginOK");
-		if(login == null){
-			request.setAttribute("errorMsgs", "請先登入");
-			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
-			rd.forward(request, response);
-//			response.sendRedirect(getServletContext().getContextPath() + "/login.jsp"  );
-			return;
-		}
+		MemberVO loginOK = (MemberVO) session.getAttribute("LoginOK");
+		Integer login = loginOK.getM_id();
+
 		if("getWays".equals(action)){
 			PrintWriter out = response.getWriter();
 			//取得s_id輸入值

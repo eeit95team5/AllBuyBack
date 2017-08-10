@@ -8,8 +8,6 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.allbuyback.AllBuyBack.model.Item_Class2Bean;
-import com.allbuyback.AllBuyBack.model.Item_Class2DAOI;
 import com.allbuyback.AllBuyBack.model.Item_Class3Bean;
 import com.allbuyback.AllBuyBack.model.Item_Class3DAOI;
 

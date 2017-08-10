@@ -2,10 +2,7 @@ package com.allbuyback.AllBuyBack.model.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -18,12 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.allbuyback.AllBuyBack.model.CountryBean;
 import com.allbuyback.AllBuyBack.model.CountryService;
-import com.allbuyback.AllBuyBack.model.ItemBean;
-import com.allbuyback.AllBuyBack.model.ItemService;
 import com.allbuyback.AllBuyBack.model.misc.PrimitiveNumberEditor;
 
 @Controller
-@RequestMapping(path={"/Country.controller"})  
+@RequestMapping(path={"/Country.SPRINGcontroller"})  
 public class CountryController {
 	@Autowired
 	private CountryService countryService;

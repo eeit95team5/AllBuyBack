@@ -37,7 +37,7 @@
 	<!-- Map all requests to the DispatcherServlet for handling -->
 	<servlet-mapping>
 		<servlet-name>mvc</servlet-name>
-		<url-pattern>*.controller</url-pattern>
+		<url-pattern>*.SPRINGcontroller</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>mvc</servlet-name>

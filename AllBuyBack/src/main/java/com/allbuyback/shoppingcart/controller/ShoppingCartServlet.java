@@ -47,14 +47,9 @@ public class ShoppingCartServlet extends HttpServlet {
 			rd.forward(request, response);
 			return;
 		}
-		Integer login = (Integer)session.getAttribute("LoginOK");
-		if(login == null){
-			errorMsgs.add("請先登入");
-			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
-			rd.forward(request, response);
-//			response.sendRedirect(getServletContext().getContextPath() + "/login.jsp"  );
-			return;
-		}
+		MemberVO loginOK = (MemberVO)session.getAttribute("LoginOK");
+		Integer login = loginOK.getM_id();
+
 		//加入購物車功能			
 		if("addToCart".equals(action)){
 			int id = login;
@@ -97,7 +92,7 @@ public class ShoppingCartServlet extends HttpServlet {
 			//如果有錯誤則中斷
 			if (!errorMsgs.isEmpty()) {
 				RequestDispatcher failureView = request
-						.getRequestDispatcher("/Item.go?action=getItems");
+						.getRequestDispatcher("/index.jsp");
 				failureView.forward(request, response);
 				return;
 			}
@@ -121,7 +116,7 @@ public class ShoppingCartServlet extends HttpServlet {
 			String Msg = cart.addToCart(i_id, shoppingCartVO);
 			request.setAttribute("Msg", Msg);
 			//
-			RequestDispatcher rd = request.getRequestDispatcher("/item.jsp?action=getItems");
+			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 			rd.forward(request, response);
 			System.out.println("finish");
 		}
