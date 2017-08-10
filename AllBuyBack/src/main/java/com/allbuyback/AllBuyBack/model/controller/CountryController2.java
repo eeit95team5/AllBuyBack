@@ -30,8 +30,9 @@ import com.allbuyback.AllBuyBack.model.CountryDAOI;
 import com.allbuyback.AllBuyBack.model.CountryService;
 import com.allbuyback.AllBuyBack.model.misc.PrimitiveNumberEditor;
 
+@SuppressWarnings("serial")
 @Controller
-@RequestMapping(path={"/Country2.controller2"})  
+@RequestMapping(path={"/Country2.SPRINGcontroller2"})  
 public class CountryController2  extends HttpServlet{
 
 	@Autowired

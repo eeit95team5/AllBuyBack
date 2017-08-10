@@ -1,6 +1,5 @@
 package com.allbuyback.AllBuyBack.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface Item_Class1DAOI {

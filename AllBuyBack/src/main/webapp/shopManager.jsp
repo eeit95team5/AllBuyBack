@@ -10,7 +10,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-<form action="<c:url value='/updateShop.controller'/>" method="get">
+<form action="<c:url value='/updateShop.SPRINGcontroller'/>" method="get">
 商店編號：${shop.s_id }<input type="hidden" name="s_id" value="${shop.s_id }"><br/>
 關於商店：${shop.s_aboutMe }<br/>
 商店總分：${shop.s_score }<br/>
@@ -74,7 +74,7 @@
 
 
 <br/>
-<form action="<c:url value='/insertitem.controller'/>" method="get">
+<form action="<c:url value='/insertitem.SPRINGcontroller'/>" method="get">
 <input type="hidden" name="s_id" value="${shop.s_id }"/>
 <button type="submit" name="prodaction" value="Insert">新增商品</button>
 </form>

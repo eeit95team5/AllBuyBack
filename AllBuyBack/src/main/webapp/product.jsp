@@ -31,7 +31,7 @@ $(function(){
 })
 
 function getJSON1(){
-	$.getJSON("<c:url value='/item_class1json.controller'/>",			 
+	$.getJSON("<c:url value='/item_class1json.SPRINGcontroller'/>",			 
 			  function(data){			 
 				 var docFragment = $(document.createDocumentFragment());				 
 				 for(var i=0;i<data.data.length;i++){
@@ -48,7 +48,7 @@ function getJSON1(){
 }
 
 function getJSON2(){
-	$.getJSON("<c:url value='/item_class2json.controller'/>",
+	$.getJSON("<c:url value='/item_class2json.SPRINGcontroller'/>",
 			 {"i_class1":$('#i_class1').val()},
 			  function(data){			 
 				 var docFragment = $(document.createDocumentFragment());				 
@@ -66,7 +66,7 @@ function getJSON2(){
 }
 
 function getJSON3(){
-	$.getJSON("<c:url value='/item_class3json.controller'/>",
+	$.getJSON("<c:url value='/item_class3json.SPRINGcontroller'/>",
 			 {"i_class2":$('#i_class2').val()},
 			  function(data){		 
 				 var docFragment = $(document.createDocumentFragment());				 
@@ -89,7 +89,7 @@ function getJSON3(){
 	<h3>Item Table</h3>
 	<div id="test"></div>
 
-	<form action="<c:url value="/item.controller"/>" method="get">
+	<form action="<c:url value="/item.SPRINGcontroller"/>" method="get">
 		<table>
 			<tr>
 				<td>i_id :</td>

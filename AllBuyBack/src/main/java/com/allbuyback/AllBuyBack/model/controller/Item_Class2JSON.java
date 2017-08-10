@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,10 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.allbuyback.AllBuyBack.model.Item_Class2Bean;
-import com.allbuyback.AllBuyBack.model.Item_Class2Service;
 import com.allbuyback.AllBuyBack.model.dao.Item_Class2DAOHibernate;
 @Controller
-@RequestMapping(path={"/item_class2json.controller"})  
+@RequestMapping(path={"/item_class2json.SPRINGcontroller"})  
 public class Item_Class2JSON{
 
 	@Autowired

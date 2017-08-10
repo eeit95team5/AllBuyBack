@@ -19,7 +19,7 @@ $(function(){
 })
 
 function getCountryJSON(){
-	$.getJSON("<c:url value='/countryjson.controller'/>",			                 
+	$.getJSON("<c:url value='/countryjson.SPRINGcontroller'/>",			                 
 			  function(data){			 
 				 var docFragment = $(document.createDocumentFragment());				 
 				 for(var i=0;i<data.country.length;i++){
@@ -39,7 +39,7 @@ function getCountryJSON(){
 }
 
 function getI_Class1JSON(){
-	$.getJSON("<c:url value='/item_class1json.controller'/>",			 
+	$.getJSON("<c:url value='/item_class1json.SPRINGcontroller'/>",			 
 			  function(data){			 
 				 var docFragment = $(document.createDocumentFragment());				 
 				 for(var i=0;i<data.data.length;i++){
@@ -60,7 +60,7 @@ function getI_Class1JSON(){
 }
 
 function getI_Class2JSON(){
-	$.getJSON("<c:url value='/item_class2json.controller'/>",
+	$.getJSON("<c:url value='/item_class2json.SPRINGcontroller'/>",
 			 {"i_class1":$('#i_class1').val()},
 			  function(data){			 
 				 var docFragment = $(document.createDocumentFragment());				 
@@ -82,7 +82,7 @@ function getI_Class2JSON(){
 }
 
 function getI_Class3JSON(){
-	$.getJSON("<c:url value='/item_class3json.controller'/>",
+	$.getJSON("<c:url value='/item_class3json.SPRINGcontroller'/>",
 			 {"i_class2":$('#i_class2').val()},
 			  function(data){		 
 				 var docFragment = $(document.createDocumentFragment());				 
@@ -106,7 +106,7 @@ function getI_Class3JSON(){
 </script>
 </head>
 <body>
-<form action="<c:url value='/item.controller'/>" method="get">
+<form action="<c:url value='/item.SPRINGcontroller'/>" method="get">
 	<table>
 		<tr><td>i_id</td><td><input type="text" name="i_id" id="i_id"  value="${itembean.i_id}" readonly="readonly"/></td><td>${errors.i_id}</td></tr>
 		<tr><td>s_id</td><td><input type="text" name="s_id" id="s_id"  value="${itembean.s_id}" readonly="readonly"/></td><td>${errors.s_id}</td></tr>

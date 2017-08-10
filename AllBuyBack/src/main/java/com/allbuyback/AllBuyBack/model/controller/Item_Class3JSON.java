@@ -17,13 +17,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.allbuyback.AllBuyBack.model.Item_Class2Bean;
 import com.allbuyback.AllBuyBack.model.Item_Class3Bean;
-import com.allbuyback.AllBuyBack.model.dao.Item_Class2DAOHibernate;
 import com.allbuyback.AllBuyBack.model.dao.Item_Class3DAOHibernate;
 
 @Controller
-@RequestMapping(path={"/item_class3json.controller"})  
+@RequestMapping(path={"/item_class3json.SPRINGcontroller"})  
 public class Item_Class3JSON {
 	@Autowired
 	private Item_Class3DAOHibernate item_Class3DAOHibernate;
