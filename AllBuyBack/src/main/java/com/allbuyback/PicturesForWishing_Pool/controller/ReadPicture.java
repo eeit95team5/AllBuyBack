@@ -1,4 +1,4 @@
-package com.allbuyback.Pictures.controller;
+package com.allbuyback.PicturesForWishing_Pool.controller;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import com.allbuyback.Pictures.model.PicturesDAO;
+import com.allbuyback.PicturesForWishing_Pool.model.PicturesDAO;
 
 @WebServlet("/ReadPicture")
 public class ReadPicture extends HttpServlet {
@@ -29,7 +29,7 @@ public class ReadPicture extends HttpServlet {
 		int w_id = Integer.parseInt(request.getParameter("w_Id"));
 		
 		PicturesDAO pDAO = new PicturesDAO();
-		pDAO.readPicture(request, response, pic_id, w_id);
+		pDAO.readPictureForView(request, response, pic_id, w_id);
 		
 	}
 

@@ -116,6 +116,8 @@
 </head>
 
 <body>
+<a href="index.jsp"><input type="button" value="回首頁"></a><br>
+<br>
 
 <form id="showShops" name="showShops" action="ShopSearch" method="POST">
 	<label><span id="conti1" ><input type="radio" name="contiCl" value="1000001">亞洲</span></label>

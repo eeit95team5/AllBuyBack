@@ -15,7 +15,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-//待補項目  popular...click
 public class ItemSearchDAO implements ItemSearchDAOI{
 
 	private static DataSource ds = null;
@@ -36,6 +35,8 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 	private static final String GET_THIRD_LAYER_STMT = "select * from ITEM join COUNTRY on ITEM.country_id = COUNTRY.country_id where ITEM.i_class1=? and ITEM.i_class2=? and ITEM.i_class3=?";
 	private static final String GET_COUNTRY_STMT = "select * from ITEM join COUNTRY on ITEM.country_id = COUNTRY.country_id where ITEM.country_id=?";
 	private static final String SELECT_BY_ID = "select * from item where i_id=?";
+	private static final String SELECT_BY_SID = "select * from ITEM join COUNTRY on ITEM.country_id = COUNTRY.country_id where s_id=?";
+	
 	@Override
 	public List<ItemVO> findByKeyWord(String keyword) {
 		List<ItemVO> list = new ArrayList<ItemVO>();
@@ -63,6 +64,7 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 			while(rs.next()){
 				if(rs.getInt("i_status")==1){
 					itemVO = new ItemVO();
+					itemVO.setI_id(rs.getInt("i_id"));
 					itemVO.setS_id(rs.getInt("s_id"));
 					itemVO.setI_name(rs.getString("i_name"));
 					itemVO.setI_describe(rs.getString("i_describe"));
@@ -127,14 +129,14 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 			while(rs.next()){
 				if(rs.getInt(16)==1){
 					Map m0 = new HashMap();
+					m0.put("i_id", rs.getInt(1));
 					m0.put("i_name", rs.getString(3));
+					m0.put("i_picture1", rs.getBinaryStream(5));
 					m0.put("i_price", rs.getDouble(10));
 					m0.put("i_quantity", rs.getInt(11));
 					m0.put("i_popular", rs.getString(20));
 					m0.put("i_click", rs.getString(21));
 					m0.put("country_name", rs.getString(25));
-					m0.put("i_id", rs.getInt("i_id"));
-					m0.put("i_picture1", rs.getBytes("i_picture1"));
 					
 					list.add(m0);
 				}
@@ -202,14 +204,14 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 			while(rs.next()){
 				if(rs.getInt(16)==1){
 					Map m1 = new HashMap();
+					m1.put("i_id", rs.getInt(1));
 					m1.put("i_name", rs.getString(3));
+					m1.put("i_picture1", rs.getBinaryStream(5));
 					m1.put("i_price", rs.getDouble(10));
 					m1.put("i_quantity", rs.getInt(11));
 					m1.put("i_popular", rs.getString(20));
 					m1.put("i_click", rs.getString(21));
 					m1.put("country_name", rs.getString(25));
-					m1.put("i_id", rs.getInt("i_id"));
-					m1.put("i_picture1", rs.getBytes("i_picture1"));
 					list.add(m1);
 				}
 			}
@@ -277,14 +279,14 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 			while(rs.next()){
 				if(rs.getInt(16)==1){
 					Map m2 = new HashMap();
+					m2.put("i_id", rs.getInt(1));
 					m2.put("i_name", rs.getString(3));
+					m2.put("i_picture1", rs.getBinaryStream(5));
 					m2.put("i_price", rs.getDouble(10));
 					m2.put("i_quantity", rs.getInt(11));
 					m2.put("i_popular", rs.getString(20));
 					m2.put("i_click", rs.getString(21));
 					m2.put("country_name", rs.getString(25));
-					m2.put("i_id", rs.getInt("i_id"));
-					m2.put("i_picture1", rs.getBytes("i_picture1"));
 					list.add(m2);
 				}
 			}
@@ -353,14 +355,14 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 			while(rs.next()){
 				if(rs.getInt(16)==1){
 					Map m3 = new HashMap();
+					m3.put("i_id", rs.getInt(1));
 					m3.put("i_name", rs.getString(3));
+					m3.put("i_picture1", rs.getBinaryStream(5));
 					m3.put("i_price", rs.getDouble(10));
 					m3.put("i_quantity", rs.getInt(11));
 					m3.put("i_popular", rs.getString(20));
 					m3.put("i_click", rs.getString(21));
 					m3.put("country_name", rs.getString(25));
-					m3.put("i_id", rs.getInt("i_id"));
-					m3.put("i_picture1", rs.getBytes("i_picture1"));
 					list.add(m3);
 				}
 			}
@@ -427,14 +429,14 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 			while(rs.next()){
 				if(rs.getInt(16)==1){
 					Map m4 = new HashMap();
+					m4.put("i_id", rs.getInt(1));
 					m4.put("i_name", rs.getString(3));
+					m4.put("i_picture1", rs.getBinaryStream(5));
 					m4.put("i_price", rs.getDouble(10));
 					m4.put("i_quantity", rs.getInt(11));
 					m4.put("i_popular", rs.getString(20));
 					m4.put("i_click", rs.getString(21));
 					m4.put("country_name", rs.getString(25));
-					m4.put("i_id", rs.getInt("i_id"));
-					m4.put("i_picture1", rs.getBytes("i_picture1"));
 					list.add(m4);
 				}
 			}
@@ -533,6 +535,61 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 				}
 			}
 			return itemVO;
+	}
+
+	@Override
+	public List<ItemVO> selectByS_Id(int s_id) {
+		List<ItemVO> list = new ArrayList<ItemVO>();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ItemVO itemVO = null;
+		ResultSet rs = null;
+		try{
+				conn = ds.getConnection();
+				stmt = conn.prepareStatement(SELECT_BY_SID);
+				
+				stmt.setInt(1, s_id);
+				rs = stmt.executeQuery();
+				
+				while(rs.next()) {
+					itemVO = new ItemVO();
+					itemVO.setI_id(rs.getInt("i_id"));
+					itemVO.setS_id(rs.getInt("s_id"));					
+					itemVO.setI_name(rs.getString("i_name"));
+					itemVO.setI_describe(rs.getString("i_describe"));
+					itemVO.setI_picture1(rs.getBytes("i_picture1"));
+					itemVO.setI_picture2(rs.getBytes("i_picture2"));
+					itemVO.setI_picture3(rs.getBytes("i_picture3"));
+					itemVO.setI_picture4(rs.getBytes("i_picture4"));
+					itemVO.setI_picture5(rs.getBytes("i_picture5"));
+					itemVO.setI_price(rs.getInt("i_price"));
+					itemVO.setI_quantity(rs.getInt("i_quantity"));
+					itemVO.setCountry_id(rs.getInt("country_id"));
+					itemVO.setI_arrivedDate(rs.getTimestamp("i_arrivedDate"));
+					itemVO.setI_onSellDate(rs.getTimestamp("i_onSellDate"));
+					itemVO.setI_soldQuantity(rs.getInt("i_soldQuantity"));
+					itemVO.setI_status(rs.getInt("i_status"));
+					itemVO.setI_class1(rs.getInt("i_class1"));
+					itemVO.setI_class2(rs.getInt("i_class2"));
+					itemVO.setI_class3(rs.getInt("i_class3"));
+					itemVO.setI_popular(rs.getInt("i_popular"));
+					itemVO.setI_click(rs.getInt("i_click"));
+					itemVO.setCountry_name(rs.getString("country_name"));
+					
+					list.add(itemVO);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (Exception e) {
+						e.printStackTrace(System.err);
+					}
+				}
+			}
+			return list;
 	}
 
 }

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.allbuyback.Achieve_Shop.model.Achieve_ShopDAO;
 import com.allbuyback.Achieve_Shop.model.Achieve_ShopVO;
-import com.allbuyback.Pictures.model.PicturesDAO;
+import com.allbuyback.PicturesForWishing_Pool.model.PicturesDAO;
 import com.allbuyback.Wisher_List.model.Wisher_ListDAO;
 import com.allbuyback.Wisher_List.model.Wisher_ListVO;
 import com.allbuyback.Wishing_Pool.model.Wishing_PoolDAO;
@@ -59,21 +59,8 @@ public class PersonalWishContent extends HttpServlet {
 			}
 		}
 		//show已上傳圖片
-		if(wpDAO.selectWish(w_id).getW_picture1().length != 0){
-			request.setAttribute("p1", 1);
-		}
-		if(wpDAO.selectWish(w_id).getW_picture2().length != 0){
-			request.setAttribute("p2", 2);
-		}
-		if(wpDAO.selectWish(w_id).getW_picture3().length != 0){
-			request.setAttribute("p3", 3);
-		}
-		if(wpDAO.selectWish(w_id).getW_picture4().length != 0){
-			request.setAttribute("p4", 4);
-		}
-		if(wpDAO.selectWish(w_id).getW_picture5().length != 0){
-			request.setAttribute("p5", 5);
-		}
+		PicturesDAO pDAO = new PicturesDAO();
+		pDAO.showUpLoadedPicture(request, w_id);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/PersonalWishContent.jsp");
 		rd.forward(request, response);
