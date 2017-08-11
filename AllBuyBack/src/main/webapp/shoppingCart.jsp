@@ -6,49 +6,101 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
-	<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.css">
-	<script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
-	<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.css">
+<link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
+<link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
+<script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+<script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
 	<style>
-		#mainBody {
-			width: 1200px;
-			margin:10px auto;
-		}
 		#mainTable{
-			margin: auto;
-			padding:10px;
-			border:2px solid #0000FF;
-			border-bottom:2px solid #0000FF;
 			font-size:18px;
 		}
-		#mainTable td{
-			border:2px solid #0000FF;
+		
+		.btn{
+			font-size:18px;	
 		}
 		#Settlement{
+			margin:auto;
 			width: 900px;
 			text-align:right;
 			font-size:26px;
 		}
-		#lastPrice{
-			
+		#lastsubmit{
+			font-size:26px;
+		}
+		#msgBoby{
+			font-size:26px;
 		}
 	</style>
-	<script>
+<script>
 // 		$(function(){
 // 			$('.shopName').each(function(data){
 // 				var s_id = $(this).attr('id');
 // 				$.post('')
 // 			});
 // 		})
-	</script>
+	$(function(){
+		
+		$('.decrease').click(function(){
+			var point = $(this).parents('td').find('.theQuantity');
+			var theQuantity = Number(point.val());
+			theQuantity = theQuantity - 1 ;
+			if(theQuantity>0){
+				point.val(theQuantity);				
+				var thePrice = $(this).parents('tr').find('.thePrice');
+				var theTolPrice = $(this).parents('tr').find('.theTolPrice');
+				var priceValue = Number(thePrice.text());
+				theTolPrice.text(priceValue*theQuantity);
+			
+			}
+			
+		});
+		$('.increase').click(function(){
+			var point = $(this).parents('td').find('.theQuantity');
+			var theQuantity = Number(point.val());
+			theQuantity = theQuantity + 1 ;
+			if(theQuantity<99){
+				point.val(theQuantity);
+				var thePrice = $(this).parents('tr').find('.thePrice');
+				var theTolPrice = $(this).parents('tr').find('.theTolPrice');
+				var priceValue = Number(thePrice.text());
+				theTolPrice.text(priceValue*theQuantity);
+			}
+		});
+
+		$('.cannelSubmit').click(function (e){
+       	 var form = $(this).parents('#aform');
+       	 console.log(form);
+       	 e.preventDefault();
+       	 swal({
+       		  title: "真的要取消此訂單?",
+       		  text: "沒買到好像會後悔，還是繼續買吧!",
+       		  type: "warning",
+       		  showCancelButton: true,
+       		  confirmButtonColor: "#DD6B55",
+       		  confirmButtonText: "取消!",
+       		  closeOnConfirm: false
+       		},
+       		function(isConfirm){
+       			if(isConfirm){
+       				form.submit();
+       			}
+       		  
+       		});
+        });
+		
+	});
+</script>
 </head>
 <body>
 <h1 style='text-align:center'>我的購物車</h1>
-<div id="mainBody">
+<div class="table-responsive">
 	<c:if test="${!empty cartlist}">
-	<table id="mainTable">
+	<table id="mainTable" class="table">
 		<thead align="center">
-			<tr>
+			<tr class="info">
 				<td>賣場</td>
 				<td>商品名稱</td>
 				<td>單價</td>
@@ -64,18 +116,21 @@
 			<form action="ShoppingCart.go" method="post">
 				<td><a href="shop.html?s_id=${list.s_id}" id="${list.s_id}" class="shopName">連結賣場</a></td>
 				<td>${list.i_name}</td>
-				<td>${list.i_price}</td>
-				<td><input type="text" name="ol_quantity" value="${list.ol_quantity}" /></td>
-				<td>${list.i_price*list.ol_quantity}</td>
+				<td class="thePrice">${list.i_price}</td>
+				<td><button type="button" class="glyphicon glyphicon-chevron-down decrease"></button>
+					<input type="text" class="theQuantity" name="ol_quantity" size="2" value="${list.ol_quantity}" />
+					<button type="button" class="glyphicon glyphicon-chevron-up increase"></button>
+				</td>
+				<td class="theTolPrice">${list.i_price*list.ol_quantity}</td>
 				<td>${list.i_arrivedDate}</td>
 				<td><textarea name="ol_memo" >${list.ol_memo}</textarea></td>
-				<td><input type="submit" value="修改"/>
+				<td><input type="submit" value="修改" class="btn btn-info"/>
 				    <input type="hidden" name="action" value="update"/>
 				    <input type="hidden" name="i_id" value=${list.i_id} /></td>
 			</form>
 				<td>
 				<form>
-					<input type="submit" value="取消" />
+					<input type="submit" value="取消" class="btn btn-danger cannelSubmit"/>
 					<input type="hidden" name="action" value="delete" />
 					<input type="hidden" name="i_id" value=${list.i_id} />
 				</form>
@@ -93,7 +148,7 @@
 		<label colspan="4" align="right">總計</label><p id="lastPrice">$ ${ShoppingCart.subtotal}</p>
 			<form action="Order.do" method="post">
 				<input type="hidden" name="o_tolPrice" value=${ShoppingCart.subtotal}/>
-				<input type="submit" value="結算" />
+				<input type="submit" value="結算" class="btn btn-primary" id="lastsubmit"/>
 				<input type="hidden" name="action" value="createOrder" />
 			</form>
 		</div>
@@ -113,5 +168,6 @@
 	<p>${errorMsg}</p>
 	<a href="shop.html?s_id=1000002">我要繼續買</a><br>
 </div>
+
 </body>
 </html>

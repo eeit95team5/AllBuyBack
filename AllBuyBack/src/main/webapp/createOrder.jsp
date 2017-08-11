@@ -244,7 +244,7 @@
 				
 			});
 			if(count==run){
-				window.location = "orderSuccess.jsp";
+// 				window.location = "orderSuccess.jsp";
 			}
 		}
 	});

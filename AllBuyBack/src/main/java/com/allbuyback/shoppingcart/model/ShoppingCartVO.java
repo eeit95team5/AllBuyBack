@@ -7,7 +7,7 @@ public class ShoppingCartVO {
 	private int s_id;
 	private String i_name;
 	private int i_price;
-	private Date i_arrivedDate;
+	private String i_arrivedDate;
 	private int ol_quantity;
 	private String ol_memo;
 	
@@ -36,10 +36,10 @@ public class ShoppingCartVO {
 	public void setI_price(int i_price) {
 		this.i_price = i_price;
 	}
-	public Date getI_arrivedDate() {
+	public String getI_arrivedDate() {
 		return i_arrivedDate;
 	}
-	public void setI_arrivedDate(Date i_arrivedDate) {
+	public void setI_arrivedDate(String i_arrivedDate) {
 		this.i_arrivedDate = i_arrivedDate;
 	}
 	public int getOl_quantity() {

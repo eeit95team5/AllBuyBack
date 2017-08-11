@@ -3,6 +3,7 @@ package com.allbuyback.shoppingcart.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -114,7 +115,9 @@ public class ShoppingCartServlet extends HttpServlet {
 			//取得商品資訊
 			ItemService itemService = new ItemService();
 			ItemVO itemVO = itemService.select(i_id);
-			Timestamp i_arrivedDate = itemVO.getI_arrivedDate();
+			Timestamp arrivedDate = itemVO.getI_arrivedDate();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+			String i_arrivedDate = sdf.format(arrivedDate);
 			String i_name = itemVO.getI_name();
 			int i_price =itemVO.getI_price();
 			
@@ -150,15 +153,20 @@ public class ShoppingCartServlet extends HttpServlet {
 			ShoppingCart cart = (ShoppingCart)session.getAttribute("ShoppingCart");
 			// 如果找不到ShoppingCart物件
 			if (cart == null) {
-				errorMsgs.add("購物車內還是空的唷!快來購物吧!");
+//				errorMsgs.add("購物車內還是空的唷!快來購物吧!");
 				System.out.println("沒資料");
-				RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/shoppingCart.jsp");
 				rd.forward(request, response);
 				return;
 			}
 			//以s_id排序取出
 			List<ShoppingCartVO> cartlist = cart.listCart();
-
+			for(int i=0;i<cartlist.size();i++){
+				String i_name = cartlist.get(i).getI_name();
+				if(i_name.length()>10){
+					i_name = i_name.substring(0, 9);
+				}
+			}
 			request.setAttribute("cartlist", cartlist);		
 //附加功能開始
 			//查詢賣家資訊--未測試
