@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.LoginService;
-import model.MemberBean;
+import model.MemberVO;
 import model.RegisterService;
 
 @WebServlet("/RegisterServlet")
@@ -92,7 +92,7 @@ public class RegisterServlet extends HttpServlet {
 		//test
 //		request.setAttribute("temp", m);
 //		request.getRequestDispatcher("/register.jsp").forward(request, response);
-		MemberBean bean = new MemberBean();
+		MemberVO bean = new MemberVO();
 		bean.setM_account(account);
 		bean.setM_password(password);
 		bean.setM_name(name);

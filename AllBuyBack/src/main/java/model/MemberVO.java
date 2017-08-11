@@ -3,7 +3,7 @@ package model;
 import java.util.Arrays;
 import java.util.Date;
 
-public class MemberBean {
+public class MemberVO {
 	int m_id;
 	String m_account;
 	String m_password;

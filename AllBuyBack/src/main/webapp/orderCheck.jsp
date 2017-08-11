@@ -8,9 +8,11 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.css">
 <link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
-<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
 <script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 <script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+<script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
 <!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css"> -->
 <!-- <script src=" http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
 </head>
@@ -179,13 +181,13 @@
 				</c:if>
 <c:if test="${OrderVO.o_procss == 1 || OrderVO.o_procss == 2}">
 	<tr>
-	<form action="Order.do" method="post">
-			<td colspan="13">
-				<input type="submit" value="取消訂單" /><span>只有賣家收單前能夠取消</span>
+		<td colspan="13">
+			<form id="aform" action="Order.do" method="post">
+				<input type="submit" value="取消訂單" id="cannelSubmit"/><span>只有賣家收單前能夠取消</span>
 				<input type="hidden" name="action" value="cannel"/>
 				<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>
-			</td>
-	</form>
+			</form>
+		</td>
 	</tr>
 </c:if>
 </table>
@@ -224,6 +226,26 @@
         	$('#sw_id').val(sw_id);
         	$('#lastPricePrint').text(newPrice+tolPrice);
         	$('#sw_price').text(newPrice);
+         });
+         $('#cannelSubmit').click(function (e){
+        	 var form = $(this).parents('#aform');
+        	 console.log(form);
+        	 e.preventDefault();
+        	 swal({
+        		  title: "真的要取消此訂單?",
+        		  text: "沒買到好像會後悔，還是繼續買吧!",
+        		  type: "warning",
+        		  showCancelButton: true,
+        		  confirmButtonColor: "#DD6B55",
+        		  confirmButtonText: "取消!",
+        		  closeOnConfirm: false
+        		},
+        		function(isConfirm){
+        			if(isConfirm){
+        				form.submit();
+        			}
+        		  
+        		});
          });
       </script>
 </body>

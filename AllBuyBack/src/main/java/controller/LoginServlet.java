@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.LoginService;
-import model.MemberBean;
+import model.MemberVO;
 
-@WebServlet("/LoginServlet")
+@WebServlet("/LoginServlet1")
 public class LoginServlet extends HttpServlet {
 
 	public LoginServlet() {
@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 			String password = request.getParameter("password").trim();
 			if (account != "" && password != "") {
 				LoginService service = new LoginService();
-				MemberBean bean = service.checkAccount(account, password);
+				MemberVO bean = service.checkAccount(account, password);
 
 				if (bean != null && (bean.getM_account().equals("admin"))) {
 					session.setAttribute("AdminOK", bean);

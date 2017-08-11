@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.FavoriteService;
-import model.MemberBean;
+import model.MemberVO;
 import model.MemberService;
 
 @WebServlet("/FavoriteServlet")
@@ -31,7 +31,7 @@ public class FavoriteServlet extends HttpServlet {
 		if (status.equals("query")) {
 			String account = request.getParameter("account");
 			FavoriteService service = new FavoriteService();
-			MemberBean bean = service.queryFavorite(account);
+			MemberVO bean = service.queryFavorite(account);
 			request.setAttribute("favorite", bean);
 			request.getRequestDispatcher("/favorite.jsp").forward(request, response);
 		}

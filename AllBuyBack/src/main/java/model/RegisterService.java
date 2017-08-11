@@ -22,7 +22,7 @@ public class RegisterService {
 
 	public boolean isAccountValid(String account) {
 		System.out.println(account);
-		MemberBean bean = new MemberDAO().select(account);
+		MemberVO bean = new MemberDAO().select(account);
 		// System.out.println(bean.getM_account());
 		if (bean != null && bean.getM_account() == account)
 			return false;
@@ -64,7 +64,7 @@ public class RegisterService {
 		}
 	}
 
-	public void saveMember(MemberBean bean) {
+	public void saveMember(MemberVO bean) {
 		MemberDAO dao = new MemberDAO();
 		dao.insert(bean);
 	}

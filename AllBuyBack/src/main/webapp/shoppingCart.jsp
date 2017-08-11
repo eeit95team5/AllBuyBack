@@ -9,34 +9,60 @@
 	<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.css">
 	<script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
 	<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
-	<style type="text/css">
+	<style>
 		#mainBody {
-			width: 900px;
+			width: 1200px;
 			margin:10px auto;
 		}
+		#mainTable{
+			margin: auto;
+			padding:10px;
+			border:2px solid #0000FF;
+			border-bottom:2px solid #0000FF;
+			font-size:18px;
+		}
+		#mainTable td{
+			border:2px solid #0000FF;
+		}
+		#Settlement{
+			width: 900px;
+			text-align:right;
+			font-size:26px;
+		}
+		#lastPrice{
+			
+		}
 	</style>
+	<script>
+// 		$(function(){
+// 			$('.shopName').each(function(data){
+// 				var s_id = $(this).attr('id');
+// 				$.post('')
+// 			});
+// 		})
+	</script>
 </head>
 <body>
 <h1 style='text-align:center'>我的購物車</h1>
 <div id="mainBody">
 	<c:if test="${!empty cartlist}">
-	<table border="1">
+	<table id="mainTable">
 		<thead align="center">
 			<tr>
-				<td>賣場s_id</td>
-				<td>商品名稱i_name</td>
-				<td>單價i_price</td>
-				<td>購買數量ol_quantity</td>
-				<td>小計tolPrice</td>
-				<td>可出貨時間i_arrivedDate</td>
-				<td>備註ol_memo</td>
+				<td>賣場</td>
+				<td>商品名稱</td>
+				<td>單價</td>
+				<td>購買數量</td>
+				<td>小計</td>
+				<td>可出貨時間</td>
+				<td>備註</td>
 				<td colspan="2">操作</td>
 			</tr>
 		
 			<c:forEach var="list" items="${cartlist}" varStatus="vs">
 			<tr align="center" valign="middle">
 			<form action="ShoppingCart.go" method="post">
-				<td>${list.s_id}</td>
+				<td><a href="shop.html?s_id=${list.s_id}" id="${list.s_id}" class="shopName">連結賣場</a></td>
 				<td>${list.i_name}</td>
 				<td>${list.i_price}</td>
 				<td><input type="text" name="ol_quantity" value="${list.ol_quantity}" /></td>
@@ -60,19 +86,17 @@
 		<tbody>
 			<tr></tr>
 			<tr align="center" valign="middle" height="50px">
-			<form action="Order.do" method="post">
-				<td colspan="4" align="right">總計</td>
-				<td colspan="1">
-					<input type="hidden" name="o_tolPrice" value=${ShoppingCart.subtotal}/>${ShoppingCart.subtotal}
-				</td>
-				<td colspan="4">
-					<input type="submit" value="結算" />
-					<input type="hidden" name="action" value="createOrder" />
-				</td>
-			</form>
 			</tr>
 		</tbody>
 	</table>
+		<div id="Settlement">
+		<label colspan="4" align="right">總計</label><p id="lastPrice">$ ${ShoppingCart.subtotal}</p>
+			<form action="Order.do" method="post">
+				<input type="hidden" name="o_tolPrice" value=${ShoppingCart.subtotal}/>
+				<input type="submit" value="結算" />
+				<input type="hidden" name="action" value="createOrder" />
+			</form>
+		</div>
 	</c:if>
 </div>
 <div id="msgBoby" align="center">

@@ -4,7 +4,7 @@ public class MemberService {
 	
 	public static void main(String[] args){
 		MemberService service = new MemberService();
-		MemberBean bean = new MemberBean();
+		MemberVO bean = new MemberVO();
 		
 //		pstmt.setString(1, bean.getM_password());
 //		pstmt.setString(2, bean.getM_phone());
@@ -22,15 +22,15 @@ public class MemberService {
 		int result = service.updateMember(bean);
 		System.out.println(new MemberDAO().select("test1"));
 	}
-	public int updateMember(MemberBean bean){
+	public int updateMember(MemberVO bean){
 		MemberDAO dao = new MemberDAO();
 		int result = dao.updateMember(bean);
 		return result;
 	}
 	
-	public MemberBean queryMember(String account){
+	public MemberVO queryMember(String account){
 		MemberDAO dao = new MemberDAO();
-		MemberBean bean = dao.select(account);
+		MemberVO bean = dao.select(account);
 		return bean;
 	}
 

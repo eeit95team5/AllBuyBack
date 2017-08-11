@@ -7,8 +7,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.css">
+<link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
+<link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
 <script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
 <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+<script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
+
 </head>
 <body>
 <table border="1">
@@ -22,7 +27,7 @@
 	<tbody id="table1">
 		
 			<tr align="center" valign="middle">
-			<form action="ShoppingCart.go" method="post">
+			<form id="cartForm" action="ShoppingCart.go" method="post">
 				<td>${vs.index}</td>
 				<td>${itemVO.i_id}</td>
 				<td>${itemVO.s_id}</td>
@@ -32,17 +37,17 @@
 				<td>${itemVO.i_quantity}</td>
 				<td>${itemVO.i_describe}</td>
 				<td>
-					<input type="text" name="ol_quantity" />
+					<input id="ol_quantity" type="text" name="ol_quantity" />
 				</td>
 				<td>
-					<input type="text" name="ol_memo" />
+					<input id="ol_memo" type="text" name="ol_memo" />
 				</td>
 				<td>
-					<input type="submit" class="btn" value="加入購物車" onclick="ck(event)" />
-					<input type="hidden" name="action" value="addToCart" />
-					<input type="hidden" name="i_id" value="${itemVO.i_id}" />
-					<input type="hidden" name="s_id" value="${itemVO.s_id}" />
-					
+					<button type="button" id="addCart" class="btn" >加入購物車</button>
+<!-- 					<input type="submit" id="addCart" class="btn" value="加入購物車" /> -->
+					<input type="hidden" id="addToCart" name="action" value="addToCart" />
+					<input type="hidden" id="i_id" name="i_id" value="${itemVO.i_id}" />
+					<input type="hidden" id="s_id" name="s_id" value="${itemVO.s_id}" />
 				</td>
 			</form>
 			</tr>
@@ -83,24 +88,36 @@
 	<input type="hidden" name="action" value="select" />
 </form>
 <c:if test="${! empty errorMsgs}"><p>${errorMsgs}</p></c:if>
+<script>
+$('#addCart').click(function (){
+// 	 var form = $(this).parents('#cartForm');
+// 	 console.log(form);
+	 var action = $('#addToCart').val();
+	 var i_id = $('#i_id').val();
+	 var s_id = $('#s_id').val();
+	 var ol_quantity = $('#ol_quantity').val();
+	 var ol_memo = $('#ol_memo').val();
+	 $.post("ShoppingCart.go",{'action':action,'i_id':i_id,'s_id':s_id,'ol_quantity':ol_quantity,'ol_memo':ol_memo},
+			 function(data){
+		 console.log(data);
+		 var json = JSON.parse(data);
+		 var str = json.a;
+		 var theType = "success";
+		 var theText = "再多看看別的商品吧!"
+		 if(str=="加入購物車失敗，不能新增數量0以下" || str=="加入購物車失敗，剩餘數量不足"){
+			 theType = "error";
+			 theText = "請確定數量再加入購物車"
+		 }
+			 swal({
+				  title: str,
+				  text: theText,
+				  type: theType
+				});
+		 
+	 })
+	 
+});
+	
+</script>
 </body>
 </html>
- <!-- 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript">
- 	
- 		var frag = $(document.createDocumentFragment());
- 		
- 		$.each(,function(inx, itemVO){
-			var cell1 = $('<td></td>').text(itemVO.i_name);
-		    var cell2 = $('<td></td>').text(itemVO.i_price);
-		    var cell3 = $('<td></td>').text(itemVO.i_quantity);
-		    var cell4 = $('<td></td>').text(itemVO.i_describe);
-		    var cell5 = $('<td></td>').html('<button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button> <button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button>');
-		    var row = $('<tr></tr>').append([cell1,cell2,cell3,cell4,cell5]);
-		    frag.append(row);
- 		})
-		tb.append(frag);
- 	
-</script>
-  -->

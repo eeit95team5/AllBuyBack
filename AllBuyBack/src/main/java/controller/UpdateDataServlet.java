@@ -32,14 +32,14 @@ public class UpdateDataServlet extends HttpServlet {
 		if (status.equals("query")) {
 			String account = request.getParameter("account");
 			MemberService service = new MemberService();
-			MemberBean bean = service.queryMember(account);
+			MemberVO bean = service.queryMember(account);
 			request.setAttribute("temp", bean);
 			request.getRequestDispatcher("/update.jsp").forward(request, response);
 		} else if (status.equals("update")) {
 
 			HttpSession session = request.getSession();
 			Map<Object, Object> errorMsg = new HashMap<>();
-			MemberBean beforeUpdateBean = new MemberBean();
+			MemberVO beforeUpdateBean = new MemberVO();
 			beforeUpdateBean.setM_id(Integer.valueOf(request.getParameter("id").trim()));
 			beforeUpdateBean.setM_account(request.getParameter("account").trim());
 			beforeUpdateBean.setM_password(request.getParameter("password").trim());
@@ -74,7 +74,7 @@ public class UpdateDataServlet extends HttpServlet {
 				System.out.println("beforeBean = " + beforeUpdateBean);
 				memService.updateMember(beforeUpdateBean);
 				LoginService logService = new LoginService();
-				MemberBean afterUpdateBean = logService.checkAccount(beforeUpdateBean.getM_account(),
+				MemberVO afterUpdateBean = logService.checkAccount(beforeUpdateBean.getM_account(),
 						beforeUpdateBean.getM_password());
 				System.out.println("afterBean = " + afterUpdateBean);
 				session.removeAttribute("LoginOK");

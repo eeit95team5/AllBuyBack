@@ -30,7 +30,7 @@ public class MemberDAO {
 	
 	
 	public static void main(String[] args){
-		MemberBean bean = new MemberBean();
+		MemberVO bean = new MemberVO();
 //		pstmt.setString(1, bean.m_account);
 //		pstmt.setString(2, bean.m_password);
 //		pstmt.setString(3, bean.m_name);
@@ -52,11 +52,11 @@ public class MemberDAO {
 	}
 	
 	String select = "select * from member where m_account = ?;";
-	public MemberBean select(String account){
+	public MemberVO select(String account){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		MemberBean bean = null;
+		MemberVO bean = null;
 		try {
 //			conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
 			conn = ds.getConnection();
@@ -65,7 +65,7 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				bean = new MemberBean();
+				bean = new MemberVO();
 				bean.setM_id(rs.getInt("m_id"));
 				bean.setM_account(rs.getString("m_account"));
 				bean.setM_address(rs.getString("m_address"));
@@ -114,7 +114,7 @@ public class MemberDAO {
 	
 	String insert = "insert into member " + "(m_account, m_password, m_name, m_phone, m_address, m_identity, "
 			+ "m_email ) " + "values (?,?,?,?,?,?,?);";
-	public int insert(MemberBean bean){
+	public int insert(MemberVO bean){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -159,7 +159,7 @@ public class MemberDAO {
 			+ "m_email = ? " 
 			+ "where m_id = ? ";
 	
-	public int updateMember(MemberBean bean){
+	public int updateMember(MemberVO bean){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -199,7 +199,7 @@ public class MemberDAO {
 	
 	private String UPDATELOGOUT = "update member set " + "m_lastUsed = ? "+ "where m_id = ? ";
 	
-	public int updateLogout(MemberBean bean){
+	public int updateLogout(MemberVO bean){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -236,11 +236,11 @@ public class MemberDAO {
 	
 	
 	String joinselect = "select m_account,m_name,KEEP_SHOP.m_id from MEMBER join  KEEP_SHOP on KEEP_SHOP.m_id=MEMBER.m_id";
-	public MemberBean selectFavorite(String account){
+	public MemberVO selectFavorite(String account){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		MemberBean bean = null;
+		MemberVO bean = null;
 		try {
 //			conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
 			conn = ds.getConnection();
@@ -249,7 +249,7 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				bean = new MemberBean();
+				bean = new MemberVO();
 				bean.setM_account(rs.getString("m_account"));
 				bean.setM_name(rs.getString("m_name"));
 				bean.setM_id(rs.getInt("m_id"));

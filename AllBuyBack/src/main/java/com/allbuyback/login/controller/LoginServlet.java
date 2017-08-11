@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import com.allbuyback.login.model.LoginService;
 import com.allbuyback.login.model.MemberVO;
 
-@WebServlet("/LoginServlet1")
+@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
