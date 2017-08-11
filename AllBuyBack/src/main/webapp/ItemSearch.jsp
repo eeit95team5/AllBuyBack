@@ -397,6 +397,7 @@ function selecthideConti3(){
 					<th>popular</th>
 					<th>click</th>
 					<th>country</th>
+					<th>pictur1</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -408,6 +409,7 @@ function selecthideConti3(){
 					<td>${itemsVO.i_popular}</td>
 					<td>${itemsVO.i_click}</td>
 					<td>${itemsVO.country_name}</td>
+					<td><img height='50' width='50' src='ReadPictureForItem?i_id=${itemsVO.i_id}'>
 				</tr>	
 			  </c:forEach>
 			</tbody>
