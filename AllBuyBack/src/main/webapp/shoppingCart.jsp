@@ -87,7 +87,7 @@
 		<p>${errorMsgs}</p>
 	</c:if>
 	<p>${errorMsg}</p>
-	<a href="index.jsp">我要繼續買</a><br>
+	<a href="shop.html?s_id=1000002">我要繼續買</a><br>
 </div>
 </body>
 </html>

@@ -272,6 +272,9 @@ public class OrderServlet extends HttpServlet {
 			if(o_recipient == null){
 				errorMsgs.add("要輸入收件人唷!");
 			}
+			if(st_o_lastPrice==null){
+				errorMsgs.add("要選擇運送方式唷!");
+			}
 			
 			//轉換型別
 			int s_id = 0;

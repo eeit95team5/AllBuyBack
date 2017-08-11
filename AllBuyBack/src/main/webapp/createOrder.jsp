@@ -21,18 +21,18 @@
 <!-- 	</td> -->
 <!-- </tr> -->
 <tr>
-	<td>付款方式</td>
+	<td><span color="red">*</span>付款方式</td>
 	<td>
 		<input id="pay_id" type="text" name="pay_id" value="匯款" />
 	</td>
 </tr>
 <tr>
 	<td>總價</td><td>${ShoppingCart.subtotal}</td>
-	<td>收件人</td>
+	<td><span color="red">*</span>收件人</td>
 	<td>
 		<input id="o_recipient" type="text" name="o_recipient" value="什麼人" />
 	</td>
-	<td>收件地址</td>
+	<td><span color="red">*</span>收件地址</td>
 	<td>
 		<input id="o_address" type="text" name="o_address" value="台灣台北" />
 	</td>
@@ -61,7 +61,7 @@
 					<input type="hidden" name="o_lastPrice" class="createOrder ${s_id_group} o_lastPrice" value="${o_lastPrice}" />
 <!-- 					input hidden 改 select -->
 					<select name="sw_id" class="createOrder ${s_id_group} sw_id" >
-							<option value="99999">請選擇運送方式
+							<option value="99999"><span color="red">*</span>請選擇運送方式
 								<input type="hidden" class="sw_price99999" value="0" />
 							</option>
 					</select>					
@@ -109,7 +109,7 @@
 <form action="Order.do" method="post">		
 					<input type="hidden" name="o_tolPrice" class="createOrder ${s_id_group} o_tolPrice" value="${o_tolPrice}" />
 					<input type="hidden" name="o_lastPrice" class="createOrder ${s_id_group} o_lastPrice" value="${o_lastPrice}" />
-					<select name="sw_id" class="createOrder ${s_id_group} sw_id" >
+					<select id="swSelect" name="sw_id" class="createOrder ${s_id_group} sw_id" >
 							<option value="99999">請選擇運送方式
 								<input type="hidden" class="sw_price99999" value="0" />
 							</option>
@@ -129,7 +129,8 @@
 </c:forEach>
 
 	<td>
-		<button type="button" id="submit" onclick="this.disabled=true">成立訂單</button>
+		<button type="button" id="submit" >成立訂單</button>
+		<span id="theMsg" color="red"></span>
 <!-- 		<input type="hidden" name="action" value="confirm" /> -->
 <!-- 		<input type="hidden" name="sw_id" class="sw_id" value="$" /> -->
 <!-- 		<input type="hidden" name="pay_id" class="pay_id" value="$" /> -->
@@ -207,28 +208,44 @@
 	});
 		
 	$('#submit').click(function(event){
-		var count = 0;
-		var run = 0;
-		$('.createOrderNumber').each(function(data){
-			count+=1;
-			var s_id = $(this).val();
-			var action = $('.createOrder'+'.'+s_id+'.action').val();
-			var sw_id = $('.createOrder'+'.'+s_id+'.sw_id').val();
-			var pay_id = $('.createOrder'+'.'+s_id+'.pay_id').val();
-			var o_tolPrice = $('.createOrder'+'.'+s_id+'.o_tolPrice').val();
-			var o_lastPrice = $('.createOrder'+'.'+s_id+'.o_lastPrice').val();
-			var o_recipient = $('.createOrder'+'.'+s_id+'.o_recipient').val();
-			var o_address = $('.createOrder'+'.'+s_id+'.o_address').val();
-			var o_memo = $('.createOrder'+'.'+s_id+'.o_memo').val();
-			$.post('Order.do',
-			{'action':action,'s_id':s_id,'sw_id':sw_id,'pay_id':pay_id,'o_tolPrice':o_tolPrice,'o_lastPrice':o_lastPrice,'o_recipient':o_recipient,'o_address':o_address}
-			, run+=1
-			);
-			
-		});
-		if(count==run){
-			window.location = "orderSuccess.jsp";
+		var theSelect = $('#swSelect').val();
+		var rule1 = 100000;
+		
+		var thePay = $('#pay_id').val();
+		var rule2 = 0;
+
+		var theRecipient = $('#o_recipient').val();
+		var rule3 = null;
+
+		var theAddress = $('#o_address').val();
+		var rule4 = null;
+		if(theSelect<rule1 || thePay==rule2 || theRecipient==rule3 || theAddress==rule4){
+			$('#theMsg').text("*為必填欄位");
+			event.preventDefault();
 		}else{
+			$('#submit').attr('disabled:true');
+			var count = 0;
+			var run = 0;
+			$('.createOrderNumber').each(function(data){
+				count+=1;
+				var s_id = $(this).val();
+				var action = $('.createOrder'+'.'+s_id+'.action').val();
+				var sw_id = $('.createOrder'+'.'+s_id+'.sw_id').val();
+				var pay_id = $('.createOrder'+'.'+s_id+'.pay_id').val();
+				var o_tolPrice = $('.createOrder'+'.'+s_id+'.o_tolPrice').val();
+				var o_lastPrice = $('.createOrder'+'.'+s_id+'.o_lastPrice').val();
+				var o_recipient = $('.createOrder'+'.'+s_id+'.o_recipient').val();
+				var o_address = $('.createOrder'+'.'+s_id+'.o_address').val();
+				var o_memo = $('.createOrder'+'.'+s_id+'.o_memo').val();
+				$.post('Order.do',
+				{'action':action,'s_id':s_id,'sw_id':sw_id,'pay_id':pay_id,'o_tolPrice':o_tolPrice,'o_lastPrice':o_lastPrice,'o_recipient':o_recipient,'o_address':o_address}
+				, run+=1
+				);
+				
+			});
+			if(count==run){
+				window.location = "orderSuccess.jsp";
+			}
 		}
 	});
 	
