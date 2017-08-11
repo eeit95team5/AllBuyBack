@@ -62,5 +62,23 @@
 <c:if test="${ !empty LoginOK}">
 <a href="RepController?action=GetReply&id=${LoginOK.m_id }">檢舉回覆</a>
 </c:if>
+
+
+	<form action="<c:url value='/LoginServlet' />" method="post">
+		<input type="hidden" name="status" value="logout">
+
+		<div align="center">
+			<input type="submit" value="logout">
+		</div>
+	</form>
+	
+	<input type="submit" value="會員專區" 
+    onclick="window.location='<c:url value="/update.jsp" />';" /> 
+    
+    <input type="submit" value="查詢訂單" 
+    onclick="window.location='<c:url value="/order.jsp" />';" />
+    
+    <input type="submit" value="我的收藏" 
+    onclick="window.location='<c:url value="/favorite.jsp" />';" />   
 </body>
 </html>
