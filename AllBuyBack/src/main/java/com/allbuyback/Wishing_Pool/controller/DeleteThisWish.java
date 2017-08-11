@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.allbuyback.Achieve_Shop.model.Achieve_ShopDAO;
 import com.allbuyback.Achieve_Shop.model.Achieve_ShopVO;
-import com.allbuyback.PicturesForWishing_Pool.model.PicturesDAO;
+import com.allbuyback.GetPicture.model.PicturesDAO;
 import com.allbuyback.Wisher_List.model.Wisher_ListDAO;
 import com.allbuyback.Wisher_List.model.Wisher_ListVO;
 import com.allbuyback.Wishing_Pool.model.Wishing_PoolDAO;

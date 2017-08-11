@@ -1,4 +1,4 @@
-package com.allbuyback.PicturesForWishing_Pool.model;
+package com.allbuyback.GetPicture.model;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,9 +33,11 @@ public class PicturesDAO implements PicturesDAOI {
 	}
 
 	private static final String GET_PICTURE = "select w_picture1, w_picture2, w_picture3, w_picture4, w_picture5 from WISHING_POOL where w_id=?";
-
+	private static final String SELECT_BY_IID = "select * from ITEM join COUNTRY on ITEM.country_id = COUNTRY.country_id where i_id=?";
+	
+	
 	@Override
-	public void readPictureForView(HttpServletRequest request, HttpServletResponse response, int pic_id, int w_id)
+	public void readPictureForWishing_Pool(HttpServletResponse response, int pic_id, int w_id)
 			throws IOException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -160,6 +162,51 @@ public class PicturesDAO implements PicturesDAOI {
 			wp.setW_picture5(wpDAO.getByte(request.getPart("file5")));
 		}
 		return wp;
+	}
+
+	@Override
+	public void readPictureForItem(HttpServletResponse response, int i_id) throws IOException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		OutputStream os = null;
+		InputStream is = null;
+		ResultSet rs = null;
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(SELECT_BY_IID);
+			pstmt.setInt(1, i_id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				is = rs.getBinaryStream(5);
+				if (is != null) {
+					String mimeType = "image/png";
+					response.setContentType(mimeType);
+					os = response.getOutputStream();
+					int count = 0;
+					byte[] bytes = new byte[4096];
+					while ((count = is.read(bytes)) != -1) {
+						os.write(bytes, 0, count);
+					}
+				}
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (os != null) {
+				os.close();
+			}
+		}
+		
 	}
 
 }

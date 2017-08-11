@@ -204,6 +204,14 @@ function callback() {
 	 			var txt6 = document.createTextNode(items[i].country_name);
 	 			cell6.appendChild(txt6);
 	 			
+	 			var cell7 = document.createElement("td");
+// 	 			var txt7 = document.createTextNode(items[i].country_name);
+				var img7 = document.createElement("img");
+				img7.setAttribute("height", "50");
+				img7.setAttribute("width", "50");
+				img7.setAttribute("src", "ReadPictureForItem?i_id=" + items[i].i_id);
+	 			cell7.appendChild(img7);
+	 			
 	 			var row = document.createElement("tr");
 	 			row.appendChild(cell1);
 	 			row.appendChild(cell2);
@@ -211,6 +219,7 @@ function callback() {
 	 			row.appendChild(cell4);
 	 			row.appendChild(cell5);
 	 			row.appendChild(cell6);
+	 			row.appendChild(cell7);
 	 			fragment.appendChild(row);
 	 		}
 	 		myBody.appendChild(fragment);
@@ -325,42 +334,80 @@ function selecthideConti3(){
 <hr>
 
 <form id="showItems2" name="showItems2" action="ItemSearch" method="POST">
-	<label><span id="bc1" ><input type="radio" name="BClass" value="1000001">女裝</span></label>
-	<label><span id="bc2" ><input type="radio" name="BClass" value="1000002">男裝</span></label>
-	<label><span id="bc3" ><input type="radio" name="BClass" value="1000003">食品</span></label>
-	<label><span id="bc4" ><input type="radio" name="BClass" value="1000004">電腦</span></label>
-	<label><span id="bc5" ><input type="radio" name="BClass" value="1000005">手機</span></label>
-	<label><span id="bc6" ><input type="radio" name="BClass" value="1000006">相機</span></label>
-	<label><span id="bc7" ><input type="radio" name="BClass" value="1000007">生活</span></label>
-	<label><span id="bc8" ><input type="radio" name="BClass" value="1000008">運動</span></label>
-	<label><span id="bc9" ><input type="radio" name="BClass" value="1000009">交通</span></label>
-	<label><span id="bc10" ><input type="radio" name="BClass" value="1000010">影音</span></label>
+	<label><span id="bc1" ><input type="radio" name="BClass" value="1000001">流行服飾</span></label>
+	<label><span id="bc2" ><input type="radio" name="BClass" value="1000002">異國美食</span></label>
+	<label><span id="bc3" ><input type="radio" name="BClass" value="1000003">數位3C</span></label>
+	<label><span id="bc4" ><input type="radio" name="BClass" value="1000004">美妝美體</span></label>
+	<label><span id="bc5" ><input type="radio" name="BClass" value="1000005">運動用品</span></label>
+	<label><span id="bc6" ><input type="radio" name="BClass" value="1000006">居家用品</span></label>
+	<label><span id="bc7" ><input type="radio" name="BClass" value="1000007">媽咪寶貝</span></label>
+	<label><span id="bc8" ><input type="radio" name="BClass" value="1000008">文具雜貨</span></label>
 	<br>
-	<label><span id="mc1" name="mcspan" ><input type="radio" name="MClass" value="1000001">女-襯衫</span></label>
-	<label><span id="mc2" name="mcspan" ><input type="radio" name="MClass" value="1000002">女-背心</span></label>
-	<label><span id="mc3" name="mcspan" ><input type="radio" name="MClass" value="1000003">女-毛衣</span></label>
-	<label><span id="mc4" name="mcspan" ><input type="radio" name="MClass" value="1000004">女-外套</span></label>
-	<label><span id="mc5" name="mcspan" ><input type="radio" name="MClass" value="1000005">男-襯衫</span></label>
-	<label><span id="mc6" name="mcspan" ><input type="radio" name="MClass" value="1000006">男-毛衣</span></label>
-	<label><span id="mc7" name="mcspan" ><input type="radio" name="MClass" value="1000007">男-褲子</span></label>
-	<label><span id="mc8" name="mcspan" ><input type="radio" name="MClass" value="1000008">男-外套</span></label>
+	<label><span id="mc1" name="mcspan" ><input type="radio" name="MClass" value="1000001">日系</span></label>
+	<label><span id="mc2" name="mcspan" ><input type="radio" name="MClass" value="1000002">韓系</span></label>
+	<label><span id="mc3" name="mcspan" ><input type="radio" name="MClass" value="1000003">美國</span></label>
+	<label><span id="mc4" name="mcspan" ><input type="radio" name="MClass" value="1000004">歐洲</span></label>
+	<label><span id="mc5" name="mcspan" ><input type="radio" name="MClass" value="1000005">食品</span></label>
+	<label><span id="mc6" name="mcspan" ><input type="radio" name="MClass" value="1000006">零食</span></label>
+	<label><span id="mc7" name="mcspan" ><input type="radio" name="MClass" value="1000007">手機</span></label>
+	<label><span id="mc8" name="mcspan" ><input type="radio" name="MClass" value="1000008">相機</span></label>
+	<label><span id="mc9" name="mcspan" ><input type="radio" name="MClass" value="1000009">電腦</span></label>
+	<label><span id="mc10" name="mcspan" ><input type="radio" name="MClass" value="1000010">化妝品</span></label>
+	<label><span id="mc11" name="mcspan" ><input type="radio" name="MClass" value="1000011">保養清潔用品</span></label>
+	<label><span id="mc12" name="mcspan" ><input type="radio" name="MClass" value="1000012">adidas</span></label>
+	<label><span id="mc13" name="mcspan" ><input type="radio" name="MClass" value="1000013">NIKE</span></label>
+	<label><span id="mc14" name="mcspan" ><input type="radio" name="MClass" value="1000014">PUMA</span></label>
+	<label><span id="mc15" name="mcspan" ><input type="radio" name="MClass" value="1000015">其他</span></label>
+	<label><span id="mc16" name="mcspan" ><input type="radio" name="MClass" value="1000016">廚房系列</span></label>
+	<label><span id="mc17" name="mcspan" ><input type="radio" name="MClass" value="1000017">寢室系列</span></label>
+	<label><span id="mc18" name="mcspan" ><input type="radio" name="MClass" value="1000018">其他</span></label>
+	<label><span id="mc19" name="mcspan" ><input type="radio" name="MClass" value="1000019">服飾</span></label>
+	<label><span id="mc20" name="mcspan" ><input type="radio" name="MClass" value="1000020">食品</span></label>
+	<label><span id="mc21" name="mcspan" ><input type="radio" name="MClass" value="1000021">教具玩具</span></label>
+	<label><span id="mc22" name="mcspan" ><input type="radio" name="MClass" value="1000022">Disney迪士尼系列</span></label>
+	<label><span id="mc23" name="mcspan" ><input type="radio" name="MClass" value="1000023">Sanrio三麗鷗系列</span></label>
 	<br>
-	<label><span id="sc1" name="scspan" ><input type="radio" name="SClass" value="1000001">女-襯衫-無袖</span></label>
-	<label><span id="sc2" name="scspan" ><input type="radio" name="SClass" value="1000002">女-襯衫-短袖</span></label>
-	<label><span id="sc3" name="scspan" ><input type="radio" name="SClass" value="1000003">女-襯衫-七分袖</span></label>
-	<label><span id="sc4" name="scspan" ><input type="radio" name="SClass" value="1000004">女-襯衫-長袖</span></label>
-	<label><span id="sc5" name="scspan" ><input type="radio" name="SClass" value="1000005">女-背心-圓領</span></label>
-	<label><span id="sc6" name="scspan" ><input type="radio" name="SClass" value="1000006">女-背心-V領</span></label>
-	<label><span id="sc7" name="scspan" ><input type="radio" name="SClass" value="1000007">女-背心-高領</span></label>
-	<label><span id="sc8" name="scspan" ><input type="radio" name="SClass" value="1000008">女-背心-連帽</span></label>
-	<label><span id="sc17" name="scspan" ><input type="radio" name="SClass" value="1000017">男-襯衫-短袖</span></label>
-	<label><span id="sc18" name="scspan" ><input type="radio" name="SClass" value="1000018">男-襯衫-七分袖</span></label>
-	<label><span id="sc19" name="scspan" ><input type="radio" name="SClass" value="1000019">男-襯衫-長袖</span></label>
-	<label><span id="sc20" name="scspan" ><input type="radio" name="SClass" value="1000020">男-襯衫-其他</span></label>
-	<label><span id="sc21" name="scspan" ><input type="radio" name="SClass" value="1000021">男-毛衣-方領</span></label>
-	<label><span id="sc22" name="scspan" ><input type="radio" name="SClass" value="1000022">男-毛衣-圓領</span></label>
-	<label><span id="sc23" name="scspan" ><input type="radio" name="SClass" value="1000023">男-毛衣-V領</span></label>
-	<label><span id="sc24" name="scspan" ><input type="radio" name="SClass" value="1000024">男-毛衣-U領</span></label>
+	<label><span id="sc1" name="scspan" ><input type="radio" name="SClass" value="1000001">無印良品</span></label>
+	<label><span id="sc2" name="scspan" ><input type="radio" name="SClass" value="1000002">UNIQLO</span></label>
+	<label><span id="sc3" name="scspan" ><input type="radio" name="SClass" value="1000003">GLOBAL WORK</span></label>
+	<label><span id="sc4" name="scspan" ><input type="radio" name="SClass" value="1000004">23區</span></label>
+	<label><span id="sc5" name="scspan" ><input type="radio" name="SClass" value="1000005">其他</span></label>
+	<label><span id="sc6" name="scspan" ><input type="radio" name="SClass" value="1000006">87MM</span></label>
+	<label><span id="sc7" name="scspan" ><input type="radio" name="SClass" value="1000007">8ight Seconds</span></label>
+	<label><span id="sc8" name="scspan" ><input type="radio" name="SClass" value="1000008">Ader Error</span></label>
+	<label><span id="sc9" name="scspan" ><input type="radio" name="SClass" value="1000009">GOGOSING</span></label>
+	<label><span id="sc10" name="scspan" ><input type="radio" name="SClass" value="1000010">其他</span></label>
+	<label><span id="sc11" name="scspan" ><input type="radio" name="SClass" value="1000011">CK</span></label>
+	<label><span id="sc12" name="scspan" ><input type="radio" name="SClass" value="1000012">GAP</span></label>
+	<label><span id="sc13" name="scspan" ><input type="radio" name="SClass" value="1000013">Roots</span></label>
+	<label><span id="sc14" name="scspan" ><input type="radio" name="SClass" value="1000014">Timberland</span></label>
+	<label><span id="sc15" name="scspan" ><input type="radio" name="SClass" value="1000015">其他</span></label>
+	<label><span id="sc16" name="scspan" ><input type="radio" name="SClass" value="1000016">AIGLE</span></label>
+	<label><span id="sc17" name="scspan" ><input type="radio" name="SClass" value="1000017">Accessorize</span></label>
+	<label><span id="sc18" name="scspan" ><input type="radio" name="SClass" value="1000018">Kenzo</span></label>
+	<label><span id="sc19" name="scspan" ><input type="radio" name="SClass" value="1000019">Superdry</span></label>
+	<label><span id="sc20" name="scspan" ><input type="radio" name="SClass" value="1000020">其他</span></label>
+	<label><span id="sc21" name="scspan" ><input type="radio" name="SClass" value="1000021">巧克力</span></label>
+	<label><span id="sc22" name="scspan" ><input type="radio" name="SClass" value="1000022">餅乾</span></label>
+	<label><span id="sc23" name="scspan" ><input type="radio" name="SClass" value="1000023">糖果</span></label>
+	<label><span id="sc24" name="scspan" ><input type="radio" name="SClass" value="1000024">其他</span></label>
+	<label><span id="sc25" name="scspan" ><input type="radio" name="SClass" value="1000025">咖啡</span></label>
+	<label><span id="sc26" name="scspan" ><input type="radio" name="SClass" value="1000026">茶</span></label>
+	<label><span id="sc27" name="scspan" ><input type="radio" name="SClass" value="1000027">其他</span></label>
+	<label><span id="sc28" name="scspan" ><input type="radio" name="SClass" value="1000028">iPhone</span></label>
+	<label><span id="sc29" name="scspan" ><input type="radio" name="SClass" value="1000029">Samsung</span></label>
+	<label><span id="sc30" name="scspan" ><input type="radio" name="SClass" value="1000030">Sony</span></label>
+	<label><span id="sc31" name="scspan" ><input type="radio" name="SClass" value="1000031">Casio/卡西歐</span></label>
+	<label><span id="sc32" name="scspan" ><input type="radio" name="SClass" value="1000032">其他</span></label>
+	<label><span id="sc33" name="scspan" ><input type="radio" name="SClass" value="1000033">周邊配件</span></label>
+	<label><span id="sc34" name="scspan" ><input type="radio" name="SClass" value="1000034">手機殼</span></label>
+	<label><span id="sc35" name="scspan" ><input type="radio" name="SClass" value="1000035">其他</span></label>
+	<label><span id="sc36" name="scspan" ><input type="radio" name="SClass" value="1000036">ACER</span></label>
+	<label><span id="sc37" name="scspan" ><input type="radio" name="SClass" value="1000037">APPLE</span></label>
+	<label><span id="sc38" name="scspan" ><input type="radio" name="SClass" value="1000038">ASUS</span></label>
+	<label><span id="sc39" name="scspan" ><input type="radio" name="SClass" value="1000039">DELL</span></label>
+	
+	
 	<br><br>
 </form>
 <hr>
@@ -397,6 +444,7 @@ function selecthideConti3(){
 					<th>popular</th>
 					<th>click</th>
 					<th>country</th>
+					<th>pictur1</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -408,6 +456,7 @@ function selecthideConti3(){
 					<td>${itemsVO.i_popular}</td>
 					<td>${itemsVO.i_click}</td>
 					<td>${itemsVO.country_name}</td>
+					<td><img height='50' width='50' src='ReadPictureForItem?i_id=${itemsVO.i_id}'>
 				</tr>	
 			  </c:forEach>
 			</tbody>

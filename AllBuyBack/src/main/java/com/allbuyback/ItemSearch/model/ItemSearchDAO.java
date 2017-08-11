@@ -132,7 +132,7 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 					Map m0 = new HashMap();
 					m0.put("i_id", rs.getInt(1));
 					m0.put("i_name", rs.getString(3));
-					m0.put("i_picture1", rs.getBinaryStream(5));
+					//m0.put("i_picture1", rs.getBinaryStream(5));
 					m0.put("i_price", rs.getDouble(10));
 					m0.put("i_quantity", rs.getInt(11));
 					m0.put("i_popular", rs.getString(20));
@@ -207,7 +207,7 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 					Map m1 = new HashMap();
 					m1.put("i_id", rs.getInt(1));
 					m1.put("i_name", rs.getString(3));
-					m1.put("i_picture1", rs.getBinaryStream(5));
+					//m1.put("i_picture1", rs.getBinaryStream(5));
 					m1.put("i_price", rs.getDouble(10));
 					m1.put("i_quantity", rs.getInt(11));
 					m1.put("i_popular", rs.getString(20));
@@ -282,7 +282,7 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 					Map m2 = new HashMap();
 					m2.put("i_id", rs.getInt(1));
 					m2.put("i_name", rs.getString(3));
-					m2.put("i_picture1", rs.getBinaryStream(5));
+					//m2.put("i_picture1", rs.getBinaryStream(5));
 					m2.put("i_price", rs.getDouble(10));
 					m2.put("i_quantity", rs.getInt(11));
 					m2.put("i_popular", rs.getString(20));
@@ -358,7 +358,7 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 					Map m3 = new HashMap();
 					m3.put("i_id", rs.getInt(1));
 					m3.put("i_name", rs.getString(3));
-					m3.put("i_picture1", rs.getBinaryStream(5));
+					//m3.put("i_picture1", rs.getBinaryStream(5));
 					m3.put("i_price", rs.getDouble(10));
 					m3.put("i_quantity", rs.getInt(11));
 					m3.put("i_popular", rs.getString(20));
@@ -432,7 +432,7 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 					Map m4 = new HashMap();
 					m4.put("i_id", rs.getInt(1));
 					m4.put("i_name", rs.getString(3));
-					m4.put("i_picture1", rs.getBinaryStream(5));
+					//m4.put("i_picture1", rs.getBinaryStream(5));
 					m4.put("i_price", rs.getDouble(10));
 					m4.put("i_quantity", rs.getInt(11));
 					m4.put("i_popular", rs.getString(20));
