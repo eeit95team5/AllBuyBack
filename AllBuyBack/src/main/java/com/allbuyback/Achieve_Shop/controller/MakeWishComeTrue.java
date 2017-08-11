@@ -81,6 +81,11 @@ public class MakeWishComeTrue extends HttpServlet {
 				MemberVO mVO2 = mDAO.selectById(asVO.get(i).getS_id());
 				asVO.get(i).setM_account(mVO2.getM_account());
 				request.setAttribute("asVO", asVO);
+				
+				// show實現願望的賣家選擇的商品
+				ItemSearchDAO iDAO = new ItemSearchDAO();
+				ItemVO iVO = iDAO.select(asVO.get(i).getI_id());
+				request.setAttribute("iVO", iVO);
 				}
 			}
 			// 已上傳圖片數目重新送回

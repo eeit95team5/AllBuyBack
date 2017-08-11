@@ -83,7 +83,7 @@
 		    <td width="120" height="40">實現願望賣家:</td>
 		    <td width="600" height="40" align="left" >
 		    	<c:forEach var="as" items="${asVO}">
-		    		${as.m_account}實現願望的內容: <a href="SingleItemContent">${iVO.i_name}</a>
+		    		${as.m_account}實現願望的內容: <a href="SingleItemContent?w_id=${wVO.w_id}&i_id=${iVO.i_id}">${iVO.i_name}</a>
 		    		<c:if test="${not empty iVO.i_name}">
 		    			<input type="button" value="加入購物車">
 		    		</c:if>
