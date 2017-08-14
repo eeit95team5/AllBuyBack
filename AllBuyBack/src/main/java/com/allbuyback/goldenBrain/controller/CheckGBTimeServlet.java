@@ -57,8 +57,10 @@ public class CheckGBTimeServlet extends HttpServlet {
 		int gbTime=gbService.checkGBTime(m_account);
 		if(gbTime==1){ //還沒玩過
 			System.out.println("A執行checkGB.controller----------");
-			request.getRequestDispatcher("/goldenBrain/dialog.jsp").forward(request, response); 
-		    //response.sendRedirect("/AllBuyBack/goldenBrain/dialog.jsp");
+			request.getRequestDispatcher("/dialog.jsp").forward(request, response); 
+			//request.getRequestDispatcher("/_homeAfterLogin.jsp").forward(request, response); 
+			
+			
 			return;
 		}else{
 			System.out.println("B執行checkGB.controller----------");

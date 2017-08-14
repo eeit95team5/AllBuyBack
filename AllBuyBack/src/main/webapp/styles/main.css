@@ -1,9 +1,14 @@
 ﻿/*包括body顏色、導覽列下拉選單設定、footer設定*/
 
-body {
-    background-color:#F5F5F5;/*白色*/
+body {/*設定無效*/
+    background-color:#CD2626;/*rgb(234,234,234)  /*#F5F5F5;/*白色*/
 }
 
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
 
 /*----下拉式選單---第一階段------*/  
 
