@@ -29,6 +29,7 @@
     .hotSearch a:hover{
       color:lightgray;
     }
+    
 
  /*以下三個class貼在main裡不能跑會衝突*/
  .ThisWeek { 
@@ -136,9 +137,9 @@
     </div>
 
 <ul class="drop-down-menu  nav navbar-nav" style="text-align:left">
-        <li><a href="#"" >首頁</a></li>
+        <li><a href="HomeIndex.jsp" >首頁</a></li>
 
-        <li><a href="#"">找商品<span class="glyphicon glyphicon-menu-down"></span></a>
+        <li><a href="#">找商品<span class="glyphicon glyphicon-menu-down"></span></a>
               <ul>
                 <li><a href="#">依類別瀏覽</a>
                     <ul>
@@ -422,8 +423,12 @@
                 </li>
             </ul>
         </li>
-        <li><a href="#"  >許願池</a>
-        </li>
+        <li><a href="#">許願池<span class="glyphicon glyphicon-menu-down"></span></a>
+			<ul>
+			<li><a href="MakeAWishForm.jsp" >許願</a></li>
+			<li><a href="CheckYourList">本人願望</a></li>
+			<li><a href="CheckPeopleList">大家願望</a></li>
+			</ul></li>
         <li><a href="#" >最新代購消息</a>
         </li>
     
