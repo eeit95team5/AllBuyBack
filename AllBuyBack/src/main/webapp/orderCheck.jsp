@@ -34,6 +34,12 @@
 		white-space:normal;
 		overflow:auto;
 	}
+	#lastTable{
+		margin-bottom: 0px;
+	}
+	#endTable td{
+		width:245px;
+	}
 </style>
 </head>
 <body>
@@ -120,7 +126,7 @@
 			<td id="o_tolPrice">${OrderVO.o_tolPrice}</td>
 			<c:choose>
 				<c:when test="${OrderVO.o_procss == 1}">
-					<td><input type="text" id="theO_point" name="o_point" size="4" value="${OrderVO.o_point}" /></td>
+					<td><input type="text" id="theO_point" title="每10點折扣1元" name="o_point" size="4" value="${OrderVO.o_point}" /></td>
 					<td>
 						<select id="shipWay">
 						<c:forEach var="shipways" items="${shipwayList}">
@@ -148,7 +154,8 @@
 		</tr>
 		<c:if test="${OrderVO.o_procss == 1}">
 		<tr>
-			<td colspan="5">
+			<td colspan="4"></td>
+			<td>
 				<input type="submit" value="確定修改" class="btn btn-info"/>
 				<input type="hidden" name="action" value="modifyFromC"/>
 				<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>
@@ -162,6 +169,8 @@
 <c:if test="${OrderVO.o_procss > 0}">
 <table class="table" id="endTable">
 	<tr>
+		<td colspan="4"></td>
+		<c:if test="${OrderVO.o_procss >= 1 && OrderVO.o_procss <= 5}">
 		<td>
 		<form action="Order.do" method="post" id="theForm">
 			<c:if test="${OrderVO.o_procss == 1}">
@@ -188,9 +197,8 @@
 			</c:if>
 		</form>
 		</td>
-	</tr>
-			<c:if test="${OrderVO.o_procss == 6}">
-			<tr>
+		</c:if>
+		<c:if test="${OrderVO.o_procss == 6}">
 			<td>
 				<c:if test="${OrderVO.s_commentStatus == 1}">
 					<div id="dialog" title="請給予賣場評價" style='display:none'>
@@ -216,11 +224,12 @@
 					<p>對方尚未進行評價</p>
 				</c:if>
 			</td>
-			</tr>
 			</c:if>
+	</tr>	
 <c:if test="${OrderVO.o_procss == 1 || OrderVO.o_procss == 2}">
 	<tr>
-		<td colspan="5">
+		<td  colspan="4"></td>
+		<td>
 			<form id="aform" action="Order.do" method="post">
 				<input type="submit" value="取消訂單" id="cannelSubmit" class="btn btn-danger"/>
 				<input type="hidden" name="action" value="cannel"/>
@@ -264,8 +273,8 @@
     	var sw_id = $(this).val();
     	var newPrice = Number($('#'+sw_id).val());
       	var tolPrice = Number($('#o_tolPrice').text());
-      	var point = Math.floor(Number($(this).val())/10);
-       	$('#o_lastPrice').val(newPrice+tolPrice-point);
+      	var point = Math.floor(Number($('#theO_point').val())/10);
+       	$('#o_lastPrice').val((newPrice+tolPrice)-point);
        	$('#sw_id').val(sw_id);
        	$('#lastPricePrint').text(newPrice+tolPrice-point);
        	$('#sw_price').text(newPrice);
@@ -310,6 +319,12 @@
      });
      $('#theO_point').change(function(e){
     	 var point = Number($(this).val());
+    	 if(point%10!=0){
+    		 swal({
+    			 title: "點數將會浪費",
+    			 text: "每10點折扣1元，個位數的部分將無作用，建議您修改確認"
+    		 });
+    	 }
     	 var sw_price = Number($('#sw_price').text());
     	 var tolPrice = Number($('#o_tolPrice').text());
     	 var dis = Math.floor(point/10);
