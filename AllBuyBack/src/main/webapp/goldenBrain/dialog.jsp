@@ -54,7 +54,7 @@
    width:760px;
    height:150px;
    margin-bottom:10px;
-   padding:20px 20px;
+   padding:25px 25px;
    
 }
 .opt1{
@@ -63,8 +63,9 @@
    width:375px;
    height:72px;
    float:left; 
-   margin-bottom: 6px;
+   margin-bottom:6px;
    position: relative;
+   padding-top:5px;
 }
 .opt2{
     border-radius:20px;
@@ -74,6 +75,7 @@
     float:right;
     margin-bottom: 6px;
     position: relative;
+    padding-top:5px;
 }
 .opt3{
     border-radius:20px;
@@ -83,6 +85,7 @@
     clear:both;
     float:left;
     position: relative;
+    padding-top:5px;
 }
 .opt4{
      border-radius:20px;
@@ -92,6 +95,7 @@
      clear:right;
      float:right;
      position: relative;
+     padding-top:5px;
 }
 
  .opt1:hover,.opt2:hover,.opt3:hover,.opt4:hover { 
@@ -100,7 +104,6 @@
  
 .ans{/*解答*/
      display:none;
-
 }
  
 .optspan{ /*顯示圈叉*/
@@ -128,7 +131,7 @@
     background: url(<c:url value="/images/shopping.jpg"/>);
     background-size: cover;
     width: 810px;
-    height: 370px;
+    height: 420px;
     content: "";
     position: absolute;
     top: 0;
@@ -158,13 +161,14 @@
     font-weight:700;
     font-family: 標楷體;
     color:black;
+    padding-top: 150px;
     
 }
 #showAns:before{/*說明背景圖部分*/
     background: url(<c:url value="/images/shoppingEnd.jpg"/>);
     background-size: cover;
     width: 804px;
-    height: 370px;
+    height: 420px;
     content: "";
     position: absolute;
     top: 0;
@@ -184,43 +188,49 @@ form{
 
 
 .countDown{
- /*border: 1px solid black;*/
- height: 30px;
- margin-top:0px!important;
+position:relative;
+/*  border: 1px solid blue; */
+ width: 760px; 
+ height: 80px;
+/* height: 30px;*/
+ margin-top:1px!important;
+ margin-bottom: 6px;
 }
 
 #timeSpan1,#timeSpan2,#timeSpan3,#timeSpan4,#timeSpan5{
+    position:absolute;
     width: 80px;
 	height: 80px;
 	line-height: 80px;
-	border: 1px solid red;
+	border: 1px solid #66CDAA;
+	background-color:#66CDAA;
+	color:white;
 	border-radius: 80px;	/* 高度 */
 	text-align: center;
-	margin-right: 5px;
+	right:3px;
+	font-size:50px;
 }
 </style>
 <script type="text/javascript">
-
 var k=0;//用來判斷要顯示第幾頁
 var ansIsTrue=0;//紀錄答對題數
 var ansIsFalse=0;//紀錄答錯題數(用不到)
 var getBonus=0;//紀錄傳回Servlet的點數
+var playAlready=0;//紀錄如果已全部作答完畢且得到紅利，按下右上角叉叉後不得再挑戰
 
 function getJSON(){
-	$.getJSON('<c:url value="/showQuestion.controller"/>', function(datas) {
-		
-		//$("#countDown").attr("style","color:red");
-		
+	$.getJSON('<c:url value="/showQuestion.do"/>', function(datas) {
+		openGoButton();
 		for(var i=1;i<5;i++){//ABCD選項點下去變灰色
 			$('.opt'+i).click(function(){$(this).attr("style","background-color:#A9A9A9");})
 		}  
 
 		for(var i=0;i<5;i++){
 			$('#question'+(i+1)).html("<h3>"+(i+1)+"."+datas[i].question+"</h3>");
-			$('#A'+(i+1)).html("<h3 style='padding-left:20px'>(A) "+datas[i].option1+"</h3><span class='optspan'></span>");
-			$('#B'+(i+1)).html("<h3 style='padding-left:20px'>(B) "+datas[i].option2+"</h3><span class='optspan'></span>");
-			$('#C'+(i+1)).html("<h3 style='padding-left:20px'>(C) "+datas[i].option3+"</h3><span class='optspan'></span>");
-			$('#D'+(i+1)).html("<h3 style='padding-left:20px'>(D) "+datas[i].option4+"</h3><span class='optspan'></span>");
+			$('#A'+(i+1)).html("<h3 style='padding-left:25px'>(A) "+datas[i].option1+"</h3><span class='optspan'></span>");
+			$('#B'+(i+1)).html("<h3 style='padding-left:25px'>(B) "+datas[i].option2+"</h3><span class='optspan'></span>");
+			$('#C'+(i+1)).html("<h3 style='padding-left:25px'>(C) "+datas[i].option3+"</h3><span class='optspan'></span>");
+			$('#D'+(i+1)).html("<h3 style='padding-left:25px'>(D) "+datas[i].option4+"</h3><span class='optspan'></span>");
 			$('#ans'+(i+1)).html(datas[i].answer+"<br>");
 	
 	<!--取得題目資料後做判斷 -->
@@ -317,10 +327,14 @@ function clearContent(){
 	}
 };<!--function結束-->
 
-function disableButton(){//一開始要關閉的按鈕
-   	$(".ui-dialog-buttonpane button:contains('下一題')").attr("disabled", true);
-   	$(".ui-dialog-buttonpane button:contains('看結果')").attr("disabled", true);
-};
+// function disableButton(){//一開始要關閉的按鈕  
+//    	$(".ui-dialog-buttonpane button:contains('下一題')").attr("disabled", true);
+//    	$(".ui-dialog-buttonpane button:contains('看結果')").attr("disabled", true);
+// };
+
+function openGoButton(){
+	$(".ui-dialog-buttonpane button:contains('GO')").removeAttr("disabled");
+}
   
 function seeAnswer(){
 	if(ansIsTrue==5){
@@ -358,13 +372,12 @@ function seeAnswer(){
 };
   
 function updateBonus(){ //送出並更新紅利
-	$.post('<c:url value="/saveBonus.controller"/>',{"bonus":getBonus});
+	$.post('<c:url value="/saveBonus.do"/>',{"bonus":getBonus});
 }
 
 
 var timer;
-
-
+var countDown=$('.countDown');
 function _testBysetInterval(timer) {
 	
 	for(var i=1;i<6;i++){
@@ -376,8 +389,11 @@ function _testBysetInterval(timer) {
     	time--;
     	if(time<10 && time>-1){time="0"+time}
     	if (time <= -1) {
-    	$timeSpan.css("color", "red")
+    	$timeSpan.css("color", "black");
+    	countDown.text("時間到");
     	clearInterval(timer);//需要清除计时器
+    	//
+
     	}
     	else {
     	$timeSpan.text(time);
@@ -393,18 +409,18 @@ function _testBysetInterval(timer) {
 
 	<h1>我要挑戰今日任務</h1>
 
-	<div id="dialog" title="<時尚金頭腦>" >
+	<div id="dialog" title="<時尚金頭腦>" style="padding-top:5px;">
 	
 	   <div id="view0" style="display:block">
 	      <div class="welcome"> <h2>歡迎來到「時尚金頭腦」!</h2>               
-		          <h2>遊戲規則如下:<br>依序回答五個問題， <br>答對三題可獲得紅利3點，<br>答對四題可獲得紅利5點，<br>答對五題可獲得紅利10點!<br>
+		          <h2>遊戲規則如下:<br>依序回答五個問題，<br>每題作答時間15秒， <br>答對三題可獲得紅利3點，<br>答對四題可獲得紅利5點，<br>答對五題可獲得紅利10點!<br>
 		          還等什麼？快去挑戰!
 		          </h2>	  </div>
 	   </div>
 
 
 		<div id="view1" style="display:none"> 
-		    <div class="countDown"><span id="timeSpan1" style="color:gray;font-size:30px">10</span></div>
+		    <div class="countDown"><div id="timeSpan1" >10</div></div>
 			<div class="question" id="question1"></div>
 			<div class="opt1" id="A1"></div>
 			<div class="opt2" id="B1"></div>
@@ -414,7 +430,7 @@ function _testBysetInterval(timer) {
  		</div> 
  		
  		<div id="view2" style="display:none"> 
- 		    <div class="countDown">	倒數計時：<span id="timeSpan2" style="color:gray;font-size:30px">10</span></div>
+ 		    <div class="countDown">	<span id="timeSpan2" >10</span></div>
 		 	<div class="question" id="question2"></div>
 		    <div class="opt1" id="A2"></div>
 			<div class="opt2" id="B2"></div>
@@ -424,7 +440,7 @@ function _testBysetInterval(timer) {
  		</div> 
 		
 		<div id="view3" style="display:none"> 
-		    <div class="countDown">	倒數計時：<span id="timeSpan3" style="color:gray;font-size:30px">10</span></div>
+		    <div class="countDown">	<span id="timeSpan3" >10</span></div>
 			<div class="question" id="question3"></div>
 			<div class="opt1" id="A3"></div>
 			<div class="opt2" id="B3"></div>
@@ -434,7 +450,7 @@ function _testBysetInterval(timer) {
  		</div> 
  		
  		<div id="view4" style="display:none"> 
- 		    <div class="countDown">	倒數計時：<span id="timeSpan4" style="color:gray;font-size:30px">10</span></div>
+ 		    <div class="countDown">	<span id="timeSpan4" >10</span></div>
 			<div class="question" id="question4"></div>
 			<div class="opt1" id="A4"></div>
 			<div class="opt2" id="B4"></div>
@@ -444,7 +460,7 @@ function _testBysetInterval(timer) {
  		</div> 
  		
  		<div id="view5" style="display:none"> 
- 		    <div class="countDown">	倒數計時：<span id="timeSpan5" style="color:gray;font-size:30px">10</span></div>
+ 		    <div class="countDown"><span id="timeSpan5" >10</span></div>
 			<div class="question" id="question5"></div>
 			<div class="opt1" id="A5"></div>
 			<div class="opt2" id="B5"></div>
@@ -453,14 +469,12 @@ function _testBysetInterval(timer) {
 			<div class="ans" id="ans5" ></div>
  		</div> 
 
-        <div id="view6" style="display:none">
-        
+        <div id="view6" style="display:none">  
 	        <div id="showAns"></div>
-	        <form action='<c:url value="/seeMyBonus.controller"/>' method="post">	        
+	        <form action='<c:url value="/seeMyBonus.do"/>' method="post">	        
 	          <input type="hidden" id="bonus" name="bonus" value="" >
 	          <input type="submit" value="查看紅利" style="font-family:標楷體;font-size:25px;background-color:#EE9572;border-radius:5px;border:#EE9572">
-	        </form>
-        
+	        </form>   
         </div>
 
 	</div><!--dialog內容結束-->
@@ -487,60 +501,25 @@ function _testBysetInterval(timer) {
 			      },
 				open : getJSON,
 				buttons : {
-					'挑戰': function() {
-				        	$('#view'+k).attr("style","display:none");	
-							$('#view'+(k+1)).attr("style","display:block");	
-				            k++;
-				            $(".ui-dialog-buttonpane button:contains('挑戰')").hide();
-				            $(".ui-dialog-buttonpane button:contains('下一題')").removeAttr("disabled");
-			   	         	$(".ui-dialog-buttonpane button:contains('看結果')").removeAttr("disabled");
-			   	         	
-			   	         
-			   	            timer = setInterval(function () {
+					'GO':function(){
+
+						 clearInterval(timer);						 
+						 $('#view'+k).attr("style","display:none");	
+						 $('#view'+(k+1)).attr("style","display:block");	
+			             k++;						
+			             timer = setInterval(function () {
 			   	        	_testBysetInterval(timer)
-			   	        	}, 1000);
-			   	         	
-					      },
-					'下一題' : function() {
-						$('#view'+k).attr("style","display:none");	
-						$('#view'+(k+1)).attr("style","display:block");	
-			            k++;	
-       		            if(k==5){  <!--最後一題時不顯示下一題的按鈕-->
-			            	 $(".ui-dialog-buttonpane button:contains('下一題')").hide();
+			   	        	}, 1000);			            
+			            if(k==5){ //到第五題的時候，點下GO進入顯示答題結果及紅利發送
+		            	   seeAnswer();
+		            	   updateBonus();
+			            }	
+			            if(k==6){
+			            	$(".ui-dialog-buttonpane button:contains('GO')").attr("disabled", true);
+			            	k=0;
 			            }
-       		            
-       		             clearInterval(timer);//若時間還沒走完，使用者已按下一頁，直接清掉沒跑完的timer，在啟動新的timer
-       		             
-       		             timer = setInterval(function () {
-       		        	_testBysetInterval(timer)
-       		        	}, 1000);  
-       		            
-       		            
-				        },
-
-				      "MyButton" : {
-				          text: "看結果",
-				          id: "my-button-id",
-				          click: function(){					          
-					           
-				        	  clearInterval(timer);
-				        	  $('#view'+k).attr("style","display:none");	
-							  $('#view'+(k+1)).attr("style","display:block");	
-					          k++;	
-					          seeAnswer();
-					          $(".ui-dialog-buttonpane button:contains('看結果')").hide();
-					         //第五題時使用者點下選項後送出紅利到後端更新  
-					          updateBonus();				         
- 
-				          }   
-				       } ,
+					},		    		     
 			        
-			    	'結束' : function() {	
-			    		$("#dialog").dialog("close");
-			    		//destroy();
-			    	},
-					       
-
 				},//button結束
 				close:function(){
 					k=0;
@@ -550,7 +529,7 @@ function _testBysetInterval(timer) {
 						
 				},
 			});<!--dialog設定結束-->
-			disableButton();<!--必須放在執行打開dialog之後-->
+			//openGoButton;<!--必須放在執行打開dialog之後-->
 			$("#opener").click(function() {
 				$("#dialog").dialog("open");
 			});

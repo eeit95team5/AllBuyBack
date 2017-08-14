@@ -17,7 +17,7 @@ import com.allbuyback.login.model.MemberVO;
 
 
 @WebServlet(
-		urlPatterns={"/seeMyBonus.controller"}
+		urlPatterns={"/seeMyBonus.do"}
 )
 public class SeeMyBonusServlet extends HttpServlet {
 
@@ -32,7 +32,7 @@ public class SeeMyBonusServlet extends HttpServlet {
 	   
 	   HttpSession session=request.getSession();
 	   
-	   MemberVO loginOK =(MemberVO) session.getAttribute("memberVO");
+	   MemberVO loginOK =(MemberVO) session.getAttribute("LoginOK");
 	   String m_account= loginOK.getM_account();
 	   
 	   GoldenBrainService gbService=new GoldenBrainService();
