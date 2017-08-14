@@ -31,8 +31,8 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 	private static final String GET_ALL_STMT = "select * from ITEM join COUNTRY on ITEM.country_id = COUNTRY.country_id";
 	//private static final String GET_KEYWORD_STMT = "select * from ITEM where ITEM.i_name like ?";
 	private static final String GET_FIRST_LAYER_STMT = "select * from ITEM join COUNTRY on ITEM.country_id = COUNTRY.country_id where ITEM.i_class1=?";
-	private static final String GET_SECOND_LAYER_STMT = "select * from ITEM join COUNTRY on ITEM.country_id = COUNTRY.country_id where ITEM.i_class1=? and ITEM.i_class2=?";
-	private static final String GET_THIRD_LAYER_STMT = "select * from ITEM join COUNTRY on ITEM.country_id = COUNTRY.country_id where ITEM.i_class1=? and ITEM.i_class2=? and ITEM.i_class3=?";
+	private static final String GET_SECOND_LAYER_STMT = "select * from ITEM join COUNTRY on ITEM.country_id = COUNTRY.country_id where ITEM.i_class2=?";
+	private static final String GET_THIRD_LAYER_STMT = "select * from ITEM join COUNTRY on ITEM.country_id = COUNTRY.country_id where ITEM.i_class3=?";
 	private static final String GET_COUNTRY_STMT = "select * from ITEM join COUNTRY on ITEM.country_id = COUNTRY.country_id where ITEM.country_id=?";
 	private static final String SELECT_BY_ID = "select * from item where i_id=?";
 	private static final String SELECT_BY_SID = "select * from ITEM join COUNTRY on ITEM.country_id = COUNTRY.country_id where s_id=?";
@@ -262,7 +262,7 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 	}
 
 	@Override
-	public List getAll_SecondLayer(int i_class1, int i_class2) {
+	public List getAll_SecondLayer(int i_class2) {
 		List list = new ArrayList();
 		//ItemVO itemVO = null;
 		
@@ -273,8 +273,7 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(GET_SECOND_LAYER_STMT);
-			pstmt.setInt(1, i_class1);
-			pstmt.setInt(2, i_class2);
+			pstmt.setInt(1, i_class2);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
@@ -337,7 +336,7 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 	}
 
 	@Override
-	public List getAll_ThirdLayer(int i_class1, int i_class2, int i_class3) {
+	public List getAll_ThirdLayer(int i_class3) {
 		List list = new ArrayList();
 		//ItemVO itemVO = null;
 		
@@ -348,9 +347,7 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(GET_THIRD_LAYER_STMT);
-			pstmt.setInt(1, i_class1);
-			pstmt.setInt(2, i_class2);
-			pstmt.setInt(3, i_class3);
+			pstmt.setInt(1, i_class3);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
