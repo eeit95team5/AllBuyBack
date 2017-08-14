@@ -58,8 +58,7 @@ public class CheckGBTimeServlet extends HttpServlet {
 		if(gbTime==1){ //還沒玩過
 			System.out.println("A執行checkGB.controller----------");
 			request.getRequestDispatcher("/dialog.jsp").forward(request, response); 
-			//request.getRequestDispatcher("/_homeAfterLogin.jsp").forward(request, response); 
-			
+		
 			
 			return;
 		}else{

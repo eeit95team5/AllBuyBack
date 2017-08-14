@@ -36,6 +36,7 @@ public class Item_Class2JSON{
 		this.a(req, resp);
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void a(HttpServletRequest request, HttpServletResponse response) {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setHeader("content-type", "text/html;charset=UTF-8");
@@ -68,6 +69,7 @@ public class Item_Class2JSON{
 			Map m2 = new HashMap();
 			m2.put("data", list2);
 			String jsonString = JSONValue.toJSONString(m2);
+			System.out.println(jsonString);
 			out.println(jsonString);
 	}
 }

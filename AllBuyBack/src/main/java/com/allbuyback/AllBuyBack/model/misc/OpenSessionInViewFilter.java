@@ -42,6 +42,7 @@ public class OpenSessionInViewFilter implements Filter {
 			System.out.println("session--auto--commit");
 		} catch (Exception e) {
 			sessionFactory.getCurrentSession().getTransaction().rollback();
+			System.out.println("session--auto--rollback");
 			e.printStackTrace();
 			chain.doFilter(request, response);
 		}

@@ -24,7 +24,6 @@ public class ShopDAOHibernate implements ShopDAOI{
 	
 	@Override
 	public ShopBean select(int s_id) {
-		System.out.println("bbbbbbbb");
 		return this.getSession().get(ShopBean.class, s_id);
 	}
 

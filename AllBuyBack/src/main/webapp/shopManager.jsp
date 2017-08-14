@@ -74,6 +74,7 @@
 
 
 <br/>
+<span id="shop_message"></span>
 <form action="<c:url value='/insertitem.SPRINGcontroller'/>" method="get">
 <input type="hidden" name="s_id" value="${shop.s_id }"/>
 <button type="submit" name="prodaction" value="Insert">新增商品</button>
@@ -82,17 +83,72 @@
 </body>
 <script>
 
-
 $(function(){	
 	for(var i=1;i <= parseInt($('#count').val());i++){
-		var id = "btn"+i;
-		$('#'+id).click(function(){
+		$('#btn'+i).click(function(){
 			var path = "<%=request.getContextPath()%>";
 			var url = path + "/updateItem.html?i_id=" + $(this).val();	
 			window.location = url;	
 		});
-	}		
+	}
+	
+	getMessageJSON();
 })
+
+
+function getMessageJSON(){
+	$.post("<c:url value='/shop_messagejson.SPRINGcontroller'/>",{"s_id":"${shop.s_id}"},function(data){
+		showJSON(data);
+	})
+}
+var v;
+function rep(v){
+	
+	var textarea = $('<textarea id=\"textarea' + v + '\"/>');
+	var button =$('<button type=\"button\" onclick=\"rep2(' + v + ')\">送出</button>');
+	var span = $('<span id=\"rep' + v + '\"></span>');
+	$('#reply'+v).after(span).after(button).after(textarea).prop( "disabled", true );			
+}
+function rep2(v){
+	if(!$('#textarea'+v).val()){
+		$('#rep'+v).text("回覆不可為空白");
+	}else {
+		$.post("<c:url value='/shopmessage.SPRINGcontroller'/>",{"action":"Update","sm_id":$('#sm_id'+v).val(),"sm_reply":$('#textarea'+v).val()},function(data){console.log(data);showJSON(data);})
+		$('#rep'+v).text("");
+	}		
+}
+
+function showJSON(data2){
+	var data = JSON.parse(data2);
+	var docFragment = $(document.createDocumentFragment());				 
+	for(var i=0;i<data.msgs.length;i++){
+		var sm_id = data.msgs[i].sm_id;
+		var s_id = data.msgs[i].s_id;
+		var m_id = data.msgs[i].m_id;
+		var sm_content = data.msgs[i].sm_content;					 
+		var sm_date = data.msgs[i].sm_date;					 
+		var sm_hidden = data.msgs[i].sm_hidden;					 
+		var sm_reply = data.msgs[i].sm_reply;
+		var sm_replyDate = data.msgs[i].sm_replyDate;					 
+		var sm_state = data.msgs[i].sm_state;
+		var div = $("<div style=\"border-bottom:1px solid;background-color:#FFC78E\"></div>").html(m_id+" 於 "+sm_date+" 留言：<br/>"+sm_content);
+		var hidden = $('<input type="hidden" id="sm_id' + i + '" value="' + sm_id + '"/>');
+		var reply = $('<button type=\"button\" id=\"reply'+i+'\" value=\"'+i+'\" >回覆</button><br/>');
+		div.append(reply).append(hidden);
+		if(sm_state == 2){
+			var div2 = $('<div style="border:1px solid;margin:10px 10px 10px 40px;background-color:#FFDCB9"></div>').html(s_id + "於" + sm_replyDate + "回覆：<br/>" + sm_reply + "<br/>");
+			div.append(div2);
+		}
+		docFragment.append(div);			
+	}
+	$('#shop_message').empty()
+	$('#shop_message').append(docFragment);	
+	for(var i=0;i<data.msgs.length;i++){
+		$('#reply'+i).click(function(){
+			rep($(this).val());
+		});
+	}
+}
 
 </script>
 </html>

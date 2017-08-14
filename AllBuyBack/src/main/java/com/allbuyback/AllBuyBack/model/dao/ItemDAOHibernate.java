@@ -42,9 +42,7 @@ public class ItemDAOHibernate implements ItemDAOI {
 		if(bean!=null) {			
 			ItemBean result = (ItemBean) this.getSession().get(ItemBean.class, bean.getI_id());
 			if(result==null) {		
-				System.out.println("1");
 				if(Integer.parseInt(this.getSession().save(bean).toString()) > 0){
-					System.out.println("2");
 					return bean;
 				}
 			}

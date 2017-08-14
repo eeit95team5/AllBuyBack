@@ -55,13 +55,6 @@ public class ItemController {
 	@RequestMapping(method={RequestMethod.GET, RequestMethod.POST})
 	public String doGet(ItemBean bean,BindingResult bindingResult,String prodaction, Model model){
 		
-		System.out.println("=============");
-		System.out.println(bean.getI_id());
-		System.out.println(bean.getS_id());
-		System.out.println(bean.getI_name());
-		System.out.println(bean.getI_arrivedDate());
-		System.out.println("=============");
-		
 		if(prodaction==null){						
 			return "product";
 		}
