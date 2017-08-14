@@ -138,7 +138,7 @@ function showJSON(data2){
 		var hidden = $('<input type="hidden" id="sm_id' + i + '" value="' + sm_id + '"/>');
 		var reply = $('<button type=\"button\" id=\"reply' + i + '\" value=\"' + i + '\" >回覆</button>');
 		var hiddenB = $('<button type=\"button\" id=\"hiddenB' + i +'\" value=\"' + i + '\">隱藏</button>');
-		var span = $('<span style=\"font-size:10px;color:blue\" id=\"spanmsg' + i + '\"></span><br/>');
+		var span = $('<span style=\"font-size:12px;color:blue\" id=\"spanmsg' + i + '\"></span><br/>');
 		div.append(reply).append(hidden).append(hiddenB).append(span);
 		
 		if(sm_state == 2){
@@ -160,9 +160,9 @@ function showJSON(data2){
 			$('#reply'+i).prop("disabled", true);
 		}		
 		if((data.msgs[i].sm_hidden)==2){
-			$('#spanmsg'+i).text("此留言狀態目前設為隱藏");
+			$('#spanmsg'+i).text("留言狀態：隱藏");
 		}else if((data.msgs[i].sm_hidden)==1){
-			$('#spanmsg'+i).text("此留言狀態目前設為公開");			
+			$('#spanmsg'+i).text("留言狀態：公開");			
 		}
 	}
 }
