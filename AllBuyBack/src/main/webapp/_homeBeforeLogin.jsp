@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <title>(已登入)首頁</title>
+ <title>(未登入)首頁</title>
 
     <link rel="stylesheet" href="styles/main.css"/>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
@@ -14,7 +14,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style>
-     /*設定熱門代購搜尋Bar，只有"首頁"和"導覽列進入找國家之後"用得到*/
+    /*設定熱門代購搜尋Bar，只有"首頁"和"導覽列進入找國家之後"用得到*/
     .hotSearch {
         font-family:微軟正黑體;
         line-height:60px;
@@ -35,6 +35,7 @@
       color:lightgray;
     }
 
+
  /*以下三個class貼在main裡不能跑會衝突*/
  .ThisWeek { 
   color:white;
@@ -49,81 +50,12 @@
    text-decoration:none;
   
 }
-.icon-success {  /*本週頭條 星星 改變bootstrap icon的顏色*/
+.icon-success {  /*改變bootstrap icon的顏色*/
  color: #FFB90F;
    float:left;
 }
 
- /*設定登入後的大頭貼*/
-
-.myPicture {
-    width:45px;height:45px; /*正圓形，所以寬與高都設一樣*/
-    border-radius:99em;
-    margin-left:1020px;
-    border:2px lightgray solid;
-    text-align:center;
-    margin-top:5px;
-  
-}
-.myPicture img{
-    width:40px;height:40px; /*照片比div外框小一點*/
-    border-radius:99em;
-}
-
-.threeDot{
-    width:38px;height:38px; /*照片比div外框小一點*/
-    border-radius:99em;
-    background-color: #B3B3B3;
-    text-align:center;
-    margin-left:1090px;
-    margin-top:-40px;
-    padding:7px;
-    padding-left:9px;
-    }
-.threeDot span { /*三個垂直白點*/
-    color:white;
-    font-size:20px;
-    }
-/*--------------------------------------*/
-.dropdown-content { /*白點內容*/
-    display:none;
-    position:absolute;
-    right: 18px;
-    background-color:lightgray;/*#B3B3B3; /*#C1CDCD;*/
-    width: 180px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    margin-top:8px;
-    line-height:15px;
-    font-family:微軟正黑體;
-    font-size:16px;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
 </style>
-
-<script type="text/javascript">
-    var i = 0;
-    window.onload = function () {
-        document.getElementById("threeDot").onclick = clickThreeDot;
-    }
-    
-    function clickThreeDot() {
-        if (i == 0) {
-            document.getElementById("dropdown").style.display = "block";
-            i++;
-        }else if (i == 1) {
-            document.getElementById("dropdown").style.display = "none";
-            i = 0;
-        }
-    }
-</script>
 </head>
 <body style="background-color:rgb(234,234,234)">
 
@@ -445,28 +377,12 @@
         </div>
       </div>
     </form>
-
-         <div class="myPicture">
-             <img src=""/>
-         </div>
-<!------------------->
-
-      <div class="threeDot" id="threeDot">
-          <span class="glyphicon glyphicon-option-vertical"></span>
-      </div>
-
-         <div class="dropdown-content" id="dropdown">
-             <a href="#">修改基本資料</a>
-             <a href="#">我的代購車</a>
-            <a href="#">我的賣場</a>
-            <a href="#">挑戰時尚金頭腦</a>
-            <a href="#">聯絡管理員</a>
-            <a href="#">登出</a>
-         </div>
    
+     <button  class="btn btn-danger navbar-btn" 
+         style="font-family:微軟正黑體;background-color:rgb(185,127,109);border:rgb(185,127,109);margin-right:10px" >註冊</button>
+    <button  class="btn btn-danger navbar-btn" 
+         style="font-family:微軟正黑體;background-color:rgb(185,127,109);border:rgb(185,127,109)" >登入</button>
 
-<!-------------------->
-   
               </div><!--col-sm-12--> 
             </div><!--row--> 
           </div><!--container--> 
@@ -496,8 +412,6 @@
        </div>
     </div><!--row結束-->
 </div><!--container結束-->  
-
-
 
 
 
