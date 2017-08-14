@@ -44,12 +44,12 @@ public class CheckGBTimeServlet extends HttpServlet {
 
 		HttpSession session=request.getSession();
 		MemberVO loginOK =(MemberVO) session.getAttribute("LoginOK");
+		if(loginOK==null){   //無法取得登入字符，重新導向登入畫面//直接輸入網址的情況下，此檢查才有作用
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
+			//response.sendRedirect("/AllBuyBack/login.jsp");
+		}
 		String m_account= loginOK.getM_account();
 
-		if(session.getAttribute("LoginOK")==null){   //無法取得登入字符，重新導向登入畫面//直接輸入網址的情況下，此檢查才有作用
-			request.getRequestDispatcher("/login.jsp").forward(request, response);
-			 //response.sendRedirect("/AllBuyBack/login.jsp");
-		}
 		
 		//  進行 Business Logic 運算
 		GoldenBrainService gbService=new GoldenBrainService();
