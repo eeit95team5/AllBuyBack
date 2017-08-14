@@ -120,7 +120,7 @@
 			<td id="o_tolPrice">${OrderVO.o_tolPrice}</td>
 			<c:choose>
 				<c:when test="${OrderVO.o_procss == 1}">
-					<td><input type="text" name="o_point" size="4" value="${OrderVO.o_point}" /></td>
+					<td><input type="text" id="theO_point" name="o_point" size="4" value="${OrderVO.o_point}" /></td>
 					<td>
 						<select id="shipWay">
 						<c:forEach var="shipways" items="${shipwayList}">
@@ -264,9 +264,10 @@
     	var sw_id = $(this).val();
     	var newPrice = Number($('#'+sw_id).val());
       	var tolPrice = Number($('#o_tolPrice').text());
-       	$('#o_lastPrice').val(newPrice+tolPrice);
+      	var point = Math.floor(Number($(this).val())/10);
+       	$('#o_lastPrice').val(newPrice+tolPrice-point);
        	$('#sw_id').val(sw_id);
-       	$('#lastPricePrint').text(newPrice+tolPrice);
+       	$('#lastPricePrint').text(newPrice+tolPrice-point);
        	$('#sw_price').text(newPrice);
      });
      $('#cannelSubmit').click(function (e){
@@ -306,6 +307,14 @@
        			form.submit();
        		}
        	});
+     });
+     $('#theO_point').change(function(e){
+    	 var point = Number($(this).val());
+    	 var sw_price = Number($('#sw_price').text());
+    	 var tolPrice = Number($('#o_tolPrice').text());
+    	 var dis = Math.floor(point/10);
+    	 $('#lastPricePrint').text(tolPrice + sw_price - dis);
+    	 $('#o_lastPrice').val(tolPrice + sw_price - dis);
      });
 </script>
 </body>
