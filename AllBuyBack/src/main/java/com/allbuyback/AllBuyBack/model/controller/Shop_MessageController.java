@@ -69,7 +69,7 @@ public class Shop_MessageController {
 				model.addAttribute("shop_messages", shop_MessageService.selectByS_Id(shop_MessageBean.getS_id()));
 				errors.put("noempty", "請輸入內容");
 				return;
-			}
+			} 
 			
 			MemberVO mVO = (MemberVO) request.getSession().getAttribute("LoginOK");
 			shop_MessageBean.setM_id(mVO.getM_id());
