@@ -35,16 +35,15 @@ public class CountryJSON{
 		this.a(req,resp);
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void a(HttpServletRequest req, HttpServletResponse response) throws IOException{		
-		System.out.println("aa");
-		List<CountryBean> country = countryService.select();
-		
+				
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setHeader("content-type", "text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		
+		List<CountryBean> country = countryService.select();
 		
 		List l1 = new LinkedList();
 		for(int i=0;i < country.size();i++){

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.allbuyback.AllBuyBack.model.ItemService;
 import com.allbuyback.AllBuyBack.model.ShopBean;
 import com.allbuyback.AllBuyBack.model.ShopService;
+import com.allbuyback.AllBuyBack.model.Shop_MessageService;
 
 @Controller
 @RequestMapping(path={"/shop.html"})
@@ -19,6 +20,8 @@ public class GoShopController {
 	ShopService shopService;
 	@Autowired
 	ItemService itemService;
+	@Autowired
+	Shop_MessageService shop_MessageService;
 	
 	
 	@RequestMapping(method={RequestMethod.GET, RequestMethod.POST})
@@ -28,9 +31,8 @@ public class GoShopController {
 		System.out.println("===============");
 		model.addAttribute("shop", shopService.select(shopBean.getS_id()));
 		model.addAttribute("items", itemService.selectByS_Id(shopBean.getS_id()));
+		model.addAttribute("shop_messages", shop_MessageService.selectByS_Id(shopBean.getS_id()));
 		
 		return "shop";
-		
-		
 	}
 }

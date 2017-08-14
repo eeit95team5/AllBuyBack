@@ -22,16 +22,10 @@ public class GoItemController {
 	
 	@RequestMapping(method={RequestMethod.GET, RequestMethod.POST})
 	public String doGet(ItemBean itemBean,BindingResult bindingResult, Model model){
-		ItemBean item = itemService.selectByI_Id(itemBean.getI_id());
-		System.out.println("===============");
-		System.out.println("shop s_id = "+ item.getS_id());
-		System.out.println("item i_id = "+ item.getI_id());
-		System.out.println("===============");
+		ItemBean item = itemService.selectByI_Id(itemBean.getI_id());		
 		
-		ItemBean a = itemService.selectByI_Id(itemBean.getI_id());
-		
-		model.addAttribute("shop", shopService.select(a.getS_id()));
-		model.addAttribute("itemVO", a);
+		model.addAttribute("shop", shopService.select(item.getS_id()));
+		model.addAttribute("itemVO", item);
 		
 		return "item";
 	}

@@ -14,5 +14,6 @@
 		<mapping class="com.allbuyback.AllBuyBack.model.Item_Class1Bean" />			
 		<mapping class="com.allbuyback.AllBuyBack.model.Item_Class2Bean" />			
 		<mapping class="com.allbuyback.AllBuyBack.model.Item_Class3Bean" />			
+		<mapping class="com.allbuyback.AllBuyBack.model.Shop_MessageBean" />			
     </session-factory>
 </hibernate-configuration>
