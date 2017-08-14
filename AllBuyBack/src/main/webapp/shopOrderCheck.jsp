@@ -32,6 +32,12 @@
 		white-space:normal;
 		overflow:auto;
 	}
+	#lastTable{
+		margin-bottom: 0px;
+	}
+	#footerDiv td{
+		width:256px;
+	}
 </style>
 </head>
 <body>
@@ -131,7 +137,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan="4">
+			<td colspan="3"></td>
+			<td>
 				<c:if test="${OrderVO.o_procss == 1}">
 					<input type="submit" value="確定修改" class="btn btn-info"/>
 					<input type="hidden" name="action" value="modifyFromS"/>
@@ -146,8 +153,9 @@
 <c:if test="${OrderVO.o_procss > 0}">
 <table class="table">
 	<tr>
+		<td colspan="3"></td>
 		<c:if test="${OrderVO.o_procss>=2 && OrderVO.o_procss<=4}">
-		<td colspan="4">
+		<td>
 		<form action="Order.do" method="post">
 			<c:if test="${OrderVO.o_procss == 2}">
 				<input type="submit" value="確定收單" class="btn btn-primary"/>
@@ -166,10 +174,10 @@
 		</td>
 		</c:if>
 		<c:if test="${OrderVO.o_procss == 5}">
-			<td colspan="13"><p>已完成出貨，等待買家確認收貨中...</p></td>
+			<td><p>已完成出貨，等待買家確認收貨中...</p></td>
 		</c:if>
 		<c:if test="${OrderVO.o_procss == 6}">
-			<td colspan="4">
+			<td>
 				<c:if test="${OrderVO.m_commentStatus == 1}">
 					<input type="button" id="goComment" value="進行評價" class="btn btn-primary"/>
 					<div id="dialog" title="請給予買家評價" style='display:none'>
@@ -196,7 +204,7 @@
 			</td>
 		</c:if>
 		<c:if test="${(OrderVO.o_procss != 0 || OrderVO.o_procss!=-1) && OrderVO.o_procss < 3}">
-			<td colspan="5">
+			<td>
 			<form action="Order.do" method="post" id="aform">
 				<input type="submit" value="取消訂單" id="cannelSubmit" class="btn btn-danger"/>
 				<input type="hidden" name="action" value="cannel"/>
