@@ -44,7 +44,7 @@
 	<a href="shop.html?s_id=1000002">2號賣場</a>
 	<a href="shop.html?s_id=1000006">6號賣場</a>
 	
-	<h3><a href="<c:url value="/checkGB.controller"/>">時尚金頭腦</a></h3>
+	<h3><a href="<c:url value="/checkGB.do"/>">時尚金頭腦</a></h3>
 <br>
 <h4>${alreadyPlay}</h4>
 

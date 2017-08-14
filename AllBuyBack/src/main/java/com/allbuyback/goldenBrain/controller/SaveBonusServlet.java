@@ -14,7 +14,7 @@ import com.allbuyback.login.model.MemberVO;
 /**
  * Servlet implementation class CheckMyBonus
  */
-@WebServlet("/saveBonus.controller")
+@WebServlet("/saveBonus.do")
 public class SaveBonusServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,7 @@ public class SaveBonusServlet extends HttpServlet {
 		   response.setHeader("content-type", "text/html;charset=UTF-8");
 		   response.setCharacterEncoding("UTF-8");
 		   HttpSession session=request.getSession();
-		   MemberVO loginOK =(MemberVO) session.getAttribute("memberVO");
+		   MemberVO loginOK =(MemberVO) session.getAttribute("LoginOK");
 		   String m_account= loginOK.getM_account();
 		   
 		   String bonus =request.getParameter("bonus");//剛得到的點數

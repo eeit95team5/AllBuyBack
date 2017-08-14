@@ -48,11 +48,11 @@ public class ItemSearch extends HttpServlet {
 						int i_class1 = Integer.parseInt(request.getParameter("BClass"));
 						int i_class2 = Integer.parseInt(request.getParameter("MClass"));
 						int i_class3 = Integer.parseInt(request.getParameter("SClass"));
-						jsonString = JSONValue.toJSONString(is.getAll_ThirdLayer(i_class1, i_class2, i_class3));
+						jsonString = JSONValue.toJSONString(is.getAll_ThirdLayer(i_class3));
 					}else{
 						int i_class1 = Integer.parseInt(request.getParameter("BClass"));
 						int i_class2 = Integer.parseInt(request.getParameter("MClass"));
-						jsonString = JSONValue.toJSONString(is.getAll_SecondLayer(i_class1, i_class2));
+						jsonString = JSONValue.toJSONString(is.getAll_SecondLayer(i_class2));
 					}
 				}else{
 					int i_class1 = Integer.parseInt(request.getParameter("BClass"));
