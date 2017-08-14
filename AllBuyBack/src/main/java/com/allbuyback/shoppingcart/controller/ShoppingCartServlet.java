@@ -26,6 +26,7 @@ import org.json.simple.parser.JSONParser;
 
 import com.allbuyback.ItemSearch.model.ItemService;
 import com.allbuyback.ItemSearch.model.ItemVO;
+import com.allbuyback.login.model.MemberDAO;
 import com.allbuyback.login.model.MemberVO;
 import com.allbuyback.shoppingcart.model.ShoppingCart;
 import com.allbuyback.shoppingcart.model.ShoppingCartVO;
@@ -85,6 +86,9 @@ public class ShoppingCartServlet extends HttpServlet {
 				session.setAttribute("ShoppingCart", cart);   // ${ShoppingCart.zzz}
 				System.out.println("new cart");
 			}
+			//JQ模式字串宣告
+			PrintWriter out = response.getWriter();
+			Map map = new HashMap();
 			
 			
 			//型別轉換
@@ -100,12 +104,16 @@ public class ShoppingCartServlet extends HttpServlet {
 				errorMsgs.add("發生錯誤");
 				System.out.println("error");
 			}
-			//驗證：不能購買自己的商品
+			//驗證：不能購買自己的商品(JQ模式)
 			if(s_id==id){
-				errorMsgs.add("這是您自己的商品唷!");
+				String msg = "這是您自己的商品唷!";
+				map.put("a", msg);
+				msg = JSONValue.toJSONString(map);
+				out.println(msg);
+				return;
 			}
 
-			//如果有錯誤則中斷
+			//如果有錯誤則中斷--JQ模式失效
 			if (!errorMsgs.isEmpty()) {
 				RequestDispatcher failureView = request
 						.getRequestDispatcher("/index.jsp");
@@ -137,8 +145,7 @@ public class ShoppingCartServlet extends HttpServlet {
 //			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 //			rd.forward(request, response);
 			//JQ模式
-			PrintWriter out = response.getWriter();
-			Map map = new HashMap();
+			
 			map.put("a", Msg);
 			Msg = JSONValue.toJSONString(map);
 			out.println(Msg);
@@ -169,22 +176,17 @@ public class ShoppingCartServlet extends HttpServlet {
 			}
 			request.setAttribute("cartlist", cartlist);		
 //附加功能開始
-			//查詢賣家資訊--未測試
-//			Map shopId = new LinkedHashMap();
-//			for(int i=0;i<cartlist.size();i++){
-//				int s_id = cartlist.get(i).getS_id();
-//				ShopService shopService = new ShopService();
-//				ShopVO shopVO = shopService.select(s_id);
-//				shopId.put(i, shopVO);
-//			}
-//			Map nameMap = new LinkedHashMap();
-//			for(int i=0;i<shopId.size();i++){
-//				MemberService memberService = new MemberService();
-//				MemberVO memberVO = memberService.select(shopId.get(i));
-//				String m_name = memberVO.getM_name();
-//				nameMap.put(shopId.get(i), m_name);
-//			}
-//			request.setAttribute("s_name", nameMap);
+			//查詢賣家資訊--未測試--DAO
+
+			Map nameMap = new LinkedHashMap();
+			for(int i=0;i<cartlist.size();i++){
+				int s_id = cartlist.get(i).getS_id();
+				MemberDAO memberDAO = new MemberDAO();
+				MemberVO memberVO = memberDAO.selectById(s_id);
+				String m_name = memberVO.getM_name();
+				nameMap.put(s_id, m_name);
+			}
+			request.setAttribute("s_name", nameMap);
 //附加功能結束
 			//導向頁面
 			RequestDispatcher rd = request.getRequestDispatcher("/shoppingCart.jsp");

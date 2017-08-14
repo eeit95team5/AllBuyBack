@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <link rel="stylesheet" href="styles/main.css"/>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <script src="js/bootstrap.min.js"></script> 
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.css">
+<link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
+<link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
+<script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+<script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>.3.7/js/bootstrap.min.js"></script>
  
 <style>
      /*設定熱門代購搜尋Bar，只有"首頁"和"導覽列進入找國家之後"用得到*/
@@ -29,7 +31,6 @@
     .hotSearch a:hover{
       color:lightgray;
     }
-    
 
  /*以下三個class貼在main裡不能跑會衝突*/
  .ThisWeek { 
@@ -137,9 +138,9 @@
     </div>
 
 <ul class="drop-down-menu  nav navbar-nav" style="text-align:left">
-        <li><a href="HomeIndex.jsp" >首頁</a></li>
+        <li><a href="#"" >首頁</a></li>
 
-        <li><a href="#">找商品<span class="glyphicon glyphicon-menu-down"></span></a>
+        <li><a href="#"">找商品<span class="glyphicon glyphicon-menu-down"></span></a>
               <ul>
                 <li><a href="#">依類別瀏覽</a>
                     <ul>
@@ -445,7 +446,7 @@
         </div>
       </div>
     </form>
-
+<c:if test="${! empty LoginOK}">
          <div class="myPicture">
              <img src=""/>
          </div>
@@ -463,8 +464,14 @@
             <a href="#">聯絡管理員</a>
             <a href="#">登出</a>
          </div>
+</c:if>
+<c:if test="${empty LoginOK}">
+         <button  class="btn btn-danger navbar-btn" 
+         style="font-family:微軟正黑體;background-color:rgb(185,127,109);border:rgb(185,127,109);margin-right:10px" >註冊</button>
+    <button  class="btn btn-danger navbar-btn" 
+         style="font-family:微軟正黑體;background-color:rgb(185,127,109);border:rgb(185,127,109)" >登入</button>
    
-
+</c:if>
 <!-------------------->
    
               </div><!--col-sm-12--> 

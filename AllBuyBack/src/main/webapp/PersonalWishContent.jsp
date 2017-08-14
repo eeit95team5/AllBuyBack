@@ -5,48 +5,60 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>PersonalWishContent</title>
+<style>
+	#thhead{
+		text-align:center
+	}
+	
+</style>
+
 </head>
 <body>
+<jsp:include page="includeTop.jsp"></jsp:include>
 	<form name="UpdateWishContent" id="UpdateWishContent1" action="UpdateWish?w_Id=${wVO.w_id}" method="POST" enctype="multipart/form-data">
-	<table border="1">
+	<fieldset>
+	<table>
 	<thead>
-	<tr bgcolor='tan'><th height="60" colspan="2" align="center">許願單</th></tr>
+	<tr><th id="thhead" height="60" colspan="2">許願單</th></tr>
 	</thead>
 	<tbody>
-		<tr bgcolor='tan' >
+		<tr>
 		    <td width="120" height="40">許願編號:</td>
 		    <td width="600" height="40" align="left" >
 		    <input id='w_Id1' style="text-align:left" name="w_Id" disabled value="${wVO.w_id}" type="text" size="14">
 		</tr>
-		<tr bgcolor='tan' >
+		<tr>
 		    <td width="120" height="40">許願人:</td>
 		    <td width="600" height="40" align="left" >
 		    <input id='account1' style="text-align:left" name="account" disabled value="${wVO.m_account}" type="text" size="14">
 		</tr>
-		<tr bgcolor='tan' >
+		<tr>
 		    <td width="120" height="40">許願時間:</td>
 		    <td width="600" height="40" align="left" >
 		    <input id='date1' style="text-align:left" name="date" disabled value="${wVO.w_date}" type="text" size="14">
 		</tr>
-		<tr bgcolor='tan' >
+		<tr>
 		    <td width="120" height="40">許願狀態:</td>
 		    <td width="600" height="40" align="left" >
 		    <input id='date1' style="text-align:left" name="date" disabled value="${wVO.w_status}" type="text" size="14">
 		</tr>
-		<tr bgcolor='tan' >
+		<tr>
 		    <td width="120" height="40">許願人數:</td>
 		    <td width="600" height="40" align="left" >
 		    <input id='date1' style="text-align:left" name="date" disabled value="${wVO.w_count}" type="text" size="14">
 		</tr>
-		<tr bgcolor='tan' >
+		<tr>
 		    <td width="120" height="40">許願標題:</td>
 		    <td width="600" height="40" align="left" >
 		         <input id='title1' style="text-align:left" name="title" value="${wVO.w_title}" type="text" size="14">
 		         <div style="color:#FF0000; display: inline">${ErrorMsg.title}</div>
 		    </td>
 		</tr>
-		<tr bgcolor='tan' >
+		<tr>
 		    <td width="120" height="40">許願內容:</td>
 		    <td width="600" height="40" align="left" >
 		         <textarea cols="40" rows="5" name="content" id="content1">${wVO.w_content}</textarea>
@@ -54,46 +66,46 @@
 		    </td>
 		</tr>
 		<c:if test="${empty p1}">
-		<tr bgcolor='tan' >
+		<tr>
 		    <td width="120" height="40">圖片上傳1:</td>
 		    <td width="600" height="40" align="left" >
-		         <input type="file" name="file1" id="file1" multiple accept="image/*">
+		         <input type="file" name="file1" id="file1" accept="image/*">
 		    </td>
 		</tr>
 		</c:if>
 		<c:if test="${empty p2}">
-		<tr bgcolor='tan' >
+		<tr>
 		    <td width="120" height="40">圖片上傳2:</td>
 		    <td width="600" height="40" align="left" >
-		         <input type="file" name="file2" id="file2" multiple accept="image/*">
+		         <input type="file" name="file2" id="file2" accept="image/*">
 		    </td>
 		</tr>
 		</c:if>
 		<c:if test="${empty p3}">
-		<tr bgcolor='tan' >
+		<tr>
 		    <td width="120" height="40">圖片上傳3:</td>
 		    <td width="600" height="40" align="left" >
-		         <input type="file" name="file3" id="file3" multiple accept="image/*">
+		         <input type="file" name="file3" id="file3" accept="image/*">
 		    </td>
 		</tr>
 		</c:if>
 		<c:if test="${empty p4}">
-		<tr bgcolor='tan' >
+		<tr>
 		    <td width="120" height="40">圖片上傳4:</td>
 		    <td width="600" height="40" align="left" >
-		         <input type="file" name="file4" id="file4" multiple accept="image/*">
+		         <input type="file" name="file4" id="file4" accept="image/*">
 		    </td>
 		</tr>
 		</c:if>
 		<c:if test="${empty p5}">
-		<tr bgcolor='tan' >
+		<tr>
 		    <td width="120" height="40">圖片上傳5:</td>
 		    <td width="600" height="40" align="left" >
-		         <input type="file" name="file5" id="file5" multiple accept="image/*">
+		         <input type="file" name="file5" id="file5" accept="image/*">
 		    </td>
 		</tr>
 		</c:if>
-		<tr bgcolor='tan' >
+		<tr>
 		    <td width="120" height="40">前次上傳圖片:</td>
 		    <td width="600" height="40" align="left" >
 			    	<c:if test="${not empty p1}">
@@ -118,7 +130,7 @@
 					</c:if>
 		    </td>
 		</tr>
-		<tr bgcolor='tan' >
+		<tr>
 		    <td width="120" height="40">參與願望名單:</td>
 		    <td width="600" height="40" align="left" >
 		    	<c:forEach var="list" items="${wlList}">
@@ -126,7 +138,7 @@
 		        </c:forEach>
 		    </td>
 		</tr>
-		<tr bgcolor='tan' >
+		<tr>
 		    <td width="120" height="40">實現願望賣家:</td>
 		    <td width="600" height="40" align="left" >
 		    	<c:forEach var="as" items="${asVO}">
@@ -134,18 +146,20 @@
 		    	</c:forEach>
 		    </td>
 		</tr>
-		<tr bgcolor='tan' >
+		<tr>
 		    <td height="50" colspan="2" align="center">
-		       <input type="submit" value="修改許願內容" >
-		       <a href="CheckYourList"><input type="button" value="回個人願望列表"></a>
-		       <a href="DeleteThisWish?w_Id=${wVO.w_id}"><input type="button" value="刪除此願望"></a>
+		       <input class="btn btn-primary" type="submit" value="修改許願內容" >
+		       <a href="CheckYourList"><input class="btn btn-primary" type="button" value="回個人願望列表"></a>
+		       <a href="DeleteThisWish?w_Id=${wVO.w_id}"><input class="btn btn-primary" type="button" value="刪除此願望"></a>
 		       <br>
 		       <font color='red' size='-1'>${ErrorMsg.deleteError}</font>
 		    </td>
 		</tr>	
 	</tbody>
 	</table>
+	</fieldset>
 	</form>
-
+	<br><br>
+<jsp:include page="_Footer.jsp"></jsp:include>
 </body>
 </html>

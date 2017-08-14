@@ -30,6 +30,8 @@
 </head>
 </head>
 <body>
+<!-- 加入頁首 -->
+<jsp:include page="includeTop.jsp"></jsp:include>
 <h1 align="center">我的銷售訂單</h1>
 <c:if test="${! empty list}">
 <div class="table-responsive" id="outerDiv">
@@ -37,7 +39,7 @@
 	<thead>
 		<tr class="info">
 			<td>訂單編號</td>
-			<td>會員編號</td>
+			<td>會員名稱</td>
 			<td>下單時間</td>
 			<td>付款時間</td>
 			<td>出貨時間</td>
@@ -53,7 +55,7 @@
 		<c:forEach var="orderVO" items="${list}" varStatus="vs">
 			<tr align="center" valign="middle">
 				<td>${orderVO.o_id}</td>
-				<td>${orderVO.m_id}</td>
+				<td>${nameList[vs.index]}</td>
 				<td>${orderVO.o_date}</td>
 				<td>${orderVO.o_remitDate}</td>
 				<td>${orderVO.o_sendDate}</td>
@@ -79,11 +81,16 @@
 </div>
 </c:if>
 <div id="footerDiv">
-<c:if test="${empty list}">目前您的賣場沒有任何訂單唷!快購買廣告增加曝光率吧!</c:if>
+<c:if test="${empty list}">
+	<p>目前您的賣場沒有任何訂單唷!快購買廣告增加曝光率吧!</p>
+</c:if>
+
 <c:if test="${! empty errorMsgs}"><p>${errorMsgs}</p></c:if>
 <c:if test="${! empty delete}"><p>${delete}</p></c:if>
 <a href="Order.do?action=sGetAll">返回我的賣場訂單</a><br>
 <a id="alink" href="index.jsp">回首頁</a>
 </div>
+<!-- 加入頁尾 -->
+<jsp:include page="_Footer.jsp"></jsp:include>
 </body>
 </html>

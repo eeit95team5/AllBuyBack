@@ -137,6 +137,8 @@
 </script>
 </head>
 <body>
+<!-- 加入頁首 -->
+<jsp:include page="includeTop.jsp"></jsp:include>
 <h1 style='text-align:center'>我的購物車</h1>
 <div class="table-responsive" id="mainTable">
 	<c:if test="${!empty cartlist}">
@@ -157,7 +159,7 @@
 			<c:forEach var="list" items="${cartlist}" varStatus="vs">
 			<tr align="center" valign="middle" >
 			<form action="ShoppingCart.go" method="post" class="changeClass">
-				<td><a href="shop.html?s_id=${list.s_id}" id="${list.s_id}" class="shopName">連結賣場</a></td>
+				<td><a href="shop.html?s_id=${list.s_id}" id="${list.s_id}" class="shopName">${s_name[list.s_id]}</a></td>
 				<td>${list.i_name}</td>
 				<td class="thePrice">${list.i_price}</td>
 				<td>
@@ -201,8 +203,10 @@
 </div>
 <div id="msgBoby" align="center">
 	<c:if test="${empty cartlist}">
+		<br><br>
 		<p>購物車還是空的喔!快開始購物吧!</p>
-		<a href="index.jsp">開始購物</a><br>
+		<br><br>
+		<a href="index.jsp">開始購物</a><br><br><br><br><br><br><br><br>
 	</c:if>
 	<c:if test="${!empty Msg}">
 		<p>${Msg}</p>
@@ -212,6 +216,7 @@
 	</c:if>
 	<p>${errorMsg}</p>
 </div>
-
+<!-- 加入頁尾 -->
+<jsp:include page="_Footer.jsp"></jsp:include>
 </body>
 </html>

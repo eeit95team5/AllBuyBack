@@ -15,12 +15,6 @@
 <script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
 <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script></head>
 <style>
-/* 	td{ */
-/* 		table-layout:fixed ; */
-/* 		overflow:hidden; */
-/*         white-space:nowrap; */
-/*         text-overflow:ellipsis; */
-/* 	} */
 	#outerDiv {
 		width:1024px;
 		text-align:center;
@@ -41,6 +35,8 @@
 </style>
 </head>
 <body>
+<!-- 加入頁首 -->
+<jsp:include page="includeTop.jsp"></jsp:include>
 <h1 align="center">我的購物訂單</h1>
 <c:if test="${! empty list}">
 <div class="table-responsive" id="outerDiv">
@@ -63,7 +59,7 @@
 		<c:forEach var="orderVO" items="${list}" varStatus="vs">
 			<tr align="center" valign="middle">
 				<td>${orderVO.o_id}</td>
-				<td>${orderVO.s_id}</td>
+				<td><a href="shop.html?s_id=${orderVO.s_id}">${nameList[vs.index]}</a></td>
 				<td>${orderVO.o_date}</td>
 				<td>${orderVO.o_point}</td>
 				<td>${orderVO.o_lastPrice}</td>
@@ -95,5 +91,7 @@
 	<a href="Order.do?action=cGetAll">返回我的購買訂單</a><br>
 	<a id="alink" href="index.jsp">回首頁</a>
 </div>
+<!-- 加入頁尾 -->
+<jsp:include page="_Footer.jsp"></jsp:include>
 </body>
 </html>

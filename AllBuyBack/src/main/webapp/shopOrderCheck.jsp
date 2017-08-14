@@ -35,12 +35,66 @@
 	#lastTable{
 		margin-bottom: 0px;
 	}
-	#footerDiv td{
-		width:256px;
+	#m_name{
+		border:none;
+		background:#FFF;
+		color:blue;
+	}
+	#middleTable{
+		margin-bottom: none;
 	}
 </style>
+<script>
+     $(function() {
+        $( "#dialog" ).dialog({
+           autoOpen: false,  
+        });
+        $( "#goComment" ).click(function() {
+           $( "#dialog" ).dialog( "open" );
+        });
+     
+     $('#o_tolPrice').change(function(){
+    	 var newPrice = Number($(this).val());
+      	 var shipPrice = Number($('#sw_price').text());
+       	 $('#o_lastPrice').val(newPrice+shipPrice);
+     });
+     $('#cannelSubmit').click(function (e){
+    	 var form = $(this).parents('#aform');
+      	 console.log(form);
+         e.preventDefault();
+         swal({
+        	  title: "真的要取消此訂單?",
+        	  text: "可能會造成買家的負面印象",
+        	  type: "warning",
+        	  showCancelButton: true,
+        	  confirmButtonColor: "#DD6B55",
+        	  confirmButtonText: "取消訂單",
+        	  cancelButtonText: "只是不小心按到"
+        	},
+        	function(isConfirm){
+        		if(isConfirm){
+        			form.submit();
+        		}
+        	}
+        );
+     });
+     $('#m_score').dialog({
+         autoOpen: false,
+         title: "買方評價",
+         width: 180,
+         height: 120,
+         position:{ my: "center", at: "top+140", of: window }
+     });
+     $('#m_name').mouseover(function(){
+    	$('#m_score').dialog('open');
+     }
+     );
+     });
+</script>
 </head>
 <body>
+<!-- 加入頁首 -->
+<jsp:include page="includeTop.jsp"></jsp:include>
 <c:if test="${! empty OrderVO}">
 <h1 align="center">訂單詳情</h1>
 <form action="Order.do" method="post">
@@ -51,9 +105,19 @@
 	</tr>
 	<tr>
 		<td><label>訂單編號:</label>${OrderVO.o_id}</td>
-		<td><label>賣場:</label>${OrderVO.s_id}</td>
-		<td><label>購買者:</label>${OrderVO.m_id}</td>
-		<td><label>交易階段:</label>${OrderVO.o_procss}</td>
+		<td>
+			<label>賣場:</label>
+			<a href="shop.html?s_id=${OrderVO.s_id}">${s_VO.m_name}</a>
+		</td>
+		<td>
+			<label>購買者:</label>
+			<button type="button" id="m_name">${m_VO.m_name}</button>
+			<div id="m_score" style="display:none">
+				<p><label>評價平均分: </label>${m_VO.m_avgScore}</p>
+				<p><label>被評價次數： </label>${m_VO.m_scoreCount}</p>
+			</div>
+		</td>
+		<td><label>交易階段:</label>${orderStatus}</td>
 	</tr>
 	<tr>
 		<td><label>收件人:</label>${OrderVO.o_recipient}</td>
@@ -83,7 +147,7 @@
 </table>
 </div>
 <div id="middleDiv">
-<table class="table">
+<table id="middleTable" class="table">
 	<tr class="success">
 		<td colspan="5">商品清單</td>
 	</tr>
@@ -104,7 +168,7 @@
 			</tr>
 		</c:forEach>
 </table>
-<table class="table" id="lastTable">
+<table class="table" id="lastTable" style="table-layout:fixed">
 		<tr class="danger">
 			<td colspan="4">結算</td>
 		</tr>
@@ -136,24 +200,38 @@
 				</div>
 			</td>
 		</tr>
+		<c:if test="${OrderVO.o_procss == 1}">
 		<tr>
 			<td colspan="3"></td>
 			<td>
-				<c:if test="${OrderVO.o_procss == 1}">
-					<input type="submit" value="確定修改" class="btn btn-info"/>
-					<input type="hidden" name="action" value="modifyFromS"/>
-					<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>	
-				</c:if>
+				<input type="submit" value="確定修改" class="btn btn-info"/>
+				<input type="hidden" name="action" value="modifyFromS"/>
+				<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>	
 			</td>
 		</tr>
+		</c:if>
 </table>
 </div>
 </form>
 <div id="footerDiv">
 <c:if test="${OrderVO.o_procss > 0}">
-<table class="table">
+<table class="table" style="table-layout:fixed">
 	<tr>
-		<td colspan="3"></td>
+		<td></td>
+		<td></td>
+		
+		<c:if test="${(OrderVO.o_procss != 0 || OrderVO.o_procss!=-1) && OrderVO.o_procss < 3}">
+			<td>
+			<form action="Order.do" method="post" id="aform">
+				<input type="submit" value="取消訂單" id="cannelSubmit" class="btn btn-danger"/>
+				<input type="hidden" name="action" value="cannel"/>
+				<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>
+			</form>
+			</td>
+		</c:if>
+		<c:if test="${OrderVO.o_procss == 1}"><td>等待買家確認中..</td></c:if>	
+		<c:if test="${OrderVO.o_procss != 1 && OrderVO.o_procss != 2}"><td></td></c:if>
+			
 		<c:if test="${OrderVO.o_procss>=2 && OrderVO.o_procss<=4}">
 		<td>
 		<form action="Order.do" method="post">
@@ -203,15 +281,7 @@
 				</c:if>
 			</td>
 		</c:if>
-		<c:if test="${(OrderVO.o_procss != 0 || OrderVO.o_procss!=-1) && OrderVO.o_procss < 3}">
-			<td>
-			<form action="Order.do" method="post" id="aform">
-				<input type="submit" value="取消訂單" id="cannelSubmit" class="btn btn-danger"/>
-				<input type="hidden" name="action" value="cannel"/>
-				<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>
-			</form>
-			</td>
-		</c:if>
+
 	</tr>
 </table>
 </c:if>
@@ -220,6 +290,7 @@
 </c:if>
 <c:if test="${OrderVO.o_procss == 7}">
 	<p>本訂單已完成交易，雙方已給予評價</p>
+	<p>對方給您 ${OrderVO.s_score} 的評價，評價內容為：${OrderVO.s_comment}</p>
 </c:if>
 </div>
 </c:if>
@@ -229,42 +300,8 @@
 <a href="Order.do?action=sGetAll">返回我的賣場訂單</a>
 <a href="index.jsp">回首頁</a>
 </div>
-
+<!-- 加入頁尾 -->
+<jsp:include page="_Footer.jsp"></jsp:include>
 					
-<script>
-     $(function() {
-        $( "#dialog" ).dialog({
-           autoOpen: false,  
-        });
-        $( "#goComment" ).click(function() {
-           $( "#dialog" ).dialog( "open" );
-        });
-     });
-     $('#o_tolPrice').change(function(){
-    	 var newPrice = Number($(this).val());
-      	 var shipPrice = Number($('#sw_price').text());
-       	 $('#o_lastPrice').val(newPrice+shipPrice);
-     });
-     $('#cannelSubmit').click(function (e){
-    	 var form = $(this).parents('#aform');
-      	 console.log(form);
-         e.preventDefault();
-         swal({
-        	  title: "真的要取消此訂單?",
-        	  text: "可能會造成買家的負面印象",
-        	  type: "warning",
-        	  showCancelButton: true,
-        	  confirmButtonColor: "#DD6B55",
-        	  confirmButtonText: "取消訂單",
-        	  cancelButtonText: "不小心按到的"
-        	},
-        	function(isConfirm){
-        		if(isConfirm){
-        			form.submit();
-        		}
-        	}
-        );
-     });
-</script>
 </body>
 </html>
