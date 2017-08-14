@@ -41,7 +41,7 @@ function getCountryJSON(){
 function getI_Class1JSON(){
 	$.getJSON("<c:url value='/item_class1json.SPRINGcontroller'/>",			 
 			  function(data){			 
-				 var docFragment = $(document.createDocumentFragment());				 
+		var docFragment = $(document.createDocumentFragment());				 
 				 for(var i=0;i<data.data.length;i++){
 					 var i_Class1 = data.data[i].i_Class1;
 					 var i_ClassName1 = data.data[i].i_className1;
