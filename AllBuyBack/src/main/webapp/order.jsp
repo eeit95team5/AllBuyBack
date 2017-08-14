@@ -35,6 +35,8 @@
 </style>
 </head>
 <body>
+<!-- 加入頁首 -->
+<jsp:include page="includeTop.jsp"></jsp:include>
 <h1 align="center">我的購物訂單</h1>
 <c:if test="${! empty list}">
 <div class="table-responsive" id="outerDiv">
@@ -89,5 +91,7 @@
 	<a href="Order.do?action=cGetAll">返回我的購買訂單</a><br>
 	<a id="alink" href="index.jsp">回首頁</a>
 </div>
+<!-- 加入頁尾 -->
+<jsp:include page="_Footer.jsp"></jsp:include>
 </body>
 </html>

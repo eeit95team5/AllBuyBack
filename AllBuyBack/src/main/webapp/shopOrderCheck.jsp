@@ -44,8 +44,57 @@
 		margin-bottom: none;
 	}
 </style>
+<script>
+     $(function() {
+        $( "#dialog" ).dialog({
+           autoOpen: false,  
+        });
+        $( "#goComment" ).click(function() {
+           $( "#dialog" ).dialog( "open" );
+        });
+     
+     $('#o_tolPrice').change(function(){
+    	 var newPrice = Number($(this).val());
+      	 var shipPrice = Number($('#sw_price').text());
+       	 $('#o_lastPrice').val(newPrice+shipPrice);
+     });
+     $('#cannelSubmit').click(function (e){
+    	 var form = $(this).parents('#aform');
+      	 console.log(form);
+         e.preventDefault();
+         swal({
+        	  title: "真的要取消此訂單?",
+        	  text: "可能會造成買家的負面印象",
+        	  type: "warning",
+        	  showCancelButton: true,
+        	  confirmButtonColor: "#DD6B55",
+        	  confirmButtonText: "取消訂單",
+        	  cancelButtonText: "只是不小心按到"
+        	},
+        	function(isConfirm){
+        		if(isConfirm){
+        			form.submit();
+        		}
+        	}
+        );
+     });
+     $('#m_score').dialog({
+         autoOpen: false,
+         title: "買方評價",
+         width: 180,
+         height: 120,
+         position:{ my: "center", at: "top+140", of: window }
+     });
+     $('#m_name').mouseover(function(){
+    	$('#m_score').dialog('open');
+     }
+     );
+     });
+</script>
 </head>
 <body>
+<!-- 加入頁首 -->
+<jsp:include page="includeTop.jsp"></jsp:include>
 <c:if test="${! empty OrderVO}">
 <h1 align="center">訂單詳情</h1>
 <form action="Order.do" method="post">
@@ -170,6 +219,7 @@
 	<tr>
 		<td></td>
 		<td></td>
+		
 		<c:if test="${(OrderVO.o_procss != 0 || OrderVO.o_procss!=-1) && OrderVO.o_procss < 3}">
 			<td>
 			<form action="Order.do" method="post" id="aform">
@@ -179,7 +229,9 @@
 			</form>
 			</td>
 		</c:if>
+		<c:if test="${OrderVO.o_procss == 1}"><td>等待買家確認中..</td></c:if>	
 		<c:if test="${OrderVO.o_procss != 1 && OrderVO.o_procss != 2}"><td></td></c:if>
+			
 		<c:if test="${OrderVO.o_procss>=2 && OrderVO.o_procss<=4}">
 		<td>
 		<form action="Order.do" method="post">
@@ -238,6 +290,7 @@
 </c:if>
 <c:if test="${OrderVO.o_procss == 7}">
 	<p>本訂單已完成交易，雙方已給予評價</p>
+	<p>對方給您 ${OrderVO.s_score} 的評價，評價內容為：${OrderVO.s_comment}</p>
 </c:if>
 </div>
 </c:if>
@@ -247,53 +300,8 @@
 <a href="Order.do?action=sGetAll">返回我的賣場訂單</a>
 <a href="index.jsp">回首頁</a>
 </div>
-
+<!-- 加入頁尾 -->
+<jsp:include page="_Footer.jsp"></jsp:include>
 					
-<script>
-     $(function() {
-        $( "#dialog" ).dialog({
-           autoOpen: false,  
-        });
-        $( "#goComment" ).click(function() {
-           $( "#dialog" ).dialog( "open" );
-        });
-     });
-     $('#o_tolPrice').change(function(){
-    	 var newPrice = Number($(this).val());
-      	 var shipPrice = Number($('#sw_price').text());
-       	 $('#o_lastPrice').val(newPrice+shipPrice);
-     });
-     $('#cannelSubmit').click(function (e){
-    	 var form = $(this).parents('#aform');
-      	 console.log(form);
-         e.preventDefault();
-         swal({
-        	  title: "真的要取消此訂單?",
-        	  text: "可能會造成買家的負面印象",
-        	  type: "warning",
-        	  showCancelButton: true,
-        	  confirmButtonColor: "#DD6B55",
-        	  confirmButtonText: "取消訂單",
-        	  cancelButtonText: "只是不小心按到"
-        	},
-        	function(isConfirm){
-        		if(isConfirm){
-        			form.submit();
-        		}
-        	}
-        );
-     });
-     $('#m_score').dialog({
-         autoOpen: false,
-         title: "買方評價",
-         width: 180,
-         height: 120,
-         position:{ my: "center", at: "top+140", of: window }
-     });
-     $('#m_name').mouseover(function(){
-    	$('#m_score').dialog('open');
-     }
-     );
-</script>
 </body>
 </html>

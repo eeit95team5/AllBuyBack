@@ -39,9 +39,124 @@
 		border:none;
 	}
 </style>
+<script>
+	$(function(){
+		$('.createOrder'+'.sw_id').change(function(){
+			var thisid = $(this).val();
+// 			console.log(thisid);
+			var tolprice = Number($(this).parents('form').find('input:eq(0)').val());
+			var thisprice = Number($('.sw_price'+thisid).val());
+			var newprice = tolprice+thisprice;
+// 			console.log(newprice);
+			$(this).parents('form').find('input:eq(1)').val(newprice);
+			$(this).parents('tr').find('.thetolprice').text(newprice)
+// 			console.log($(this).parents('form').find('input:eq(1)').val());
+// 			console.log($(this).parents('tr').find('.thetolprice').text());
+		});
+		$('#pay_id').change(function(){
+			$('.pay_id').val($('#pay_id').val());
+		});
+		$('#o_address').change(function(){
+			$('.o_address').val($('#o_address').val());
+		});
+		$('#o_recipient').change(function(){
+			$('.o_recipient').val($('#o_recipient').val());
+		});
+		$('.createOrderNumber').each(function(data){
+			var s_id = $(this).val();
+			$.post('ShopShipway.go',{"action":"getWays","s_id":s_id},function(datas){
+				var frag = $(document.createDocumentFragment());
+				var point = $('.createOrder'+'.'+s_id+'.sw_id');
+// 				console.log(datas);
+// 				console.log('start finding');
+ 				//
+				$.each(JSON.parse(datas),function(shipway, value){
+					console.log("in");
+					console.log(value.sw_id);
+					var sw_id = value.sw_id;
+					var sw_name = '';
+					var sw_price = 0;
+					$.post('Shipway.go',{'action':'getWay','sw_id':sw_id},function(dat){
+// 						console.log(dat);
+						$.each(JSON.parse(dat),function(ship, way){
+						sw_id = way.sw_id;
+						sw_name = way.sw_name;
+						sw_price = way.sw_price;
+// 				console.log(sw_id);
+// 				console.log(sw_name);
+// 				console.log(sw_price);
+					var option = $('<option></option>').text(sw_name).val(sw_id);
+					var input = $('<input></input>').val(sw_price).attr('type','hidden')
+								.attr('class',"sw_price"+sw_id);
+					option.append(input)
+					frag.append(option);
+						});
+				point.append(frag);
+					});
+				});
+				
+			});
+		
+		});
+		$('#submit').click(function(event){
+			var theSelect = $('#swSelect').val();
+			var rule1 = 100000;
+			
+			var thePay = $('#pay_id').val();
+			var rule2 = 0;
+
+			var theRecipient = $('#o_recipient').val();
+			var rule3 = null;
+
+			var theAddress = $('#o_address').val();
+			var rule4 = null;
+			if(theSelect<rule1 || thePay==rule2 || theRecipient==rule3 || theAddress==rule4){
+				$('#theMsg').text("*為必填欄位");
+				event.preventDefault();
+			}else{
+				$('#submit').attr('disabled:true');
+				var count = 0;
+				var run = 0;
+				$('.createOrderNumber').each(function(data){
+					count+=1;
+					var s_id = $(this).val();
+					var action = $('.createOrder'+'.'+s_id+'.action').val();
+					var sw_id = $('.createOrder'+'.'+s_id+'.sw_id').val();
+					var pay_id = $('.createOrder'+'.'+s_id+'.pay_id').val();
+					var o_tolPrice = $('.createOrder'+'.'+s_id+'.o_tolPrice').val();
+					var o_lastPrice = $('.createOrder'+'.'+s_id+'.o_lastPrice').val();
+					var o_recipient = $('.createOrder'+'.'+s_id+'.o_recipient').val();
+					var o_address = $('.createOrder'+'.'+s_id+'.o_address').val();
+//	 				var o_memo = $('.createOrder'+'.'+s_id+'.o_memo').val();
+					$.post('Order.do',
+					{'action':action,'s_id':s_id,'sw_id':sw_id,'pay_id':pay_id,'o_tolPrice':o_tolPrice,'o_lastPrice':o_lastPrice,'o_recipient':o_recipient,'o_address':o_address}
+					, run+=1
+					);
+					
+				});
+				if(count==run){
+					swal({
+						title: "成功建立訂單",
+			       		text: "系統會自動以賣場分為不同訂單",
+			       		imageUrl: "images/good.png",
+			       		imageSize:"150x150",
+			       		confirmButtonText: "前往我的購物訂單"
+					},function(isConfirm){
+						if(isConfirm){
+							window.location = "Order.do?action=cGetAll";
+						}
+					});
+				}
+			}
+		});
+	});
+
+</script>
 </head>
 
 <body>
+<!-- 加入頁首 -->
+<jsp:include page="includeTop.jsp"></jsp:include>
 <h1 style="text-align: center">成立訂單</h1>
 <div id="mainTable">
 <table class="table">
@@ -155,120 +270,8 @@
 <a href="Order.do?action=cGetAll">返回我的購買訂單</a><br>
 <a id="alink" href="index.jsp">回首頁</a>
 </div>
-<script>
-	$(function(){
-		$('.createOrder'+'.sw_id').change(function(){
-			var thisid = $(this).val();
-// 			console.log(thisid);
-			var tolprice = Number($(this).parents('form').find('input:eq(0)').val());
-			var thisprice = Number($('.sw_price'+thisid).val());
-			var newprice = tolprice+thisprice;
-// 			console.log(newprice);
-			$(this).parents('form').find('input:eq(1)').val(newprice);
-			$(this).parents('tr').find('.thetolprice').text(newprice)
-// 			console.log($(this).parents('form').find('input:eq(1)').val());
-// 			console.log($(this).parents('tr').find('.thetolprice').text());
-		});
-		$('#pay_id').change(function(){
-			$('.pay_id').val($('#pay_id').val());
-		});
-		$('#o_address').change(function(){
-			$('.o_address').val($('#o_address').val());
-		});
-		$('#o_recipient').change(function(){
-			$('.o_recipient').val($('#o_recipient').val());
-		});
-		$('.createOrderNumber').each(function(data){
-			var s_id = $(this).val();
-			$.post('ShopShipway.go',{"action":"getWays","s_id":s_id},function(datas){
-				var frag = $(document.createDocumentFragment());
-				var point = $('.createOrder'+'.'+s_id+'.sw_id');
-// 				console.log(datas);
-// 				console.log('start finding');
- 				//
-				$.each(JSON.parse(datas),function(shipway, value){
-					console.log("in");
-					console.log(value.sw_id);
-					var sw_id = value.sw_id;
-					var sw_name = '';
-					var sw_price = 0;
-					$.post('Shipway.go',{'action':'getWay','sw_id':sw_id},function(dat){
-// 						console.log(dat);
-						$.each(JSON.parse(dat),function(ship, way){
-						sw_id = way.sw_id;
-						sw_name = way.sw_name;
-						sw_price = way.sw_price;
-// 				console.log(sw_id);
-// 				console.log(sw_name);
-// 				console.log(sw_price);
-					var option = $('<option></option>').text(sw_name).val(sw_id);
-					var input = $('<input></input>').val(sw_price).attr('type','hidden')
-								.attr('class',"sw_price"+sw_id);
-					option.append(input)
-					frag.append(option);
-						});
-				point.append(frag);
-					});
-				});
-				
-			});
-		
-		});
+<!-- 加入頁尾 -->
+<jsp:include page="_Footer.jsp"></jsp:include>
 
-	});
-		
-	$('#submit').click(function(event){
-		var theSelect = $('#swSelect').val();
-		var rule1 = 100000;
-		
-		var thePay = $('#pay_id').val();
-		var rule2 = 0;
-
-		var theRecipient = $('#o_recipient').val();
-		var rule3 = null;
-
-		var theAddress = $('#o_address').val();
-		var rule4 = null;
-		if(theSelect<rule1 || thePay==rule2 || theRecipient==rule3 || theAddress==rule4){
-			$('#theMsg').text("*為必填欄位");
-			event.preventDefault();
-		}else{
-			$('#submit').attr('disabled:true');
-			var count = 0;
-			var run = 0;
-			$('.createOrderNumber').each(function(data){
-				count+=1;
-				var s_id = $(this).val();
-				var action = $('.createOrder'+'.'+s_id+'.action').val();
-				var sw_id = $('.createOrder'+'.'+s_id+'.sw_id').val();
-				var pay_id = $('.createOrder'+'.'+s_id+'.pay_id').val();
-				var o_tolPrice = $('.createOrder'+'.'+s_id+'.o_tolPrice').val();
-				var o_lastPrice = $('.createOrder'+'.'+s_id+'.o_lastPrice').val();
-				var o_recipient = $('.createOrder'+'.'+s_id+'.o_recipient').val();
-				var o_address = $('.createOrder'+'.'+s_id+'.o_address').val();
-// 				var o_memo = $('.createOrder'+'.'+s_id+'.o_memo').val();
-				$.post('Order.do',
-				{'action':action,'s_id':s_id,'sw_id':sw_id,'pay_id':pay_id,'o_tolPrice':o_tolPrice,'o_lastPrice':o_lastPrice,'o_recipient':o_recipient,'o_address':o_address}
-				, run+=1
-				);
-				
-			});
-			if(count==run){
-				swal({
-					title: "成功建立訂單",
-		       		text: "系統會自動以賣場分為不同訂單",
-		       		imageUrl: "images/good.png",
-		       		imageSize:"150x150",
-		       		confirmButtonText: "前往我的購物訂單"
-				},function(isConfirm){
-					if(isConfirm){
-						window.location = "Order.do?action=cGetAll";
-					}
-				});
-			}
-		}
-	});
-	
-</script>
 </body>
 </html>
