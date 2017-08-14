@@ -29,7 +29,7 @@ public class AdDAO implements AdDAOI {
 	private static final String DELETE = 
 			"DELETE [AD] WHERE ad_id=?";
 	private static final String UPDATE_STMT =
-			"UPDATE [AD] SET ad_picture=?,ad_startDate=?,ad_endDate=?,ad_price=?,ad_link=?,ad_type=?";
+			"UPDATE [AD] SET ad_picture=?,ad_startDate=?,ad_endDate=?,ad_price=?,ad_link=? WHERE ad_id=?";
 	private static final String GET_ONE_BY_I_ID =
 			"SELECT * FROM [AD] where i_id=?";
 	private static final String GET_ALL_BY_SHOP =
@@ -76,16 +76,14 @@ public class AdDAO implements AdDAOI {
 		try {
 			System.out.println("AD處理新增中");
 			con = ds.getConnection();
-			//建立訂單
-			pstmt = con.prepareStatement(INSERT_STMT);
-			pstmt.setInt(1, adVO.getS_id());
-			pstmt.setInt(2, adVO.getI_id());
-			pstmt.setBytes(3, adVO.getAd_picture());
-			pstmt.setTimestamp(4, adVO.getAd_startDate());
-			pstmt.setTimestamp(5, adVO.getAd_endDate());
-			pstmt.setInt(6, adVO.getAd_price());
-			pstmt.setString(7, adVO.getAd_link());
-			pstmt.setInt(8, adVO.getAd_type());			
+			//UPDATE [AD] SET ad_picture=?,ad_startDate=?,ad_endDate=?,ad_price=?,ad_link=? WHERE ad_id=?
+			pstmt = con.prepareStatement(UPDATE_STMT);
+			pstmt.setBytes(1, adVO.getAd_picture());
+			pstmt.setTimestamp(2, adVO.getAd_startDate());
+			pstmt.setTimestamp(3, adVO.getAd_endDate());
+			pstmt.setInt(4, adVO.getAd_price());
+			pstmt.setString(5, adVO.getAd_link());
+			pstmt.setInt(6, adVO.getAd_id());	
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -108,7 +106,7 @@ public class AdDAO implements AdDAOI {
 		try {
 			System.out.println("AD處理新增中");
 			con = ds.getConnection();
-			//建立訂單
+			
 			pstmt = con.prepareStatement(DELETE);
 			pstmt.setInt(1, ad_id);		
 			pstmt.executeUpdate();

@@ -16,7 +16,7 @@ import com.allbuyback.ad.model.AdService;
 import com.allbuyback.ad.model.AdVO;
 import com.allbuyback.login.model.MemberVO;
 
-@WebServlet("/AdServlet")
+@WebServlet("/Ad.go")
 public class AdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
@@ -50,9 +50,12 @@ public class AdServlet extends HttpServlet {
 		Integer login = loginOK.getM_id();
 		
 		
-		if("new_ad".equals(action)){
-			
-			
+		if("buyAd".equals(action)){
+			int s_id = Integer.parseInt(request.getParameter("s_id"));
+			int i_id = Integer.parseInt(request.getParameter("i_id"));
+			String st_ad_startDate = request.getParameter("ad_startDate");
+			int ad_price = Integer.parseInt(request.getParameter("ad_price"));
+			int ad_type = Integer.parseInt(request.getParameter("ad_type"));
 			request.setAttribute("list", "");
 			
 			request.getRequestDispatcher("/shopOrder.jsp").forward(request, response);

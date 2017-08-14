@@ -15,46 +15,114 @@
 <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
 <!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css"> -->
 <!-- <script src=" http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
+<style>
+	#mainBody{
+		width:1024px;
+		margin:auto;
+	}
+	#middleDiv, #footerDiv, #endDiv{
+		width:1024px;
+		margin:auto;
+		text-align: center;
+	}
+	input[type="text"] , textarea{
+		border-radius:5px;
+		border:1px solid gray;
+	}
+	.memo{
+		width:200px;
+		white-space:normal;
+		overflow:auto;
+	}
+</style>
 </head>
 <body>
-<c:if test="${! empty errorMsgs}"><p>${errorMsgs}</p></c:if>
 <c:if test="${! empty OrderVO}">
-<table border="1">
+<h1 align="center">訂單詳情</h1>
 <form action="Order.do" method="post">
-	<thead>
+<div id="mainBody">
+<table class="table">
+	<tr class="info">
+		<td colspan="4" style="text-align: center">訂單資訊</td>
+		
+	</tr>
 		<tr>
-			<td>訂單編號</td><td colspan="10">${OrderVO.o_id}</td>
+			<td><label>訂單編號:</label>${OrderVO.o_id}</td>
+			<td><label>賣場:</label>${OrderVO.s_id}</td>
+			<td><label>購買者:</label>${LoginOK.m_name}</td>
+			<td><label>交易階段:</label>${orderStatus}</td>
 		</tr>
 		<tr>
-			<td>賣場s_id</td>
-			<td>購買者m_id</td>
-			<td>下單時間o_date</td>
-			<td>付款時間o_remitDate</td>
-			<td>交易階段o_procss</td>
-			<td>總金額o_tolPrice</td>
-			<td>出貨時間o_sendDate</td>
-			<td bgcolor="red">折扣點數o_point</td>
-			<td bgcolor="red">運送方式sw_id</td>
-			<td bgcolor="red">運費sw_price</td>
-			<td>最終價格o_lastPrice</td>
-			<td bgcolor="red">付款方式pay_id</td>
-			<td bgcolor="red">收件者o_recipient</td>
-			<td bgcolor="red">收件地址o_address</td>
-			<td bgcolor="red">備註o_memo</td>
+		<c:if test="${OrderVO.o_procss == 1}">
+			<td><label>收件者:</label><input type="text" name="o_recipient" value="${OrderVO.o_recipient}" /></td>
+			<td><label>收件地址:</label><input type="text" name="o_address" value="${OrderVO.o_address}" /></td>
+			<td>
+				<label>付款方式:</label>
+				<select name="pay_id" id="pay_id">
+						<option value="郵局匯款" <c:if test="${OrderVO.pay_id=='郵局匯款'}">selected</c:if>>郵局匯款</option>
+						<option value="約定帳戶轉帳" <c:if test="${OrderVO.pay_id=='約定帳戶轉帳'}">selected</c:if>>約定帳戶轉帳</option>
+						<option value="信用卡一次付清" <c:if test="${OrderVO.pay_id=='信用卡一次付清'}">selected</c:if>>信用卡一次付清</option>
+						<option value="超商付款" <c:if test="${OrderVO.pay_id=='超商付款'}">selected</c:if>>超商付款</option>
+				</select>
+			</td>
+			<td rowspan="2">
+				<label style="vertical-align:text-bottom;">備註:</label>
+				<textarea name="o_memo" cols="30" rows="4" style="resize:none;">${OrderVO.o_memo}</textarea>
+			</td>
+		</c:if>
+		<c:if test="${OrderVO.o_procss != 1}">
+			<td><label>收件者:</label>${OrderVO.o_recipient}</td>
+			<td><label>收件地址:</label>${OrderVO.o_address}</td>
+			<td><label>付款方式:</label>${OrderVO.pay_id}</td>
+			<td rowspan="2">
+				<label style="vertical-align:text-bottom">備註:</label>
+				<textarea name="o_memo" cols="30" rows="4" style="resize:none;" readonly>${OrderVO.o_memo}</textarea>
+			</td>
+		</c:if>
 		</tr>
 		<tr>
-			<td>${OrderVO.s_id}</td>
-			<td>${OrderVO.m_id}</td>
-			<td>${OrderVO.o_date}</td>
-			<td>${OrderVO.o_remitDate}</td>
-			<td>${OrderVO.o_procss}</td>
+			<td><label>下單時間:</label>${OrderVO.o_date}</td>
+			<td><label>付款時間:</label>${OrderVO.o_remitDate}</td>
+			<td><label>出貨時間:</label>${OrderVO.o_sendDate}</td>
+		</tr>
+</table>
+</div>
+<div id="middleDiv">
+<table class="table" id="middleTable">
+	<tr class="success"><td colspan="5">商品清單</td></tr>
+		<tr>
+			<td>商品名稱</td>
+			<td>數量</td>
+			<td>單價</td>
+			<td>小計</td>
+			<td class="memo">備註</td>
+		</tr>
+		<c:forEach var="orderListVO" items="${orderList}" varStatus="vs">
+			<tr align="center" valign="middle" class="index">
+				<td class="i_name ${vs.index}">${itemList[vs.index].i_name}</td>
+				<td class="ol_quantity ${vs.index}">${orderListVO.ol_quantity}</td>
+				<td class="ol_price ${vs.index}">${orderListVO.ol_price}</td>
+				<td class="sum_price ${vs.index}">${orderListVO.ol_price * orderListVO.ol_quantity}</td>
+				<td><div class="memo">${orderListVO.ol_memo}</div></td>
+			</tr>
+		</c:forEach>
+</table>
+<table class="table" id="lastTable">
+	<tr class="danger"><td colspan="5">結算</td></tr>
+		<tr>
+			<td>總金額</td>
+			<td>折扣點數</td>
+			<td>運送方式</td>
+			<td>運費</td>
+			<td>成交價</td>
+		</tr>
+		<tr>
 			<td id="o_tolPrice">${OrderVO.o_tolPrice}</td>
-			<td>${OrderVO.o_sendDate}</td>
 			<c:choose>
 				<c:when test="${OrderVO.o_procss == 1}">
-					<td><input type="text" name="o_point" value="${OrderVO.o_point}" /></td>
-<%-- 					<td><input type="text" name="sw_id" value="${OrderVO.sw_id}" /></td> --%>
-					<td><select class="createOrder ${s_id_group} sw_id" id="shipWay">
+					<td><input type="text" name="o_point" size="4" value="${OrderVO.o_point}" /></td>
+					<td>
+						<select id="shipWay">
 						<c:forEach var="shipways" items="${shipwayList}">
 							<c:if test="${shipways.sw_id eq shipway.sw_id}">
 								<option value="${shipways.sw_id}" selected >${shipways.sw_name}</option>
@@ -63,127 +131,98 @@
 								<option value="${shipways.sw_id}" >${shipways.sw_name}</option>
 							</c:if>
 						</c:forEach>
-					</select></td>
+						</select>
+					</td>
 					<td id="sw_price">${shipway.sw_price}</td>
-<!-- 					更新價格尚未製作 -->
 					<input type="hidden" id="sw_id" name="sw_id" value="${shipway.sw_id}" />
 					<input type="hidden" id="o_lastPrice" name="o_lastPrice" value="${OrderVO.o_lastPrice}" />
-					<td id="lastPricePrint">${OrderVO.o_lastPrice}</td>
-					<td><input type="text" name="pay_id" value="${OrderVO.pay_id}" /></td>
-					<td><input type="text" name="o_recipient" value="${OrderVO.o_recipient}" /></td>
-					<td><input type="text" name="o_address" value="${OrderVO.o_address}" /></td>
-					<td><input type="text" name="o_memo" value="${OrderVO.o_memo}" /></td>
+					<td id="lastPricePrint" style="background:#FFA042">${OrderVO.o_lastPrice}</td>
 				</c:when>
 				<c:otherwise>
 					<td>${OrderVO.o_point}</td>
 					<td>${shipway.sw_name}</td>
 					<td>${shipway.sw_price}</td>
-					<td>${OrderVO.o_lastPrice}</td>
-					<td>${OrderVO.pay_id}</td>
-					<td>${OrderVO.o_recipient}</td>
-					<td>${OrderVO.o_address}</td>
-					<td>${OrderVO.o_memo}</td>
+					<td style="background:#FFA042">${OrderVO.o_lastPrice}</td>
 				</c:otherwise>
 			</c:choose>
-
 		</tr>
-	</thead>
-	<tbody>
-		<tr>
-<!-- 			<td>ol_id</td><td>o_id</td><td>i_id</td><td>ol_quantity</td><td>ol_price</td><td>小計</td><td>ol_memo</td> -->
-			<td>i_name</td><td>ol_quantity</td><td>ol_price</td><td>小計</td><td>ol_memo</td>
-		</tr>
-		<c:forEach var="orderListVO" items="${orderList}" varStatus="vs">
-			<tr align="center" valign="middle" class="index" name="${vs.index}">
-<%-- 				<td>${orderListVO.ol_id}</td> --%>
-<%-- 				<td>${orderListVO.o_id}</td> --%>
-<%-- 				<td class="i_id ${vs.index}">${orderListVO.i_id}</td> --%>
-				<td class="i_name ${vs.index}">${itemList[vs.index].i_name}</td>
-				<td class="ol_quantity ${vs.index}">${orderListVO.ol_quantity}</td>
-				<td class="ol_price ${vs.index}">${orderListVO.ol_price}</td>
-				<td class="sum_price ${vs.index}">${orderListVO.ol_price * orderListVO.ol_quantity}</td>
-				<td>${orderListVO.ol_memo}</td>
-			</tr>
-<!-- 			改成查詢物品資訊 -->
-<!-- 			<tr align="center" valign="middle"> -->
-<%-- 				<td><button class="orderlist" value="${orderListVO.ol_id}">OK</button></td> --%>
-<!-- 			</tr> -->
-		</c:forEach>
-
 		<c:if test="${OrderVO.o_procss == 1}">
 		<tr>
-			<td colspan="13">
-				<input type="submit" value="修改" />
+			<td colspan="5">
+				<input type="submit" value="確定修改" class="btn btn-info"/>
 				<input type="hidden" name="action" value="modifyFromC"/>
 				<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>
 			</td>
 		</tr>
 		</c:if>
-	</tbody>
-</form>
 </table>
+</div>
+</form>
+<div id="footerDiv">
 <c:if test="${OrderVO.o_procss > 0}">
-<table border="1">
-	<form action="Order.do" method="post">
-		<tr>
-			<td colspan="13">
-				<c:if test="${OrderVO.o_procss == 1}">
-					<input type="submit" value="確定送出" /><span>送出訂單後將不能再更改</span>
-					<input type="hidden" name="action" value="confirmNext"/>
-					<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>
+<table class="table" id="endTable">
+	<tr>
+		<td>
+		<form action="Order.do" method="post" id="theForm">
+			<c:if test="${OrderVO.o_procss == 1}">
+				<input type="submit" id="theSubmit" value="確定送出" class="btn btn-primary"/>
+				<input type="hidden" name="action" value="confirmNext"/>
+				<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>
+			</c:if>
+			<c:if test="${OrderVO.o_procss == 2}">
+				<p>訂單已送出，等待賣家收單...</p>
+			</c:if>
+			<c:if test="${OrderVO.o_procss == 3}">
+				<input type="submit" value="完成付款" class="btn btn-primary"/>
+				<input type="hidden" name="action" value="remit"/>
+				<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>
+			</c:if>
+			<c:if test="${OrderVO.o_procss == 4}">
+				<p>完成付款，等待賣家出貨中...</p>
+			</c:if>
+			<c:if test="${OrderVO.o_procss == 5}">
+				<p>賣家已出貨，是否到貨？</p>
+				<input type="submit" value="確認到貨" class="btn btn-primary"/>
+				<input type="hidden" name="action" value="confirmNext"/>
+				<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>
+			</c:if>
+		</form>
+		</td>
+	</tr>
+			<c:if test="${OrderVO.o_procss == 6}">
+			<tr>
+			<td>
+				<c:if test="${OrderVO.s_commentStatus == 1}">
+					<div id="dialog" title="請給予賣場評價" style='display:none'>
+					<form action="Order.do" method="post">
+						<label>評分：</label><input type="text" name="s_score" value="5" />(1~5分)<br>
+						<label>評價：</label><textarea name="s_comment"></textarea>
+						<input type="submit" value="送出評價" class="btn btn-primary"/>
+						<input type="hidden" name="action" value="commentFromC"/>
+						<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>
+					</form>
+					</div>
+					<input type="button" id="goComment" value="進行評價" class="btn btn-primary"/>
 				</c:if>
-				<c:if test="${OrderVO.o_procss == 2}">
-					<p>訂單已送出，等待賣家收單...</p>
+				<c:if test="${OrderVO.s_commentStatus == 0}">
+					<p>您已經給予評價囉!</p>
 				</c:if>
-				<c:if test="${OrderVO.o_procss == 3}">
-					<input type="submit" value="完成付款" />
-					<input type="hidden" name="action" value="remit"/>
-					<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>
+				<c:if test="${OrderVO.m_commentStatus == 0}">
+					<br />
+					<p>對方給您 ${OrderVO.m_score} 的評價，<br />評價內容為：${OrderVO.m_comment}</p>
 				</c:if>
-				<c:if test="${OrderVO.o_procss == 4}">
-					<p>完成付款，等待賣家出貨中...</p>
-				</c:if>
-				<c:if test="${OrderVO.o_procss == 5}">
-					<p>賣家已出貨，是否到貨？</p>
-					<input type="submit" value="確認到貨" />
-					<input type="hidden" name="action" value="confirmNext"/>
-					<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>
+				<c:if test="${OrderVO.m_commentStatus == 1}">
+					<br />
+					<p>對方尚未進行評價</p>
 				</c:if>
 			</td>
-		</tr>
-	</form>
-				<c:if test="${OrderVO.o_procss == 6}">
-				<tr>
-				<td colspan="13">
-					<c:if test="${OrderVO.s_commentStatus == 1}">
-						<div id="dialog" title="請給予賣場評價" style='display:none'>
-						<form action="Order.do" method="post">
-							<label>評分：</label><input type="text" name="s_score" value="5" />(1~5分)<br>
-							<label>評價：</label><textarea name="s_comment"></textarea>
-							<input type="submit" value="送出評價"/>
-							<input type="hidden" name="action" value="commentFromC"/>
-							<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>
-<!-- 							<input type="hidden" name="s_comment"/> -->
-						</form>
-						</div>
-						<input type="button" id="goComment" value="進行評價" />
-					</c:if>
-					<c:if test="${OrderVO.m_commentStatus == 0}">
-						<br />
-						<p>對方給你${OrderVO.m_score}的評價，評價內容為：<br />${OrderVO.m_comment}</p>
-					</c:if>
-					<c:if test="${OrderVO.m_commentStatus == 1}">
-						<br />
-						<p>對方尚未進行評價</p>
-					</c:if>
-				</td>
-				</tr>
-				</c:if>
+			</tr>
+			</c:if>
 <c:if test="${OrderVO.o_procss == 1 || OrderVO.o_procss == 2}">
 	<tr>
-		<td colspan="13">
+		<td colspan="5">
 			<form id="aform" action="Order.do" method="post">
-				<input type="submit" value="取消訂單" id="cannelSubmit"/><span>只有賣家收單前能夠取消</span>
+				<input type="submit" value="取消訂單" id="cannelSubmit" class="btn btn-danger"/>
 				<input type="hidden" name="action" value="cannel"/>
 				<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>
 			</form>
@@ -191,62 +230,83 @@
 	</tr>
 </c:if>
 </table>
+	</c:if>
+</div>
 </c:if>
-<c:if test="${OrderVO.o_procss <= 0}">
-	<p>本訂單已關閉交易</p>
-</c:if>
-<c:if test="${OrderVO.o_procss == 7}">
-	<p>本訂單已完成交易，雙方已給予評價</p>
-</c:if>
-</c:if>
-<c:if test="${! empty res}"><p>${res}</p></c:if>
-
-<a href="Order.do?action=cGetAll">返回我的購買訂單</a><br>
-<a href="index.jsp">回首頁</a>
-<c:forEach var="ship" items="${shipwayList}">
-	<input type="hidden" value="${ship.sw_price}" id="${ship.sw_id}" />
-</c:forEach>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-      <script>
-         $(function() {
-            $( "#dialog" ).dialog({
-               autoOpen: false,  
-            });
-            $( "#goComment" ).click(function() {
-               $( "#dialog" ).dialog( "open" );
-            });
-            
-         });
-         
-         $('#shipWay').change(function(){
-        	var sw_id = $(this).val();
-        	var newPrice = Number($('#'+sw_id).val());
-        	var tolPrice = Number($('#o_tolPrice').text());
-        	$('#o_lastPrice').val(newPrice+tolPrice);
-        	$('#sw_id').val(sw_id);
-        	$('#lastPricePrint').text(newPrice+tolPrice);
-        	$('#sw_price').text(newPrice);
-         });
-         $('#cannelSubmit').click(function (e){
-        	 var form = $(this).parents('#aform');
-        	 console.log(form);
-        	 e.preventDefault();
-        	 swal({
-        		  title: "真的要取消此訂單?",
-        		  text: "沒買到好像會後悔，還是繼續買吧!",
-        		  type: "warning",
-        		  showCancelButton: true,
-        		  confirmButtonColor: "#DD6B55",
-        		  confirmButtonText: "取消!",
-        		  closeOnConfirm: false
-        		},
-        		function(isConfirm){
-        			if(isConfirm){
-        				form.submit();
-        			}
-        		  
-        		});
-         });
-      </script>
+<div id="endDiv">
+	<c:if test="${OrderVO.o_procss <= 0}">
+		<p>本訂單已關閉交易</p>
+	</c:if>
+	<c:if test="${OrderVO.o_procss == 7}">
+		<p>本訂單已完成交易，雙方已給予評價</p>
+	</c:if>
+	<c:if test="${! empty res}"><p>${res}</p></c:if>
+	<c:if test="${! empty errorMsgs}"><p>${errorMsgs}</p></c:if>
+	<a href="Order.do?action=cGetAll">返回我的購買訂單</a><br>
+	<a href="index.jsp">回首頁</a>
+	<c:forEach var="ship" items="${shipwayList}">
+		<input type="hidden" value="${ship.sw_price}" id="${ship.sw_id}" />
+	</c:forEach>
+</div>
+<script>
+     $(function() {
+        $( "#dialog" ).dialog({
+           autoOpen: false,  
+        });
+        $( "#goComment" ).click(function() {
+           $( "#dialog" ).dialog( "open" );
+        });
+        
+     });
+     
+    
+     $('#shipWay').change(function(){
+    	var sw_id = $(this).val();
+    	var newPrice = Number($('#'+sw_id).val());
+      	var tolPrice = Number($('#o_tolPrice').text());
+       	$('#o_lastPrice').val(newPrice+tolPrice);
+       	$('#sw_id').val(sw_id);
+       	$('#lastPricePrint').text(newPrice+tolPrice);
+       	$('#sw_price').text(newPrice);
+     });
+     $('#cannelSubmit').click(function (e){
+    	 var form = $(this).parents('#aform');
+      	 console.log(form);
+         e.preventDefault();
+         swal({
+        	  title: "真的要取消此訂單?",
+        	  text: "沒買到好像會後悔，還是繼續買吧!",
+        	  type: "warning",
+        	  showCancelButton: true,
+        	  confirmButtonColor: "#DD6B55",
+        	  confirmButtonText: "取消訂單",
+        	  cancelButtonText: "再讓我想想",
+        	  closeOnConfirm: false
+        	},
+        	function(isConfirm){
+        		if(isConfirm){
+        			form.submit();
+        		}
+        	}
+        );
+     });
+     $('#theSubmit').click(function(e){
+    	 var form = $(this).parents('form');
+    	 e.preventDefault();
+    	 swal({
+       	  title: "即將正式出單",
+       	  text: "送出訂單後將不能再更改，只有在賣場收單前可以取消。",
+       	  showCancelButton: true,
+       	  confirmButtonColor: "#AEDEF4",
+       	  confirmButtonText: "立刻送出",
+       	  cancelButtonText: "再等等",
+       	  closeOnConfirm: false
+       	},function(isConfirm){
+       		if(isConfirm){
+       			form.submit();
+       		}
+       	});
+     });
+</script>
 </body>
 </html>
