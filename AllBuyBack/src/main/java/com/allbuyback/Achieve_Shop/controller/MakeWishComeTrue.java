@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.allbuyback.Achieve_Shop.model.Achieve_ShopDAO;
 import com.allbuyback.Achieve_Shop.model.Achieve_ShopVO;
-import com.allbuyback.Pictures.model.PicturesDAO;
+import com.allbuyback.GetPicture.model.PicturesDAO;
+import com.allbuyback.ItemSearch.model.ItemSearchDAO;
+import com.allbuyback.ItemSearch.model.ItemVO;
 import com.allbuyback.Wisher_List.model.Wisher_ListDAO;
 import com.allbuyback.Wisher_List.model.Wisher_ListVO;
 import com.allbuyback.Wishing_Pool.model.Wishing_PoolDAO;
@@ -79,57 +81,33 @@ public class MakeWishComeTrue extends HttpServlet {
 				MemberVO mVO2 = mDAO.selectById(asVO.get(i).getS_id());
 				asVO.get(i).setM_account(mVO2.getM_account());
 				request.setAttribute("asVO", asVO);
+				
+				// show實現願望的賣家選擇的商品
+				ItemSearchDAO iDAO = new ItemSearchDAO();
+				ItemVO iVO = iDAO.select(asVO.get(i).getI_id());
+				request.setAttribute("iVO", iVO);
 				}
 			}
 			// 已上傳圖片數目重新送回
-			if(wpDAO.selectWish(w_id).getW_picture1().length != 0){
-				request.setAttribute("p1", 1);
-			}
-			if(wpDAO.selectWish(w_id).getW_picture2().length != 0){
-				request.setAttribute("p2", 2);
-			}
-			if(wpDAO.selectWish(w_id).getW_picture3().length != 0){
-				request.setAttribute("p3", 3);
-			}
-			if(wpDAO.selectWish(w_id).getW_picture4().length != 0){
-				request.setAttribute("p4", 4);
-			}
-			if(wpDAO.selectWish(w_id).getW_picture5().length != 0){
-				request.setAttribute("p5", 5);
-			}
+			PicturesDAO pDAO = new PicturesDAO();
+			pDAO.showUpLoadedPicture(request, w_id);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("PeopleWishContent.jsp");
 			rd.forward(request, response);
 			return;
 		}
+		//搜尋此帳號的賣場物件
+		String account = mVO.getM_account();
+		request.setAttribute("account", account);
+		request.setAttribute("w_id", w_id);
+		ItemSearchDAO isDAO = new ItemSearchDAO();
+		List<ItemVO> ilist = isDAO.selectByS_Id(mVO.getM_id());
+		request.setAttribute("ilist", ilist);
 		
-		//將status改為2
-		Wishing_PoolVO wVO = new Wishing_PoolVO();
-		wVO = wpDAO.selectWish(w_id);
-		int w_status = wVO.getW_status();
-		w_status = 2;
-		wpDAO.updateStatus(w_status, w_id);
-		
-		//此筆存進Wisher_List		
-		int m_id = mVO.getM_id();
-		asDAO.insertAchieve(w_id, m_id, 1000001);          //之後商品要改掉
-		
-		//資料往view傳
-		List<Wishing_PoolVO> list = wpDAO.selectAllWishes();
-		for(int i=0; i<list.size(); i++){
-			if(list.get(i).getW_content().length()>20){
-			String subcontent = (list.get(i).getW_content().substring(0, 20))+"...";
-			list.get(i).setW_content(subcontent);
-			}
-			MemberDAO mDAO = new MemberDAO();
-			int memberId = list.get(i).getM_id();
-			String m_account = mDAO.selectById(memberId).getM_account();
-			list.get(i).setM_account(m_account);
-		}
-		request.setAttribute("VOlist", list);
-
-		request.getRequestDispatcher("/PeopleMakeAWishList.jsp").forward(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher("/MakeWishComeTrueItemSelect.jsp");
+		rd.forward(request, response);
 		return;
+		
 	}
 
 }

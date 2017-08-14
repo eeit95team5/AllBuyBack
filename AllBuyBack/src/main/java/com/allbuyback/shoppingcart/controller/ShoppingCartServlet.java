@@ -1,8 +1,11 @@
 package com.allbuyback.shoppingcart.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,11 +19,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
+
 import com.allbuyback.ItemSearch.model.ItemService;
 import com.allbuyback.ItemSearch.model.ItemVO;
 import com.allbuyback.login.model.MemberVO;
 import com.allbuyback.shoppingcart.model.ShoppingCart;
 import com.allbuyback.shoppingcart.model.ShoppingCartVO;
+
 
 @WebServlet("/ShoppingCart.go")
 public class ShoppingCartServlet extends HttpServlet {
@@ -32,6 +41,7 @@ public class ShoppingCartServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		//取得輸入值
 		String action = request.getParameter("action");
 		System.out.println(action);
@@ -105,7 +115,9 @@ public class ShoppingCartServlet extends HttpServlet {
 			//取得商品資訊
 			ItemService itemService = new ItemService();
 			ItemVO itemVO = itemService.select(i_id);
-			Timestamp i_arrivedDate = itemVO.getI_arrivedDate();
+			Timestamp arrivedDate = itemVO.getI_arrivedDate();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+			String i_arrivedDate = sdf.format(arrivedDate);
 			String i_name = itemVO.getI_name();
 			int i_price =itemVO.getI_price();
 			
@@ -120,10 +132,18 @@ public class ShoppingCartServlet extends HttpServlet {
 			shoppingCartVO.setI_arrivedDate(i_arrivedDate);
 			// 將ShoppingCartVO加入ShoppingCart的物件內
 			String Msg = cart.addToCart(i_id, shoppingCartVO);
-			request.setAttribute("Msg", Msg);
-			//
-			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
-			rd.forward(request, response);
+			//submit模式
+//			request.setAttribute("Msg", Msg);
+//			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+//			rd.forward(request, response);
+			//JQ模式
+			PrintWriter out = response.getWriter();
+			Map map = new HashMap();
+			map.put("a", Msg);
+			Msg = JSONValue.toJSONString(map);
+			out.println(Msg);
+			System.out.println(Msg);
+			//結束
 			System.out.println("finish");
 		}
 		
@@ -133,15 +153,20 @@ public class ShoppingCartServlet extends HttpServlet {
 			ShoppingCart cart = (ShoppingCart)session.getAttribute("ShoppingCart");
 			// 如果找不到ShoppingCart物件
 			if (cart == null) {
-				errorMsgs.add("購物車內還是空的唷!快來購物吧!");
+//				errorMsgs.add("購物車內還是空的唷!快來購物吧!");
 				System.out.println("沒資料");
-				RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/shoppingCart.jsp");
 				rd.forward(request, response);
 				return;
 			}
 			//以s_id排序取出
 			List<ShoppingCartVO> cartlist = cart.listCart();
-
+			for(int i=0;i<cartlist.size();i++){
+				String i_name = cartlist.get(i).getI_name();
+				if(i_name.length()>10){
+					i_name = i_name.substring(0, 9);
+				}
+			}
 			request.setAttribute("cartlist", cartlist);		
 //附加功能開始
 			//查詢賣家資訊--未測試

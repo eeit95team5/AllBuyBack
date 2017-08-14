@@ -44,6 +44,7 @@ import com.allbuyback.shoppingcart.model.ShoppingCartVO;
 import com.allbuyback.shopshipway.model.ShopShipwayService;
 import com.allbuyback.shopshipway.model.ShopShipwayVO;
 
+
 @WebServlet("/Order.do")
 public class OrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -92,6 +93,24 @@ public class OrderServlet extends HttpServlet {
 			OrderService orderService = new OrderService();
 			List<OrderVO> custlist = orderService.custSelectAll(id);
 			request.setAttribute("list", custlist);
+			//取得當前運送方式資料
+			ShipwayService shipwayService = new ShipwayService();
+			List<String> shipwayName = new ArrayList<String>();
+			for(int i=0;i<custlist.size();i++){
+				int sw_id = custlist.get(i).getSw_id();
+				shipwayName.add(shipwayService.select(sw_id).getSw_name());
+			}
+			request.setAttribute("shipway", shipwayName);
+			//交易階段
+			List<String> orderStatus = new ArrayList<String>();
+			for(int i=0;i<custlist.size();i++){
+				int o_procss = custlist.get(i).getO_procss();
+				OrderStatus os = new OrderStatus();
+				String procssName = os.OrderStatus(o_procss);
+				orderStatus.add(procssName);
+			}
+			request.setAttribute("orderStatus", orderStatus);
+			
 			request.getRequestDispatcher("/order.jsp").forward(request, response);
 		}
 		//賣方查詢所有訂單
@@ -100,7 +119,15 @@ public class OrderServlet extends HttpServlet {
 			OrderService orderService = new OrderService();
 			List<OrderVO> shoplist = orderService.shopSelectAll(id);
 			request.setAttribute("list", shoplist);
-			
+			//交易階段
+			List<String> orderStatus = new ArrayList<String>();
+			for(int i=0;i<shoplist.size();i++){
+				int o_procss = shoplist.get(i).getO_procss();
+				OrderStatus os = new OrderStatus();
+				String procssName = os.OrderStatus(o_procss);
+				orderStatus.add(procssName);
+			}
+			request.setAttribute("orderStatus", orderStatus);
 			request.getRequestDispatcher("/shopOrder.jsp").forward(request, response);
 		}
 		//查詢單一訂單
@@ -167,6 +194,11 @@ public class OrderServlet extends HttpServlet {
 			int sw_id = orderVO.getSw_id();
 			shipwayVO = shipwayService.select(sw_id);
 			request.setAttribute("shipway", shipwayVO);
+			//交易階段
+				int o_procss = orderVO.getO_procss();
+				OrderStatus os = new OrderStatus();
+				String procssName = os.OrderStatus(o_procss);
+			request.setAttribute("orderStatus", procssName);
 			//如果有錯誤則中斷
 			if (!errorMsgs.isEmpty()) {
 				RequestDispatcher failureView = request
@@ -271,6 +303,9 @@ public class OrderServlet extends HttpServlet {
 			}
 			if(o_recipient == null){
 				errorMsgs.add("要輸入收件人唷!");
+			}
+			if(st_o_lastPrice==null){
+				errorMsgs.add("要選擇運送方式唷!");
 			}
 			
 			//轉換型別

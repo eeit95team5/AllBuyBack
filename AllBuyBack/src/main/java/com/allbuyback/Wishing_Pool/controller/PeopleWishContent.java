@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.allbuyback.Achieve_Shop.model.Achieve_ShopDAO;
 import com.allbuyback.Achieve_Shop.model.Achieve_ShopVO;
-import com.allbuyback.Pictures.model.PicturesDAO;
+import com.allbuyback.GetPicture.model.PicturesDAO;
+import com.allbuyback.ItemSearch.model.ItemSearchDAO;
+import com.allbuyback.ItemSearch.model.ItemVO;
 import com.allbuyback.Wisher_List.model.Wisher_ListDAO;
 import com.allbuyback.Wisher_List.model.Wisher_ListVO;
 import com.allbuyback.Wishing_Pool.model.Wishing_PoolDAO;
@@ -49,32 +51,29 @@ public class PeopleWishContent extends HttpServlet {
 		}
 		request.setAttribute("wlList", wlList);
 
-		// show接單賣家
 		Achieve_ShopDAO asDAO = new Achieve_ShopDAO();
 		List<Achieve_ShopVO> asVO = asDAO.selectAchieveByWId(w_id);
 		if (asVO != null) {
-			for (int i=0; i < asVO.size(); i++) {
+			for (int i = 0; i < asVO.size(); i++) {
+				// show接單賣家
 				MemberVO mVO2 = mDAO.selectById(asVO.get(i).getS_id());
 				asVO.get(i).setM_account(mVO2.getM_account());
 				request.setAttribute("asVO", asVO);
+				
+				// show實現願望的賣家選擇的商品
+				ItemSearchDAO iDAO = new ItemSearchDAO();
+				ItemVO iVO = iDAO.select(asVO.get(i).getI_id());
+				request.setAttribute("iVO", iVO);
 			}
 		}
-		//show已上傳圖片
-		if(wpDAO.selectWish(w_id).getW_picture1().length != 0){
-			request.setAttribute("p1", 1);
-		}
-		if(wpDAO.selectWish(w_id).getW_picture2().length != 0){
-			request.setAttribute("p2", 2);
-		}
-		if(wpDAO.selectWish(w_id).getW_picture3().length != 0){
-			request.setAttribute("p3", 3);
-		}
-		if(wpDAO.selectWish(w_id).getW_picture4().length != 0){
-			request.setAttribute("p4", 4);
-		}
-		if(wpDAO.selectWish(w_id).getW_picture5().length != 0){
-			request.setAttribute("p5", 5);
-		}
+
+		// show已上傳圖片
+		PicturesDAO pDAO = new PicturesDAO();
+		pDAO.showUpLoadedPicture(request, w_id);
+
+		
+		
+
 
 		RequestDispatcher rd = request.getRequestDispatcher("/PeopleWishContent.jsp");
 		rd.forward(request, response);

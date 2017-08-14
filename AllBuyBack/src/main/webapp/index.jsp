@@ -42,11 +42,46 @@
 	<form action="<c:url value='/shop.html'/>" method="get">
 	商店：<input type="text" name="s_id" value="1000001"/><button type="submit" >前往賣場</button>	
 	</form><br>
+	<a href="shop.html?s_id=1000002">2號賣場</a>
+	<a href="shop.html?s_id=1000006">6號賣場</a>
 	
-	<h3><a href="<c:url value="/checkGB.controller"/>">時尚金頭腦</a></h3>
+	<h3><a href="<c:url value="/checkGB.do"/>">時尚金頭腦</a></h3>
 <br>
-
-
 <h4>${alreadyPlay}</h4>
+
+
+<c:if test="${ !empty LoginOK}">
+<a href="ChatController?action=MessageFromSeller&id=${LoginOK.m_id}">來自賣家的訊息</a>
+</c:if>
+<c:if test="${ !empty SellerOK}">
+<a href="ChatController?action=MessageFromBuyer&id=${SellerOK.m_id}">來自買家的訊息</a>
+</c:if>
+<c:if test="${ !empty AdminOK}">
+<a href="Admin.jsp">管理頁面</a>
+</c:if>
+<c:if test="${ !empty LoginOK}">
+<a href="MallInsert.jsp">申請賣家</a>
+</c:if>
+<c:if test="${ !empty LoginOK}">
+<a href="RepController?action=GetReply&id=${LoginOK.m_id }">檢舉回覆</a>
+</c:if>
+
+
+	<form action="<c:url value='/LoginServlet' />" method="post">
+		<input type="hidden" name="status" value="logout">
+
+		<div align="center">
+			<input type="submit" value="logout">
+		</div>
+	</form>
+	
+	<input type="submit" value="會員專區" 
+    onclick="window.location='<c:url value="/update.jsp" />';" /> 
+    
+    <input type="submit" value="查詢訂單" 
+    onclick="window.location='<c:url value="/order.jsp" />';" />
+    
+    <input type="submit" value="我的收藏" 
+    onclick="window.location='<c:url value="/favorite.jsp" />';" />   
 </body>
 </html>

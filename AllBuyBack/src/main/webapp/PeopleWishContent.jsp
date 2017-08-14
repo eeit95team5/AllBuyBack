@@ -55,19 +55,19 @@
 		    <td width="120" height="40">圖片:</td>
 		    <td width="600" height="40" align="left" >
 			    	<c:if test="${not empty p1}">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPicture?w_Id=${wVO.w_id}&pic_id=${p1}'>
+						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'>
 					</c:if>
 					<c:if test="${not empty p2}">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPicture?w_Id=${wVO.w_id}&pic_id=${p2}'>
+						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p2}'>
 					</c:if>
 					<c:if test="${not empty p3}">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPicture?w_Id=${wVO.w_id}&pic_id=${p3}'>
+						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p3}'>
 					</c:if>
 					<c:if test="${not empty p4}">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPicture?w_Id=${wVO.w_id}&pic_id=${p4}'>
+						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p4}'>
 					</c:if>
 					<c:if test="${not empty p5}">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPicture?w_Id=${wVO.w_id}&pic_id=${p5}'>
+						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p5}'>
 					</c:if>
 		    </td>
 		</tr>
@@ -83,7 +83,10 @@
 		    <td width="120" height="40">實現願望賣家:</td>
 		    <td width="600" height="40" align="left" >
 		    	<c:forEach var="as" items="${asVO}">
-		    		${as.m_account}<br>
+		    		${as.m_account}實現願望的內容: <a href="SingleItemContent?w_id=${wVO.w_id}&i_id=${iVO.i_id}">${iVO.i_name}</a>
+		    		<c:if test="${not empty iVO.i_name}">
+		    			<input type="button" value="加入購物車">
+		    		</c:if>
 		    	</c:forEach>
 		    </td>
 		</tr>
@@ -91,7 +94,7 @@
 		    <td height="50" colspan="2" align="center">
 		       <a href="AddOne?w_Id=${wVO.w_id}"><input type="button" value="+1" ></a>
 		       <a href="CheckPeopleList"><input type="button" value="返回列表"></a>
-		       <a href="Index.jsp"><input type="button" value="回首頁"></a>
+		       <a href="index.jsp"><input type="button" value="回首頁"></a>
 		       <a href="MakeWishComeTrue?w_Id=${wVO.w_id}"><input type="button" value="接受願望"></a>
 		       <br>
 		       <font color='red' size='-1'>${errorMsg.login}</font>

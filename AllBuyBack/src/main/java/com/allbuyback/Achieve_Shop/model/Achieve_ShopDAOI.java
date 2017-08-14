@@ -8,4 +8,5 @@ public interface Achieve_ShopDAOI {
 	public int deleteAchieve(int w_id);
 	public List<Achieve_ShopVO> selectAchieveBySId(int s_id);
 	public List<Achieve_ShopVO> selectAchieveByWId(int w_id);
+	public Achieve_ShopVO selectAchieveByWId_SId(int w_id, int s_id);
 }
