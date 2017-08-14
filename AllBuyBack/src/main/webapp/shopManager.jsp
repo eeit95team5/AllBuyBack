@@ -117,27 +117,33 @@ function rep2(v){
 		$('#rep'+v).text("");
 	}		
 }
+function hid(v){
+	$.post("<c:url value='/shopmessage.SPRINGcontroller'/>",{"action":"Hidden","sm_id":$('#sm_id'+v).val()},function(data){console.log(data);showJSON(data);})	
+}
 
 function showJSON(data2){
 	var data = JSON.parse(data2);
 	var docFragment = $(document.createDocumentFragment());				 
 	for(var i=0;i<data.msgs.length;i++){
+		var sm_hidden = data.msgs[i].sm_hidden;		
 		var sm_id = data.msgs[i].sm_id;
 		var s_id = data.msgs[i].s_id;
 		var m_id = data.msgs[i].m_id;
 		var sm_content = data.msgs[i].sm_content;					 
 		var sm_date = data.msgs[i].sm_date;					 
-		var sm_hidden = data.msgs[i].sm_hidden;					 
 		var sm_reply = data.msgs[i].sm_reply;
 		var sm_replyDate = data.msgs[i].sm_replyDate;					 
 		var sm_state = data.msgs[i].sm_state;
 		var div = $("<div style=\"border-bottom:1px solid;background-color:#FFC78E\"></div>").html(m_id+" 於 "+sm_date+" 留言：<br/>"+sm_content);
 		var hidden = $('<input type="hidden" id="sm_id' + i + '" value="' + sm_id + '"/>');
-		var reply = $('<button type=\"button\" id=\"reply'+i+'\" value=\"'+i+'\" >回覆</button><br/>');
-		div.append(reply).append(hidden);
+		var reply = $('<button type=\"button\" id=\"reply' + i + '\" value=\"' + i + '\" >回覆</button>');
+		var hiddenB = $('<button type=\"button\" id=\"hiddenB' + i +'\" value=\"' + i + '\">隱藏</button>');
+		var span = $('<span style=\"font-size:10px;color:blue\" id=\"spanmsg' + i + '\"></span><br/>');
+		div.append(reply).append(hidden).append(hiddenB).append(span);
+		
 		if(sm_state == 2){
 			var div2 = $('<div style="border:1px solid;margin:10px 10px 10px 40px;background-color:#FFDCB9"></div>').html(s_id + "於" + sm_replyDate + "回覆：<br/>" + sm_reply + "<br/>");
-			div.append(div2);
+			div.append(div2);			
 		}
 		docFragment.append(div);			
 	}
@@ -147,6 +153,17 @@ function showJSON(data2){
 		$('#reply'+i).click(function(){
 			rep($(this).val());
 		});
+		$('#hiddenB'+i).click(function(){
+			hid($(this).val());
+		})
+		if(data.msgs[i].sm_state==2){
+			$('#reply'+i).prop("disabled", true);
+		}		
+		if((data.msgs[i].sm_hidden)==2){
+			$('#spanmsg'+i).text("此留言狀態目前設為隱藏");
+		}else if((data.msgs[i].sm_hidden)==1){
+			$('#spanmsg'+i).text("此留言狀態目前設為公開");			
+		}
 	}
 }
 

@@ -31,11 +31,22 @@ function showJSON(data){
 		var sm_replyDate = data.msgs[i].sm_replyDate;					 
 		var sm_state = data.msgs[i].sm_state;					 
 		var div = $("<div style=\"border-bottom:1px solid;background-color:#FFC78E\"></div>").html(m_id+" 於 "+sm_date+" 留言：<br/>"+sm_content+"<br/>");
+		if(sm_hidden==2){
+			var span =$('<span style=\"font-size:10px;color:blue\">此留言已被隱藏</span>');
+			div.append(span);
+		}		
 		if(sm_state == 2){
 			var div2 = $('<div style="border:1px solid;margin:10px 10px 10px 40px;background-color:#FFDCB9"></div>').html(s_id + "於" + sm_replyDate + "回覆：<br/>" + sm_reply + "<br/>");
 			div.append(div2);
 		}
-		docFragment.append(div);
+		if(sm_hidden != 2){
+			docFragment.append(div);	
+		}else if(${not empty LoginOK}){
+			if(${LoginOK.m_id}==m_id){				
+				docFragment.append(div);
+			}
+		}
+		
 	}
 	$('#shop_message').empty()
 	$('#shop_message').append(docFragment);
@@ -59,8 +70,8 @@ function showJSON(data){
 	<form>
 		<input type="hidden" name="s_id" id="hidden" value="${shop.s_id }" />
 		<input type="hidden" name="action" value="Insert" />
-		<textarea name="sm_content" id="sm_content" /></textarea>
-		<button type="button" id="submit">送出</button><div id="showerror">${errors.login }${errors.noempty }</div>
+		<textarea name="sm_content" id="sm_content" ></textarea>
+		<button type="button" id="submit">送出</button><span id="showerror">${errors.login }${errors.noempty }</span>
 	</form>
 	<a href="<c:url value='/index.jsp'/>"> <input type="button"
 		value="回首頁"></a>
@@ -73,6 +84,8 @@ $(function(){
 		/*post開始*/
 		if(${empty LoginOK}){
 			$('#showerror').html("請先登入才能留言");
+		}else if(${shop.s_id}==${LoginOK.m_id}){
+			$('#showerror').html("不能在自己的賣場留言");			
 		}else if(${not empty LoginOK}){
 			if(!$('#sm_content').val()){
 				$('#showerror').html("請輸入留言");
