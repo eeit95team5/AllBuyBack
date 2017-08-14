@@ -157,7 +157,7 @@
 			<c:forEach var="list" items="${cartlist}" varStatus="vs">
 			<tr align="center" valign="middle" >
 			<form action="ShoppingCart.go" method="post" class="changeClass">
-				<td><a href="shop.html?s_id=${list.s_id}" id="${list.s_id}" class="shopName">連結賣場</a></td>
+				<td><a href="shop.html?s_id=${list.s_id}" id="${list.s_id}" class="shopName">${s_name[list.s_id]}</a></td>
 				<td>${list.i_name}</td>
 				<td class="thePrice">${list.i_price}</td>
 				<td>

@@ -93,6 +93,15 @@ public class OrderServlet extends HttpServlet {
 			OrderService orderService = new OrderService();
 			List<OrderVO> custlist = orderService.custSelectAll(id);
 			request.setAttribute("list", custlist);
+			//取得賣場名稱
+			List<String> nameList= new ArrayList<String>();
+			MemberDAO memberDAO = new MemberDAO();
+			for(int i=0;i<custlist.size();i++){
+				int s_id = custlist.get(i).getS_id();
+				String s_name = memberDAO.selectById(s_id).getM_name();
+				nameList.add(s_name);
+			}
+			request.setAttribute("nameList", nameList);
 			//取得當前運送方式資料
 			ShipwayService shipwayService = new ShipwayService();
 			List<String> shipwayName = new ArrayList<String>();
@@ -119,6 +128,15 @@ public class OrderServlet extends HttpServlet {
 			OrderService orderService = new OrderService();
 			List<OrderVO> shoplist = orderService.shopSelectAll(id);
 			request.setAttribute("list", shoplist);
+			//取得買家名稱
+			List<String> nameList= new ArrayList<String>();
+			MemberDAO memberDAO = new MemberDAO();
+			for(int i=0;i<shoplist.size();i++){
+				int m_id = shoplist.get(i).getM_id();
+				String m_name = memberDAO.selectById(m_id).getM_name();
+				nameList.add(m_name);
+			}
+			request.setAttribute("nameList", nameList);
 			//交易階段
 			List<String> orderStatus = new ArrayList<String>();
 			for(int i=0;i<shoplist.size();i++){
@@ -161,6 +179,12 @@ public class OrderServlet extends HttpServlet {
 			//取得s_id及m_id
 			int s_id = orderVO.getS_id();
 			int m_id = orderVO.getM_id();
+			//取得名稱
+			MemberDAO memberDAO = new MemberDAO();
+			MemberVO m_VO = memberDAO.selectById(m_id);
+			request.setAttribute("m_VO", m_VO);
+			MemberVO s_VO = memberDAO.selectById(s_id);
+			request.setAttribute("s_VO", s_VO);
 			//取得訂單清單資料
 			List<OrderListVO> orderList = orderListService.select(o_id);
 			if(orderList == null){
