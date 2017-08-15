@@ -15,12 +15,12 @@
 <div style="width: 800px; height: 500px; overflow: auto">
 <!-- <table border='1' bordercolor='#CCCCFF' width='800'> -->
 <table>
-	<tr>
+<!-- 	<tr> -->
 <!-- 	    <th>賣場編號</th> -->
 <!-- 		<th>會員編號</th> -->
-		<th>帳號</th>
-		<th>回覆內容</th>
-		<th>回覆日期</th>
+<!-- 		<th>帳號</th> -->
+<!-- 		<th>回覆內容</th> -->
+<!-- 		<th>回覆日期</th> -->
 <!-- 		<th>申訴標題</th> -->
 <!-- 		<th>申訴內容</th> -->
 <!-- 		<th>申訴日期</th> -->
@@ -30,7 +30,7 @@
 <!-- 		<th>回覆日期</th> -->
 
 	
-	</tr>
+<!-- 	</tr> -->
 	<c:forEach var="ChatVO" items="${list}">	
 		<tr align='center' valign='middle'>
 <%-- 		    <td>${SellerOK.m_id}</td> --%>
@@ -87,7 +87,8 @@
 <!-- 			    <input type="hidden" name="action" value="seller_reply">			 -->
 <!-- 			</form> -->
 
-  <form ENCTYPE="multipart/form-data" method="get" action=" <c:url value="/ChatController"/>"  id="/ItemController" >
+<%--   <form ENCTYPE="multipart/form-data" method="post" action=" <c:url value="/ChatController"/>"  id="/ItemController" > --%>
+  <form method="post" action=" <c:url value="/ChatController"/>"  id="/ItemController" >
       <label class="fontSize" >買家編號：</label>
       <input type="text" name="m_id" value="${BuyerVO.m_id}" class="fieldWidth" style="width: 180px;">
       <font size="-1" color="#FF0000">${MsgMap.errorIDEmpty}${MsgMap.errorIDDup}</font>
@@ -107,7 +108,7 @@
       </div>
       <br/>
 </form>
-	
+<a href="ChatController?action=MessageFromBuyer&id=${SellerOK.m_id}">回上一頁</a>
 <a href="index.jsp">回首頁</a>
 
 </body>

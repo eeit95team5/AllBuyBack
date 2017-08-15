@@ -35,10 +35,12 @@
 	<a href="<c:url value='/item.SPRINGcontroller'/>">混合頁面(測試用 盡量別點)</a>
 	<a href="<c:url value='/insertitem.SPRINGcontroller'/>">新增商品(測試用 盡量別點)</a>
 	<br/>
+	<c:if test="${!empty SellerOK }">
 	<form action="<c:url value='/shopmanager.html'/>" method="get">
-	商店：<input type="text" name="s_id" value="1000001"/><button type="submit" >管理賣場</button>
-	<span>${errors.shoplogin}</span>	
-	</form><br>
+	商店：<input type="text" name="s_id" value="${LoginOK.m_id }"/><button type="submit" >管理賣場</button>	
+	</form></c:if><br>
+	
+	<c:if test="${empty SellerOK }"></c:if>
 	<form action="<c:url value='/shop.html'/>" method="get">
 	商店：<input type="text" name="s_id" value="1000001"/><button type="submit" >前往賣場</button>	
 	</form><br>
