@@ -6,7 +6,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
-<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.css">
+<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
 <link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
 <link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
 <script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
@@ -34,6 +34,12 @@
 		}
 		#msgBoby{
 			font-size:26px;
+		}
+		.iname, textarea{
+			width:150px;
+		}
+		.olquantity{
+			width:180px;
 		}
 	</style>
 <script>
@@ -137,6 +143,8 @@
 </script>
 </head>
 <body>
+<!-- 加入頁首 -->
+<jsp:include page="includeTop.jsp"></jsp:include>
 <h1 style='text-align:center'>我的購物車</h1>
 <div class="table-responsive" id="mainTable">
 	<c:if test="${!empty cartlist}">
@@ -157,17 +165,17 @@
 			<c:forEach var="list" items="${cartlist}" varStatus="vs">
 			<tr align="center" valign="middle" >
 			<form action="ShoppingCart.go" method="post" class="changeClass">
-				<td><a href="shop.html?s_id=${list.s_id}" id="${list.s_id}" class="shopName">連結賣場</a></td>
-				<td>${list.i_name}</td>
+				<td><a href="shop.html?s_id=${list.s_id}" id="${list.s_id}" class="shopName">${s_name[list.s_id]}</a></td>
+				<td class="iname">${list.i_name}</td>
 				<td class="thePrice">${list.i_price}</td>
-				<td>
+				<td class="olquantity">
 					<button type="button" class="glyphicon glyphicon-chevron-down decrease"></button>
 					<input type="text" class="theQuantity" name="ol_quantity" size="2" value="${list.ol_quantity}" />
 					<button type="button" class="glyphicon glyphicon-chevron-up increase"></button>
 				</td>
 				<td class="theTolPrice">${list.i_price*list.ol_quantity}</td>
 				<td>${list.i_arrivedDate}</td>
-				<td><textarea name="ol_memo" style="resize:none;">${list.ol_memo}</textarea></td>
+				<td><div><textarea name="ol_memo" style="resize:none;">${list.ol_memo}</textarea></div></td>
 				<td>
 					<input type="submit" value="修改" class="btn btn-info changeButton"/>
 				    <input type="hidden" name="action" value="update"/>
@@ -201,8 +209,10 @@
 </div>
 <div id="msgBoby" align="center">
 	<c:if test="${empty cartlist}">
+		<br><br>
 		<p>購物車還是空的喔!快開始購物吧!</p>
-		<a href="index.jsp">開始購物</a><br>
+		<br><br>
+		<a href="index.jsp">開始購物</a><br><br><br><br><br><br><br><br>
 	</c:if>
 	<c:if test="${!empty Msg}">
 		<p>${Msg}</p>
@@ -212,6 +222,7 @@
 	</c:if>
 	<p>${errorMsg}</p>
 </div>
-
+<!-- 加入頁尾 -->
+<jsp:include page="_Footer.jsp"></jsp:include>
 </body>
 </html>

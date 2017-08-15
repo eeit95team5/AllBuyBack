@@ -2,6 +2,8 @@ package com.allbuyback.ItemSearch.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONValue;
 
 import com.allbuyback.ItemSearch.model.ItemSearchDAO;
+import com.allbuyback.ItemSearch.model.ItemVO;
 
 @WebServlet("/BClassItemSearch")
 public class BClassItemSearch extends HttpServlet {
@@ -27,14 +30,18 @@ public class BClassItemSearch extends HttpServlet {
 		response.setHeader("content-type", "text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		PrintWriter out = response.getWriter();
+//		PrintWriter out = response.getWriter();
 		
 		ItemSearchDAO is = new ItemSearchDAO();
-		String jsonString = "";
+		List<ItemVO> list = new ArrayList<ItemVO>();
+//		String jsonString = "";
 		
 		int i_class1 = Integer.parseInt(request.getParameter("BClass"));
-		jsonString = JSONValue.toJSONString(is.getAll_FirstLayer(i_class1));
-		out.println(jsonString);
+		list = is.getAll_FirstLayer(i_class1);
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/HomeIndex.jsp").forward(request, response);
+//		jsonString = JSONValue.toJSONString(is.getAll_FirstLayer(i_class1));
+//		out.println(jsonString);
 	}
 
 }

@@ -9,75 +9,88 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
+<style>
+	#thhead{
+		text-align:center
+	}
+	
+</style>
 
 </head>
 <body>
+<jsp:include page="includeTop.jsp"></jsp:include>
 	<form name="WishContent" id="WishContent1" action="MakeAWish" method="POST" enctype="multipart/form-data">
-	<table border="1">
-	<thead>
-	<tr bgcolor='tan'><th height="60" colspan="2" align="center">許願單</th></tr>
-	</thead>
-	<tbody>
-		<tr bgcolor='tan' >
-		    <td width="120" height="40">許願人:</td>
-		    <td width="600" height="40" align="left" >
-		    <input id='account1' style="text-align:left" name="account" disabled value="${LoginOK.m_account}" type="text" size="14">
-		</tr>
-		<tr bgcolor='tan' >
-		    <td width="120" height="40">許願標題:</td>
-		    <td width="600" height="40" align="left" >
-		         <input id='title1' style="text-align:left" name="title" value="${param.title}" type="text" size="14">
-		         <div style="color:#FF0000; display: inline">${ErrorMsg.title}</div>
-		    </td>
-		</tr>
-		<tr bgcolor='tan' >
-		    <td width="120" height="40">許願內容:</td>
-		    <td width="600" height="40" align="left" >
-		         <textarea cols="40" rows="5" name="content" id="content1">${param.content}</textarea>
-		         <div style="color:#FF0000; display: inline">${ErrorMsg.content}</div>
-		    </td>
-		</tr>
-		<tr bgcolor='tan' >
-		    <td width="120" height="40">圖片上傳1:</td>
-		    <td width="600" height="40" align="left" >
-		         <input type="file" name="file1" id="file1" multiple accept="image/*">
-		    </td>
-		</tr>
-		<tr bgcolor='tan' >
-		    <td width="120" height="40">圖片上傳2:</td>
-		    <td width="600" height="40" align="left" >
-		         <input type="file" name="file2" id="file2" multiple accept="image/*">
-		    </td>
-		</tr>
-		<tr bgcolor='tan' >
-		    <td width="120" height="40">圖片上傳3:</td>
-		    <td width="600" height="40" align="left" >
-		         <input type="file" name="file3" id="file3" multiple accept="image/*">
-		    </td>
-		</tr>
-		<tr bgcolor='tan' >
-		    <td width="120" height="40">圖片上傳4:</td>
-		    <td width="600" height="40" align="left" >
-		         <input type="file" name="file4" id="file4" multiple accept="image/*">
-		    </td>
-		</tr>
-		<tr bgcolor='tan' >
-		    <td width="120" height="40">圖片上傳5:</td>
-		    <td width="600" height="40" align="left" >
-		         <input type="file" name="file5" id="file5" multiple accept="image/*">
-		    </td>
-		</tr>
-		<tr bgcolor='tan' >
-		    <td height="50" colspan="2" align="center">
-		       <input type="submit" value="許願" >
-		       <a href="CheckYourList"><input type="button" value="回個人願望列表"></a>
-		       <a href="index.jsp"><input type="button" value="回首頁"></a>
-		    </td>
-		</tr>	
-	</tbody>
-	</table>
+	<fieldset>
+		<table>
+		<thead>
+		<tr><th id="thhead" height="60" colspan="2">許願單</th></tr>
+		</thead>
+		<tbody>
+			<tr>
+			    <td width="120" height="40">許願人:</td>
+			    <td width="600" height="40" align="left" >
+			    <input id='account1' style="text-align:left" name="account" disabled value="${LoginOK.m_account}" type="text" size="14">
+			</tr>
+			<tr>
+			    <td width="120" height="40">許願標題:</td>
+			    <td width="600" height="40" align="left" >
+			         <input id='title1' style="text-align:left" name="title" value="${param.title}" type="text" size="14">
+			         <div style="color:#FF0000; display: inline">${ErrorMsg.title}</div>
+			    </td>
+			</tr>
+			<tr>
+			    <td width="120" height="40">許願內容:</td>
+			    <td width="600" height="40" align="left" >
+			         <textarea cols="40" rows="5" name="content" id="content1">${param.content}</textarea>
+			         <div style="color:#FF0000; display: inline">${ErrorMsg.content}</div>
+			    </td>
+			</tr>
+			<tr>
+			    <td width="120" height="40">圖片上傳1:</td>
+			    <td width="600" height="40" align="left" >
+			         <input type="file" name="file1" id="file1" accept="image/*">
+			    </td>
+			</tr>
+			<tr>
+			    <td width="120" height="40">圖片上傳2:</td>
+			    <td width="600" height="40" align="left" >
+			         <input type="file" name="file2" id="file2" accept="image/*">
+			    </td>
+			</tr>
+			<tr>
+			    <td width="120" height="40">圖片上傳3:</td>
+			    <td width="600" height="40" align="left" >
+			         <input type="file" name="file3" id="file3" accept="image/*">
+			    </td>
+			</tr>
+			<tr>
+			    <td width="120" height="40">圖片上傳4:</td>
+			    <td width="600" height="40" align="left" >
+			         <input type="file" name="file4" id="file4" accept="image/*">
+			    </td>
+			</tr>
+			<tr>
+			    <td width="120" height="40">圖片上傳5:</td>
+			    <td width="600" height="40" align="left" >
+			         <input type="file" name="file5" id="file5" accept="image/*">
+			    </td>
+			</tr>
+			<tr>
+			    <td height="50" colspan="2" align="center">
+			       <input class="btn btn-default" type="submit" value="許願" >
+			       <a href="CheckYourList"><input class="btn btn-default" type="button" value="個人願望列表"></a>
+			       <a href="HomeIndex.jsp"><input class="btn btn-default" type="button" value="回首頁"></a>
+			    </td>
+			</tr>	
+		</tbody>
+		</table>
+	</fieldset>
 	</form>
-	
+	<br>
+<jsp:include page="_Footer.jsp"></jsp:include>
 </body>
 </html>

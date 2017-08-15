@@ -99,7 +99,6 @@ $('#addCart').click(function (){
 	 var ol_memo = $('#ol_memo').val();
 	 $.post("ShoppingCart.go",{'action':action,'i_id':i_id,'s_id':s_id,'ol_quantity':ol_quantity,'ol_memo':ol_memo},
 			 function(data){
-		 console.log(data);
 		 var json = JSON.parse(data);
 		 var str = json.a;
 		 var theType = "success";
@@ -113,7 +112,6 @@ $('#addCart').click(function (){
 				  text: theText,
 				  type: theType
 				});
-		 
 	 })
 	 
 });

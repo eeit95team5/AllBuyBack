@@ -6,15 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.css">
+<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
 <link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
 <link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
 <script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
 <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 <script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
 <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
-<!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css"> -->
-<!-- <script src=" http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
 <style>
 	#mainBody{
 		width:1024px;
@@ -37,12 +35,109 @@
 	#lastTable{
 		margin-bottom: 0px;
 	}
-	#endTable td{
-		width:245px;
-	}
+
 </style>
+<script>
+     $(function() {
+        $( "#dialog" ).dialog({
+           autoOpen: false,  
+        });
+        $( "#goComment" ).click(function() {
+           $( "#dialog" ).dialog( "open" );
+        });
+
+     $('#shipWay').change(function(){
+    	var sw_id = $(this).val();
+    	var newPrice = Number($('#'+sw_id).val());
+      	var tolPrice = Number($('#o_tolPrice').text());
+      	var point = Math.floor(Number($('#theO_point').val())/10);
+       	$('#o_lastPrice').val((newPrice+tolPrice)-point);
+       	$('#sw_id').val(sw_id);
+       	$('#lastPricePrint').text(newPrice+tolPrice-point);
+       	$('#sw_price').text(newPrice);
+     });
+     $('#cannelSubmit').click(function (e){
+    	 var form = $(this).parents('#aform');
+      	 console.log(form);
+         e.preventDefault();
+         swal({
+        	  title: "真的要取消此訂單?",
+        	  text: "沒買到好像會後悔，還是繼續買吧!",
+        	  type: "warning",
+        	  showCancelButton: true,
+        	  confirmButtonColor: "#DD6B55",
+        	  confirmButtonText: "取消訂單",
+        	  cancelButtonText: "再讓我想想",
+        	  closeOnConfirm: false
+        	},
+        	function(isConfirm){
+        		if(isConfirm){
+        			form.submit();
+        		}
+        	}
+        );
+     });
+     $('#theSubmit').click(function(e){
+    	 var form = $(this).parents('form');
+    	 e.preventDefault();
+    	 swal({
+       	  title: "即將正式出單",
+       	  text: "送出訂單後將不能再更改，只有在賣場收單前可以取消。",
+       	  showCancelButton: true,
+       	  confirmButtonColor: "#AEDEF4",
+       	  confirmButtonText: "立刻送出",
+       	  cancelButtonText: "再等等",
+       	  closeOnConfirm: false
+       	},function(isConfirm){
+       		if(isConfirm){
+       			form.submit();
+       		}
+       	});
+     });
+     $('#theO_point').change(function(e){
+    	 var point = Number($(this).val());
+    	 if(point>=0 && point<${LoginOK.m_point}){
+    	 if(point%10!=0){
+    		 swal({
+    			 title: "點數將會浪費",
+    			 text: "每10點折扣1元，個位數的部分將無作用，建議您確認修改"
+    		 });
+    	 }
+    	 
+    	 var sw_price = Number($('#sw_price').text());
+    	 var tolPrice = Number($('#o_tolPrice').text());
+    	 var dis = Math.floor(point/10);
+    	 $('#lastPricePrint').text(tolPrice + sw_price - dis);
+    	 $('#o_lastPrice').val(tolPrice + sw_price - dis);
+    	 }else{
+        	 if(point<0){
+        	 swal({
+    			 title: "點數不能為負值",
+    			 type: "warning"
+    		 });
+        	 }else{
+        		 swal({
+        			 title: "不能超出您擁有的點數",
+        			 text: "您的點數為${LoginOK.m_point}點",
+        			 type: "warning"
+        		 });
+        	 }
+        	 point = 0;
+    		 var sw_price = Number($('#sw_price').text());
+        	 var tolPrice = Number($('#o_tolPrice').text());
+        	 var dis = Math.floor(point/10);
+        	 $('#theO_point').val(0);
+        	 $('#lastPricePrint').text(tolPrice + sw_price - dis);
+        	 $('#o_lastPrice').val(tolPrice + sw_price - dis);
+    	 }
+     });
+     });
+</script>
 </head>
 <body>
+<!-- 加入頁首 -->
+<jsp:include page="includeTop.jsp"></jsp:include>
+<!-- 主頁面開始 -->
 <c:if test="${! empty OrderVO}">
 <h1 align="center">訂單詳情</h1>
 <form action="Order.do" method="post">
@@ -54,8 +149,8 @@
 	</tr>
 		<tr>
 			<td><label>訂單編號:</label>${OrderVO.o_id}</td>
-			<td><label>賣場:</label>${OrderVO.s_id}</td>
-			<td><label>購買者:</label>${LoginOK.m_name}</td>
+			<td><label>賣場:</label><a href="shop.html?s_id=${OrderVO.s_id}">${s_VO.m_name}</a></td>
+			<td><label>購買者:</label>${m_VO.m_name}</td>
 			<td><label>交易階段:</label>${orderStatus}</td>
 		</tr>
 		<tr>
@@ -113,7 +208,7 @@
 			</tr>
 		</c:forEach>
 </table>
-<table class="table" id="lastTable">
+<table class="table" id="lastTable" style="table-layout:fixed">
 	<tr class="danger"><td colspan="5">結算</td></tr>
 		<tr>
 			<td>總金額</td>
@@ -126,7 +221,7 @@
 			<td id="o_tolPrice">${OrderVO.o_tolPrice}</td>
 			<c:choose>
 				<c:when test="${OrderVO.o_procss == 1}">
-					<td><input type="text" id="theO_point" title="每10點折扣1元" name="o_point" size="4" value="${OrderVO.o_point}" /></td>
+					<td><input type="text" id="theO_point" title="每10點折扣1元，您有${LoginOK.m_point}點" name="o_point" size="4" value="${OrderVO.o_point}" /></td>
 					<td>
 						<select id="shipWay">
 						<c:forEach var="shipways" items="${shipwayList}">
@@ -167,9 +262,21 @@
 </form>
 <div id="footerDiv">
 <c:if test="${OrderVO.o_procss > 0}">
-<table class="table" id="endTable">
+<table class="table" id="endTable" style="table-layout:fixed">
 	<tr>
-		<td colspan="4"></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<c:if test="${OrderVO.o_procss == 1 || OrderVO.o_procss == 2}">
+			<td>
+			<form id="aform" action="Order.do" method="post">
+				<input type="submit" value="取消訂單" id="cannelSubmit" class="btn btn-danger"/>
+				<input type="hidden" name="action" value="cannel"/>
+				<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>
+			</form>
+			</td>
+			</c:if>
+		<c:if test="${OrderVO.o_procss != 1 && OrderVO.o_procss != 2}"><td></td></c:if>
 		<c:if test="${OrderVO.o_procss >= 1 && OrderVO.o_procss <= 5}">
 		<td>
 		<form action="Order.do" method="post" id="theForm">
@@ -225,19 +332,8 @@
 				</c:if>
 			</td>
 			</c:if>
+			
 	</tr>	
-<c:if test="${OrderVO.o_procss == 1 || OrderVO.o_procss == 2}">
-	<tr>
-		<td  colspan="4"></td>
-		<td>
-			<form id="aform" action="Order.do" method="post">
-				<input type="submit" value="取消訂單" id="cannelSubmit" class="btn btn-danger"/>
-				<input type="hidden" name="action" value="cannel"/>
-				<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>
-			</form>
-		</td>
-	</tr>
-</c:if>
 </table>
 	</c:if>
 </div>
@@ -248,6 +344,7 @@
 	</c:if>
 	<c:if test="${OrderVO.o_procss == 7}">
 		<p>本訂單已完成交易，雙方已給予評價</p>
+		<p>對方給您 ${OrderVO.m_score} 的評價，評價內容為：${OrderVO.m_comment}</p>
 	</c:if>
 	<c:if test="${! empty res}"><p>${res}</p></c:if>
 	<c:if test="${! empty errorMsgs}"><p>${errorMsgs}</p></c:if>
@@ -257,80 +354,9 @@
 		<input type="hidden" value="${ship.sw_price}" id="${ship.sw_id}" />
 	</c:forEach>
 </div>
-<script>
-     $(function() {
-        $( "#dialog" ).dialog({
-           autoOpen: false,  
-        });
-        $( "#goComment" ).click(function() {
-           $( "#dialog" ).dialog( "open" );
-        });
-        
-     });
-     
-    
-     $('#shipWay').change(function(){
-    	var sw_id = $(this).val();
-    	var newPrice = Number($('#'+sw_id).val());
-      	var tolPrice = Number($('#o_tolPrice').text());
-      	var point = Math.floor(Number($('#theO_point').val())/10);
-       	$('#o_lastPrice').val((newPrice+tolPrice)-point);
-       	$('#sw_id').val(sw_id);
-       	$('#lastPricePrint').text(newPrice+tolPrice-point);
-       	$('#sw_price').text(newPrice);
-     });
-     $('#cannelSubmit').click(function (e){
-    	 var form = $(this).parents('#aform');
-      	 console.log(form);
-         e.preventDefault();
-         swal({
-        	  title: "真的要取消此訂單?",
-        	  text: "沒買到好像會後悔，還是繼續買吧!",
-        	  type: "warning",
-        	  showCancelButton: true,
-        	  confirmButtonColor: "#DD6B55",
-        	  confirmButtonText: "取消訂單",
-        	  cancelButtonText: "再讓我想想",
-        	  closeOnConfirm: false
-        	},
-        	function(isConfirm){
-        		if(isConfirm){
-        			form.submit();
-        		}
-        	}
-        );
-     });
-     $('#theSubmit').click(function(e){
-    	 var form = $(this).parents('form');
-    	 e.preventDefault();
-    	 swal({
-       	  title: "即將正式出單",
-       	  text: "送出訂單後將不能再更改，只有在賣場收單前可以取消。",
-       	  showCancelButton: true,
-       	  confirmButtonColor: "#AEDEF4",
-       	  confirmButtonText: "立刻送出",
-       	  cancelButtonText: "再等等",
-       	  closeOnConfirm: false
-       	},function(isConfirm){
-       		if(isConfirm){
-       			form.submit();
-       		}
-       	});
-     });
-     $('#theO_point').change(function(e){
-    	 var point = Number($(this).val());
-    	 if(point%10!=0){
-    		 swal({
-    			 title: "點數將會浪費",
-    			 text: "每10點折扣1元，個位數的部分將無作用，建議您修改確認"
-    		 });
-    	 }
-    	 var sw_price = Number($('#sw_price').text());
-    	 var tolPrice = Number($('#o_tolPrice').text());
-    	 var dis = Math.floor(point/10);
-    	 $('#lastPricePrint').text(tolPrice + sw_price - dis);
-    	 $('#o_lastPrice').val(tolPrice + sw_price - dis);
-     });
-</script>
+
+<!-- 主頁面結束 -->
+<!-- 加入頁尾 -->
+<jsp:include page="_Footer.jsp"></jsp:include>
 </body>
 </html>

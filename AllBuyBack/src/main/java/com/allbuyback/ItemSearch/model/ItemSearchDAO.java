@@ -114,9 +114,9 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 	}
 
 	@Override
-	public List getAll() {
-		List list = new ArrayList();
-		//ItemVO itemVO = null;
+	public List<ItemVO> getAll() {
+		List<ItemVO> list = new ArrayList<ItemVO>();
+		ItemVO itemVO = null;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -127,37 +127,39 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 			pstmt = conn.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()){
-				if(rs.getInt(16)==1){
-					Map m0 = new HashMap();
-					m0.put("i_id", rs.getInt(1));
-					m0.put("i_name", rs.getString(3));
-					//m0.put("i_picture1", rs.getBinaryStream(5));
-					m0.put("i_price", rs.getDouble(10));
-					m0.put("i_quantity", rs.getInt(11));
-					m0.put("i_popular", rs.getString(20));
-					m0.put("i_click", rs.getString(21));
-					m0.put("country_name", rs.getString(25));
-					
-					list.add(m0);
-				}
-			}
-			
 //			while(rs.next()){
-//				itemVO = new ItemVO();
-//				itemVO.setS_id(rs.getInt("s_id"));
-//				itemVO.setI_name(rs.getString("i_name"));
-//				itemVO.setI_describe(rs.getString("i_describe"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture1"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture2"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture3"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture4"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture5"));
-//				itemVO.setI_price(rs.getDouble("i_price"));
-//				itemVO.setI_quantity(rs.getInt("i_quantity"));
-//				itemVO.setCountry_id(rs.getInt("country_id"));
-//				list.add(itemVO);
+//				if(rs.getInt(16)==1){
+//					Map m0 = new HashMap();
+//					m0.put("i_id", rs.getInt(1));
+//					m0.put("i_name", rs.getString(3));
+//					//m0.put("i_picture1", rs.getBinaryStream(5));
+//					m0.put("i_price", rs.getDouble(10));
+//					m0.put("i_quantity", rs.getInt(11));
+//					m0.put("i_popular", rs.getString(20));
+//					m0.put("i_click", rs.getString(21));
+//					m0.put("country_name", rs.getString(25));
+//					
+//					list.add(m0);
+//				}
 //			}
+			
+			while(rs.next()){
+				itemVO = new ItemVO();
+				itemVO.setI_id(rs.getInt("i_id"));
+				itemVO.setS_id(rs.getInt("s_id"));
+				itemVO.setI_name(rs.getString("i_name"));
+				itemVO.setI_describe(rs.getString("i_describe"));
+				itemVO.setI_picture1(rs.getBytes("i_picture1"));
+				itemVO.setI_picture1(rs.getBytes("i_picture2"));
+				itemVO.setI_picture1(rs.getBytes("i_picture3"));
+				itemVO.setI_picture1(rs.getBytes("i_picture4"));
+				itemVO.setI_picture1(rs.getBytes("i_picture5"));
+				itemVO.setI_price(rs.getInt("i_price"));
+				itemVO.setI_quantity(rs.getInt("i_quantity"));
+				itemVO.setCountry_id(rs.getInt("country_id"));
+				itemVO.setCountry_name(rs.getString("country_name"));
+				list.add(itemVO);
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException("A database error occured." + e.getMessage());
 		}
@@ -188,9 +190,9 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 	}
 
 	@Override
-	public List getAll_FirstLayer(int i_class1) {
-		List list = new ArrayList();
-		//ItemVO itemVO = null;
+	public List<ItemVO> getAll_FirstLayer(int i_class1) {
+		List<ItemVO> list = new ArrayList<ItemVO>();
+		ItemVO itemVO = null;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -202,36 +204,38 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 			pstmt.setInt(1, i_class1);
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()){
-				if(rs.getInt(16)==1){
-					Map m1 = new HashMap();
-					m1.put("i_id", rs.getInt(1));
-					m1.put("i_name", rs.getString(3));
-					//m1.put("i_picture1", rs.getBinaryStream(5));
-					m1.put("i_price", rs.getDouble(10));
-					m1.put("i_quantity", rs.getInt(11));
-					m1.put("i_popular", rs.getString(20));
-					m1.put("i_click", rs.getString(21));
-					m1.put("country_name", rs.getString(25));
-					list.add(m1);
-				}
-			}
-			
 //			while(rs.next()){
-//				itemVO = new ItemVO();
-//				itemVO.setS_id(rs.getInt("s_id"));
-//				itemVO.setI_name(rs.getString("i_name"));
-//				itemVO.setI_describe(rs.getString("i_describe"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture1"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture2"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture3"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture4"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture5"));
-//				itemVO.setI_price(rs.getDouble("i_price"));
-//				itemVO.setI_quantity(rs.getInt("i_quantity"));
-//				itemVO.setCountry_id(rs.getInt("country_id"));
-//				list.add(itemVO);
+//				if(rs.getInt(16)==1){
+//					Map m1 = new HashMap();
+//					m1.put("i_id", rs.getInt(1));
+//					m1.put("i_name", rs.getString(3));
+//					//m1.put("i_picture1", rs.getBinaryStream(5));
+//					m1.put("i_price", rs.getDouble(10));
+//					m1.put("i_quantity", rs.getInt(11));
+//					m1.put("i_popular", rs.getString(20));
+//					m1.put("i_click", rs.getString(21));
+//					m1.put("country_name", rs.getString(25));
+//					list.add(m1);
+//				}
 //			}
+			
+			while(rs.next()){
+				itemVO = new ItemVO();
+				itemVO.setI_id(rs.getInt("i_id"));
+				itemVO.setS_id(rs.getInt("s_id"));
+				itemVO.setI_name(rs.getString("i_name"));
+				itemVO.setI_describe(rs.getString("i_describe"));
+				itemVO.setI_picture1(rs.getBytes("i_picture1"));
+				itemVO.setI_picture1(rs.getBytes("i_picture2"));
+				itemVO.setI_picture1(rs.getBytes("i_picture3"));
+				itemVO.setI_picture1(rs.getBytes("i_picture4"));
+				itemVO.setI_picture1(rs.getBytes("i_picture5"));
+				itemVO.setI_price(rs.getInt("i_price"));
+				itemVO.setI_quantity(rs.getInt("i_quantity"));
+				itemVO.setCountry_id(rs.getInt("country_id"));
+				itemVO.setCountry_name(rs.getString("country_name"));
+				list.add(itemVO);
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException("A database error occured." + e.getMessage());
 		}
@@ -262,9 +266,9 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 	}
 
 	@Override
-	public List getAll_SecondLayer(int i_class2) {
-		List list = new ArrayList();
-		//ItemVO itemVO = null;
+	public List<ItemVO> getAll_SecondLayer(int i_class2) {
+		List<ItemVO> list = new ArrayList<ItemVO>();
+		ItemVO itemVO = null;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -276,36 +280,38 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 			pstmt.setInt(1, i_class2);
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()){
-				if(rs.getInt(16)==1){
-					Map m2 = new HashMap();
-					m2.put("i_id", rs.getInt(1));
-					m2.put("i_name", rs.getString(3));
-					//m2.put("i_picture1", rs.getBinaryStream(5));
-					m2.put("i_price", rs.getDouble(10));
-					m2.put("i_quantity", rs.getInt(11));
-					m2.put("i_popular", rs.getString(20));
-					m2.put("i_click", rs.getString(21));
-					m2.put("country_name", rs.getString(25));
-					list.add(m2);
-				}
-			}
-			
 //			while(rs.next()){
-//				itemVO = new ItemVO();
-//				itemVO.setS_id(rs.getInt("s_id"));
-//				itemVO.setI_name(rs.getString("i_name"));
-//				itemVO.setI_describe(rs.getString("i_describe"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture1"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture2"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture3"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture4"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture5"));
-//				itemVO.setI_price(rs.getDouble("i_price"));
-//				itemVO.setI_quantity(rs.getInt("i_quantity"));
-//				itemVO.setCountry_id(rs.getInt("country_id"));
-//				list.add(itemVO);
+//				if(rs.getInt(16)==1){
+//					Map m2 = new HashMap();
+//					m2.put("i_id", rs.getInt(1));
+//					m2.put("i_name", rs.getString(3));
+//					//m2.put("i_picture1", rs.getBinaryStream(5));
+//					m2.put("i_price", rs.getDouble(10));
+//					m2.put("i_quantity", rs.getInt(11));
+//					m2.put("i_popular", rs.getString(20));
+//					m2.put("i_click", rs.getString(21));
+//					m2.put("country_name", rs.getString(25));
+//					list.add(m2);
+//				}
 //			}
+			
+			while(rs.next()){
+				itemVO = new ItemVO();
+				itemVO.setI_id(rs.getInt("i_id"));
+				itemVO.setS_id(rs.getInt("s_id"));
+				itemVO.setI_name(rs.getString("i_name"));
+				itemVO.setI_describe(rs.getString("i_describe"));
+				itemVO.setI_picture1(rs.getBytes("i_picture1"));
+				itemVO.setI_picture1(rs.getBytes("i_picture2"));
+				itemVO.setI_picture1(rs.getBytes("i_picture3"));
+				itemVO.setI_picture1(rs.getBytes("i_picture4"));
+				itemVO.setI_picture1(rs.getBytes("i_picture5"));
+				itemVO.setI_price(rs.getInt("i_price"));
+				itemVO.setI_quantity(rs.getInt("i_quantity"));
+				itemVO.setCountry_id(rs.getInt("country_id"));
+				itemVO.setCountry_name(rs.getString("country_name"));
+				list.add(itemVO);
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException("A database error occured." + e.getMessage());
 		}
@@ -336,9 +342,9 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 	}
 
 	@Override
-	public List getAll_ThirdLayer(int i_class3) {
-		List list = new ArrayList();
-		//ItemVO itemVO = null;
+	public List<ItemVO> getAll_ThirdLayer(int i_class3) {
+		List<ItemVO> list = new ArrayList<ItemVO>();
+		ItemVO itemVO = null;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -350,36 +356,38 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 			pstmt.setInt(1, i_class3);
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()){
-				if(rs.getInt(16)==1){
-					Map m3 = new HashMap();
-					m3.put("i_id", rs.getInt(1));
-					m3.put("i_name", rs.getString(3));
-					//m3.put("i_picture1", rs.getBinaryStream(5));
-					m3.put("i_price", rs.getDouble(10));
-					m3.put("i_quantity", rs.getInt(11));
-					m3.put("i_popular", rs.getString(20));
-					m3.put("i_click", rs.getString(21));
-					m3.put("country_name", rs.getString(25));
-					list.add(m3);
-				}
-			}
-			
 //			while(rs.next()){
-//				itemVO = new ItemVO();
-//				itemVO.setS_id(rs.getInt("s_id"));
-//				itemVO.setI_name(rs.getString("i_name"));
-//				itemVO.setI_describe(rs.getString("i_describe"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture1"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture2"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture3"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture4"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture5"));
-//				itemVO.setI_price(rs.getDouble("i_price"));
-//				itemVO.setI_quantity(rs.getInt("i_quantity"));
-//				itemVO.setCountry_id(rs.getInt("country_id"));
-//				list.add(itemVO);
+//				if(rs.getInt(16)==1){
+//					Map m3 = new HashMap();
+//					m3.put("i_id", rs.getInt(1));
+//					m3.put("i_name", rs.getString(3));
+//					//m3.put("i_picture1", rs.getBinaryStream(5));
+//					m3.put("i_price", rs.getDouble(10));
+//					m3.put("i_quantity", rs.getInt(11));
+//					m3.put("i_popular", rs.getString(20));
+//					m3.put("i_click", rs.getString(21));
+//					m3.put("country_name", rs.getString(25));
+//					list.add(m3);
+//				}
 //			}
+			
+			while(rs.next()){
+				itemVO = new ItemVO();
+				itemVO.setI_id(rs.getInt("i_id"));
+				itemVO.setS_id(rs.getInt("s_id"));
+				itemVO.setI_name(rs.getString("i_name"));
+				itemVO.setI_describe(rs.getString("i_describe"));
+				itemVO.setI_picture1(rs.getBytes("i_picture1"));
+				itemVO.setI_picture1(rs.getBytes("i_picture2"));
+				itemVO.setI_picture1(rs.getBytes("i_picture3"));
+				itemVO.setI_picture1(rs.getBytes("i_picture4"));
+				itemVO.setI_picture1(rs.getBytes("i_picture5"));
+				itemVO.setI_price(rs.getInt("i_price"));
+				itemVO.setI_quantity(rs.getInt("i_quantity"));
+				itemVO.setCountry_id(rs.getInt("country_id"));
+				itemVO.setCountry_name(rs.getString("country_name"));
+				list.add(itemVO);
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException("A database error occured." + e.getMessage());
 		}
@@ -411,8 +419,8 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 
 	@Override
 	public List<ItemVO> findByCountry(int country_id) {
-		List list = new ArrayList();
-		//ItemVO itemVO = null;
+		List<ItemVO> list = new ArrayList<ItemVO>();
+		ItemVO itemVO = null;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -424,36 +432,38 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 			pstmt.setInt(1, country_id);
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()){
-				if(rs.getInt(16)==1){
-					Map m4 = new HashMap();
-					m4.put("i_id", rs.getInt(1));
-					m4.put("i_name", rs.getString(3));
-					//m4.put("i_picture1", rs.getBinaryStream(5));
-					m4.put("i_price", rs.getDouble(10));
-					m4.put("i_quantity", rs.getInt(11));
-					m4.put("i_popular", rs.getString(20));
-					m4.put("i_click", rs.getString(21));
-					m4.put("country_name", rs.getString(25));
-					list.add(m4);
-				}
-			}
-			
 //			while(rs.next()){
-//				itemVO = new ItemVO();
-//				itemVO.setS_id(rs.getInt("s_id"));
-//				itemVO.setI_name(rs.getString("i_name"));
-//				itemVO.setI_describe(rs.getString("i_describe"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture1"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture2"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture3"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture4"));
-//				itemVO.setI_picture1(rs.getBytes("i_picture5"));
-//				itemVO.setI_price(rs.getDouble("i_price"));
-//				itemVO.setI_quantity(rs.getInt("i_quantity"));
-//				itemVO.setCountry_id(rs.getInt("country_id"));
-//				list.add(itemVO);
+//				if(rs.getInt(16)==1){
+//					Map m4 = new HashMap();
+//					m4.put("i_id", rs.getInt(1));
+//					m4.put("i_name", rs.getString(3));
+//					//m4.put("i_picture1", rs.getBinaryStream(5));
+//					m4.put("i_price", rs.getDouble(10));
+//					m4.put("i_quantity", rs.getInt(11));
+//					m4.put("i_popular", rs.getString(20));
+//					m4.put("i_click", rs.getString(21));
+//					m4.put("country_name", rs.getString(25));
+//					list.add(m4);
+//				}
 //			}
+			
+			while(rs.next()){
+				itemVO = new ItemVO();
+				itemVO.setI_id(rs.getInt("i_id"));
+				itemVO.setS_id(rs.getInt("s_id"));
+				itemVO.setI_name(rs.getString("i_name"));
+				itemVO.setI_describe(rs.getString("i_describe"));
+				itemVO.setI_picture1(rs.getBytes("i_picture1"));
+				itemVO.setI_picture1(rs.getBytes("i_picture2"));
+				itemVO.setI_picture1(rs.getBytes("i_picture3"));
+				itemVO.setI_picture1(rs.getBytes("i_picture4"));
+				itemVO.setI_picture1(rs.getBytes("i_picture5"));
+				itemVO.setI_price(rs.getInt("i_price"));
+				itemVO.setI_quantity(rs.getInt("i_quantity"));
+				itemVO.setCountry_id(rs.getInt("country_id"));
+				itemVO.setCountry_name(rs.getString("country_name"));
+				list.add(itemVO);
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException("A database error occured." + e.getMessage());
 		}
