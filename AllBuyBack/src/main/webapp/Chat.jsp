@@ -42,7 +42,7 @@
 		 		console.log(items);
 	 			var showContent = "";
 		 		for(var i=0; i<items.length; i++){
-// 		 			if(items[i].)
+		 			if(items[i].)
 					showContent = showContent + items[i].m_account + ": " + items[i].chat_content;
 					showContent = showContent + "\n";
 		 		}

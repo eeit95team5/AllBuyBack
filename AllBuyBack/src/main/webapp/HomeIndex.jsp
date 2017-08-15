@@ -537,22 +537,22 @@
 			<c:forEach var="itemsVO" items="${list}">
 			<div class="col-sm-3">
 				<div style="background-color:#C1CDCD;height:300px;margin:10px 5px; padding:15px; border-radius:20px">
-					<img height="160" width="160" style="margin:5px 35px" src="ReadPictureForItem?i_id=${itemsVO.i_id}"><br>
-					品名: ${itemsVO.i_name}<br>
-					價格: ${itemsVO.i_price} 數量: ${itemsVO.i_quantity}<br>
-					暢銷指數: ${itemsVO.i_popular} 點閱數: ${itemsVO.i_click}<br>
-					國家: ${itemsVO.country_name}<br>
+					<div><img height="160" width="160" style="margin:5px 35px" src="ReadPictureForItem?i_id=${itemsVO.i_id}"></div>
+					<div>品名: ${itemsVO.i_name}</div>
+					<div>價格: ${itemsVO.i_price} 數量: ${itemsVO.i_quantity}</div>
+					<div>暢銷指數: ${itemsVO.i_popular} 點閱數: ${itemsVO.i_click}</div>
+					<div>國家: ${itemsVO.country_name}</div>
 				</div>
 			</div>
 			</c:forEach>
 			<c:forEach var="shopVO" items="${shoplist}">
 			<div class="col-sm-3">
 				<div style="background-color:#C1CDCD;height:300px;margin:10px 5px; padding:15px; border-radius:20px">
-					關於我: ${shopVO.s_aboutMe}<br>
-					平均評價: ${shopVO.s_avgScore}<br>
-					被收藏數: ${shopVO.s_popular} 被點擊數: ${shopVO.s_click}<br>
-					點數: ${shopVO.s_point}<br>
-					國家: ${shopVO.country_name}<br>
+					<div>關於我: ${shopVO.s_aboutMe}</div>
+					<div>平均評價: ${shopVO.s_avgScore}</div>
+					<div>被收藏數: ${shopVO.s_popular} 被點擊數: ${shopVO.s_click}</div>
+					<div>點數: ${shopVO.s_point}</div>
+					<div>國家: ${shopVO.country_name}</div>
 				</div>
 			</div>
 			</c:forEach>
