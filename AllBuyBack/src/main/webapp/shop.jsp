@@ -10,7 +10,21 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 $(function(){
+	
 	getMessageJSON();
+		
+	
+	$('#keep_shop').click(function(){
+		if(<c:out value="${empty LoginOK}">true</c:out>){
+			$('#spanmsg2').text("請先登入");
+		}else{
+			$('#spanmsg2').text("test");		
+			$.post("<c:url value='/keep_shop.SPRINGcontroller'/>",{"action":"Insert","m_id":<c:out value="${LoginOK.m_id}">0</c:out>,
+				"s_id":<c:out value="${shop.s_id}">0</c:out>},function(){
+					$('#spanmsg2').text("已將商店加入收藏");
+				})			
+		}
+	})
 })
 
 function getMessageJSON(){
@@ -53,7 +67,7 @@ function showJSON(data){
 </script>
 </head>
 <body>
-	<h3 id="head">${shop.s_id }的商店</h3>
+	<h3 id="head">${shop.s_id }的商店</h3><button type="button" id="keep_shop" value="${shop.s_id }">將商店加入我的收藏</button><span id="spanmsg2"></span>
 	<h5>${shop.s_aboutMe }</h5>
 	<table>
 		<tr>
@@ -90,7 +104,7 @@ $(function(){
 				$('#showerror').html("請輸入留言");
 			}else if($('#sm_content').val()){	
 				$.post("<c:url value='/shopmessage.SPRINGcontroller'/>",
-					{"action":"Insert","s_id":${shop.s_id },"m_id":<c:out value="${LoginOK.m_id}">-1</c:out>,"sm_content":$('#sm_content').val()},
+					{"action":"Insert","s_id":<c:out value="${shop.s_id }">-2</c:out>,"m_id":<c:out value="${LoginOK.m_id}">-1</c:out>,"sm_content":$('#sm_content').val()},
 					function(data){showJSON(JSON.parse(data));})/*post結束*/
 			}/*if結尾*/
 		}/*if結尾*/

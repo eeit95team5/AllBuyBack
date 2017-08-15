@@ -49,11 +49,12 @@
 					<input type="hidden" id="i_id" name="i_id" value="${itemVO.i_id}" />
 					<input type="hidden" id="s_id" name="s_id" value="${itemVO.s_id}" />
 				</td>
+							
 			</form>
-			</tr>
-			<tr>
+			
+			<td>
 				<c:if test="${!empty LoginOK}">
-					<td><form method="post"
+					<form method="post"
 							action="<c:url value="/ItemController"/>">
 							<input type="submit" value="檢舉"> <input type="hidden"
 								name="m_id" value="${LoginOK.m_id}"> <input
@@ -62,10 +63,10 @@
 
 						</form>
 				</c:if>
-			</tr>
-			<tr>
+			</td>
+			<td>
 							<c:if test="${!empty LoginOK }">
-					<td><form method="post"
+					<form method="post"
 							action="<c:url value="/ChatController"/>">
 							<input type="submit" value="議價"> <input type="hidden"
 								name="m_id" value="${LoginOK.m_id}"> 
@@ -77,10 +78,11 @@
 
 						</form>
 				</c:if>
-			</tr>
-		
+			</td>
+			</tr>		
 	</tbody>
 </table>
+
 <c:if test="${! empty Msg}"><p>${Msg}</p></c:if>
 <a href="ShoppingCart.go?action=select">ShoppingCart</a>
 <form action="ShoppingCart.go" method="post">
@@ -88,6 +90,14 @@
 	<input type="hidden" name="action" value="select" />
 </form>
 <c:if test="${! empty errorMsgs}"><p>${errorMsgs}</p></c:if>
+<button type="button" id="keepitem">加入收藏</button><span id="msg1"></span><br/>
+<form action="<c:url value='/shop.html'/>" method="get">
+	<input type="hidden" name="s_id" value="${itemVO.s_id }"/><button type="submit" >回到賣場</button>	
+</form><br>
+
+<a href="<c:url value='/index.jsp'/>"> <input type="button" value="回首頁"></a>
+
+
 <script>
 $('#addCart').click(function (){
 // 	 var form = $(this).parents('#cartForm');
@@ -115,6 +125,23 @@ $('#addCart').click(function (){
 	 })
 	 
 });
+
+
+
+
+$('#keepitem').click(function(){
+	if(<c:out value="${empty LoginOK}">true</c:out>){
+		$('#msg1').text("請先登入");
+	}else if(<c:out value="${LoginOK.m_id}">-1</c:out> == <c:out value="${itemVO.s_id}">-2</c:out>){
+		$('#msg1').text("這是您自己的商品！");
+	}else{
+		$.post("<c:url value='/keep_item.SPRINGcontroller'/>",{"action":"Insert",
+			"i_id":<c:out value="${itemVO.i_id}">0</c:out>,
+			"m_id":<c:out value="${LoginOK.m_id}">0</c:out>},function(){
+				$('#msg1').text("已將商品加入收藏");
+			});	//post	
+	}//else	
+})//click
 	
 </script>
 </body>
