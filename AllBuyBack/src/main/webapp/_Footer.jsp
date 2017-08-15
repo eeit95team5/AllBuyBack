@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <link rel="stylesheet" href="styles/main.css"/>
-<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.css">
+<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
 <link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
 <link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
 <script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
@@ -10,20 +10,8 @@
 <script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
 <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
     
-    <style>
-    fieldset{
-		margin:auto;
-		padding:20px;
-		width:750px;
-		background-color: tan;
-		border: 1px solid #003C9D;
-		border-radius: 20px;
-	}
-    </style>
-    
-    <footer>
- <div class="container-fluid" style="background-color:rgb(185,152,103);height:160px;padding-left:30px;padding-top:30px" >
- 
+<footer>
+	<div class="container-fluid" style="background-color:rgb(185,152,103);height:160px;padding-left:30px;padding-top:30px" >
     	<div class="row">
         	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><!--複製go1buy1-->
             	<ul class="footer_menu">

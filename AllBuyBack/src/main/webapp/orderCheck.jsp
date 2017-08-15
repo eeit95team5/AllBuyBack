@@ -6,8 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="styles/main.css"/>
-<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.css">
+<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
 <link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
 <link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
 <script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
@@ -97,17 +96,40 @@
      });
      $('#theO_point').change(function(e){
     	 var point = Number($(this).val());
+    	 if(point>=0 && point<${LoginOK.m_point}){
     	 if(point%10!=0){
     		 swal({
     			 title: "點數將會浪費",
-    			 text: "每10點折扣1元，個位數的部分將無作用，建議您修改確認"
+    			 text: "每10點折扣1元，個位數的部分將無作用，建議您確認修改"
     		 });
     	 }
+    	 
     	 var sw_price = Number($('#sw_price').text());
     	 var tolPrice = Number($('#o_tolPrice').text());
     	 var dis = Math.floor(point/10);
     	 $('#lastPricePrint').text(tolPrice + sw_price - dis);
     	 $('#o_lastPrice').val(tolPrice + sw_price - dis);
+    	 }else{
+        	 if(point<0){
+        	 swal({
+    			 title: "點數不能為負值",
+    			 type: "warning"
+    		 });
+        	 }else{
+        		 swal({
+        			 title: "不能超出您擁有的點數",
+        			 text: "您的點數為${LoginOK.m_point}點",
+        			 type: "warning"
+        		 });
+        	 }
+        	 point = 0;
+    		 var sw_price = Number($('#sw_price').text());
+        	 var tolPrice = Number($('#o_tolPrice').text());
+        	 var dis = Math.floor(point/10);
+        	 $('#theO_point').val(0);
+        	 $('#lastPricePrint').text(tolPrice + sw_price - dis);
+        	 $('#o_lastPrice').val(tolPrice + sw_price - dis);
+    	 }
      });
      });
 </script>
@@ -127,8 +149,8 @@
 	</tr>
 		<tr>
 			<td><label>訂單編號:</label>${OrderVO.o_id}</td>
-			<td><label>賣場:</label><a href="shop.html?s_id=${OrderVO.s_id}">${s_name}</a></td>
-			<td><label>購買者:</label>${LoginOK.m_name}</td>
+			<td><label>賣場:</label><a href="shop.html?s_id=${OrderVO.s_id}">${s_VO.m_name}</a></td>
+			<td><label>購買者:</label>${m_VO.m_name}</td>
 			<td><label>交易階段:</label>${orderStatus}</td>
 		</tr>
 		<tr>
@@ -199,7 +221,7 @@
 			<td id="o_tolPrice">${OrderVO.o_tolPrice}</td>
 			<c:choose>
 				<c:when test="${OrderVO.o_procss == 1}">
-					<td><input type="text" id="theO_point" title="每10點折扣1元" name="o_point" size="4" value="${OrderVO.o_point}" /></td>
+					<td><input type="text" id="theO_point" title="每10點折扣1元，您有${LoginOK.m_point}點" name="o_point" size="4" value="${OrderVO.o_point}" /></td>
 					<td>
 						<select id="shipWay">
 						<c:forEach var="shipways" items="${shipwayList}">

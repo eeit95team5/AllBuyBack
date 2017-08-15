@@ -449,7 +449,7 @@ public class OrderServlet extends HttpServlet {
 				request.getRequestDispatcher("/Order.do?action=getOne&o_id="+o_id).forward(request, response);
 				return;
 			}
-			//驗證輸入資料
+			//驗證輸入資料--前端已設置初步驗證
 			if(pay_id == null){
 				errorMsgs.add("請選擇付款方式");
 			}
@@ -478,8 +478,13 @@ public class OrderServlet extends HttpServlet {
 			//取得原始資料
 			OrderVO orderVO = orderService.select(o_id);
 			int m_id = orderVO.getM_id();
-			if(m_id==id){
+			//驗證
+			int hasPoint = loginOK.getM_point();
+			if(o_point>hasPoint){
+				errorMsgs.add("點數不足");
+			}
 			//更新資料
+			if(m_id==id){
 			orderVO.setO_point(o_point);
 			orderVO.setSw_id(sw_id);
 			orderVO.setPay_id(pay_id);

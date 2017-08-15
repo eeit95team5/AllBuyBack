@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.css">
+<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
 <link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
 <link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
 <script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
@@ -81,9 +81,9 @@
      $('#m_score').dialog({
          autoOpen: false,
          title: "買方評價",
-         width: 180,
-         height: 120,
-         position:{ my: "center", at: "top+140", of: window }
+         width: 150,
+         height: 130,
+         position:{ my: "center", at: "top+240", of: window }
      });
      $('#m_name').mouseover(function(){
     	$('#m_score').dialog('open');
