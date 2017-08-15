@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	
+	<a href="HomeIndex.jsp">新首頁</a><br>
 	<a href="login.jsp">登入</a><br>
 	<a href="logout.jsp">登出</a><br>
 	<br>
@@ -46,11 +47,12 @@
 	</form><br>
 	<a href="shop.html?s_id=1000002">2號賣場</a>
 	<a href="shop.html?s_id=1000006">6號賣場</a>
-	
+	<a href="Ad.go?action=selectBySId&s_id=${LoginOK.m_id}">我的廣告</a><br>
 	<h3><a href="<c:url value="/checkGB.do"/>">時尚金頭腦</a></h3>
 <br>
 <h4>${alreadyPlay}</h4>
 
+	<a href="Ad.go?action=selectAll">管理者廣告頁面</a><br>
 
 <c:if test="${ !empty LoginOK}">
 <a href="ChatController?action=MessageFromSeller&id=${LoginOK.m_id}">來自賣家的訊息</a>

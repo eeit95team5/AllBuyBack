@@ -12,7 +12,7 @@
 <label>廣告類型:</label>
 <select name="ad_type">
 	<option value="3">精選商品</option>
-	<option value="4">頁首文字</option>
+	<option value="4">本週頭條</option>
 </select>
 <label>廣告開始日期:</label><input type="text" name="ad_startDate" />
 <label>廣告天數:</label><input type="text" name="ad_days" />
@@ -23,7 +23,7 @@
 <input type="hidden" name="action" value="buyAd" />
 </form>
 <a href="Ad.go?action=selectBySId&s_id=${LoginOK.m_id}">我的廣告</a><br>
-<a href="Ad.go?action=selectAll">管理者廣告頁面</a>
+
 <c:if test="${! empty msg}" >${msg}</c:if>
 </body>
 </html>
