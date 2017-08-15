@@ -196,6 +196,9 @@ public class ItemController {
 				break;
 			}
 			case "Update":
+				if(bean.getI_status()==3){
+					break;
+				}
 				ItemBean result3 = itemService.update(bean);
 				if(result3==null) {
 					errors.put("action", "Update fail");

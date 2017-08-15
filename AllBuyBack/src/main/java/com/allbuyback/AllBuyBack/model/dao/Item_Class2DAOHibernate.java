@@ -30,8 +30,8 @@ public class Item_Class2DAOHibernate implements Item_Class2DAOI{
 	
 	@Override
 	public List<Item_Class2Bean> select(Item_Class2Bean bean) {
-		 Query<Item_Class2Bean> query = this.getSession().createQuery(QC1STMT,Item_Class2Bean.class);
-		 query.setParameter(0, bean.getI_class1());
+		Query<Item_Class2Bean> query = this.getSession().createQuery(QC1STMT,Item_Class2Bean.class);
+		query.setParameter(0, bean.getI_class1());
 		return query.getResultList();
 	}
 
