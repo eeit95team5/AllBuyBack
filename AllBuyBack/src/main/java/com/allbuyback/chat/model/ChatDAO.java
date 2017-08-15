@@ -5,12 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import com.allbuyback.ItemSearch.model.ItemVO;
+import com.allbuyback.login.model.MemberDAO;
 
 public class ChatDAO implements ChatDAOI {
 
@@ -31,6 +36,9 @@ public class ChatDAO implements ChatDAOI {
 	private static final String FULL_MESSAGE = "SELECT m_id,s_id,m_account,chat_content,chat_date FROM CHAT where m_id=? and s_id=? order by chat_date asc";
 	private static final String INSERT_SELLER_REPLY = "INSERT INTO CHAT (m_id,s_id,m_account,chat_content,chat_date) VALUES (?,?,?,?, getdate())";
 	private static final String INSERT_BUYER_REPLY = "INSERT INTO CHAT (m_id,s_id,m_account,chat_content,chat_date) VALUES (?,?,?,?, getdate())";
+	private static final String SAVE_STMT = "insert into CHAT values (?, ?, ?, ?, GETDATE())";
+	private static final String READ_STMT = "select * from CHAT where m_id=? and s_id=? order by chat_date desc";
+	
 	@Override
 	public void insert(ChatVO chatVO) {
 		Connection con = null;
@@ -311,6 +319,106 @@ public class ChatDAO implements ChatDAOI {
 				try {
 					con.close();
 				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+	@Override
+	public void SaveTalk(int m_id, int s_id, String content) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(SAVE_STMT);
+			pstmt.setInt(1, m_id);
+			pstmt.setInt(2, s_id);
+			MemberDAO mDAO = new MemberDAO();
+			String m_account = mDAO.selectById(m_id).getM_account();
+			pstmt.setString(3, m_account);
+			pstmt.setString(4, content);
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException("A database error occured." + e.getMessage());
+		}
+		finally{
+			if(rs != null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if(pstmt != null){
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if(conn != null){
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return;
+	}
+	@Override
+	public List<ChatVO> ReadTalk(int m_id, int s_id) {
+		List list = new ArrayList<ChatVO>();
+		ChatVO chatVO = null;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(READ_STMT);
+			pstmt.setInt(1, m_id);
+			pstmt.setInt(2, s_id);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				Map m0 = new HashMap();
+				m0.put("chat_id", rs.getInt(1));
+				m0.put("m_id", rs.getInt(2));
+				m0.put("s_id", rs.getString(3));
+				m0.put("m_account", rs.getString(4));
+				m0.put("chat_content", rs.getString(5));
+										
+				list.add(m0);
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException("A database error occured." + e.getMessage());
+		}
+		finally{
+			if(rs != null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if(pstmt != null){
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if(conn != null){
+				try {
+					conn.close();
+				} catch (SQLException e) {
 					e.printStackTrace(System.err);
 				}
 			}

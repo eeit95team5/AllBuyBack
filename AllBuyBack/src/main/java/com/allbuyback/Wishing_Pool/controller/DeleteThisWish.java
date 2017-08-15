@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.allbuyback.Achieve_Shop.model.Achieve_ShopDAO;
 import com.allbuyback.Achieve_Shop.model.Achieve_ShopVO;
 import com.allbuyback.GetPicture.model.PicturesDAO;
+import com.allbuyback.ItemSearch.model.ItemSearchDAO;
+import com.allbuyback.ItemSearch.model.ItemVO;
 import com.allbuyback.Wisher_List.model.Wisher_ListDAO;
 import com.allbuyback.Wisher_List.model.Wisher_ListVO;
 import com.allbuyback.Wishing_Pool.model.Wishing_PoolDAO;
@@ -74,6 +76,11 @@ public class DeleteThisWish extends HttpServlet {
 				MemberVO mVO2 = mDAO.selectById(asVO.get(i).getS_id());
 				asVO.get(i).setM_account(mVO2.getM_account());
 				request.setAttribute("asVO", asVO);
+				
+				// show實現願望的賣家選擇的商品
+				ItemSearchDAO iDAO = new ItemSearchDAO();
+				ItemVO iVO = iDAO.select(asVO.get(i).getI_id());
+				request.setAttribute("iVO", iVO);
 				}
 			}
 			//已上傳圖片數目重新送回

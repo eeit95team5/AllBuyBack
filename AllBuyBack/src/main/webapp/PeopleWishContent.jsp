@@ -8,6 +8,27 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+$(function(){
+	$('#CT_window').dialog({
+		autoOpen: false,
+		width:650,
+		height:400,
+	});
+	$('#CT_btn').click(function(){
+		$('#CT_window').dialog('open');
+		
+		$.ajax({
+			type:"GET",
+			url:"MakeWishComeTrue?w_Id=${wVO.w_id}",
+			success:function(changePage){
+				$('#CT_window').html(changePage);
+			}
+		});
+	});
+});
+</script>
+
 <title>PersonalWishContent</title>
 <style>
 	#thhead{
@@ -68,27 +89,27 @@
 		    <td width="600" height="40" align="left" >
 			    	<c:if test="${not empty p1}">
 			    		<div style="float:left; margin:5px">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'>
+						<img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'>
 						</div>
 					</c:if>
 					<c:if test="${not empty p2}">
 						<div style="float:left; margin:5px">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p2}'>
+						<img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p2}'>
 						</div>
 					</c:if>
 					<c:if test="${not empty p3}">
 						<div style="float:left; margin:5px">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p3}'>
+						<img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p3}'>
 						</div>
 					</c:if>
 					<c:if test="${not empty p4}">
 						<div style="float:left; margin:5px">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p4}'>
+						<img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p4}'>
 						</div>
 					</c:if>
 					<c:if test="${not empty p5}">
 						<div style="float:left; margin:5px">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p5}'>
+						<img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p5}'>
 						</div>
 					</c:if>
 		    </td>
@@ -107,7 +128,7 @@
 		    	<c:forEach var="as" items="${asVO}">
 		    		${as.m_account}實現願望的內容: <a href="SingleItemContent?w_id=${wVO.w_id}&i_id=${iVO.i_id}">${iVO.i_name}</a>
 		    		<c:if test="${not empty iVO.i_name}">
-		    			<input type="button" value="加入購物車">
+		    			<input type="button" value="加入購物車"><br>
 		    		</c:if>
 		    	</c:forEach>
 		    </td>
@@ -115,9 +136,10 @@
 		<tr>
 		    <td height="50" colspan="2" align="center">
 		       <a href="AddOne?w_Id=${wVO.w_id}"><input class="btn" type="button" value="+1" ></a>
-		       <a href="CheckPeopleList"><input class="btn" type="button" value="返回列表"></a>
-		       <a href="HomeIndex.jsp"><input class="btn" type="button" value="回首頁"></a>
-		       <a href="MakeWishComeTrue?w_Id=${wVO.w_id}"><input class="btn" type="button" value="接受願望"></a>
+		       <a href="CheckPeopleList"><input class="btn" type="button" value="回許願池"></a>
+<%--                <a href="MakeWishComeTrue?w_Id=${wVO.w_id}"><input class="btn" type="button" value="接受願望"></a> --%>
+			   <input id="CT_btn" class="btn" type="button" value="接受願望">
+		       <div id="CT_window">test</div>
 		       <br>
 		       <font color='red' size='-1'>${errorMsg.login}</font>
 		       <font color='red' size='-1'>${errorMsg.duplicateAccount}</font>

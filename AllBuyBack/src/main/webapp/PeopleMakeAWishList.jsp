@@ -19,9 +19,9 @@
 <body>
 <jsp:include page="includeTop.jsp"></jsp:include>
 	<fieldset>
-	<h1>全願望列表</h1>
+	<h1>大家的許願池</h1>
 	<a href="MakeAWishForm.jsp"><input class="btn" type="button" value="許願"></a>
-	<a href="HomeIndex.jsp"><input class="btn" type="button" value="回首頁"></a>
+	<a href="CheckYourList"><input class="btn" type="button" value="個人許願池"></a>
 	<br>
 	<br>
 	<table>
