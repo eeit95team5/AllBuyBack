@@ -67,19 +67,29 @@
 		    <td width="120" height="40">圖片:</td>
 		    <td width="600" height="40" align="left" >
 			    	<c:if test="${not empty p1}">
+			    		<div style="float:left; margin:5px">
 						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'>
+						</div>
 					</c:if>
 					<c:if test="${not empty p2}">
+						<div style="float:left; margin:5px">
 						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p2}'>
+						</div>
 					</c:if>
 					<c:if test="${not empty p3}">
+						<div style="float:left; margin:5px">
 						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p3}'>
+						</div>
 					</c:if>
 					<c:if test="${not empty p4}">
+						<div style="float:left; margin:5px">
 						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p4}'>
+						</div>
 					</c:if>
 					<c:if test="${not empty p5}">
+						<div style="float:left; margin:5px">
 						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p5}'>
+						</div>
 					</c:if>
 		    </td>
 		</tr>

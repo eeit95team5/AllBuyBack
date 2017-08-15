@@ -63,182 +63,7 @@
 <script src="js/jquery-1.12.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/lightbox.js"></script>
-<script type="text/javascript">
-	var xhr = null;
-	//商品全搜尋
-	function AllLoad() {
-		xhr = new XMLHttpRequest();
-		if (xhr != null) {
-			xhr.open('POST', 'AllClassItemSearch', true); //***非同步***
-			xhr.addEventListener("readystatechange", itemcallback);
-			xhr.setRequestHeader("Content-Type",
-					"application/x-www-form-urlencoded");
-			xhr.send();
-		} else {
-			alert("您的瀏覽器不支援Ajax功能!!");
-		}
-	}
-	//商品大分類搜尋
-	function BLoad(n) {
-	    xhr = new XMLHttpRequest();
-		if (xhr != null) {
-			xhr.open('POST', 'BClassItemSearch', true);   //***非同步***
-			xhr.addEventListener("readystatechange", itemcallback);
-			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-			xhr.send("BClass=" + n);
-		} else {
-			alert("您的瀏覽器不支援Ajax功能!!");
-		}
-	}
-	//商品中分類搜尋
-	function MLoad(n) {
-	   xhr = new XMLHttpRequest();
-		if (xhr != null) {
-			xhr.open('POST', 'MClassItemSearch', true);   //***非同步***
-			xhr.addEventListener("readystatechange", itemcallback);
-			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-			xhr.send("MClass=" + n);
-		} else {
-			alert("您的瀏覽器不支援Ajax功能!!");
-		}
-	}
-	//商品小分類搜尋
-	function SLoad(n) {
-	   xhr = new XMLHttpRequest();
-		if (xhr != null) {
-			xhr.open('POST', 'SClassItemSearch', true);   //***非同步***
-			xhr.addEventListener("readystatechange", itemcallback);
-			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-			xhr.send("SClass=" + n);
-		} else {
-			alert("您的瀏覽器不支援Ajax功能!!");
-		}
-	}
-	//商品國家搜尋
-	function CountryLoad(n){	
-		xhr = new XMLHttpRequest();
-		if (xhr != null) {
-			xhr.open('POST', 'CountryItemSearch', true);   //***非同步***
-			xhr.addEventListener("readystatechange", itemcallback);
-			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-			xhr.send("countryCl=" + n);
-		} else {
-			alert("您的瀏覽器不支援Ajax功能!!");
-		}
-	}
-	
-	function itemcallback() {
-		if (xhr.readyState == 4) {
-			if (xhr.status == 200) {
-				var datas = xhr.responseText;
-				var items = JSON.parse(datas);
 
-				var myBody1 = document.getElementById("cl1");
-				while (myBody1.hasChildNodes()) {
-					myBody1.removeChild(myBody1.lastChild);
-				}
-				
-				var fragment = document.createDocumentFragment();
-				for (var i = 0; i < items.length; i++) {
-					var div1 = document.createElement("div");
-					div1.setAttribute("class", "col-sm-3");
-					var div11 = document.createElement("div");
-					div11.setAttribute("style","background-color:#C1CDCD;height:300px;margin:10px 5px; padding:15px; border-radius:20px");
-					var img0 = document.createElement("img");
-					img0.setAttribute("height", "160");
-					img0.setAttribute("width", "160");
-					img0.setAttribute("style", "margin:5px 35px");
-					img0.setAttribute("src", "ReadPictureForItem?i_id="	+ items[i].i_id);
-					div11.appendChild(img0);
-					div11.appendChild(document.createElement("br"));
-					var txt1 = document.createTextNode("品名: " + items[i].i_name);
-					div11.appendChild(txt1);
-					div11.appendChild(document.createElement("br"));
-					var txt2 = document.createTextNode("價格: " + items[i].i_price + " ");
-					var txt3 = document.createTextNode("數量: " + items[i].i_quantity);
-					div11.appendChild(txt2);
-					div11.appendChild(txt3);
-					div11.appendChild(document.createElement("br"));
-					var txt4 = document.createTextNode("暢銷指數: " + items[i].i_popular + " ");
-					var txt5 = document.createTextNode("點閱數: " + items[i].i_click);
-					div11.appendChild(txt4);
-					div11.appendChild(txt5);
-					div11.appendChild(document.createElement("br"));
-					var txt6 = document.createTextNode("國家: " + items[i].country_name);
-					div11.appendChild(txt6);
-					div11.appendChild(document.createElement("br"));
-
-					div1.appendChild(div11);
-					fragment.appendChild(div1);
-				}
-				myBody1.appendChild(fragment);
-
-			} else {
-				alert(xhr.status + ":" + xhr.statusText);
-			}
-		}
-	}
-	
-	//賣場國家搜尋
-	function ShopCountryLoad(n){	
-		xhr = new XMLHttpRequest();
-		if (xhr != null) {
-			xhr.open('POST', 'ShopSearch', true);   //***非同步***
-			xhr.addEventListener("readystatechange", shopcallback);
-			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-			xhr.send("countryCl=" + n);
-		} else {
-			alert("您的瀏覽器不支援Ajax功能!!");
-		}
-	}
-	
-	function shopcallback() {
-		if (xhr.readyState == 4) {
-			if (xhr.status == 200) {
-				var datas = xhr.responseText;
-				var items = JSON.parse(datas);
-
-				var myBody1 = document.getElementById("cl1");
-				while (myBody1.hasChildNodes()) {
-					myBody1.removeChild(myBody1.lastChild);
-				}
-				
-				var fragment = document.createDocumentFragment();
-				for (var i = 0; i < items.length; i++) {
-					var div1 = document.createElement("div");
-					div1.setAttribute("class", "col-sm-3");
-					var div11 = document.createElement("div");
-					div11.setAttribute("style","background-color:#C1CDCD;height:300px;margin:10px 5px; padding:15px; border-radius:20px");
-					
-					var txt1 = document.createTextNode("關於我: " + items[i].s_aboutMe);
-					div11.appendChild(txt1);
-					div11.appendChild(document.createElement("br"));
-					var txt2 = document.createTextNode("平均評價: " + items[i].s_avgScore);
-					div11.appendChild(txt2);
-					div11.appendChild(document.createElement("br"));
-					var txt3 = document.createTextNode("被收藏數: " + items[i].s_popular + " ");
-					var txt4 = document.createTextNode("被點擊數: " + items[i].s_click);
-					div11.appendChild(txt3);
-					div11.appendChild(txt4);
-					div11.appendChild(document.createElement("br"));
-					var txt5 = document.createTextNode("點數: " + items[i].s_point);
-					div11.appendChild(txt5);
-					div11.appendChild(document.createElement("br"));
-					var txt6 = document.createTextNode("國家: " + items[i].country_name);
-					div11.appendChild(txt6);
-					div11.appendChild(document.createElement("br"));
-
-					div1.appendChild(div11);
-					fragment.appendChild(div1);
-				}
-				myBody1.appendChild(fragment);
-
-			} else {
-				alert(xhr.status + ":" + xhr.statusText);
-			}
-		}
-	}
-</script>
 </head>
 <body>
 
@@ -258,57 +83,57 @@
 
 						<li><a href="#">找商品<span class="glyphicon glyphicon-menu-down"></span></a>
 							<ul>
-								<li><a href="#" onclick="AllLoad()">依類別瀏覽</a>
+								<li><a href="AllClassItemSearch">依類別瀏覽</a>
 									<ul>
-										<li><a href="#" onclick="BLoad(1000001)">流行服飾</a>
+										<li><a href="BClassItemSearch?BClass=1000001">流行服飾</a>
 											<ul>
-												<li><a href="#" onclick="MLoad(1000001)">日系</a>
+												<li><a href="MClassItemSearch?MClass=1000001">日系</a>
 													<ul>
-														<li><a href="#" onclick="SLoad(1000001)">無印良品</a></li>
-														<li><a href="#" onclick="SLoad(1000002)">UNIQLO</a></li>
-														<li><a href="#" onclick="SLoad(1000003)">GLOBAL WORK</a></li>
-														<li><a href="#" onclick="SLoad(1000004)">23區</a></li>
-														<li><a href="#" onclick="SLoad(1000005)">其他</a></li>
+														<li><a href="SClassItemSearch?SClass=1000001">無印良品</a></li>
+														<li><a href="SClassItemSearch?SClass=1000002">UNIQLO</a></li>
+														<li><a href="SClassItemSearch?SClass=1000003">GLOBAL WORK</a></li>
+														<li><a href="SClassItemSearch?SClass=1000004">23區</a></li>
+														<li><a href="SClassItemSearch?SClass=1000005">其他</a></li>
 													</ul></li>
-												<li><a href="#" onclick="MLoad(1000002)">韓系</a>
+												<li><a href="MClassItemSearch?MClass=1000002">韓系</a>
 													<ul>
-														<li><a href="#" onclick="SLoad(1000006)">87MM</a></li>
-														<li><a href="#" onclick="SLoad(1000007)">8ight Seconds</a></li>
-														<li><a href="#" onclick="SLoad(1000008)">Ader Error</a></li>
-														<li><a href="#" onclick="SLoad(1000009)">GOGOSING</a></li>
-														<li><a href="#" onclick="SLoad(1000010)">其他</a></li>
+														<li><a href="SClassItemSearch?SClass=1000006">87MM</a></li>
+														<li><a href="SClassItemSearch?SClass=1000007">8ight Seconds</a></li>
+														<li><a href="SClassItemSearch?SClass=1000008">Ader Error</a></li>
+														<li><a href="SClassItemSearch?SClass=1000009">GOGOSING</a></li>
+														<li><a href="SClassItemSearch?SClass=1000010">其他</a></li>
 													</ul></li>
-												<li><a href="#" onclick="MLoad(1000003)">美國</a>
+												<li><a href="MClassItemSearch?MClass=1000003">美國</a>
 													<ul>
-														<li><a href="#" onclick="SLoad(1000011)">CK</a></li>
-														<li><a href="#" onclick="SLoad(1000012)">GAP</a></li>
-														<li><a href="#" onclick="SLoad(1000013)">Roots</a></li>
-														<li><a href="#" onclick="SLoad(1000014)">Timberland</a></li>
-														<li><a href="#" onclick="SLoad(1000015)">其他</a></li>
+														<li><a href="SClassItemSearch?SClass=1000011">CK</a></li>
+														<li><a href="SClassItemSearch?SClass=1000012">GAP</a></li>
+														<li><a href="SClassItemSearch?SClass=1000013">Roots</a></li>
+														<li><a href="SClassItemSearch?SClass=1000014">Timberland</a></li>
+														<li><a href="SClassItemSearch?SClass=1000015">其他</a></li>
 													</ul></li>
-												<li><a href="#" onclick="MLoad(1000004)">歐洲</a>
+												<li><a href="MClassItemSearch?MClass=1000004">歐洲</a>
 													<ul>
-														<li><a href="#" onclick="SLoad(1000016)">AIGLE</a></li>
-														<li><a href="#" onclick="SLoad(1000017)">Accessorize</a></li>
-														<li><a href="#" onclick="SLoad(1000018)">Kenzo</a></li>
-														<li><a href="#" onclick="SLoad(1000019)">Superdry</a></li>
-														<li><a href="#" onclick="SLoad(1000020)">其他</a></li>
+														<li><a href="SClassItemSearch?SClass=1000016">AIGLE</a></li>
+														<li><a href="SClassItemSearch?SClass=1000017">Accessorize</a></li>
+														<li><a href="SClassItemSearch?SClass=1000018">Kenzo</a></li>
+														<li><a href="SClassItemSearch?SClass=1000019">Superdry</a></li>
+														<li><a href="SClassItemSearch?SClass=1000020">其他</a></li>
 													</ul></li>
 											</ul></li>
-										<li><a href="#" onclick="BLoad(1000002)">異國美食</a>
+										<li><a href="BClassItemSearch?BClass=1000002">異國美食</a>
 											<ul>
-												<li><a href="#" onclick="MLoad(1000005)">零食</a>
+												<li><a href="MClassItemSearch?MClass=1000005">零食</a>
 													<ul>
-														<li><a href="#" onclick="SLoad(1000021)">巧克力</a></li>
-														<li><a href="#" onclick="SLoad(1000022)">餅乾</a></li>
-														<li><a href="#" onclick="SLoad(1000023)">糖果</a></li>
-														<li><a href="#" onclick="SLoad(1000024)">其他</a></li>
+														<li><a href="SClassItemSearch?SClass=1000021">巧克力</a></li>
+														<li><a href="SClassItemSearch?SClass=1000022">餅乾</a></li>
+														<li><a href="SClassItemSearch?SClass=1000023">糖果</a></li>
+														<li><a href="SClassItemSearch?SClass=1000024">其他</a></li>
 													</ul></li>
-												<li><a href="#" onclick="MLoad(1000006)">飲品</a>
+												<li><a href="MClassItemSearch?MClass=1000006">飲品</a>
 													<ul>
-														<li><a href="#" onclick="SLoad(1000025)">咖啡</a></li>
-														<li><a href="#" onclick="SLoad(1000026)">茶</a></li>
-														<li><a href="#" onclick="SLoad(1000027)">其他</a></li>
+														<li><a href="SClassItemSearch?SClass=1000025">咖啡</a></li>
+														<li><a href="SClassItemSearch?SClass=1000026">茶</a></li>
+														<li><a href="SClassItemSearch?SClass=1000027">其他</a></li>
 													</ul></li>
 											</ul></li>
 										<!--以下分類尚未填入-->
@@ -371,24 +196,24 @@
 									<ul>
 										<li><a href="#">亞洲</a>
 											<ul>
-												<li><a href="#" onclick="CountryLoad(1000001)">日本</a></li>
-												<li><a href="#" onclick="CountryLoad(1000002)">韓國</a></li>
-												<li><a href="#" onclick="CountryLoad(1000003)">香港</a></li>
-												<li><a href="#" onclick="CountryLoad(1000004)">新加坡</a></li>
-												<li><a href="#" onclick="CountryLoad(1000005)">泰國</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000001">日本</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000002">韓國</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000003">香港</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000004">新加坡</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000005">泰國</a></li>
 											</ul></li>
 										<li><a href="#">歐洲</a>
 											<ul>
-												<li><a href="#" onclick="CountryLoad(1000006)">英國</a></li>
-												<li><a href="#" onclick="CountryLoad(1000007)">法國</a></li>
-												<li><a href="#" onclick="CountryLoad(1000008)">德國</a></li>
-												<li><a href="#" onclick="CountryLoad(1000009)">西班牙</a></li>
-												<li><a href="#" onclick="CountryLoad(1000010)">義大利</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000006">英國</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000007">法國</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000008">德國</a></li>
+												<li><<a href="CountryItemSearch?countryCl=1000009">西班牙</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000010">義大利</a></li>
 											</ul></li>
 										<li><a href="#">美洲</a>
 											<ul>
-												<li><a href="#" onclick="CountryLoad(1000011)">美國</a></li>
-												<li><a href="#" onclick="CountryLoad(1000012)">加拿大</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000011">美國</a></li>
+												<li><<a href="CountryItemSearch?countryCl=1000012">加拿大</a></li>
 											</ul></li>
 									</ul></li>
 
@@ -406,24 +231,24 @@
 							<ul>
 								<li><a href="#">亞洲</a>
 									<ul>
-										<li><a href="#" onclick="ShopCountryLoad(1000001)">日本</a></li>
-										<li><a href="#" onclick="ShopCountryLoad(1000002)">韓國</a></li>
-										<li><a href="#" onclick="ShopCountryLoad(1000003)">香港</a></li>
-										<li><a href="#" onclick="ShopCountryLoad(1000004)">新加坡</a></li>
-										<li><a href="#" onclick="ShopCountryLoad(1000005)">泰國</a></li>
+										<li><a href="ShopSearch?countryCl=1000001">日本</a></li>
+										<li><a href="ShopSearch?countryCl=1000002">韓國</a></li>
+										<li><a href="ShopSearch?countryCl=1000003">香港</a></li>
+										<li><a href="ShopSearch?countryCl=1000004">新加坡</a></li>
+										<li><a href="ShopSearch?countryCl=1000005">泰國</a></li>
 									</ul></li>
 								<li><a href="#">歐洲</a>
 									<ul>
-										<li><a href="#" onclick="ShopCountryLoad(1000006)">英國</a></li>
-										<li><a href="#" onclick="ShopCountryLoad(1000007)">法國</a></li>
-										<li><a href="#" onclick="ShopCountryLoad(1000008)">德國</a></li>
-										<li><a href="#" onclick="ShopCountryLoad(1000009)">西班牙</a></li>
-										<li><a href="#" onclick="ShopCountryLoad(1000010)">義大利</a></li>
+										<li><a href="ShopSearch?countryCl=1000006">英國</a></li>
+										<li><a href="ShopSearch?countryCl=1000007">法國</a></li>
+										<li><a href="ShopSearch?countryCl=1000008">德國</a></li>
+										<li><a href="ShopSearch?countryCl=1000009">西班牙</a></li>
+										<li><a href="ShopSearch?countryCl=1000010">義大利</a></li>
 									</ul></li>
 								<li><a href="#">美洲</a>
 									<ul>
-										<li><a href="#" onclick="ShopCountryLoad(1000011)">美國</a></li>
-										<li><a href="#" onclick="ShopCountryLoad(1000012)">加拿大</a></li>
+										<li><a href="ShopSearch?countryCl=1000011">美國</a></li>
+										<li><a href="ShopSearch?countryCl=1000012">加拿大</a></li>
 									</ul></li>
 
 
@@ -625,6 +450,17 @@
 					價格: ${itemsVO.i_price} 數量: ${itemsVO.i_quantity}<br>
 					暢銷指數: ${itemsVO.i_popular} 點閱數: ${itemsVO.i_click}<br>
 					國家: ${itemsVO.country_name}<br>
+				</div>
+			</div>
+			</c:forEach>
+			<c:forEach var="shopVO" items="${shoplist}">
+			<div class="col-sm-3">
+				<div style="background-color:#C1CDCD;height:300px;margin:10px 5px; padding:15px; border-radius:20px">
+					關於我: ${shopVO.s_aboutMe}<br>
+					平均評價: ${shopVO.s_avgScore}<br>
+					被收藏數: ${shopVO.s_popular} 被點擊數: ${shopVO.s_click}<br>
+					點數: ${shopVO.s_point}<br>
+					國家: ${shopVO.country_name}<br>
 				</div>
 			</div>
 			</c:forEach>

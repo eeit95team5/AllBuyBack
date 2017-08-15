@@ -31,7 +31,6 @@ public class KeyWordItemSearch extends HttpServlet {
 		List<ItemVO> list = new ArrayList<ItemVO>();
 		
 		list = is.findByKeyWord(request.getParameter("keyword"));
-		System.out.println(request.getParameter("keyword"));
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/HomeIndex.jsp").forward(request, response);
 	}

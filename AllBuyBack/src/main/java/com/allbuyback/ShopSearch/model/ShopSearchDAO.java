@@ -30,8 +30,9 @@ public class ShopSearchDAO implements ShopSearchDAOI{
 	private static final String GET_COUNTRY_STMT = "select * from (SHOP join SHOP_COUNTRY on SHOP.s_id = SHOP_COUNTRY.s_id) join COUNTRY on SHOP_COUNTRY.country_id = COUNTRY.country_id where SHOP_COUNTRY.country_id=?";
 	
 	@Override
-	public List<ShopVO> findByCountry(int country_id) {
-		List list = new ArrayList();
+	public List<ShopVO> shopfindByCountry(int country_id) {
+		List<ShopVO> list = new ArrayList<ShopVO>();
+		ShopVO shopVO = null;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -43,19 +44,33 @@ public class ShopSearchDAO implements ShopSearchDAOI{
 			pstmt.setInt(1, country_id);
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()){	
-					Map m1 = new HashMap();
-					m1.put("s_id", rs.getInt(1));
-					m1.put("s_aboutMe", rs.getString(2));
-					m1.put("s_score", rs.getInt(3));
-					m1.put("s_avgScore", rs.getInt(4));
-					m1.put("s_popular", rs.getInt(5));
-					m1.put("s_click", rs.getInt(6));
-					m1.put("s_point", rs.getInt(7));
-					m1.put("country_name", rs.getString(11));
+			while(rs.next()){
+					shopVO = new ShopVO();
+					shopVO.setS_id(rs.getInt("s_id"));
+					shopVO.setS_aboutMe(rs.getString("s_aboutMe"));
+					shopVO.setS_score(rs.getInt("s_score"));
+					shopVO.setS_avgScore(rs.getInt("s_avgScore"));
+					shopVO.setS_popular(rs.getInt("s_popular"));
+					shopVO.setS_click(rs.getInt("s_click"));
+					shopVO.setS_point(rs.getInt("s_point"));
+					shopVO.setCountry_name(rs.getString("country_name"));
 					
-					list.add(m1);
+					list.add(shopVO);
 			}
+			
+//			while(rs.next()){	
+//				Map m1 = new HashMap();
+//				m1.put("s_id", rs.getInt(1));
+//				m1.put("s_aboutMe", rs.getString(2));
+//				m1.put("s_score", rs.getInt(3));
+//				m1.put("s_avgScore", rs.getInt(4));
+//				m1.put("s_popular", rs.getInt(5));
+//				m1.put("s_click", rs.getInt(6));
+//				m1.put("s_point", rs.getInt(7));
+//				m1.put("country_name", rs.getString(11));
+//				
+//				list.add(m1);
+//			}
 			
 		} catch (SQLException e) {
 			throw new RuntimeException("A database error occured." + e.getMessage());

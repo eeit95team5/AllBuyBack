@@ -2,6 +2,8 @@ package com.allbuyback.ShopSearch.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONValue;
 
+import com.allbuyback.ItemSearch.model.ItemVO;
 import com.allbuyback.ShopSearch.model.ShopSearchDAO;
+import com.allbuyback.ShopSearch.model.ShopVO;
 
 @WebServlet("/ShopSearch")
 public class ShopSearch extends HttpServlet {
@@ -23,17 +27,23 @@ public class ShopSearch extends HttpServlet {
 		response.setHeader("content-type", "text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		PrintWriter out = response.getWriter();
+//		PrintWriter out = response.getWriter();
 		
-		ShopSearchDAO is = new ShopSearchDAO();
-		String jsonString = "";
+		ShopSearchDAO ss = new ShopSearchDAO();
+		List<ShopVO> shoplist = new ArrayList<ShopVO>();
+//		String jsonString = "";
 		
-		if(request.getParameter("countryCl") != null){
-			int country_id = Integer.parseInt(request.getParameter("countryCl"));
-			jsonString = JSONValue.toJSONString(is.findByCountry(country_id));
-		}
+		int country_id = Integer.parseInt(request.getParameter("countryCl"));
+		shoplist = ss.shopfindByCountry(country_id);
+		request.setAttribute("shoplist", shoplist);
+		request.getRequestDispatcher("/HomeIndex.jsp").forward(request, response);
 		
-		out.println(jsonString);
+//		if(request.getParameter("countryCl") != null){
+//			int country_id = Integer.parseInt(request.getParameter("countryCl"));
+//			jsonString = JSONValue.toJSONString(is.findByCountry(country_id));
+//		}
+		
+//		out.println(jsonString);
 		
 	}
 
