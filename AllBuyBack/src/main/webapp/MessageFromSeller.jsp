@@ -45,7 +45,7 @@
 <%-- 			<td>${ReportVO.rep_result}</td> --%>
 <%-- 			<td>${ReportVO.rep_procssDate}</td> --%>
 
-			<td><form method="get" action="<c:url value="/ChatController"/>">
+			<td><form method="post" action="<c:url value="/ChatController"/>">
 			    <input type="submit" value="訊息內容">
 <%-- 			     <input type="hidden" name="id" value="${MemVO.m_id}"> --%>
 			    <input type="hidden" name="m_id" value="${ChatVO.m_id}">

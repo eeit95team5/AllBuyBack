@@ -72,7 +72,9 @@ function showJSON(data){
 	<table>
 		<tr>
 			<c:forEach items="${items}" var="item" varStatus="varS">
-				<td><a href="<c:url value="/item.html?i_id=${item.i_id }"/>">${item.i_id }</a></td>
+				<c:if test="${item.i_status==0}"></c:if>
+			<c:if test="${item.i_status==1}"><td><a href="<c:url value="/item.html?i_id=${item.i_id }"/>">${item.i_id }</a></td></c:if>	
+			<c:if test="${item.i_status==2}"></c:if>
 				<c:if test="${varS.count % 3 == 0}">
 					<c:out value="</tr><tr>" escapeXml="false" />
 				</c:if>

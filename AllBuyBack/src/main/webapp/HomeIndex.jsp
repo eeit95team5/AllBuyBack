@@ -6,13 +6,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>(未登入)首頁</title>
+<title>AllBuyBack代購網</title>
 
 <link rel="stylesheet" href="styles/main.css" />
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<script src="js/bootstrap.min.js"></script>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
+<link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
+<link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
+<script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+<script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
 
 <style>
 /*設定熱門代購搜尋Bar，只有"首頁"和"導覽列進入找國家之後"用得到*/
@@ -58,10 +61,74 @@
 	color: #FFB90F;
 	float: left;
 }
-</style>
+ /*設定登入後的大頭貼*/
 
-<script src="js/jquery-1.12.3.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+.myPicture {
+    width:45px;height:45px; /*正圓形，所以寬與高都設一樣*/
+    border-radius:99em;
+    margin-left:1020px;
+    border:2px lightgray solid;
+    text-align:center;
+    margin-top:5px;
+  
+}
+.myPicture img{
+    width:40px;height:40px; /*照片比div外框小一點*/
+    border-radius:99em;
+}
+
+.threeDot{
+    width:38px;height:38px; /*照片比div外框小一點*/
+    border-radius:99em;
+    background-color: #B3B3B3;
+    text-align:center;
+    margin-left:1090px;
+    margin-top:-40px;
+    padding:7px;
+    padding-left:9px;
+    }
+.threeDot span { /*三個垂直白點*/
+    color:white;
+    font-size:20px;
+    }
+/*--------------------------------------*/
+.dropdown-content {
+    display:none;
+    position:absolute;
+    right: 18px;
+    background-color:lightgray;/*#B3B3B3; /*#C1CDCD;*/
+    width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-top:8px;
+    line-height:15px;
+    font-family:微軟正黑體;
+    font-size:16px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+</style>
+<script type="text/javascript">
+    var i = 0;
+    window.onload = function () {
+        document.getElementById("threeDot").onclick = clickThreeDot;
+    }
+    
+    function clickThreeDot() {
+        if (i == 0) {
+            document.getElementById("dropdown").style.display = "block";
+            i++;
+        }else if (i == 1) {
+            document.getElementById("dropdown").style.display = "none";
+            i = 0;
+        }
+    }
+</script>
 <script src="js/lightbox.js"></script>
 
 </head>
@@ -276,8 +343,33 @@
 						</div>
 					</form>
 
-					<button class="btn btn-danger navbar-btn" style="font-family: 微軟正黑體; background-color: rgb(185, 127, 109); border: rgb(185, 127, 109); margin-right: 10px">註冊</button>
-					<button class="btn btn-danger navbar-btn" style="font-family: 微軟正黑體; background-color: rgb(185, 127, 109); border: rgb(185, 127, 109)">登入</button>
+<!------------------->
+<c:if test="${! empty LoginOK}">
+         <div class="myPicture">
+             <img src=""/>
+         </div>
+
+      <div class="threeDot" id="threeDot">
+          <span class="glyphicon glyphicon-option-vertical"></span>
+      </div>
+
+         <div class="dropdown-content" id="dropdown">
+             <a href="#">修改基本資料</a>
+             <a href="ShoppingCart.go?action=select">我的購物車</a>
+            <a href="#">我的賣場</a>
+            <a href="checkGB.do">挑戰時尚金頭腦</a>
+            <a href="#">聯絡管理員</a>
+            <a href="#">登出</a>
+         </div>
+</c:if>
+<c:if test="${empty LoginOK}">
+         <button  class="btn btn-danger navbar-btn" onclick="javascript:location.href='register.jsp'"
+         style="font-family:微軟正黑體;background-color:rgb(185,127,109);border:rgb(185,127,109);margin-right:10px" >註冊</button>
+    <button  class="btn btn-danger navbar-btn" onclick="javascript:location.href='login.jsp'"
+         style="font-family:微軟正黑體;background-color:rgb(185,127,109);border:rgb(185,127,109)" >登入</button>
+   
+</c:if>
+<!-------------------->
 
 				</div>
 				<!--col-sm-12-->
@@ -445,22 +537,22 @@
 			<c:forEach var="itemsVO" items="${list}">
 			<div class="col-sm-3">
 				<div style="background-color:#C1CDCD;height:300px;margin:10px 5px; padding:15px; border-radius:20px">
-					<img height="160" width="160" style="margin:5px 35px" src="ReadPictureForItem?i_id=${itemsVO.i_id}"><br>
-					品名: ${itemsVO.i_name}<br>
-					價格: ${itemsVO.i_price} 數量: ${itemsVO.i_quantity}<br>
-					暢銷指數: ${itemsVO.i_popular} 點閱數: ${itemsVO.i_click}<br>
-					國家: ${itemsVO.country_name}<br>
+					<div><img height="160" width="160" style="margin:5px 35px" src="ReadPictureForItem?i_id=${itemsVO.i_id}"></div>
+					<div>品名: ${itemsVO.i_name}</div>
+					<div>價格: ${itemsVO.i_price} 數量: ${itemsVO.i_quantity}</div>
+					<div>暢銷指數: ${itemsVO.i_popular} 點閱數: ${itemsVO.i_click}</div>
+					<div>國家: ${itemsVO.country_name}</div>
 				</div>
 			</div>
 			</c:forEach>
 			<c:forEach var="shopVO" items="${shoplist}">
 			<div class="col-sm-3">
 				<div style="background-color:#C1CDCD;height:300px;margin:10px 5px; padding:15px; border-radius:20px">
-					關於我: ${shopVO.s_aboutMe}<br>
-					平均評價: ${shopVO.s_avgScore}<br>
-					被收藏數: ${shopVO.s_popular} 被點擊數: ${shopVO.s_click}<br>
-					點數: ${shopVO.s_point}<br>
-					國家: ${shopVO.country_name}<br>
+					<div>關於我: ${shopVO.s_aboutMe}</div>
+					<div>平均評價: ${shopVO.s_avgScore}</div>
+					<div>被收藏數: ${shopVO.s_popular} 被點擊數: ${shopVO.s_click}</div>
+					<div>點數: ${shopVO.s_point}</div>
+					<div>國家: ${shopVO.country_name}</div>
 				</div>
 			</div>
 			</c:forEach>

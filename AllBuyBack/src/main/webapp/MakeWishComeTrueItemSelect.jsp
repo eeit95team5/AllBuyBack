@@ -5,9 +5,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
 <title>MakeWishComeTrueItemSelect</title>
+<style>
+	.div1{
+		padding:20px;
+		width:610px;
+		background-color: tan;
+		border: 1px solid #003C9D;
+		border-radius: 20px;
+	}
+	#hId{
+		text-align:center;
+	}
+</style>
 </head>
+
 <body>
+	<div class="div1">
 	<h1>${account}的賣場商品列表</h1>
 	<div>
 		<form name="ItemPickUp" id="ItemPickUp" action="ItemPickUpCheck?w_id=${w_id}" method="POST">
@@ -16,27 +32,25 @@
 		<table>
 			<thead>
 				<tr>
-					<th>PickUp</th>
-					<th>I_Id</th>
-					<th>name</th>
-					<th>price</th>
-					<th>quantity</th>
-					<th>popular</th>
-					<th>click</th>
-					<th>country</th>
+					<th id="hId" width="80px">PickUp</th>
+					<th id="hId" width="1250px">name</th>
+					<th id="hId" width="80px">price</th>
+					<th id="hId" width="80px">quantity</th>
+					<th id="hId" width="80px">popular</th>
+					<th id="hId" width="80px">click</th>
+					<th id="hId" width="80px">country</th>
 				</tr>
 			</thead>
 			<tbody>
 			  <c:forEach var="ilist" items="${ilist}">
 				<tr>
-					<td><input type="radio" name="radio1" value="${ilist.i_id}"></td>
-					<td>${ilist.i_id}</td>
-					<td>${ilist.i_name}</td>
-					<td>${ilist.i_price}</td>
-					<td>${ilist.i_quantity}</td>
-					<td>${ilist.i_popular}</td>
-					<td>${ilist.i_click}</td>
-					<td>${ilist.country_name}</td>
+					<td id="hId"><input type="radio" name="radio1" value="${ilist.i_id}"></td>
+					<td id="hId">${ilist.i_name}</td>
+					<td id="hId">${ilist.i_price}</td>
+					<td id="hId">${ilist.i_quantity}</td>
+					<td id="hId">${ilist.i_popular}</td>
+					<td id="hId">${ilist.i_click}</td>
+					<td id="hId">${ilist.country_name}</td>
 				</tr>	
 			  </c:forEach>
 			    <tr>
@@ -44,6 +58,7 @@
 			</tbody>
 		</table>
 		</form>
+	</div>
 	</div>
 </body>
 </html>

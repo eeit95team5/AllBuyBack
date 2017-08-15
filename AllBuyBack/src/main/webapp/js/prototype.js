@@ -1,4 +1,3 @@
-﻿
 /*  Prototype JavaScript framework, version 1.7
  *  (c) 2005-2010 Sam Stephenson
  *
@@ -60,27 +59,6 @@ var Prototype = {
 
 if (Prototype.Browser.MobileSafari)
   Prototype.BrowserFeatures.SpecificElementExtensions = false;
-
-
-var Abstract = { };
-
-
-var Try = {
-  these: function() {
-    var returnValue;
-
-    for (var i = 0, length = arguments.length; i < length; i++) {
-      var lambda = arguments[i];
-      try {
-        returnValue = lambda();
-        break;
-      } catch (e) { }
-    }
-
-    return returnValue;
-  }
-};
-
 /* Based on Alex Arnell's inheritance implementation. */
 
 var Class = (function() {
@@ -1422,6 +1400,25 @@ var ObjectRange = Class.create(Enumerable, (function() {
 })());
 
 
+
+var Abstract = { };
+
+
+var Try = {
+  these: function() {
+    var returnValue;
+
+    for (var i = 0, length = arguments.length; i < length; i++) {
+      var lambda = arguments[i];
+      try {
+        returnValue = lambda();
+        break;
+      } catch (e) { }
+    }
+
+    return returnValue;
+  }
+};
 
 var Ajax = {
   getTransport: function() {
@@ -3963,7 +3960,6 @@ Prototype.Selector = (function() {
     extendElement: Element.extend
   };
 })();
-Prototype._original_property = window.Sizzle;
 /*!
  * Sizzle CSS Selector Engine - v1.0
  *  Copyright 2009, The Dojo Foundation
@@ -4942,6 +4938,8 @@ window.Sizzle = Sizzle;
 
 })();
 
+Prototype._original_property = window.Sizzle;
+
 ;(function(engine) {
   var extendElements = Prototype.Selector.extendElements;
 
@@ -5848,8 +5846,8 @@ Form.EventObserver = Class.create(Abstract.EventObserver, {
   Event.observe(window, 'load', fireContentLoadedEvent);
 })();
 
-Element.addMethods();
 
+Element.addMethods();
 /*------------------------------- DEPRECATED -------------------------------*/
 
 Hash.toQueryString = Object.toQueryString;

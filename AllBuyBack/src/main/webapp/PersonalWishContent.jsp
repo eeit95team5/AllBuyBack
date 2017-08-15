@@ -8,6 +8,14 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="js/prototype.js"></script>
+<script type="text/javascript" src="js/scriptaculous.js?load=effects,builder"></script>
+<script type="text/javascript" src="js/lightbox.js"></script>
+<link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen" />
+
+
+
 <title>PersonalWishContent</title>
 <style>
 	#thhead{
@@ -110,31 +118,31 @@
 		    <td width="600" height="40" align="left" >
 			    	<c:if test="${not empty p1}">
 			    		<div style="float:left; margin:5px">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'><br>
+						<a href="ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}" rel="lightbox[g1]"><img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'></a><br>
 						<input type="checkbox" name="checkbox1" id="checkbox1" value="1">刪除
 						</div>
 					</c:if>
 					<c:if test="${not empty p2}">
 						<div style="float:left; margin:5px">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p2}'><br>
+						<img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p2}'><br>
 						<input type="checkbox" name="checkbox2" id="checkbox2" value="2">刪除
 						</div>
 					</c:if>
 					<c:if test="${not empty p3}">
 						<div style="float:left; margin:5px">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p3}'><br>
+						<img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p3}'><br>
 						<input type="checkbox" name="checkbox3" id="checkbox3" value="3">刪除
 						</div>
 					</c:if>
 					<c:if test="${not empty p4}">
 						<div style="float:left; margin:5px">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p4}'><br>
+						<img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p4}'><br>
 						<input type="checkbox" name="checkbox4" id="checkbox4" value="4">刪除
 						</div>
 					</c:if>
 					<c:if test="${not empty p5}">
 						<div style="float:left; margin:5px">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p5}'><br>
+						<img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p5}'><br>
 						<input type="checkbox" name="checkbox5" id="checkbox5" value="5">刪除
 						</div>
 					</c:if>
@@ -152,14 +160,17 @@
 		    <td width="120" height="40">實現願望賣家:</td>
 		    <td width="600" height="40" align="left" >
 		    	<c:forEach var="as" items="${asVO}">
-		    		${as.m_account}<br>
+		    		${as.m_account}實現願望的內容: <a href="SingleItemContent?w_id=${wVO.w_id}&i_id=${iVO.i_id}">${iVO.i_name}</a>
+		    		<c:if test="${not empty iVO.i_name}">
+		    			<input type="button" value="加入購物車"><br>
+		    		</c:if>
 		    	</c:forEach>
 		    </td>
 		</tr>
 		<tr>
 		    <td height="50" colspan="2" align="center">
 		       <input class="btn btn-default" type="submit" value="修改許願內容" >
-		       <a href="CheckYourList"><input class="btn btn-default" type="button" value="回個人願望列表"></a>
+		       <a href="CheckYourList"><input class="btn btn-default" type="button" value="回個人許願池"></a>
 		       <a href="DeleteThisWish?w_Id=${wVO.w_id}"><input class="btn btn-default" type="button" value="刪除此願望"></a>
 		       <br>
 		       <font color='red' size='-1'>${ErrorMsg.deleteError}</font>
@@ -170,6 +181,8 @@
 	</fieldset>
 	</form>
 	<br><br>
+	
 <jsp:include page="_Footer.jsp"></jsp:include>
+<script type="text/javascript" src="js/lightbox.js"></script>
 </body>
 </html>
