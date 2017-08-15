@@ -8,7 +8,14 @@ public class ShopVO implements java.io.Serializable{
 	private int s_popular;
 	private int s_click;
 	private int s_point;
+	private String country_name;  //自己加的
 	
+	public String getCountry_name() {
+		return country_name;
+	}
+	public void setCountry_name(String country_name) {
+		this.country_name = country_name;
+	}
 	public int getS_id() {
 		return s_id;
 	}

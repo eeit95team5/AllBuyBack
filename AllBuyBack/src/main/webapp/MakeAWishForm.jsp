@@ -81,9 +81,9 @@
 			</tr>
 			<tr>
 			    <td height="50" colspan="2" align="center">
-			       <input class="btn btn-primary" type="submit" value="許願" >
-			       <a href="CheckYourList"><input class="btn btn-primary" type="button" value="個人願望列表"></a>
-			       <a href="HomeIndex.jsp"><input class="btn btn-primary" type="button" value="回首頁"></a>
+			       <input class="btn btn-default" type="submit" value="許願" >
+			       <a href="CheckYourList"><input class="btn btn-default" type="button" value="個人願望列表"></a>
+			       <a href="HomeIndex.jsp"><input class="btn btn-default" type="button" value="回首頁"></a>
 			    </td>
 			</tr>	
 		</tbody>

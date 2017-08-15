@@ -138,292 +138,181 @@
     </div>
 
 <ul class="drop-down-menu  nav navbar-nav" style="text-align:left">
-        <li><a href="#"" >首頁</a></li>
+        <li><a href="HomeIndex.jsp">首頁</a></li>
 
-        <li><a href="#"">找商品<span class="glyphicon glyphicon-menu-down"></span></a>
-              <ul>
-                <li><a href="#">依類別瀏覽</a>
-                    <ul>
-                        <li><a href="#">流行服飾</a>
-                             <ul>
-                                <li><a href="#">日系</a>
-                                    <ul>
-                                        <li><a href="#">無印良品</a>
-                                        </li>
-                                        <li><a href="#">UNIQLO</a>
-                                        </li>
-                                        <li><a href="#">GLOBAL WORK</a>
-                                        </li>
-                                        <li><a href="#">23區</a>
-                                        </li>
-                                         <li><a href="#">其他</a>
-                                        </li>                                   
-                                    </ul>
-                                </li>
-                                <li><a href="#">韓系</a>
-                                    <ul>
-                                        <li><a href="#">87MM</a>
-                                        </li>
-                                        <li><a href="#">8ight Seconds</a>
-                                        </li>
-                                        <li><a href="#">Ader Error</a>
-                                        </li>
-                                        <li><a href="#">GOGOSING</a>
-                                        </li>     
-                                         <li><a href="#">其他</a>
-                                        </li>                           
-                                    </ul>
-                                </li> 
-                                <li><a href="#">美國</a>
-                                    <ul>
-                                        <li><a href="#">CK</a>
-                                        </li>
-                                        <li><a href="#">GAP</a>
-                                        </li>
-                                        <li><a href="#">Roots</a>
-                                        </li>
-                                        <li><a href="#">Timberland</a>
-                                        </li>     
-                                        <li><a href="#">其他</a>
-                                        </li>                           
-                                    </ul>
-                            </li>    
-                              <li><a href="#">歐洲</a>
-                                    <ul>
-                                        <li><a href="#">AIGLE</a>
-                                        </li>
-                                        <li><a href="#">Accessorize</a>
-                                        </li>
-                                        <li><a href="#">Kenzo</a>
-                                        </li>
-                                        <li><a href="#">Superdry</a>
-                                        </li>     
-                                        <li><a href="#">其他</a>
-                                        </li>                           
-                                    </ul>
-                              </li>                                      
-                             </ul>
-                        </li>
-                        <li><a href="#">異國美食</a>
-                             <ul>
-                                 <li><a href="#">零食</a>
-                                    <ul>
-                                        <li><a href="#">巧克力</a>
-                                        </li>
-                                        <li><a href="#">餅乾</a>
-                                        </li>
-                                        <li><a href="#">糖果</a>
-                                        </li>    
-                                        <li><a href="#">其他</a>
-                                        </li>                           
-                                    </ul>
-                               </li>         
-                                    <li><a href="#">飲品</a>
-                                        <ul>
-                                        <li><a href="#">咖啡</a>
-                                        </li>
-                                        <li><a href="#">茶</a>
-                                        </li> 
-                                        <li><a href="#">其他</a>
-                                        </li>                           
-                                        </ul>
-                                    </li>                              
-                                </ul>
-                            </li><!--以下分類尚未填入-->
-                            <li><a href="#">數位3C</a>
-                                 <ul>
-                                 <li><a href="#">手機</a>
-                                    <ul>
-                                        <li><a href="#">iPhone</a>
-                                        </li>
-                                        <li><a href="#">Samsung</a>
-                                        </li>
-                                        <li><a href="#">Sonic</a>
-                                        </li>    
-                                        <li><a href="#">Casio/卡西歐</a>
-                                        </li>
-                                        <li><a href="#">其他</a>
-                                        </li>                           
-                                    </ul>
-                               </li>         
-                                    <li><a href="#">相機</a>
-                                        <ul>
-                                        <li><a href="#">周邊配件</a>
-                                        </li>
-                                        <li><a href="#">手機殼</a>
-                                        </li> 
-                                        <li><a href="#">其他</a>
-                                        </li>                           
-                                        </ul>
-                                    </li>
-                                      <li><a href="#">電腦</a>
-                                        <ul>
-                                        <li><a href="#">ACER</a>
-                                        </li>
-                                        <li><a href="#">APPLE</a>
-                                        </li> 
-                                        <li><a href="#">ASUS</a>
-                                        </li> 
-                                        <li><a href="#">DELL</a>
-                                        </li>                           
-                                        </ul>
-                                    </li>                                      
-                                </ul>
-                            </li>
-                            <li><a href="#">美妝美體</a>
-                                 <ul>
-                                 <li><a href="#">化妝品</a>                                
-                               </li>         
-                                    <li><a href="#">保養清潔用品</a>                                       
-                                    </li>                                                          
-                                </ul>
-                            </li>                         
-                              <li><a href="#">運動用品</a>
-                                  <ul>
-                                  <li><a href="#">adidas</a>                              
-                                  </li>         
-                                  <li><a href="#">NIKE</a>                                   
-                                  </li> 
-                                  <li><a href="#">PUMA</a>                                   
-                                  </li>  
-                                  <li><a href="#">其他</a>                                   
-                                  </li>                                 
-                                </ul>
-                            </li>                    
-                            <li><a href="#">居家用品</a>
-                                <ul>
-                                  <li><a href="#">廚房系列</a>                              
-                                  </li>         
-                                  <li><a href="#">寢室系列</a>                                   
-                                  </li> 
-                                  <li><a href="#">其他</a>                                   
-                                  </li>                               
-                                </ul>
-                            </li>
-                            <li><a href="#">媽咪寶貝</a>
-                                 <ul>
-                                  <li><a href="#">服飾</a>                              
-                                  </li>         
-                                  <li><a href="#">食品</a>                                   
-                                  </li> 
-                                  <li><a href="#">教具玩具</a>                                   
-                                  </li>                               
-                                </ul>
-                            </li> 
-                            <li><a href="#">文具雜貨</a>
-                                 <ul>
-                                  <li><a href="#">Disney迪士尼系列</a>                              
-                                  </li>         
-                                  <li><a href="#">sanrio三麗鷗系列</a>                                   
-                                  </li>                            
-                                </ul>
-                            </li>                      
-                        </ul>
-                    </li>
+        <li><a href="#">找商品<span class="glyphicon glyphicon-menu-down"></span></a>
+							<ul>
+								<li><a href="AllClassItemSearch">依類別瀏覽</a>
+									<ul>
+										<li><a href="BClassItemSearch?BClass=1000001">流行服飾</a>
+											<ul>
+												<li><a href="MClassItemSearch?MClass=1000001">日系</a>
+													<ul>
+														<li><a href="SClassItemSearch?SClass=1000001">無印良品</a></li>
+														<li><a href="SClassItemSearch?SClass=1000002">UNIQLO</a></li>
+														<li><a href="SClassItemSearch?SClass=1000003">GLOBAL WORK</a></li>
+														<li><a href="SClassItemSearch?SClass=1000004">23區</a></li>
+														<li><a href="SClassItemSearch?SClass=1000005">其他</a></li>
+													</ul></li>
+												<li><a href="MClassItemSearch?MClass=1000002">韓系</a>
+													<ul>
+														<li><a href="SClassItemSearch?SClass=1000006">87MM</a></li>
+														<li><a href="SClassItemSearch?SClass=1000007">8ight Seconds</a></li>
+														<li><a href="SClassItemSearch?SClass=1000008">Ader Error</a></li>
+														<li><a href="SClassItemSearch?SClass=1000009">GOGOSING</a></li>
+														<li><a href="SClassItemSearch?SClass=1000010">其他</a></li>
+													</ul></li>
+												<li><a href="MClassItemSearch?MClass=1000003">美國</a>
+													<ul>
+														<li><a href="SClassItemSearch?SClass=1000011">CK</a></li>
+														<li><a href="SClassItemSearch?SClass=1000012">GAP</a></li>
+														<li><a href="SClassItemSearch?SClass=1000013">Roots</a></li>
+														<li><a href="SClassItemSearch?SClass=1000014">Timberland</a></li>
+														<li><a href="SClassItemSearch?SClass=1000015">其他</a></li>
+													</ul></li>
+												<li><a href="MClassItemSearch?MClass=1000004">歐洲</a>
+													<ul>
+														<li><a href="SClassItemSearch?SClass=1000016">AIGLE</a></li>
+														<li><a href="SClassItemSearch?SClass=1000017">Accessorize</a></li>
+														<li><a href="SClassItemSearch?SClass=1000018">Kenzo</a></li>
+														<li><a href="SClassItemSearch?SClass=1000019">Superdry</a></li>
+														<li><a href="SClassItemSearch?SClass=1000020">其他</a></li>
+													</ul></li>
+											</ul></li>
+										<li><a href="BClassItemSearch?BClass=1000002">異國美食</a>
+											<ul>
+												<li><a href="MClassItemSearch?MClass=1000005">零食</a>
+													<ul>
+														<li><a href="SClassItemSearch?SClass=1000021">巧克力</a></li>
+														<li><a href="SClassItemSearch?SClass=1000022">餅乾</a></li>
+														<li><a href="SClassItemSearch?SClass=1000023">糖果</a></li>
+														<li><a href="SClassItemSearch?SClass=1000024">其他</a></li>
+													</ul></li>
+												<li><a href="MClassItemSearch?MClass=1000006">飲品</a>
+													<ul>
+														<li><a href="SClassItemSearch?SClass=1000025">咖啡</a></li>
+														<li><a href="SClassItemSearch?SClass=1000026">茶</a></li>
+														<li><a href="SClassItemSearch?SClass=1000027">其他</a></li>
+													</ul></li>
+											</ul></li>
+										<!--以下分類尚未填入-->
+										<li><a href="#">數位3C</a>
+											<ul>
+												<li><a href="#">手機</a>
+													<ul>
+														<li><a href="#">iPhone</a></li>
+														<li><a href="#">Samsung</a></li>
+														<li><a href="#">Sony</a></li>
+														<li><a href="#">Casio/卡西歐</a></li>
+														<li><a href="#">其他</a></li>
+													</ul></li>
+												<li><a href="#">相機</a>
+													<ul>
+														<li><a href="#">周邊配件</a></li>
+														<li><a href="#">手機殼</a></li>
+														<li><a href="#">其他</a></li>
+													</ul></li>
+												<li><a href="#">電腦</a>
+													<ul>
+														<li><a href="#">ACER</a></li>
+														<li><a href="#">APPLE</a></li>
+														<li><a href="#">ASUS</a></li>
+														<li><a href="#">DELL</a></li>
+													</ul></li>
+											</ul></li>
+										<li><a href="#">美妝美體</a>
+											<ul>
+												<li><a href="#">化妝品</a></li>
+												<li><a href="#">保養清潔用品</a></li>
+											</ul></li>
+										<li><a href="#">運動用品</a>
+											<ul>
+												<li><a href="#">adidas</a></li>
+												<li><a href="#">NIKE</a></li>
+												<li><a href="#">PUMA</a></li>
+												<li><a href="#">其他</a></li>
+											</ul></li>
+										<li><a href="#">居家用品</a>
+											<ul>
+												<li><a href="#">廚房系列</a></li>
+												<li><a href="#">寢室系列</a></li>
+												<li><a href="#">其他</a></li>
+											</ul></li>
+										<li><a href="#">媽咪寶貝</a>
+											<ul>
+												<li><a href="#">服飾</a></li>
+												<li><a href="#">食品</a></li>
+												<li><a href="#">教具玩具</a></li>
+											</ul></li>
+										<li><a href="#">文具雜貨</a>
+											<ul>
+												<li><a href="#">Disney迪士尼系列</a></li>
+												<li><a href="#">sanrio三麗鷗系列</a></li>
+											</ul></li>
+									</ul></li>
 
-                <li><a href="#">依國家瀏覽</a>
-                    <ul>
-                        <li><a href="#">美洲</a>
-                            <ul>
-                                <li><a href="#">美國</a>
-                                </li>
-                                <li><a href="#">加拿大</a>
-                                </li>                              
-                            </ul>
-                        </li>
-                       
-                        <li><a href="#">歐洲</a>
-                              <ul>
-                                <li><a href="#">英國</a>
-                                </li>
-                                <li><a href="#">法國</a>
-                                </li>
-                                <li><a href="#">德國</a>
-                                </li>
-                                 <li><a href="#">西班牙</a>
-                                </li>
-                                 <li><a href="#">義大利</a>
-                                </li>
-                             </ul>
-                        </li>
-                         <li><a href="#">亞洲</a>
-                              <ul>
-                                <li><a href="#">日本</a>
-                                </li>
-                                <li><a href="#">韓國</a>
-                                </li>
-                                <li><a href="#">香港</a>
-                                </li>
-                                <li><a href="#">泰國</a>
-                                </li>
-                                <li><a href="#">新加坡</a>
-                                </li>
-                            </ul>
-                        </li>
-                      
-                    </ul>
-                </li>
+								<li><a href="#">依國家瀏覽</a>
+									<ul>
+										<li><a href="#">亞洲</a>
+											<ul>
+												<li><a href="CountryItemSearch?countryCl=1000001">日本</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000002">韓國</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000003">香港</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000004">新加坡</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000005">泰國</a></li>
+											</ul></li>
+										<li><a href="#">歐洲</a>
+											<ul>
+												<li><a href="CountryItemSearch?countryCl=1000006">英國</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000007">法國</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000008">德國</a></li>
+												<li><<a href="CountryItemSearch?countryCl=1000009">西班牙</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000010">義大利</a></li>
+											</ul></li>
+										<li><a href="#">美洲</a>
+											<ul>
+												<li><a href="CountryItemSearch?countryCl=1000011">美國</a></li>
+												<li><<a href="CountryItemSearch?countryCl=1000012">加拿大</a></li>
+											</ul></li>
+									</ul></li>
 
-                <li><a href="#">依特色瀏覽</a>
-                    <ul>
-                        <li><a href="#">編輯精選</a>
-                        </li>
-                        <li><a href="#">熱門瀏覽</a>
-                        </li>
-                        <li><a href="#">最新上架</a>
-                        </li>
-                        <li><a href="#">最後倒數</a>                          
-                        </li>                    
-                    </ul>
-                </li>
-               
-            </ul>
-        </li>
+								<li><a href="#">依特色瀏覽</a>
+									<ul>
+										<li><a href="#">編輯精選</a></li>
+										<li><a href="#">熱門瀏覽</a></li>
+										<li><a href="#">最新上架</a></li>
+										<li><a href="#">最後倒數</a></li>
+									</ul></li>
+
+							</ul></li>
         
-        <li><a href="#" >找賣家<span class="glyphicon glyphicon-menu-down"></span></a>
-            <ul>
-                <li><a href="#">美洲</a>
-                    <ul>
-                        <li><a href="#">美國</a>
-                        </li>
-                        <li><a href="#">加拿大</a>
-                        </li>
-                    </ul>
-                </li>
-                <li><a href="#">歐洲</a>
-                    <ul>
-                        <li><a href="#">英國</a>
-                        </li>
-                        <li><a href="#">法國</a>
-                        </li>
-                        <li><a href="#">德國</a>
-                        </li>
-                         <li><a href="#">西班牙</a>
-                        </li>
-                         <li><a href="#">義大利</a>
-                        </li>
-                    </ul>
-                </li>
-              
-                <li><a href="#">亞洲</a>
-                    <ul>
-                        <li><a href="#">日本</a>
-                        </li>
-                        <li><a href="#">韓國</a>
-                        </li>
-                        <li><a href="#">香港</a>
-                        </li>
-                        <li><a href="#">泰國</a>
-                        </li>
-                        <li><a href="#">新加坡</a>
-                        </li>
-                    </ul>
-                </li>
-                
-                <li><a href="#">新進賣家</a>
-                </li>
-            </ul>
-        </li>
+        <li><a href="#">找賣家<span class="glyphicon glyphicon-menu-down"></span></a>
+							<ul>
+								<li><a href="#">亞洲</a>
+									<ul>
+										<li><a href="ShopSearch?countryCl=1000001">日本</a></li>
+										<li><a href="ShopSearch?countryCl=1000002">韓國</a></li>
+										<li><a href="ShopSearch?countryCl=1000003">香港</a></li>
+										<li><a href="ShopSearch?countryCl=1000004">新加坡</a></li>
+										<li><a href="ShopSearch?countryCl=1000005">泰國</a></li>
+									</ul></li>
+								<li><a href="#">歐洲</a>
+									<ul>
+										<li><a href="ShopSearch?countryCl=1000006">英國</a></li>
+										<li><a href="ShopSearch?countryCl=1000007">法國</a></li>
+										<li><a href="ShopSearch?countryCl=1000008">德國</a></li>
+										<li><a href="ShopSearch?countryCl=1000009">西班牙</a></li>
+										<li><a href="ShopSearch?countryCl=1000010">義大利</a></li>
+									</ul></li>
+								<li><a href="#">美洲</a>
+									<ul>
+										<li><a href="ShopSearch?countryCl=1000011">美國</a></li>
+										<li><a href="ShopSearch?countryCl=1000012">加拿大</a></li>
+									</ul></li>
+
+
+								<li><a href="#">新進賣家</a></li>
+							</ul></li>
         <li><a href="#">許願池<span class="glyphicon glyphicon-menu-down"></span></a>
 			<ul>
 			<li><a href="MakeAWishForm.jsp" >許願</a></li>
@@ -436,9 +325,9 @@
     </ul>
 
 
-     <form class="navbar-form navbar-left">
-      <div class="input-group" style="width:180px;margin-left:30px;margin-right:30px">
-        <input type="text" class="form-control" placeholder="您想代購什麼？"/>
+     <form class="navbar-form navbar-left" action="KeyWordItemSearch" method="POST">
+      <div class="input-group" style="width:160px;margin-left:30px;margin-right:30px">
+        <input type="text" class="form-control" name="keyword" placeholder="您想代購什麼？"/>
         <div class="input-group-btn">
           <button class="btn btn-default" type="submit" >
             <i class="glyphicon glyphicon-search" ></i>

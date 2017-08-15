@@ -109,24 +109,34 @@
 		    <td width="120" height="40">前次上傳圖片:</td>
 		    <td width="600" height="40" align="left" >
 			    	<c:if test="${not empty p1}">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'>
+			    		<div style="float:left; margin:5px">
+						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'><br>
 						<input type="checkbox" name="checkbox1" id="checkbox1" value="1">刪除
+						</div>
 					</c:if>
 					<c:if test="${not empty p2}">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p2}'>
+						<div style="float:left; margin:5px">
+						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p2}'><br>
 						<input type="checkbox" name="checkbox2" id="checkbox2" value="2">刪除
+						</div>
 					</c:if>
 					<c:if test="${not empty p3}">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p3}'>
+						<div style="float:left; margin:5px">
+						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p3}'><br>
 						<input type="checkbox" name="checkbox3" id="checkbox3" value="3">刪除
+						</div>
 					</c:if>
 					<c:if test="${not empty p4}">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p4}'>
+						<div style="float:left; margin:5px">
+						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p4}'><br>
 						<input type="checkbox" name="checkbox4" id="checkbox4" value="4">刪除
+						</div>
 					</c:if>
 					<c:if test="${not empty p5}">
-						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p5}'>
+						<div style="float:left; margin:5px">
+						<img height='100' width='100' src='${pageContext.servletContext.contextPath}/ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p5}'><br>
 						<input type="checkbox" name="checkbox5" id="checkbox5" value="5">刪除
+						</div>
 					</c:if>
 		    </td>
 		</tr>
@@ -148,9 +158,9 @@
 		</tr>
 		<tr>
 		    <td height="50" colspan="2" align="center">
-		       <input class="btn btn-primary" type="submit" value="修改許願內容" >
-		       <a href="CheckYourList"><input class="btn btn-primary" type="button" value="回個人願望列表"></a>
-		       <a href="DeleteThisWish?w_Id=${wVO.w_id}"><input class="btn btn-primary" type="button" value="刪除此願望"></a>
+		       <input class="btn btn-default" type="submit" value="修改許願內容" >
+		       <a href="CheckYourList"><input class="btn btn-default" type="button" value="回個人願望列表"></a>
+		       <a href="DeleteThisWish?w_Id=${wVO.w_id}"><input class="btn btn-default" type="button" value="刪除此願望"></a>
 		       <br>
 		       <font color='red' size='-1'>${ErrorMsg.deleteError}</font>
 		    </td>
