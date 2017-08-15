@@ -96,19 +96,19 @@
      });
      $('#theO_point').change(function(e){
     	 var point = Number($(this).val());
-    	 if(point>=0 && point<${LoginOK.m_point}){
-    	 if(point%10!=0){
-    		 swal({
-    			 title: "點數將會浪費",
-    			 text: "每10點折扣1元，個位數的部分將無作用，建議您確認修改"
-    		 });
-    	 }
-    	 
-    	 var sw_price = Number($('#sw_price').text());
-    	 var tolPrice = Number($('#o_tolPrice').text());
-    	 var dis = Math.floor(point/10);
-    	 $('#lastPricePrint').text(tolPrice + sw_price - dis);
-    	 $('#o_lastPrice').val(tolPrice + sw_price - dis);
+    	 if(point>=0 && point< ${LoginOK.m_point} ){
+	    	 if(point%10!=0){
+	    		 swal({
+	    			 title: "點數將會浪費",
+	    			 text: "每10點折扣1元，個位數的部分將無作用，建議您確認修改"
+	    		 });
+	    	 }
+	    	 
+	    	 var sw_price = Number($('#sw_price').text());
+	    	 var tolPrice = Number($('#o_tolPrice').text());
+	    	 var dis = Math.floor(point/10);
+	    	 $('#lastPricePrint').text(tolPrice + sw_price - dis);
+	    	 $('#o_lastPrice').val(tolPrice + sw_price - dis);
     	 }else{
         	 if(point<0){
         	 swal({
@@ -249,7 +249,9 @@
 		</tr>
 		<c:if test="${OrderVO.o_procss == 1}">
 		<tr>
-			<td colspan="4"></td>
+			<td colspan="3"></td>
+			<td>
+			</td>
 			<td>
 				<input type="submit" value="確定修改" class="btn btn-info"/>
 				<input type="hidden" name="action" value="modifyFromC"/>
@@ -261,12 +263,22 @@
 </div>
 </form>
 <div id="footerDiv">
-<c:if test="${OrderVO.o_procss > 0}">
+<c:if test="${OrderVO.o_procss > 0 && OrderVO.o_procss<7}">
 <table class="table" id="endTable" style="table-layout:fixed">
 	<tr>
 		<td></td>
 		<td></td>
-		<td></td>
+		<td>
+		<c:if test="${!empty LoginOK }">	
+				<form method="post" action="<c:url value="/ChatController"/>">
+				<input type="submit" value="聯絡賣場" class="btn btn-success"> 
+				<input type="hidden" name="m_id" value="${LoginOK.m_id}"> 
+				<input type="hidden" name="m_account" value="${LoginOK.m_account}">
+				<input type="hidden" name="s_id" value="${OrderVO.s_id}"> 
+				<input type="hidden" name="action" value="show_both_message_seller">
+				</form>
+		</c:if>
+		</td>
 		<c:if test="${OrderVO.o_procss == 1 || OrderVO.o_procss == 2}">
 			<td>
 			<form id="aform" action="Order.do" method="post">
@@ -275,7 +287,8 @@
 				<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>
 			</form>
 			</td>
-			</c:if>
+		</c:if>
+		
 		<c:if test="${OrderVO.o_procss != 1 && OrderVO.o_procss != 2}"><td></td></c:if>
 		<c:if test="${OrderVO.o_procss >= 1 && OrderVO.o_procss <= 5}">
 		<td>

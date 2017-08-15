@@ -214,11 +214,22 @@
 </div>
 </form>
 <div id="footerDiv">
-<c:if test="${OrderVO.o_procss > 0}">
+<c:if test="${OrderVO.o_procss > 0 && OrderVO.o_procss<7}">
 <table class="table" style="table-layout:fixed">
 	<tr>
 		<td></td>
-		<td></td>
+		<td>
+		<c:if test="${!empty LoginOK }">
+			<form method="post"
+			action="<c:url value="/ChatController"/>">
+			<input type="submit" value="聯絡賣場" class="btn btn-success"> 
+			<input type="hidden" name="m_id" value="${OrderVO.m_id}"> 
+			<input type="hidden" name="m_account" value="${LoginOK.m_account}">
+			<input type="hidden" name="s_id" value="${OrderVO.s_id}"> 
+			<input type="hidden" name="action" value="show_both_message_buyer">
+			</form>
+		</c:if>
+		</td>
 		
 		<c:if test="${(OrderVO.o_procss != 0 || OrderVO.o_procss!=-1) && OrderVO.o_procss < 3}">
 			<td>
