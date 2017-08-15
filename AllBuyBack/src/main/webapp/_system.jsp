@@ -1,0 +1,116 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>後台系統</title>
+
+     <link rel="stylesheet" href="css/bootstrap.min.css"/>
+     <script src="js/bootstrap.min.js"></script> 
+<style>
+    #AllFunction {
+        list-style-type:none;
+        font-size:30px;
+        
+    }
+    #AllFunction li {
+       line-height:70px;
+       width:300px;
+       /*border:red 1px solid;*/
+       margin-left:0px;
+       padding-left:35px;
+    }
+    #AllFunction li a {
+         text-decoration:none;
+         color:white;
+          width:300px;
+    }
+    #AllFunction li a:hover {
+        font-size:32px;
+        color:lightgray;
+    }
+
+    .icon-success {
+     color:#FFB90F;/* rgb(185,152,103);*/
+     float:right;
+     font-size:35px;
+    }
+
+
+    #login {
+       position:absolute;
+       right:-30px;
+    }
+
+      #bell {
+       position:absolute;
+       right:40px;
+    }
+    #rightButton {
+       position:absolute;
+       top:20px;
+       left:1400px;
+    }
+
+
+</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse  navbar-fixed-top " style="border-bottom:1px rgb(41,64,87) solid;"  >
+  <div  class="container-fluid" style="background-color:rgb(41,64,87);height:100px;position:relative;"  >
+        <div class="container" style="padding-top:30px;padding-bottom:8px">
+          <div class="row">
+              <div class="col-sm-12">
+
+                   <div class="navbar-header" style="font-size:20px;margin-right:120px;">
+                    <a class="navbar-brand" style="color:white;font-family:Arial;font-size:1.8em">ALLBUYBACK &nbsp &nbsp 後台管理系統</a>
+                   </div>
+
+                  <div id="rightButton">
+                    <span id="login" class="glyphicon glyphicon-user icon-success"></span>
+                    <span id="bell" class="glyphicon glyphicon-bell icon-success"></span>
+                  </div>
+
+              </div>
+          </div>
+        </div>
+
+</div>
+</nav>
+
+
+
+<div  class="container-fluid" style="background-color:#C1CDCD;height:950px;">
+    <div class="row">
+        <div class="col-sm-4">
+            <div style="position:absolute;top:100px;left:0px;background-color:gray;height:850px;width:300px;">
+                <div style="position:absolute;top:40px;left:-40px;">
+                    <ul id="AllFunction">
+                         <li><a>會員資料</a></li>
+                         <li><a>商品資料</a></li>
+                         <li><a>下架商品資料</a></li>
+                         <li><a>黑名單</a></li>
+                         <li><a>賣場名單</a></li>
+                         <li><a>賣場申請審核</a></li>
+                         <li><a>檢舉商品信件</a></li>
+                    </ul>
+            </div>
+          </div>
+        </div>
+ <!------------------------------你的部分------------------------------>     
+            <div style="position:absolute;top:120px;left:330px;background-color:lightgray;height:800px;width:1550px;">
+            
+
+            </div>
+<!------------------------------你的部分結束------------------------------> 
+     </div><!--row-->
+</div><!--container-fluid-->
+    
+<!----------footer開始-------------->
+
+<div class="container-fluid" style="background-color:rgb(41,64,87);height:45px;color:white;text-align:center;padding-top:15px;" >
+    Copyright ©2017 - ALLBUYBACK 股份有限公司
+</div>
+</body>
+</html>
