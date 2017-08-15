@@ -25,11 +25,11 @@ public class AdDAO implements AdDAOI {
 		}
 	}
 	private static final String INSERT_STMT =
-			"INSERT [AD] VALUES(s_id=?,i_id=?,ad_picture=?,ad_startDate=?,ad_endDate=?,ad_price=?,ad_link=?,ad_type=?) ";
+			"INSERT [AD] VALUES(?,?,NULL,?,?,?,NULL,?) ";
 	private static final String DELETE = 
 			"DELETE [AD] WHERE ad_id=?";
-	private static final String UPDATE_STMT =
-			"UPDATE [AD] SET ad_picture=?,ad_startDate=?,ad_endDate=?,ad_price=?,ad_link=? WHERE ad_id=?";
+	private static final String DOWN_STMT =
+			"UPDATE [AD] SET ad_type=? WHERE ad_id=?";
 	private static final String GET_ONE_BY_I_ID =
 			"SELECT * FROM [AD] where i_id=?";
 	private static final String GET_ALL_BY_SHOP =
@@ -48,12 +48,10 @@ public class AdDAO implements AdDAOI {
 			pstmt = con.prepareStatement(INSERT_STMT);
 			pstmt.setInt(1, adVO.getS_id());
 			pstmt.setInt(2, adVO.getI_id());
-			pstmt.setBytes(3, adVO.getAd_picture());
-			pstmt.setTimestamp(4, adVO.getAd_startDate());
-			pstmt.setTimestamp(5, adVO.getAd_endDate());
-			pstmt.setInt(6, adVO.getAd_price());
-			pstmt.setString(7, adVO.getAd_link());
-			pstmt.setInt(8, adVO.getAd_type());			
+			pstmt.setTimestamp(3, adVO.getAd_startDate());
+			pstmt.setTimestamp(4, adVO.getAd_endDate());
+			pstmt.setInt(5, adVO.getAd_price());
+			pstmt.setInt(6, adVO.getAd_type());			
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -77,13 +75,9 @@ public class AdDAO implements AdDAOI {
 			System.out.println("AD處理新增中");
 			con = ds.getConnection();
 			//UPDATE [AD] SET ad_picture=?,ad_startDate=?,ad_endDate=?,ad_price=?,ad_link=? WHERE ad_id=?
-			pstmt = con.prepareStatement(UPDATE_STMT);
-			pstmt.setBytes(1, adVO.getAd_picture());
-			pstmt.setTimestamp(2, adVO.getAd_startDate());
-			pstmt.setTimestamp(3, adVO.getAd_endDate());
-			pstmt.setInt(4, adVO.getAd_price());
-			pstmt.setString(5, adVO.getAd_link());
-			pstmt.setInt(6, adVO.getAd_id());	
+			pstmt = con.prepareStatement(DOWN_STMT);
+			pstmt.setInt(1, adVO.getAd_type());
+			pstmt.setInt(2, adVO.getAd_id());	
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -125,7 +119,8 @@ public class AdDAO implements AdDAOI {
 	}
 
 	@Override
-	public AdVO select(int i_id) {
+	public List<AdVO> select(int i_id) {
+		List<AdVO> list = new ArrayList<AdVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;		
 		ResultSet rs = null;
@@ -146,6 +141,7 @@ public class AdDAO implements AdDAOI {
 				adVO.setAd_price(rs.getInt("ad_price"));
 				adVO.setAd_link(rs.getString("ad_link"));
 				adVO.setAd_type(rs.getInt("ad_type"));
+				list.add(adVO);
 			}
 			
 		} catch (SQLException e) {
@@ -159,7 +155,7 @@ public class AdDAO implements AdDAOI {
 				}
 			}
 		}
-		return adVO;
+		return list;
 	}
 
 	@Override

@@ -16,9 +16,9 @@ public class AdService {
 	public void delete(int ad_id){
 		dao.delete(ad_id);
 	}
-	public AdVO select(int i_id){
-		AdVO adVO = dao.select(i_id);
-		return adVO;
+	public List<AdVO> select(int i_id){
+		List<AdVO> list = dao.select(i_id);
+		return list;
 	}
 	public List<AdVO> selectByS_id(int s_id){
 		List<AdVO> list = dao.selectByS_id(s_id);
