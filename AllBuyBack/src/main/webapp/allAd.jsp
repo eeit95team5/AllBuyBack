@@ -41,7 +41,7 @@
 				<input type="hidden" name="action" value="updateAd">
 				<input type="hidden" name="ad_id" value="${adList.ad_id}">
 				<input type="radio" name="ad_type" class="ad_type" value="1">精選商品
-				<input type="radio" name="ad_type" class="ad_type" value="2">頁首文字
+				<input type="radio" name="ad_type" class="ad_type" value="2">本週頭條
 				</form>
 			</td>
 		
