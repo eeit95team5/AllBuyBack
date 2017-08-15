@@ -96,7 +96,7 @@
      });
      $('#theO_point').change(function(e){
     	 var point = Number($(this).val());
-    	 if(point>=0){
+    	 if(point>=0 && point<${LoginOK.m_point}){
     	 if(point%10!=0){
     		 swal({
     			 title: "點數將會浪費",
@@ -110,17 +110,24 @@
     	 $('#lastPricePrint').text(tolPrice + sw_price - dis);
     	 $('#o_lastPrice').val(tolPrice + sw_price - dis);
     	 }else{
-    		 point = 0;
+        	 if(point<0){
+        	 swal({
+    			 title: "點數不能為負值",
+    			 type: "warning"
+    		 });
+        	 }else{
+        		 swal({
+        			 title: "點數超出所有值",
+        			 type: "warning"
+        		 });
+        	 }
+        	 point = 0;
     		 var sw_price = Number($('#sw_price').text());
         	 var tolPrice = Number($('#o_tolPrice').text());
         	 var dis = Math.floor(point/10);
         	 $('#theO_point').val(0);
         	 $('#lastPricePrint').text(tolPrice + sw_price - dis);
         	 $('#o_lastPrice').val(tolPrice + sw_price - dis);
-        	 swal({
-    			 title: "點數不能為負值",
-    			 type: "warning"
-    		 });
     	 }
      });
      });
