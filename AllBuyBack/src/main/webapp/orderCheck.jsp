@@ -117,7 +117,8 @@
     		 });
         	 }else{
         		 swal({
-        			 title: "點數超出所有值",
+        			 title: "不能超出您擁有的點數",
+        			 text: "您的點數為${LoginOK.m_point}點",
         			 type: "warning"
         		 });
         	 }
@@ -220,7 +221,7 @@
 			<td id="o_tolPrice">${OrderVO.o_tolPrice}</td>
 			<c:choose>
 				<c:when test="${OrderVO.o_procss == 1}">
-					<td><input type="text" id="theO_point" title="每10點折扣1元" name="o_point" size="4" value="${OrderVO.o_point}" /></td>
+					<td><input type="text" id="theO_point" title="每10點折扣1元，您有${LoginOK.m_point}點" name="o_point" size="4" value="${OrderVO.o_point}" /></td>
 					<td>
 						<select id="shipWay">
 						<c:forEach var="shipways" items="${shipwayList}">
