@@ -151,7 +151,7 @@
 /*     filter: blur(1px); */
       
 }
-#showAns{
+#showAns{/*說明文字部分*/
 /*    border-radius:20px; */
 /*    background-color:#EEE9E9; /*#EED5D2; /*#FFC1C1;*/ */
 /*    margin:0 auto; */
@@ -159,21 +159,16 @@
 /*    height:200px; */
    margin-bottom: 8px;
    padding-left: 20px;
-   padding-top: 70px;
    
-}
-
-#showAns{/*說明文字部分*/
-/*     width: 500px; */
-/*     height: 300px; */
-    line-height:30px;
+   line-height:30px;
     text-align:left;
     font-weight:700;
     font-family: 標楷體;
     color:black;
-    padding-top: 150px;
-    
+    padding-top:110px;
+   
 }
+
 #showAns:before{/*說明背景圖部分*/
     background: url(<c:url value="/images/shoppingEnd.jpg"/>);
     background-size: cover;
@@ -399,11 +394,11 @@ function _testBysetInterval(timer) {
     	time--;
     	if(time<10 && time>-1){time="0"+time}
     	if (time <= -1) {
-    	$timeSpan.css("color", "black");
-    	countDown.text("時間到");
-    	clearInterval(timer);//需要清除计时器
+    	//$timeSpan.css("color", "black");
+    	//$timeSpan.html("<p style='font-size:3px'>時間到</P>");
+    	//clearInterval(timer);//需要清除计时器
     	//
-
+         $('#buttonGo').click();
     	}
     	else {
     	$timeSpan.text(time);
@@ -433,7 +428,7 @@ function _testBysetInterval(timer) {
 
 
 		<div id="view1" style="display:none"> 
-		    <div class="countDown"><div id="timeSpan1" >10</div></div>
+		    <div class="countDown"><div id="timeSpan1" >15</div></div>
 			<div class="question" id="question1"></div>
 			<div class="opt1" id="A1"></div>
 			<div class="opt2" id="B1"></div>
@@ -443,7 +438,7 @@ function _testBysetInterval(timer) {
  		</div> 
  		
  		<div id="view2" style="display:none"> 
- 		    <div class="countDown">	<span id="timeSpan2" >10</span></div>
+ 		    <div class="countDown">	<span id="timeSpan2" >15</span></div>
 		 	<div class="question" id="question2"></div>
 		    <div class="opt1" id="A2"></div>
 			<div class="opt2" id="B2"></div>
@@ -453,7 +448,7 @@ function _testBysetInterval(timer) {
  		</div> 
 		
 		<div id="view3" style="display:none"> 
-		    <div class="countDown">	<span id="timeSpan3" >10</span></div>
+		    <div class="countDown">	<span id="timeSpan3" >15</span></div>
 			<div class="question" id="question3"></div>
 			<div class="opt1" id="A3"></div>
 			<div class="opt2" id="B3"></div>
@@ -463,7 +458,7 @@ function _testBysetInterval(timer) {
  		</div> 
  		
  		<div id="view4" style="display:none"> 
- 		    <div class="countDown">	<span id="timeSpan4" >10</span></div>
+ 		    <div class="countDown">	<span id="timeSpan4" >15</span></div>
 			<div class="question" id="question4"></div>
 			<div class="opt1" id="A4"></div>
 			<div class="opt2" id="B4"></div>
@@ -473,7 +468,7 @@ function _testBysetInterval(timer) {
  		</div> 
  		
  		<div id="view5" style="display:none"> 
- 		    <div class="countDown"><span id="timeSpan5" >10</span></div>
+ 		    <div class="countDown"><span id="timeSpan5" >15</span></div>
 			<div class="question" id="question5"></div>
 			<div class="opt1" id="A5"></div>
 			<div class="opt2" id="B5"></div>
@@ -504,6 +499,7 @@ function _testBysetInterval(timer) {
 				resizable:false,
 				width : 820,
 				height :560,
+				modal:true,
 			    show: {
 			        effect: 'fade',
 			        duration: 300
@@ -514,24 +510,52 @@ function _testBysetInterval(timer) {
 			      },
 				open : getJSON,
 				buttons : {
-					'GO':function(){
+// 					'GO':function(){
 
-						 clearInterval(timer);						 
-						 $('#view'+k).attr("style","display:none");	
-						 $('#view'+(k+1)).attr("style","display:block");	
-			             k++;						
-			             timer = setInterval(function () {
-			   	        	_testBysetInterval(timer)
-			   	        	}, 1000);			            
-			            if(k==5){ //到第五題的時候，點下GO進入顯示答題結果及紅利發送
-		            	   seeAnswer();
-		            	   updateBonus();
-			            }	
-			            if(k==6){
-			            	$(".ui-dialog-buttonpane button:contains('GO')").attr("disabled", true);
-			            	k=0;
-			            }
-					},		    		     
+// 						 clearInterval(timer);						 
+// 						 $('#view'+k).attr("style","display:none");	
+// 						 $('#view'+(k+1)).attr("style","display:block");	
+// 			             k++;						
+// 			             timer = setInterval(function () {
+// 			   	        	_testBysetInterval(timer)
+// 			   	        	}, 1000);			            
+// 			            if(k==5){ //到第五題的時候，點下GO進入顯示答題結果及紅利發送
+// 		            	   seeAnswer();
+// 		            	   updateBonus();
+// 			            }	
+// 			            if(k==6){
+// 			            	$(".ui-dialog-buttonpane button:contains('GO')").attr("disabled", true);
+// 			            	k=0;
+// 			            }
+// 					},	
+					
+					
+					
+					  "MyButton" : {
+				          text: "Go",
+				          id: "buttonGo",
+				          click: function(){					          
+					           
+				        	  clearInterval(timer);						 
+								 $('#view'+k).attr("style","display:none");	
+								 $('#view'+(k+1)).attr("style","display:block");	
+					             k++;						
+					             timer = setInterval(function () {
+					   	        	_testBysetInterval(timer)
+					   	        	}, 1000);			            
+					            if(k==5){ //到第五題的時候，點下GO進入顯示答題結果及紅利發送
+				            	   seeAnswer();
+				            	   updateBonus();
+					            }	
+					            if(k==6){
+					            	//$(".ui-dialog-buttonpane button:contains('MyButton')").attr("disabled", true);
+					            	$('#buttonGo').attr("disabled", true);
+					            	k=0;
+					            }
+ 
+				          }   
+				       } ,
+			        
 			        
 				},//button結束
 				close:function(){

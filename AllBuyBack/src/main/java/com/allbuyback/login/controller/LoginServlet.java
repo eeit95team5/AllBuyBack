@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 				
 				session.setAttribute("AdminOK", mVO);
 
-				request.getRequestDispatcher("/Admin.jsp").forward(request, response);
+				request.getRequestDispatcher("/_system.jsp").forward(request, response);
 				
 			}else if((mVO.getM_authority()) == 2){
 				

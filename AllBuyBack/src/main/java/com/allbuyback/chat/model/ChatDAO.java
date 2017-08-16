@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import org.json.simple.JSONValue;
 
 import com.allbuyback.ItemSearch.model.ItemVO;
 import com.allbuyback.login.model.MemberDAO;
@@ -38,6 +41,7 @@ public class ChatDAO implements ChatDAOI {
 	private static final String INSERT_BUYER_REPLY = "INSERT INTO CHAT (m_id,s_id,m_account,chat_content,chat_date) VALUES (?,?,?,?, getdate())";
 	private static final String SAVE_STMT = "insert into CHAT values (?, ?, ?, ?, GETDATE())";
 	private static final String READ_STMT = "select * from CHAT where m_id=? and s_id=? order by chat_date desc";
+	private static final String GET_CHAT_STMT = "select * from CHAT order by chat_date desc";
 	
 	@Override
 	public void insert(ChatVO chatVO) {
@@ -327,6 +331,7 @@ public class ChatDAO implements ChatDAOI {
 	}
 	@Override
 	public void SaveTalk(int m_id, int s_id, String content) {
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -419,6 +424,122 @@ public class ChatDAO implements ChatDAOI {
 				try {
 					conn.close();
 				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+	@Override
+	public List<ChatVO> ReadTalk2() {
+		List list = new ArrayList<ChatVO>();
+		ChatVO chatVO = null;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(GET_CHAT_STMT);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				Map m0 = new HashMap();
+				m0.put("chat_id", rs.getInt(1));
+				m0.put("m_id", rs.getInt(2));
+				m0.put("s_id", rs.getString(3));
+				m0.put("m_account", rs.getString(4));
+				m0.put("chat_content", rs.getString(5));
+										
+				list.add(m0);
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException("A database error occured." + e.getMessage());
+		}
+		finally{
+			if(rs != null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if(pstmt != null){
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if(conn != null){
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+	@Override
+	public List<ChatVO> findByBoth2(int m_id, int s_id) {
+		List<ChatVO> list = new ArrayList<ChatVO>();
+		ChatVO chatVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(FULL_MESSAGE);
+
+			pstmt.setInt(1, m_id);
+			pstmt.setInt(2, s_id);
+
+			rs = pstmt.executeQuery();
+			
+			List jsonList = new LinkedList();
+
+			while (rs.next()) {
+			    Map m1 = new HashMap();
+				//chatVO = new ChatVO();
+				m1.put("m_id",rs.getInt("m_id"));
+				m1.put("s_id",rs.getInt("s_id"));
+				m1.put("m_account",rs.getString("m_account"));
+				m1.put("chat_content",rs.getString("chat_content"));
+				m1.put("chat_date",rs.getTimestamp("chat_date"));
+				jsonList.add(m1);
+			}
+			
+			//String jsonString = JSONValue.toJSONString(jsonList);  
+			 //out.println(jsonString);
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
 					e.printStackTrace(System.err);
 				}
 			}

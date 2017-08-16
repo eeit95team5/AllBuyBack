@@ -17,9 +17,16 @@
 		document.getElementById("sendbtn").onclick = MsgSend;
 	}
 	
+	window.setInterval(MsgSendControl, 2000);
+	
+	function MsgSendControl(){
+		if(document.getElementById("msgCont").value.length == 0){
+			MsgSend();
+		}
+	}
+	
 	var xhr = null;
 	function MsgSend() {
-		
 		var msgCont = document.getElementById("msgCont").value;
 		$('#msgCont').val("");
 		xhr = new XMLHttpRequest();
@@ -27,7 +34,7 @@
 			xhr.open('POST', 'TalkTalk', true);   //***非同步***
 			xhr.addEventListener("readystatechange", callback);
 			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-			xhr.send("chat_content=" + msgCont + "&m_id=1000001&s_id=1000001");
+			xhr.send("chat_content=" + msgCont + "&m_id=1000002&s_id=1000001");
 		} else {
 			alert("您的瀏覽器不支援Ajax功能!!");
 		}
@@ -37,13 +44,14 @@
 	 	if (xhr.readyState == 4) {
 	 		if(xhr.status == 200){
 	 			var datas = xhr.responseText;
-	 			console.log(datas);
 		 		var items = JSON.parse(datas);
-		 		console.log(items);
 	 			var showContent = "";
 		 		for(var i=0; i<items.length; i++){
-		 			if(items[i].)
-					showContent = showContent + items[i].m_account + ": " + items[i].chat_content;
+		 			if(items[i].m_id == 1000002){
+						showContent = showContent + items[i].m_id + ": " + items[i].chat_content;
+		 			}else{
+		 				showContent = showContent + "\t\t" + items[i].chat_content + " :" + items[i].m_id;
+		 			}
 					showContent = showContent + "\n";
 		 		}
 		 		document.getElementById("receiveMsg").value = showContent;
@@ -76,7 +84,7 @@
 		<tbody>
 			<tr>
 			    <td width="200" height="40" align="left" >
-			         <textarea id="receiveMsg" cols="30" rows="5" style="resize:none" name="content" >${param.content}</textarea>
+			         <textarea id="receiveMsg" cols="30" rows="5" style="resize:none" name="content" ></textarea>
 			    </td>
 			</tr>
 			<tr>

@@ -37,8 +37,28 @@
 	}
 
 </style>
+	<script> </script>
+
 <script>
-     $(function() {
+$(function() {
+$('#show').dialog({
+	
+ 	autoOpen:false
+ });
+
+ $('#toSeller').click(function(){
+	
+ 	$('#show').dialog('open');
+	
+ 	$.post("<c:url value='/ChatController'/>",{"action":"show_both_message_seller","s_id":${OrderVO.s_id},"m_id":${LoginOK.m_id}},
+ 			function(data){
+		
+		$('#show').html(data)
+ 		});
+ });
+ 
+ 
+   
         $( "#dialog" ).dialog({
            autoOpen: false,  
         });
@@ -139,6 +159,9 @@
 <%-- <jsp:include page="includeTop.jsp"></jsp:include> --%>
 <%@ include file="includeTop.jsp" %>
 <!-- 主頁面開始 -->
+
+<button type="button" id="toSeller">給賣家</button>
+<div id="show" style="display: none"></div>
 <c:if test="${! empty OrderVO}">
 <h1 align="center">訂單詳情</h1>
 <form action="Order.do" method="post">

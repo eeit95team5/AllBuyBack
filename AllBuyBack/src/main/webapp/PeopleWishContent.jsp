@@ -11,9 +11,9 @@
 <script>
 $(function(){
 	$('#CT_window').dialog({
-		autoOpen: false,
-		width:650,
+		autoOpen:false,
 		height:400,
+		width:650,
 	});
 	$('#CT_btn').click(function(){
 		$('#CT_window').dialog('open');
@@ -25,8 +25,40 @@ $(function(){
 				$('#CT_window').html(changePage);
 			}
 		});
+// 		window.open("MakeWishComeTrue?w_Id=${wVO.w_id}", 'newwindow','height=400, width=680');
 	});
+	
+	for(var i=1; i<=5; i++){
+		$('#pic'+i).dialog({
+			autoOpen:false,
+			height:640,
+			width:540,
+			show: "blind",
+			hide: "blind",
+			buttons: { 
+	             "Ok": function() { $(this).dialog("close"); }, 
+	         }	
+		});
+	}
+	
+	$('#spic1').click(function(){
+		$('#pic1').dialog('open');
+	});
+	$('#spic2').click(function(){
+		$('#pic2').dialog('open');
+	});
+	$('#spic3').click(function(){
+		$('#pic3').dialog('open');
+	});
+	$('#spic4').click(function(){
+		$('#pic4').dialog('open');
+	});
+	$('#spic5').click(function(){
+		$('#pic5').dialog('open');
+	});
+	
 });
+
 </script>
 
 <title>PersonalWishContent</title>
@@ -89,27 +121,32 @@ $(function(){
 		    <td width="600" height="40" align="left" >
 			    	<c:if test="${not empty p1}">
 			    		<div style="float:left; margin:5px">
-						<img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'>
+			    		<div id="pic1"><img height='500' width='500' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'></div>
+						<img id="spic1" height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'>
 						</div>
 					</c:if>
 					<c:if test="${not empty p2}">
 						<div style="float:left; margin:5px">
-						<img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p2}'>
+						<div id="pic2"><img height='500' width='500' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p2}'></div>
+						<img id="spic2" height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p2}'>
 						</div>
 					</c:if>
 					<c:if test="${not empty p3}">
 						<div style="float:left; margin:5px">
-						<img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p3}'>
+						<div id="pic3"><img height='500' width='500' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p3}'></div>
+						<img id="spic3" height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p3}'>
 						</div>
 					</c:if>
 					<c:if test="${not empty p4}">
 						<div style="float:left; margin:5px">
-						<img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p4}'>
+						<div id="pic4"><img height='500' width='500' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p4}'></div>
+						<img id="spic4" height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p4}'>
 						</div>
 					</c:if>
 					<c:if test="${not empty p5}">
 						<div style="float:left; margin:5px">
-						<img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p5}'>
+						<div id="pic5"><img height='500' width='500' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p5}'></div>
+						<img id="spic5" height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p5}'>
 						</div>
 					</c:if>
 		    </td>
@@ -139,7 +176,7 @@ $(function(){
 		       <a href="CheckPeopleList"><input class="btn" type="button" value="回許願池"></a>
 <%--                <a href="MakeWishComeTrue?w_Id=${wVO.w_id}"><input class="btn" type="button" value="接受願望"></a> --%>
 			   <input id="CT_btn" class="btn" type="button" value="接受願望">
-		       <div id="CT_window">test</div>
+			   <div id="CT_window"></div>
 		       <br>
 		       <font color='red' size='-1'>${errorMsg.login}</font>
 		       <font color='red' size='-1'>${errorMsg.duplicateAccount}</font>

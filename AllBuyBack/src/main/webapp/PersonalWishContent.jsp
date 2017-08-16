@@ -9,10 +9,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script type="text/javascript" src="js/prototype.js"></script>
-<script type="text/javascript" src="js/scriptaculous.js?load=effects,builder"></script>
-<script type="text/javascript" src="js/lightbox.js"></script>
-<link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
 
 <title>PersonalWishContent</title>
 <style>
@@ -116,7 +115,9 @@
 		    <td width="600" height="40" align="left" >
 			    	<c:if test="${not empty p1}">
 			    		<div style="float:left; margin:5px">
-						<a href="ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}" class="test1" rel="lightbox[g1]"><img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'></a><br>
+
+						<img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'><br>
+
 						<input type="checkbox" name="checkbox1" id="checkbox1" value="1">刪除
 						</div>
 					</c:if>
@@ -180,20 +181,9 @@
 	</form>
 	<br><br>
 	
-<jsp:include page="_Footer.jsp"></jsp:include>
-<script>
-(function(){
-	 $('.test1').click(function(){
-	  $.lightbox({
-	   html : '<h1>Hello lightbox!!!</h1>', //在燈箱中要顯示的html字段
-	   width : 700, //燈箱中間區塊的寬度
-	   height : 600, //燈箱中間區塊的高度
-	   onClosed : function(){ //當燈箱關閉時的callback funtion
-	    alert('Lightbox is closed');
-	   }
-	  });
-	 });
-	})();
-</script>
+<%-- <jsp:include page="_Footer.jsp"></jsp:include> --%>
+<%@ include file="_Footer.jsp" %>
+<script type="text/javascript" src="js/lightbox.js"></script>
+
 </body>
 </html>

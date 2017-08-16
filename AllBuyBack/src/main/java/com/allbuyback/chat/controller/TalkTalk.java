@@ -17,12 +17,10 @@ import com.allbuyback.ItemSearch.model.ItemSearchDAO;
 import com.allbuyback.ItemSearch.model.ItemVO;
 import com.allbuyback.chat.model.ChatDAO;
 
-
 @WebServlet("/TalkTalk")
 public class TalkTalk extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
@@ -39,14 +37,15 @@ public class TalkTalk extends HttpServlet {
 		List<ItemVO> list = new ArrayList<ItemVO>();
 		String jsonString = "";
 		
-		String content = request.getParameter("chat_content");
 		int m_id = Integer.parseInt(request.getParameter("m_id"));
 		int s_id = Integer.parseInt(request.getParameter("s_id"));
-		
+		String content = request.getParameter("chat_content");
 		ChatDAO cDAO = new ChatDAO();
-		cDAO.SaveTalk(m_id, s_id, content);   //存進去
-		jsonString = JSONValue.toJSONString(cDAO.ReadTalk(m_id, s_id));  //讀出來
-
+		if(content.length()!=0){
+			cDAO.SaveTalk(m_id, s_id, content); //存進去
+		}
+		jsonString = JSONValue.toJSONString(cDAO.ReadTalk2()); //讀出來
+		
 		out.println(jsonString);
 	}
 

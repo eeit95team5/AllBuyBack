@@ -90,11 +90,137 @@
 <button type="button" id="keepitem">加入收藏</button><span id="msg1"></span><br/>
 <form action="<c:url value='/shop.html'/>" method="get">
 	<input type="hidden" name="s_id" value="${itemVO.s_id }"/><button type="submit" >回到賣場</button>	
-</form><br>
-
+</form><br/>
 <a href="<c:url value='/index.jsp'/>"> <input type="button" value="回首頁"></a>
 
+<span id="itemmsg"></span>
+<form>
+	<input type="hidden" name="i_id" id="hidden" value="${itemVO.i_id }" />
+	<input type="hidden" name="action" value="Insert" />
+	<textarea name="im_content" id="im_content" ></textarea>
+	<button type="button" id="insertitemmessage">送出</button><span id="showerror">${errors.login }${errors.noempty }</span>
+</form>
+
+</body>
+
 <script>
+$(function(){
+	$('#insertitemmessage').click(insertItemMessage);
+	getItemMessageJSON();
+})
+
+function getItemMessageJSON(){
+	$.post("<c:url value='/itemmessage.SPRINGcontroller'/>",{
+		"action":"Select",	
+		"i_id":"${itemVO.i_id}"},function(data){	
+		showItemMessageJSON(data);
+	})//post結束
+}//function結束
+
+function showItemMessageJSON(dataa){
+	var data = JSON.parse(dataa);
+	var docFragment = $(document.createDocumentFragment());				 
+	for(var i=0;i<data.data.length;i++){
+		var im_id = data.data[i].im_id;
+		var m_id = data.data[i].m_id;
+		var s_id = data.data[i].s_id;
+		var i_id = data.data[i].i_id;
+		var im_content = data.data[i].im_content;					 
+		var im_date = data.data[i].im_date;					 
+		var im_hidden = data.data[i].im_hidden;					 
+		var im_reply = data.data[i].im_reply;					 
+		var im_replyDate = data.data[i].im_replyDate;					 
+		var im_state = data.data[i].im_state;
+		var div = $("<div style=\"border-bottom:1px solid;background-color:#FFC78E\"></div>").html(m_id+" 於 "+im_date+" 留言：<br/>"+im_content);
+		if((<c:out value="${LoginOK.m_id}">-1</c:out>) == s_id){			
+			var hidden = $('<input type="hidden" id="im_id' + i + '" value="' + im_id + '"/>');
+			var reply = $('<button type=\"button\" id=\"reply' + i + '\" value=\"' + i + '\" >回覆</button>');
+			var hiddenB = $('<button type=\"button\" id=\"hiddenB' + i +'\" value=\"' + i + '\">隱藏</button>');
+			var span = $('<span style=\"font-size:12px;color:blue\" id=\"spanmsg' + i + '\"></span><br/>');
+			div.append(hidden).append(reply).append(hiddenB).append(span);
+		}
+		if(im_hidden == 2 && m_id == (<c:out value="${LoginOK.m_id}">0</c:out>)){
+			var span =$('<span style=\"font-size:12px;color:blue\">此留言已被隱藏</span>');
+			div.append(span);
+		}		
+		if(im_state == 2){
+			var div2 = $('<div style="border:1px solid;margin:10px 10px 10px 40px;background-color:#FFDCB9"></div>').html(s_id + "於" + im_replyDate + "回覆：<br/>" + im_reply + "<br/>");
+			div.append(div2);
+		}
+		if(im_hidden != 2){
+			docFragment.append(div);	
+		}else if(<c:out value="${not empty LoginOK}">false</c:out>){
+			if(s_id == <c:out value="${LoginOK.m_id}">-1</c:out>){				
+				docFragment.append(div);
+			}
+			if(m_id == <c:out value="${LoginOK.m_id}">-1</c:out>){				
+				docFragment.append(div);
+			}
+		}		
+	}
+	$('#itemmsg').empty()
+	$('#itemmsg').append(docFragment);
+	if((<c:out value="${LoginOK.m_id}">-1</c:out>) == s_id){
+		for(var i=0;i<data.data.length;i++){
+			$('#reply'+i).click(function(){
+				rep($(this).val());
+			})
+			$('#hiddenB'+i).click(function(){
+				hid($(this).val());
+			})
+			if(data.data[i].im_state==2){
+				$('#reply'+i).prop("disabled", true);
+			}
+			if((data.data[i].im_hidden)==2){
+				$('#spanmsg'+i).text("留言狀態：隱藏");
+			}else if((data.data[i].im_hidden)==1){
+				$('#spanmsg'+i).text("留言狀態：公開");			
+			}
+		}
+	}
+}
+
+function hid(v){
+	$.post("<c:url value='/itemmessage.SPRINGcontroller'/>",{"action":"Hidden","im_id":$('#im_id'+v).val()},function(data){showItemMessageJSON(data)})	
+}
+
+function rep(v){	
+	var textarea = $('<textarea id=\"textarea' + v + '\"/>');
+	var button =$('<button type=\"button\" onclick=\"rep2(' + v + ')\">送出</button>');
+	var span = $('<span id=\"rep' + v + '\"></span>');
+	$('#reply'+v).after(span).after(button).after(textarea).prop( "disabled", true );			
+}
+
+function rep2(v){
+	if(!$('#textarea'+v).val()){
+		$('#rep'+v).text("回覆不可為空白");
+	}else {
+		$.post("<c:url value='/itemmessage.SPRINGcontroller'/>",{"action":"Update","im_id":$('#im_id'+v).val(),"im_reply":$('#textarea'+v).val()},function(data){showItemMessageJSON(data);})
+		$('#rep'+v).text("");
+	}		
+}
+
+function insertItemMessage(){
+	if(<c:out value="${empty LoginOK}">true</c:out>){
+		$('#showerror').html("請先登入才能留言");
+	}else if( (<c:out value="${itemVO.s_id}">-2</c:out>) == (<c:out value="${LoginOK.m_id}">-1</c:out>) ){
+		$('#showerror').html("不能在自己的賣場留言");			
+	}else if(<c:out value="${not empty LoginOK}">false</c:out>){
+		if(!$('#im_content').val()){
+			$('#showerror').html("請輸入留言");
+		}else if($('#im_content').val()){	
+			$.post("<c:url value='/itemmessage.SPRINGcontroller'/>",
+				{"action":"Insert",
+				"i_id":<c:out value="${itemVO.i_id }">-3</c:out>,
+				"s_id":<c:out value="${itemVO.s_id }">-2</c:out>,				
+				"m_id":<c:out value="${LoginOK.m_id}">-1</c:out>,
+				"im_content":$('#im_content').val()},				
+				function(data){showItemMessageJSON(data);})/*post結束*/
+			$('#im_content').val("");
+		}/*if結尾*/
+	}/*if結尾*/
+}
+
 $('#addCart').click(function (){
 // 	 var form = $(this).parents('#cartForm');
 // 	 console.log(form);
@@ -133,7 +259,7 @@ $('#buyAd').click(function(){
 $('#keepitem').click(function(){
 	if(<c:out value="${empty LoginOK}">true</c:out>){
 		$('#msg1').text("請先登入");
-	}else if(<c:out value="${LoginOK.m_id}">-1</c:out> == <c:out value="${itemVO.s_id}">-2</c:out>){
+	}else if((<c:out value="${LoginOK.m_id}">-1</c:out>) == (<c:out value="${itemVO.s_id}">-2</c:out>)){
 		$('#msg1').text("這是您自己的商品！");
 	}else{
 		$.post("<c:url value='/keep_item.SPRINGcontroller'/>",{"action":"Insert",
@@ -145,5 +271,5 @@ $('#keepitem').click(function(){
 })//click
 	
 </script>
-</body>
+
 </html>

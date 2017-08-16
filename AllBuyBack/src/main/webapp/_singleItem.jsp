@@ -44,11 +44,57 @@
 <script type="text/javascript">
 $(function() {
 	
-	$("#eye").mouseover(function() {
-		$('#eyeCount').attr("style","display:block");
-	});
 
-)}
+ 	$("#eye").mouseover(function() {
+ 		$('#eyeCount').attr("style","position:absolute;top:60px;left:35px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:block;");
+ 	});
+
+ 	
+ 	$("#eye").mouseout(function() {
+ 		$('#eyeCount').attr("style","position:absolute;top:60px;left:35px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;");
+ 	});
+     /*---------------------------------------------------*/
+     
+      	$("#heart").mouseover(function() {
+ 		$('#heartCount').attr("style","position:absolute;top:60px;left:100px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:block;");
+ 	});
+
+ 	
+ 	$("#heart").mouseout(function() {
+ 		$('#heartCount').attr("style","position:absolute;top:60px;left:100px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;");
+ 	});
+
+     
+    /*----------------------------------------------------*/
+    
+    
+    $("#shoppingCart").mouseover(function() {
+ 		$('#shoppingCartCount').attr("style","position:absolute;top:60px;left:160px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:block;");
+ 	});
+
+ 	
+ 	$("#shoppingCart").mouseout(function() {
+ 		$('#shoppingCartCount').attr("style","position:absolute;top:60px;left:160px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;");
+ 	});
+
+     
+    /*----------------------------------------------------*/
+    
+    	$("#buyAdTag").mouseover(function() {
+ 		$('#buyAd').attr("style","position:absolute;top:1px;left:1100px;border-radius:5px 5px;color:black;font-size:10px;width:100px;display:block");
+ 	});
+    	
+
+    	$("#buyAdTag").mouseout(function() {
+ 		$('#buyAd').attr("style","position:absolute;top:1px;left:1100px;border-radius:5px 5px;color:black;font-size:10px;width:100px;display:none");
+ 	});
+
+    	$("#buyAdTag").click(function() {/*點下去跳至買廣告頁面*/
+     		
+     	});
+
+
+})
 </script>
 
 </head>
@@ -63,11 +109,24 @@ $(function() {
             <div class="productArea1"  >
                <div class="productTitle" >限定預購！日本郵局「哆啦A夢餐具組」 單人9件超值華組</div>
 
-                <div id="eyeCount" style="position:absolute;top:55px;left:35px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;">瀏覽數</div>
-                <div id="eye"><span class="glyphicon glyphicon-eye-open icon-success" style="font-size:20px;color:gray"></span></div>
-                <div id="heart"><span class="glyphicon glyphicon-heart icon-success" style="font-size:20px;;color:gray"></span></div>
-                <div id="shoppingCart"><span  class="glyphicon glyphicon-shopping-cart icon-success" style="font-size:20px;;color:gray"></span></div> 
                
+                <span id="buyAdTag" class="glyphicon glyphicon-tag " style="position:absolute;top:30px;left:1090px;font-size:20px;;color:gray"></span>
+                <div id="buyAd" style="position:absolute;top:1px;left:1100px;border-radius:5px 5px;color:black;font-size:10px;display:none;">買廣告請點我</div>
+                
+
+                <div id="eyeCount" style="position:absolute;top:60px;left:35px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;">瀏覽數</div>
+                <div id="eye"><span class="glyphicon glyphicon-eye-open " style="font-size:20px;color:gray"></span></div>
+                <div style="position:absolute;top:80px;left:65px;color:gray">120</div>
+                
+                
+                <div id="heartCount" style="position:absolute;top:60px;left:105px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;">收藏數</div>
+                <div id="heart"><span class="glyphicon glyphicon-heart " style="font-size:20px;;color:gray"></span></div>
+                <div style="position:absolute;top:80px;left:130px;color:gray">5</div>
+                
+                
+                <div id="shoppingCartCount" style="position:absolute;top:60px;left:105px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;">代購數</div>
+                <div id="shoppingCart"><span  class="glyphicon glyphicon-shopping-cart " style="font-size:20px;;color:gray"></span></div> 
+                <div style="position:absolute;top:80px;left:195px;color:gray">3</div>
 
                    <div class="mainPhoto">
                      <img src="images/product.jpg" width="480" height="400" />
@@ -86,8 +145,16 @@ $(function() {
                 <div class="brand">商品品牌:</div>  
                 <div class="country">代購國家:</div>  
                 <div class="waitDay">等待天數:</div> 
-                <button class="favorite">加入收藏</button> 
-                <button class="wantBuy">聯絡代購</button> 
+                
+                <div class="count">數量:
+                 
+                   <input type="number" value="1" min="1" max="99"  style="width:60px;height:40px;padding-left: 10px;margin-left: 12px;">
+                
+                </div>
+                
+                
+                <button class="shoppingCart">加入購物車</button> 
+                <button class="wantBuy">聯絡賣家</button> 
                 <div class="pay">付款方式:</div>  
                 <div class="deliver">寄送方式:</div>  
 
@@ -132,7 +199,7 @@ border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑�
     
     <span class="glyphicon glyphicon-plane" style="color:white;font-size:25px;"></span>
     欲購買或發問點請選<br /><br /><br />
-<button style="border-radius:5px 5px;border:rgb(42,186,171);background-color:rgb(42,186,171);color:white;padding:10px 30px;font-size:20px;margin-top:10px;font-weight:500;">聯絡代購</button>
+<button style="border-radius:5px 5px;border:rgb(42,186,171);background-color:rgb(42,186,171);color:white;padding:10px 30px;font-size:20px;margin-top:10px;font-weight:500;">聯絡賣家</button>
 
 </div>
 
