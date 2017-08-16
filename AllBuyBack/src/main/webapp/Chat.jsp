@@ -37,13 +37,14 @@
 	 	if (xhr.readyState == 4) {
 	 		if(xhr.status == 200){
 	 			var datas = xhr.responseText;
-	 			console.log(datas);
 		 		var items = JSON.parse(datas);
-		 		console.log(items);
 	 			var showContent = "";
 		 		for(var i=0; i<items.length; i++){
-		 			if(items[i].)
-					showContent = showContent + items[i].m_account + ": " + items[i].chat_content;
+		 			if(items[i].m_account == "hellokitty"){
+						showContent = showContent + items[i].m_account + ": " + items[i].chat_content;
+		 			}else{
+		 				showContent = showContent + "\t\t" + items[i].chat_content + " :" + items[i].m_account;
+		 			}
 					showContent = showContent + "\n";
 		 		}
 		 		document.getElementById("receiveMsg").value = showContent;
@@ -76,7 +77,7 @@
 		<tbody>
 			<tr>
 			    <td width="200" height="40" align="left" >
-			         <textarea id="receiveMsg" cols="30" rows="5" style="resize:none" name="content" >${param.content}</textarea>
+			         <textarea id="receiveMsg" cols="30" rows="5" style="resize:none" name="content" ></textarea>
 			    </td>
 			</tr>
 			<tr>

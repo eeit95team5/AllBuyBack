@@ -134,7 +134,7 @@
     <div class="navbar-header" style="font-size:20px;margin-right:120px;">
       <a class="navbar-brand" 
           style="color:rgb(41,64,87);font-family:Stencil;font-size:1.2em" 
-          href="#">ALL BUY BACK</a>
+          href="HomeIndex.jsp">ALL BUY BACK</a>
     </div>
 
 <ul class="drop-down-menu  nav navbar-nav" style="text-align:left">
@@ -351,7 +351,7 @@
             <a href="#">我的賣場</a>
             <a href="#">挑戰時尚金頭腦</a>
             <a href="#">聯絡管理員</a>
-            <a href="#">登出</a>
+            <a href="LogoutServlet">登出</a>
          </div>
 </c:if>
 <c:if test="${empty LoginOK}">
