@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.allbuyback.AllBuyBack.model.Item_MessageBean;
 import com.allbuyback.AllBuyBack.model.Item_MessageService;
-import com.allbuyback.AllBuyBack.model.Shop_MessageBean;
 import com.allbuyback.AllBuyBack.model.misc.PrimitiveNumberEditor;
 import com.allbuyback.login.model.MemberVO;
 
