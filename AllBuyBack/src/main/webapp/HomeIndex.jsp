@@ -359,7 +359,7 @@
             <a href="#">我的賣場</a>
             <a href="checkGB.do">挑戰時尚金頭腦</a>
             <a href="#">聯絡管理員</a>
-            <a href="#">登出</a>
+            <a href="LogoutServlet">登出</a>
          </div>
 </c:if>
 <c:if test="${empty LoginOK}">

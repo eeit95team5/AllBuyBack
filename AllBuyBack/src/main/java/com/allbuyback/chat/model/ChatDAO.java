@@ -38,6 +38,7 @@ public class ChatDAO implements ChatDAOI {
 	private static final String INSERT_BUYER_REPLY = "INSERT INTO CHAT (m_id,s_id,m_account,chat_content,chat_date) VALUES (?,?,?,?, getdate())";
 	private static final String SAVE_STMT = "insert into CHAT values (?, ?, ?, ?, GETDATE())";
 	private static final String READ_STMT = "select * from CHAT where m_id=? and s_id=? order by chat_date desc";
+	private static final String GET_CHAT_STMT = "select * from CHAT order by chat_date desc";
 	
 	@Override
 	public void insert(ChatVO chatVO) {
@@ -327,6 +328,7 @@ public class ChatDAO implements ChatDAOI {
 	}
 	@Override
 	public void SaveTalk(int m_id, int s_id, String content) {
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -384,6 +386,59 @@ public class ChatDAO implements ChatDAOI {
 			pstmt = conn.prepareStatement(READ_STMT);
 			pstmt.setInt(1, m_id);
 			pstmt.setInt(2, s_id);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				Map m0 = new HashMap();
+				m0.put("chat_id", rs.getInt(1));
+				m0.put("m_id", rs.getInt(2));
+				m0.put("s_id", rs.getString(3));
+				m0.put("m_account", rs.getString(4));
+				m0.put("chat_content", rs.getString(5));
+										
+				list.add(m0);
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException("A database error occured." + e.getMessage());
+		}
+		finally{
+			if(rs != null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if(pstmt != null){
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if(conn != null){
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+	@Override
+	public List<ChatVO> ReadTalk2() {
+		List list = new ArrayList<ChatVO>();
+		ChatVO chatVO = null;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(GET_CHAT_STMT);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
