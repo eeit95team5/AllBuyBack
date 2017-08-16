@@ -15,6 +15,7 @@
 		<mapping class="com.allbuyback.AllBuyBack.model.Item_Class2Bean" />			
 		<mapping class="com.allbuyback.AllBuyBack.model.Item_Class3Bean" />			
 		<mapping class="com.allbuyback.AllBuyBack.model.Shop_MessageBean" />			
+		<mapping class="com.allbuyback.AllBuyBack.model.Item_MessageBean" />			
 		<mapping class="com.allbuyback.AllBuyBack.model.Keep_ShopBean" />			
 		<mapping class="com.allbuyback.AllBuyBack.model.Keep_ItemBean" />			
 		<mapping class="com.allbuyback.AllBuyBack.model.Shop_Class1Bean" />			

@@ -2,6 +2,8 @@ package com.allbuyback.AllBuyBack.model.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -13,9 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONValue;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,6 +28,7 @@ import com.allbuyback.AllBuyBack.model.ItemService;
 import com.allbuyback.AllBuyBack.model.ShopService;
 import com.allbuyback.AllBuyBack.model.Shop_MessageBean;
 import com.allbuyback.AllBuyBack.model.Shop_MessageService;
+import com.allbuyback.AllBuyBack.model.misc.PrimitiveNumberEditor;
 import com.allbuyback.login.model.MemberVO;
 
 @Controller
@@ -35,6 +41,14 @@ public class Shop_MessageController {
 	ShopService shopService;
 	@Autowired
 	ItemService itemService;
+	
+	@InitBinder
+	protected void yyy(WebDataBinder binder){
+		binder.registerCustomEditor(java.util.Date.class, 
+				new CustomDateEditor((DateFormat)new SimpleDateFormat("yyyy-MM-dd"),true));
+		binder.registerCustomEditor(int.class, new PrimitiveNumberEditor(Integer.class, true));
+		binder.registerCustomEditor(double.class, new PrimitiveNumberEditor(Double.class, true));
+	}
 
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST })
 	public void doGet(Shop_MessageBean shop_MessageBean, BindingResult bindingResult, Model model,
