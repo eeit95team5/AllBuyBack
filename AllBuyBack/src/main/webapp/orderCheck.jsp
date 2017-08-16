@@ -134,9 +134,10 @@
      });
 </script>
 </head>
-<body>
+<body style="background:rgb(234,234,234)">
 <!-- 加入頁首 -->
-<jsp:include page="includeTop.jsp"></jsp:include>
+<%-- <jsp:include page="includeTop.jsp"></jsp:include> --%>
+<%@ include file="includeTop.jsp" %>
 <!-- 主頁面開始 -->
 <c:if test="${! empty OrderVO}">
 <h1 align="center">訂單詳情</h1>
@@ -371,5 +372,6 @@
 <!-- 主頁面結束 -->
 <!-- 加入頁尾 -->
 <jsp:include page="_Footer.jsp"></jsp:include>
+<%-- <%@ include file="_Footer.jsp" %> --%>
 </body>
 </html>

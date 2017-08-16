@@ -14,8 +14,6 @@
 <script type="text/javascript" src="js/lightbox.js"></script>
 <link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen" />
 
-
-
 <title>PersonalWishContent</title>
 <style>
 	#thhead{
@@ -118,7 +116,7 @@
 		    <td width="600" height="40" align="left" >
 			    	<c:if test="${not empty p1}">
 			    		<div style="float:left; margin:5px">
-						<a href="ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}" rel="lightbox[g1]"><img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'></a><br>
+						<a href="ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}" class="test1" rel="lightbox[g1]"><img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'></a><br>
 						<input type="checkbox" name="checkbox1" id="checkbox1" value="1">刪除
 						</div>
 					</c:if>
@@ -183,6 +181,19 @@
 	<br><br>
 	
 <jsp:include page="_Footer.jsp"></jsp:include>
-<script type="text/javascript" src="js/lightbox.js"></script>
+<script>
+(function(){
+	 $('.test1').click(function(){
+	  $.lightbox({
+	   html : '<h1>Hello lightbox!!!</h1>', //在燈箱中要顯示的html字段
+	   width : 700, //燈箱中間區塊的寬度
+	   height : 600, //燈箱中間區塊的高度
+	   onClosed : function(){ //當燈箱關閉時的callback funtion
+	    alert('Lightbox is closed');
+	   }
+	  });
+	 });
+	})();
+</script>
 </body>
 </html>

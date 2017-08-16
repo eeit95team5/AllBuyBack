@@ -20,6 +20,10 @@ public class AdService {
 		List<AdVO> list = dao.select(i_id);
 		return list;
 	}
+	public List<AdVO> selectPay(int i_id){
+		List<AdVO> list = dao.selectPay(i_id);
+		return list;
+	}
 	public List<AdVO> selectByS_id(int s_id){
 		List<AdVO> list = dao.selectByS_id(s_id);
 		return list;
