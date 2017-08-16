@@ -73,14 +73,15 @@ label {
               </div>
 
                <div class="col-sm-6" style="height:700px;padding-top:200px;">
-                  <form action="#" method="post" style ="margin-left:70px;">
+                  <form action="LoginServlet" method="post" style ="margin-left:70px;">
                     <fieldset >
                        
                       <label for="fname">帳號:</label>
-                      <input type="text" id="fname" name="fname"><br/><br />
+                      <input type="text" id="fname" name="userId"><br/><br />
                       <label for="lname">密碼:</label>
-                      <input type="text" id="lname" name="lname"><br/><br />
-                      <button style="font-family:微軟正黑體;font-size:20px;font-weight:500;border-radius:5px 5px;background-color:#E9967A;padding:5px 10px;margin-left:220px;">登入</button>
+                      <input type="text" id="lname" name="password"><br/><br />
+                      <input style="font-family:微軟正黑體;font-size:20px;font-weight:500;border-radius:5px 5px;background-color:#E9967A;padding:5px 10px;margin-left:220px;" type="submit" value="登入">
+<!--                       <button style="font-family:微軟正黑體;font-size:20px;font-weight:500;border-radius:5px 5px;background-color:#E9967A;padding:5px 10px;margin-left:220px;">登入</button> -->
                    </fieldset>   
                  </form>
 
