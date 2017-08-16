@@ -31,6 +31,11 @@ public class ItemDAOHibernate implements ItemDAOI {
 				"from ItemBean", ItemBean.class).getResultList();
 	}
 	public List<ItemBean> selectByS_Id(int s_id) {
+		Query<ItemBean> query = this.getSession().createQuery("from ItemBean where s_id=? and i_status =1", ItemBean.class);
+		query.setParameter(0, s_id);
+		return query.getResultList();
+	}
+	public List<ItemBean> selectAllByS_Id(int s_id) {
 		Query<ItemBean> query = this.getSession().createQuery("from ItemBean where s_id=?", ItemBean.class);
 		query.setParameter(0, s_id);
 		return query.getResultList();

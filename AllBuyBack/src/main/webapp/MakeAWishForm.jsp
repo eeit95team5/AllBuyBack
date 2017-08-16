@@ -82,8 +82,7 @@
 			<tr>
 			    <td height="50" colspan="2" align="center">
 			       <input class="btn btn-default" type="submit" value="許願" >
-			       <a href="CheckYourList"><input class="btn btn-default" type="button" value="個人願望列表"></a>
-			       <a href="HomeIndex.jsp"><input class="btn btn-default" type="button" value="回首頁"></a>
+			       <a href="CheckYourList"><input class="btn btn-default" type="button" value="個人許願池"></a>
 			    </td>
 			</tr>	
 		</tbody>

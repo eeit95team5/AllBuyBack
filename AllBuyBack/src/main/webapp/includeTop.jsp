@@ -2,13 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <link rel="stylesheet" href="styles/main.css"/>
-<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.css">
+<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
 <link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
 <link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
 <script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
 <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 <script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
-<script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>.3.7/js/bootstrap.min.js"></script>
+<script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
  
 <style>
      /*設定熱門代購搜尋Bar，只有"首頁"和"導覽列進入找國家之後"用得到*/
@@ -134,7 +134,7 @@
     <div class="navbar-header" style="font-size:20px;margin-right:120px;">
       <a class="navbar-brand" 
           style="color:rgb(41,64,87);font-family:Stencil;font-size:1.2em" 
-          href="#">ALL BUY BACK</a>
+          href="HomeIndex.jsp">ALL BUY BACK</a>
     </div>
 
 <ul class="drop-down-menu  nav navbar-nav" style="text-align:left">
@@ -335,11 +335,11 @@
         </div>
       </div>
     </form>
+<!------------------->
 <c:if test="${! empty LoginOK}">
          <div class="myPicture">
              <img src=""/>
          </div>
-<!------------------->
 
       <div class="threeDot" id="threeDot">
           <span class="glyphicon glyphicon-option-vertical"></span>
@@ -351,7 +351,7 @@
             <a href="#">我的賣場</a>
             <a href="#">挑戰時尚金頭腦</a>
             <a href="#">聯絡管理員</a>
-            <a href="#">登出</a>
+            <a href="LogoutServlet">登出</a>
          </div>
 </c:if>
 <c:if test="${empty LoginOK}">

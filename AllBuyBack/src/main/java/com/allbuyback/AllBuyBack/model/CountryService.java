@@ -24,6 +24,7 @@ public class CountryService {
 		}
 		return result;
 	}
+	
 	public List<CountryBean> select(){
 		return countryDao.select(); 
 	}

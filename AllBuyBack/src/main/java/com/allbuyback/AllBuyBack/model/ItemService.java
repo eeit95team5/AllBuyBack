@@ -33,6 +33,10 @@ public class ItemService {
 		return itemDao.selectByS_Id(s_id);
 	}
 	
+	public List<ItemBean> selectAllByS_Id(int s_id){
+		return itemDao.selectAllByS_Id(s_id);
+	}
+	
 	public ItemBean insert(ItemBean bean) {
 		ItemBean result = null;
 		if(bean!=null) {

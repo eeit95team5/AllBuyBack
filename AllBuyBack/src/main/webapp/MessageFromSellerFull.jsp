@@ -8,19 +8,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
 <title>Insert title here</title>
 </head>
 <body>
 <div style="width: 800px; height: 500px; overflow: auto">
 <!-- <table border='1' bordercolor='#CCCCFF' width='800'> -->
 <table>
-	<tr>
+<!-- 	<tr> -->
 <!-- 	    <th>會員編號</th> -->
 <!-- 	    <th>賣場編號</th>		 -->
-		<th>帳號</th>
-		<th>回覆內容</th>
-		<th>回覆日期</th>
+<!-- 		<th>帳號</th> -->
+<!-- 		<th>回覆內容</th> -->
+<!-- 		<th>回覆日期</th> -->
 <!-- 		<th>申訴標題</th> -->
 <!-- 		<th>申訴內容</th> -->
 <!-- 		<th>申訴日期</th> -->
@@ -30,7 +30,7 @@
 <!-- 		<th>回覆日期</th> -->
 
 	
-	</tr>
+<!-- 	</tr> -->
 	<c:forEach var="ChatVO" items="${list}">	
 		<tr align='center' valign='middle'>
 <%-- 		    <td>${ChatVO.m_id}</td> --%>
@@ -74,7 +74,8 @@
 	</table>
 	</div>
 	
-	  <form ENCTYPE="multipart/form-data" method="get" action=" <c:url value="/ChatController"/>"  id="/ItemController" >
+<%-- 	  <form ENCTYPE="multipart/form-data" method="post" action=" <c:url value="/ChatController"/>"  id="/ItemController" > --%>
+<form method="post" action=" <c:url value="/ChatController"/>"  id="/ItemController" >
       <label class="fontSize" >賣家編號：</label>
       <input type="text" name="s_id" value="${SellerVO.s_id}" class="fieldWidth" style="width: 180px;">
       <font size="-1" color="#FF0000">${MsgMap.errorIDEmpty}${MsgMap.errorIDDup}</font>
@@ -103,8 +104,8 @@
          <input type="hidden" name="account" value="${LoginOK.m_account}">
       </div>
       <br/>
-</form>
+</form>	
+	<a href="ChatController?action=MessageFromSeller&id=${LoginOK.m_id}">回上一頁</a>
 	<a href="index.jsp">回首頁</a>
-
 </body>
 </html>

@@ -52,8 +52,13 @@ public class Shop_MessageController {
 			errors.put("login", "請先登入");
 			return;
 		}
+		MemberVO mVO = (MemberVO) request.getSession().getAttribute("LoginOK");
+		
 		if("Update".equals(action)){		
 			Shop_MessageBean msg = shop_MessageService.select(shop_MessageBean.getSm_id());
+			if(mVO.getM_id()!=msg.getS_id()){
+				return;
+			}
 			msg.setSm_reply(shop_MessageBean.getSm_reply());
 			msg.setSm_replyDate(new Date());
 			msg.setSm_state(2);
@@ -61,17 +66,41 @@ public class Shop_MessageController {
 			request.setAttribute("s_id", bean.getS_id());
 			this.getJSON(request, response);			
 		}
+		if("Hidden".equals(action)){		
+			Shop_MessageBean msg = shop_MessageService.select(shop_MessageBean.getSm_id());
+			if(mVO.getM_id()!=msg.getS_id()){
+				return;
+			}			
+			if(msg.getSm_hidden()==2){
+				msg.setSm_hidden(1);
+				request.setAttribute("hidden", "show");
+			}else{
+				msg.setSm_hidden(2);
+				request.setAttribute("hidden", "hidden");
+			}
+			
+			Shop_MessageBean bean = shop_MessageService.update(msg);		
+			request.setAttribute("s_id", bean.getS_id());					
+			this.getJSON(request, response);			
+		}
+		
 		
 		if("Insert".equals(action)){	
 //			model.addAttribute("shop", shopService.select(shop_MessageBean.getS_id()));
-//			model.addAttribute("items", itemService.selectByS_Id(shop_MessageBean.getS_id()));															
+//			model.addAttribute("items", itemService.selectByS_Id(shop_MessageBean.getS_id()));
+			if(mVO.getM_id()==shop_MessageBean.getS_id()){
+				return;
+			}
+			if(mVO.getM_id()!=shop_MessageBean.getM_id()){
+				return;
+			}
 			if(shop_MessageBean.getSm_content().isEmpty()){
 				model.addAttribute("shop_messages", shop_MessageService.selectByS_Id(shop_MessageBean.getS_id()));
 				errors.put("noempty", "請輸入內容");
 				return;
 			} 
 			
-			MemberVO mVO = (MemberVO) request.getSession().getAttribute("LoginOK");
+			
 			shop_MessageBean.setM_id(mVO.getM_id());
 			shop_MessageBean.setSm_date(new Date());
 			shop_MessageBean.setSm_hidden(1);
@@ -96,7 +125,8 @@ public class Shop_MessageController {
 		}
 		
 		List<Shop_MessageBean> msgs = null;
-		System.out.println(request.getParameter("s_id"));
+		System.out.println("JSON s_id = " + request.getParameter("s_id"));
+		System.out.println("JSON s_id = " + request.getAttribute("s_id"));
 		if(request.getParameter("s_id") != null){
 			msgs = shop_MessageService.selectByS_Id(Integer.parseInt(request.getParameter("s_id")));
 		}else if (request.getAttribute("s_id") !=null){
@@ -121,7 +151,7 @@ public class Shop_MessageController {
 		Map m2 = new HashMap();
 		m2.put("msgs", l1);
 		String jsonString = JSONValue.toJSONString(m2);
-//		System.out.println(jsonString);
+		System.out.println(jsonString);
 		out.println(jsonString);
 	}
 }

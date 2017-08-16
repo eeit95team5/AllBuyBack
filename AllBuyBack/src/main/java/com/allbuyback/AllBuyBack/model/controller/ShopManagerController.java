@@ -43,7 +43,7 @@ public class ShopManagerController {
 		}		
 		
 		model.addAttribute("shop", shopService.select(shopBean.getS_id()));
-		model.addAttribute("item", itemService.selectByS_Id(shopBean.getS_id()));		
+		model.addAttribute("item", itemService.selectAllByS_Id(shopBean.getS_id()));		
 		return "shopmanager";
 		
 	}
