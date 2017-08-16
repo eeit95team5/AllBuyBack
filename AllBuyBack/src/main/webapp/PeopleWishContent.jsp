@@ -11,9 +11,9 @@
 <script>
 $(function(){
 	$('#CT_window').dialog({
-		autoOpen: false,
-		width:650,
+		autoOpen:false,
 		height:400,
+		width:650,
 	});
 	$('#CT_btn').click(function(){
 		$('#CT_window').dialog('open');
@@ -25,6 +25,7 @@ $(function(){
 				$('#CT_window').html(changePage);
 			}
 		});
+// 		window.open("MakeWishComeTrue?w_Id=${wVO.w_id}", 'newwindow','height=400, width=680');
 	});
 	
 	for(var i=1; i<=5; i++){
@@ -175,7 +176,7 @@ $(function(){
 		       <a href="CheckPeopleList"><input class="btn" type="button" value="回許願池"></a>
 <%--                <a href="MakeWishComeTrue?w_Id=${wVO.w_id}"><input class="btn" type="button" value="接受願望"></a> --%>
 			   <input id="CT_btn" class="btn" type="button" value="接受願望">
-		       <div id="CT_window"></div>
+			   <div id="CT_window"></div>
 		       <br>
 		       <font color='red' size='-1'>${errorMsg.login}</font>
 		       <font color='red' size='-1'>${errorMsg.duplicateAccount}</font>

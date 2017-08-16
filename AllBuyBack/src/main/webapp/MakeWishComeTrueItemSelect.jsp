@@ -6,7 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-
 <title>MakeWishComeTrueItemSelect</title>
 <style>
 	.div1{
@@ -27,7 +26,7 @@
 	<h1>${account}的賣場商品列表</h1>
 	<div>
 		<form name="ItemPickUp" id="ItemPickUp" action="ItemPickUpCheck?w_id=${w_id}" method="POST">
-				<input type="submit" value="確定">
+				<input id="OKbtn" type="submit" value="確定">
 				<a href="CheckPeopleList"><input type="button" value="取消"></a>
 		<table>
 			<thead>
