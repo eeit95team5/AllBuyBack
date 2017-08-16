@@ -46,7 +46,7 @@ $(function() {
 		$('#eyeCount').attr("style","display:block");
 	});
 
-)}
+})
 </script>
 
 </head>
@@ -415,7 +415,7 @@ $(function() {
             <div class="productArea1"  >
                <div class="productTitle" >限定預購！日本郵局「哆啦A夢餐具組」 單人9件超值華組</div>
 
-                <div id="eyeCount" style="position:absolute;top:55px;left:35px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;">瀏覽數</div>
+                <div id="eyeCount" style="position:absolute;top:100px;left:35px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:block;">瀏覽數</div>
                 <div id="eye"><span class="glyphicon glyphicon-eye-open icon-success" style="font-size:20px;color:gray"></span></div>
                 <div id="heart"><span class="glyphicon glyphicon-heart icon-success" style="font-size:20px;;color:gray"></span></div>
                 <div id="shoppingCart"><span  class="glyphicon glyphicon-shopping-cart icon-success" style="font-size:20px;;color:gray"></span></div> 
