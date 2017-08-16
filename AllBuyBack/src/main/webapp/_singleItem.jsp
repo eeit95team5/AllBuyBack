@@ -44,6 +44,7 @@
 <script type="text/javascript">
 $(function() {
 	
+
  	$("#eye").mouseover(function() {
  		$('#eyeCount').attr("style","position:absolute;top:60px;left:35px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:block;");
  	});
@@ -92,6 +93,7 @@ $(function() {
      		
      	});
 
+
 })
 </script>
 
@@ -106,6 +108,7 @@ $(function() {
         <div class="col-sm-12">
             <div class="productArea1"  >
                <div class="productTitle" >限定預購！日本郵局「哆啦A夢餐具組」 單人9件超值華組</div>
+
                
                 <span id="buyAdTag" class="glyphicon glyphicon-tag " style="position:absolute;top:30px;left:1090px;font-size:20px;;color:gray"></span>
                 <div id="buyAd" style="position:absolute;top:1px;left:1100px;border-radius:5px 5px;color:black;font-size:10px;display:none;">買廣告請點我</div>
@@ -235,9 +238,43 @@ border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑�
     </div><!--row-->
 </div><!--container-->
 
+<!----------footer開始-------------->
+<footer>
+ <div class="container-fluid" style="background-color:rgb(185,152,103);height:160px;padding-left:30px;padding-top:30px" >
+ 
+    	<div class="row">
+        	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><!--複製go1buy1-->
+            	<ul class="footer_menu">
+                	<li><a href="">新手上路</a></li>
+                	<li><a href="">常見問題</a></li>  
+                	<li><a class="">客服中心</a></li>                          
+                </ul>
+            </div>
+        	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            	<ul class="footer_menu">
+                	<li><a href="">許願池</a></li>
+                	<li><a href="">最新代購消息</a></li>
+                	<li><a href="">代購賣家進駐申請</a></li>					            		                            
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            	<ul class="footer_menu">
+            		<li><a href="">FB粉絲團</a></li>
+                    <li><a href="">聯絡ALLBUYBACK</a></li>
+                    <li><a href="">服務條款與隱私權政策</a></li>
+                 </ul>
+            </div>                    
+        </div>
+    </div>
+</footer>
 
 
-<jsp:include page="_Footer.jsp"></jsp:include>
+<div class="container-fluid" style="background-color:rgb(41,64,87);height:45px;color:white;text-align:center;padding-top:15px;" >
+    Copyright ©2017 - ALLBUYBACK 股份有限公司
+</div>
+<!----------footer結束-------------->
+
+
 
 
 

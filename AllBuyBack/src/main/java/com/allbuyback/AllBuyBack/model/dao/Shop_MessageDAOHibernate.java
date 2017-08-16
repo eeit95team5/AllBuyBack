@@ -65,7 +65,7 @@ public class Shop_MessageDAOHibernate implements Shop_MessageDAOI{
 	@Override
 	public Shop_MessageBean update(Shop_MessageBean bean) {
 		if(bean!=null) {
-			this.getSession().update(bean);	
+			this.getSession().update(bean);
 		}
 		return bean;
 	}

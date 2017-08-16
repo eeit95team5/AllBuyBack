@@ -34,6 +34,7 @@
 			    <td width="120" height="40">許願人:</td>
 			    <td width="600" height="40" align="left" >
 			    <input id='account1' style="text-align:left" name="account" disabled value="${LoginOK.m_account}" type="text" size="14">
+			    </td>
 			</tr>
 			<tr>
 			    <td width="120" height="40">許願標題:</td>
