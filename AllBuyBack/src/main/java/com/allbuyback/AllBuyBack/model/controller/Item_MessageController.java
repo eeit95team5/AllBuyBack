@@ -50,14 +50,7 @@ public class Item_MessageController {
 		
 		MemberVO mVO = null;
 		Map<String, String> errors = new HashMap<String, String>();		
-		model.addAttribute("errors", errors);
-		
-		//檢查登入
-		if(request.getSession().getAttribute("LoginOK")==null){
-			errors.put("loginerror", "請先登入");			
-		}else{
-			mVO = (MemberVO) request.getSession().getAttribute("LoginOK");
-		}				
+		model.addAttribute("errors", errors);												
 		
 		if(!errors.isEmpty()){
 			System.out.println("something error");
@@ -68,6 +61,13 @@ public class Item_MessageController {
 		if("Select".equals(action)){
 			List<Item_MessageBean> result = item_MessageService.select(item_MessageBean.getI_id());
 			this.getJSON(request, response, result);
+		}
+		
+		//檢查登入
+		if(request.getSession().getAttribute("LoginOK")==null){
+			errors.put("loginerror", "請先登入");			
+		}else{
+			mVO = (MemberVO) request.getSession().getAttribute("LoginOK");
 		}
 		
 		if("Update".equals(action)){		
@@ -163,6 +163,7 @@ public class Item_MessageController {
 		String jsonString = JSONValue.toJSONString(m2);
 		System.out.println(jsonString);
 		out.println(jsonString);
+		return;
 	}
 
 }
