@@ -132,6 +132,7 @@
 	color:#000;
 }
 </style>
+<c:if test="${! empty LoginOK}">
 <script type="text/javascript">
     var i = 0;
     window.onload = function () {
@@ -148,8 +149,7 @@
         }
     }
 </script>
-<script src="js/lightbox.js"></script>
-
+</c:if>
 </head>
 <body>
 
