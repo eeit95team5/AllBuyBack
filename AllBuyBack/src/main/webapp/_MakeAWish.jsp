@@ -227,14 +227,14 @@ tbody{
 			<tr>
 			    <td width="200" height="100">許願標題 :</td>
 			    <td width="550" height="100" align="left" >
-			         <input id='title1' style="text-align:left;;border:1px solid gray;" name="title" value="${param.title}" type="text" size="15">
+			         <input id='title1' style="text-align:left;;border:1px solid gray;" name="title" value="${param.title}" type="text" size="15"><br>
 			         <div style="color:#FF0000; display: inline;">${ErrorMsg.title}</div>
 			    </td>
 			</tr>
 			<tr>
 			    <td width="200" height="100" style="margin-right: 50px;">許願內容 :</td>
 			    <td width="550" height="100" align="left" >
-			         <textarea cols="40" rows="5" name="content" id="content1" style="border:1px solid gray;">${param.content}</textarea>
+			         <textarea cols="40" rows="5" name="content" id="content1" style="border:1px solid gray;">${param.content}</textarea><br>
 			         <div style="color:#FF0000; display: inline">${ErrorMsg.content}</div>
 			    </td>
 			</tr>

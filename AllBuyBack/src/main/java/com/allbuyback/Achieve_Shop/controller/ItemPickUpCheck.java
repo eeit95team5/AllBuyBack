@@ -88,7 +88,7 @@ public class ItemPickUpCheck extends HttpServlet {
 		ItemVO iVO = isDAO.select(i_id);
 		request.setAttribute("iVO", iVO);
 
-		RequestDispatcher rd = request.getRequestDispatcher("/PeopleWishContent.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/_SeeOthersWish.jsp");
 		rd.forward(request, response);
 
 		//-----------------------------------------------------------------
