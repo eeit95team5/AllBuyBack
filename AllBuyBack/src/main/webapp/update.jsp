@@ -255,7 +255,7 @@
 
 
 <!-- 修改大頭照 -->
-<!--<div>
+<div>
 	<form action="<c:url value="/UpdatePhotoServlet" />" enctype="multipart/form-data" method="post">
 		<input type="hidden" name="status" value="updatePic"> <input
 			type="hidden" name="account" value="${LoginOK.m_account }"> <input
@@ -273,7 +273,7 @@
 		<img id="output" src="<c:url value='/UpdateDataServlet?status=selectPic&id=${LoginOK.m_id}' />" style="width: 150px; height: 150px" />
 	</div>
 </div>	
- -->
+
 </body>
 	<!--<c:set var="serverImg" value="${temp.photoString }" /> -->
 	<c:if test="${ not empty requestScope.temp }" > 

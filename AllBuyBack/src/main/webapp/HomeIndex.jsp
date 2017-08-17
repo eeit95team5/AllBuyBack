@@ -112,6 +112,25 @@
     text-decoration: none;
     display: block;
 }
+
+
+/* Add a dark gray background color to the modal header and center text */
+.modal-header, h4, .close {
+    background-color: #ffe6e6;
+    color: #ff0000 !important;
+    text-align: center;
+    font-size: 50px;
+}
+
+.modal-header, .modal-body {
+    padding: 30px 40px;
+}
+
+.btn:hover, .btn:focus{
+	border:1px solid #333;
+	background-color: #fff;
+	color:#000;
+}
 </style>
 <script type="text/javascript">
     var i = 0;
@@ -365,7 +384,7 @@
 <c:if test="${empty LoginOK}">
          <button  class="btn btn-danger navbar-btn" onclick="javascript:location.href='register.jsp'"
          style="font-family:微軟正黑體;background-color:rgb(185,127,109);border:rgb(185,127,109);margin-right:10px" >註冊</button>
-    <button  class="btn btn-danger navbar-btn" onclick="javascript:location.href='login.jsp'"
+    <button  class="btn btn-danger navbar-btn" data-toggle="modal" data-target="#myModal"
          style="font-family:微軟正黑體;background-color:rgb(185,127,109);border:rgb(185,127,109)" >登入</button>
    
 </c:if>
@@ -763,5 +782,39 @@
 		Copyright ©2017 - ALLBUYBACK 股份有限公司</div>
 	<!----------footer結束-------------->
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 style="font-family:Comic Sans MS;color:#ff944d"><span class="glyphicon glyphicon-leaf"></span>LogIn</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form" action="LoginServlet" method="post">
+          <div class="form-group">
+          	<input type="hidden" name="status" value="login">
+           	<label for="psw" style="font-family:Comic Sans MS;color:#ff944d;font-size:25px"  ><span class="glyphicon glyphicon-tree-deciduous"></span>Account</label>
+            <input type="text" class="form-control" id="psw" name="userId" placeholder="請輸入註冊帳號">
+          </div>
+          <div class="form-group">
+            <label for="usrname" style="font-family:Comic Sans MS;color:#ff944d;font-size:25px"><span class="glyphicon glyphicon-grain"></span>Password</label>
+            <input type="text" class="form-control" id="usrname" name="password" >
+          </div>
+          <button type="submit" class="btn btn-block" style="font-family:Comic Sans MS;color:#ff944d;font-size:25px">Commit 
+            <span class="glyphicon glyphicon-ok"></span>
+          </button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
+          <span class="glyphicon glyphicon-remove"></span> Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
