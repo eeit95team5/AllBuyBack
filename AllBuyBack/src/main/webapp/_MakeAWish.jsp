@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -229,7 +230,7 @@ tbody{
 			<tr>
 			    <td width="200" height="100" style="margin-right: 50px;">許願內容 :</td>
 			    <td width="550" height="100" align="left" >
-			         <textarea cols="35" rows="5" name="content" id="content1" style="border:1px solid gray;">${param.content}</textarea>
+			         <textarea cols="40" rows="5" name="content" id="content1" style="border:1px solid gray;">${param.content}</textarea>
 			         <div style="color:#FF0000; display: inline">${ErrorMsg.content}</div>
 			    </td>
 			</tr>
