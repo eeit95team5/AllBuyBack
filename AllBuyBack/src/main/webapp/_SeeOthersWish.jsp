@@ -210,8 +210,8 @@ $(function(){
     -webkit-border-image: url(images/border.png) 20 stretch; /* Safari 3.1-5 */
     -o-border-image: url(images/border.png) 20 stretch; /* Opera 11-12.1 */
     border-image: url(images/border.png) 20 stretch;
-    height:1100px;
-    width:800px;
+    height:1120px;
+    width:850px;
     margin-left:170px; 
 }
 
@@ -251,10 +251,10 @@ tbody{
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-12" style="background-color:#EED5B7;height:1300px;margin-bottom:50px;margin-top: 40px;">
+        <div class="col-sm-12" style="background-color:#EED5B7;height:1350px;margin-bottom:50px;margin-top: 40px;">
 
 
- <div style="margin-top:50px;margin-bottom:20px;text-align:center;color:#E9967A;font-family:Algerian;font-weight:900;letter-spacing:8px;font-size:50px;">
+ <div style="margin-top:50px;margin-bottom:20px;text-align:center;color:#E9967A;font-family:新細明體;font-weight:900;letter-spacing:8px;font-size:50px;">
     <span>喜歡這個願望嗎？趕快+1喔!</span>
  </div>
 
@@ -295,8 +295,8 @@ tbody{
 		    </td>
 		 </tr>
 			<tr>
-		    <td width="200" height="100">圖片:</td>
-		    <td width="550" height="100" align="left" >
+		    <td width="200" height="150">圖片:</td>
+		    <td width="550" height="150" align="left" >
 			    	<c:if test="${not empty p1}">
 			    		<div style="float:left; margin:5px">
 			    		<div id="pic1"><img height='500' width='500' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'></div>
@@ -329,9 +329,18 @@ tbody{
 					</c:if>
 		    </td>
 		</tr>
+		<tr>
+		    <td width="200" height="100">參與願望名單:</td>
+		    <td width="550" height="100" align="left" >
+		    	<c:forEach var="list" items="${wlList}">
+		    		${list.m_account}<br>
+		        </c:forEach>
+		    </td>
+		</tr>
+		
         	<tr>
-		    <td width="300" height="100">實現願望賣家:</td>
-		    <td width="100" height="100" align="left" >
+		    <td width="200" height="100">實現願望賣家:</td>
+		    <td width="550" height="100" align="left" >
 		    	<c:forEach var="as" items="${asVO}">
 		    		${as.m_account}實現願望的內容: <a href="SingleItemContent?w_id=${wVO.w_id}&i_id=${iVO.i_id}">${iVO.i_name}</a>
 		    		<c:if test="${not empty iVO.i_name}">
@@ -341,7 +350,7 @@ tbody{
 		    </td>
 		</tr>
 			<tr>
-		    <td height="350" colspan="2" align="center" style="margin-top: 50px;">
+		    <td height="150" colspan="2" align="center" >
 		       <a href="AddOne?w_Id=${wVO.w_id}"><input class="btn" type="button" value="+1" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #EE9572;padding:8px 18px;margin-right: 30px;color:black"></a>
 		       <a href="CheckPeopleList"><input class="btn" type="button" value="回許願池" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #FFC125;padding:8px 18px;margin-right: 30px;color:black"></a>
 <%--                <a href="MakeWishComeTrue?w_Id=${wVO.w_id}"><input class="btn" type="button" value="接受願望"></a> --%>
