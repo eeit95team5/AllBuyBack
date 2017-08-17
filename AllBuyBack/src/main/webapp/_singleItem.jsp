@@ -182,10 +182,10 @@ $(function() {
                      <img src="" width="90" />
                    </div>
 
-                <div class="price">售價:</div>  
-                <div class="brand">商品品牌:</div>  
-                <div class="country">代購國家:</div>  
-                <div class="waitDay">等待天數:</div> 
+                <div class="price">售價:</div> <div style="position: absolute;top:100px;left:650px;  height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px;">0000000000000</div> 
+                <div class="brand">商品品牌:</div> <div style="position: absolute;top:170px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">0000000000</div> 
+                <div class="country">代購國家:</div>  <div style="position: absolute;top:240px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">0000000000</div> 
+                <div class="waitDay">等待天數:</div> <div style="position: absolute;top:310px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">0000000000</div> 
                 
                 <div class="count">數量:
                  
@@ -196,8 +196,8 @@ $(function() {
 				<input type="hidden" id="s_id" name="s_id" value="${itemVO.s_id}" />
                 <button class="shoppingCart" id="addToCart">加入購物車</button> 
                 <button class="wantBuy">聯絡賣家</button> 
-                <div class="pay">付款方式:</div>  
-                <div class="deliver">寄送方式:</div>  
+                <div class="pay">付款方式:</div>  <div style="position: absolute;top:520px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">0000000000</div> 
+                <div class="deliver">寄送方式:</div>  <div style="position: absolute;top:590px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">0000000000</div> 
 
             </div><!--productArea1區域-->
         </div>
