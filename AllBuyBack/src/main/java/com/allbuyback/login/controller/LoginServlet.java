@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
 							response.sendRedirect(contextPath + target);
 						} else {
 							session.setAttribute("LoginOK", bean);
-							response.sendRedirect(contextPath + "/HomeAfteLogin.html");
+							response.sendRedirect(contextPath + "/index.jsp");
 						}
 				} else if (bean != null && !(bean.getM_account().equals("admin"))) {
 					String target = (String) session.getAttribute("target");
@@ -64,7 +64,7 @@ public class LoginServlet extends HttpServlet {
 						response.sendRedirect(contextPath + target);
 					} else {
 						session.setAttribute("LoginOK", bean);
-						response.sendRedirect(contextPath + "/HomeAfteLogin.html");
+						response.sendRedirect(contextPath + "/index.jsp");
 					}
 					
 				} else {
