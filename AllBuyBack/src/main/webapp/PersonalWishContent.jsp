@@ -13,17 +13,6 @@
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
 
-<style>
-    fieldset{
-		margin:auto;
-		padding:20px;
-		width:750px;
-		background-color: tan;
-		border: 1px solid #003C9D;
-		border-radius: 20px;
-	}
-</style>
-
 <title>PersonalWishContent</title>
 <style>
 	#thhead{
@@ -126,7 +115,9 @@
 		    <td width="600" height="40" align="left" >
 			    	<c:if test="${not empty p1}">
 			    		<div style="float:left; margin:5px">
+
 						<img height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'><br>
+
 						<input type="checkbox" name="checkbox1" id="checkbox1" value="1">刪除
 						</div>
 					</c:if>
@@ -193,5 +184,6 @@
 <%-- <jsp:include page="_Footer.jsp"></jsp:include> --%>
 <%@ include file="_Footer.jsp" %>
 <script type="text/javascript" src="js/lightbox.js"></script>
+
 </body>
 </html>
