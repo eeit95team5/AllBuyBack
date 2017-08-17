@@ -186,8 +186,10 @@ public class MemController extends HttpServlet {
 
 			// 查詢完成，準備轉交
 
-			request.setAttribute("memVO", memVO);
-			request.getRequestDispatcher("/MemController?action=BlackList").forward(request, response);
+//			request.setAttribute("memVO", memVO);
+//			request.getRequestDispatcher("/MemController?action=BlackList").forward(request, response);			
+			request.setAttribute("Admin", memVO);
+			request.getRequestDispatcher("/_system.jsp").forward(request, response);
 
 		}
 		
@@ -205,8 +207,10 @@ public class MemController extends HttpServlet {
 
 			// 查詢完成，準備轉交
 
-			request.setAttribute("MemVO", memVO);
-			request.getRequestDispatcher("/MemController?action=MallList").forward(request, response);
+//			request.setAttribute("MemVO", memVO);
+//			request.getRequestDispatcher("/MemController?action=MallList").forward(request, response);
+			request.setAttribute("Admin", memVO);
+			request.getRequestDispatcher("/_system.jsp").forward(request, response);
 
 		}
 		
@@ -233,9 +237,10 @@ public class MemController extends HttpServlet {
 
 			// 查詢完成，準備轉交
 
-			request.setAttribute("MemVO", memVO);
-			request.getRequestDispatcher("/MemController?action=MemberListAll").forward(request, response);
-//			request.getRequestDispatcher("/_system.jsp").forward(request, response);
+//			request.setAttribute("MemVO", memVO);
+//			request.getRequestDispatcher("/MemController?action=MemberListAll").forward(request, response);
+			request.setAttribute("Admin", memVO);
+			request.getRequestDispatcher("/_system.jsp").forward(request, response);
 
 		}
 		
@@ -259,8 +264,11 @@ public class MemController extends HttpServlet {
 
 					// 查詢完成，準備轉交
 
-					request.setAttribute("MemVO", memVO);
-					request.getRequestDispatcher("/MemController?action=MemberListAll").forward(request, response);
+//					request.setAttribute("MemVO", memVO);
+//					request.getRequestDispatcher("/MemController?action=MemberListAll").forward(request, response);
+					request.setAttribute("Admin", memVO);
+					request.getRequestDispatcher("/_system.jsp").forward(request, response);
+
 
 				}
 

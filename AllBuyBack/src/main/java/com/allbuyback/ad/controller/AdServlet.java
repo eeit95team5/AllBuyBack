@@ -177,6 +177,7 @@ public class AdServlet extends HttpServlet {
 			adS.insert(adVO);
 			request.setAttribute("msg", "完成");
 			request.getRequestDispatcher("/BuyAd.jsp").forward(request, response);
+			
 		}
 		//針對賣場尋找廣告
 		if("selectBySId".equals(action)){

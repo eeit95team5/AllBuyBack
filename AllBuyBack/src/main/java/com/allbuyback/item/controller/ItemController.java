@@ -85,8 +85,11 @@ public class ItemController extends HttpServlet {
 
 					// 查詢完成，準備轉交
 
-					request.setAttribute("ItemVO", itemVO);
-					request.getRequestDispatcher("/ItemController?action=AccusedItemListAll").forward(request, response);
+//					request.setAttribute("ItemVO", itemVO);
+//					request.getRequestDispatcher("/ItemController?action=AccusedItemListAll").forward(request, response);
+					request.setAttribute("Admin", itemVO);
+					request.getRequestDispatcher("/_system.jsp").forward(request, response);
+					
 
 				}
 				
@@ -106,8 +109,26 @@ public class ItemController extends HttpServlet {
 
 					// 查詢完成，準備轉交
 
-					request.setAttribute("ItemVO", itemVO);
-					request.getRequestDispatcher("/ItemController?action=ItemListAll").forward(request, response);
+//					request.setAttribute("ItemVO", itemVO);
+//					request.getRequestDispatcher("/ItemController?action=ItemListAll").forward(request, response);
+					request.setAttribute("Admin", itemVO);
+					request.getRequestDispatcher("/_system.jsp").forward(request, response);
+
+
+				}
+				// 檢舉產品
+
+				if ("product_accuse".equals(action)) {
+
+					int m_id = new Integer(request.getParameter("m_id"));
+					int i_id = new Integer(request.getParameter("i_id"));
+
+					ReportVO repVO = new ReportVO();
+					repVO.setM_id(m_id);
+					repVO.setI_id(i_id);
+
+					request.setAttribute("ReportVO", repVO); // 資料庫update成功後,正確的的empVO物件,存入req
+					request.getRequestDispatcher("/Accuse.jsp").forward(request, response); // 修改成功後,轉交listOneEmp.jsp
 
 				}
 	}
@@ -193,20 +214,20 @@ public class ItemController extends HttpServlet {
 		}
 
 
-		// 檢舉產品
-
-		if ("product_accuse".equals(action)) {
-
-			int m_id = new Integer(request.getParameter("m_id"));
-			int i_id = new Integer(request.getParameter("i_id"));
-
-			ReportVO repVO = new ReportVO();
-			repVO.setM_id(m_id);
-			repVO.setI_id(i_id);
-
-			request.setAttribute("ReportVO", repVO); // 資料庫update成功後,正確的的empVO物件,存入req
-			request.getRequestDispatcher("/Accuse.jsp").forward(request, response); // 修改成功後,轉交listOneEmp.jsp
-
-		}
+//		// 檢舉產品
+//
+//		if ("product_accuse".equals(action)) {
+//
+//			int m_id = new Integer(request.getParameter("m_id"));
+//			int i_id = new Integer(request.getParameter("i_id"));
+//
+//			ReportVO repVO = new ReportVO();
+//			repVO.setM_id(m_id);
+//			repVO.setI_id(i_id);
+//
+//			request.setAttribute("ReportVO", repVO); // 資料庫update成功後,正確的的empVO物件,存入req
+//			request.getRequestDispatcher("/Accuse.jsp").forward(request, response); // 修改成功後,轉交listOneEmp.jsp
+//
+//		}
 	}
 }
