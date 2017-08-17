@@ -219,35 +219,38 @@ tbody{
 		    <tr>
 			    <td width="200" height="100">許願編號 :</td>
 			    <td width="550" height="100" align="left" >
-			   <input id='w_Id1' style="text-align:left;border:1px solid #E9967A;" name="w_Id" disabled value="${wVO.w_id}" type="text" size="14">
+			   <input id='w_Id1' style="text-align:left;border:1px solid #E9967A;" name="w_Id" disabled value="${wVO.w_id}" type="text" size="15">
 			    </td>
 			</tr>
 			<tr>
 			    <td width="200" height="100">許願時間:</td>
 			    <td width="550" height="100" align="left" >
-			    <input id='date1' style="text-align:left;border:1px solid #E9967A;" name="date" disabled value="${wVO.w_date}" type="text" size="14">
+			    <input id='w_date1' style="text-align:left;border:1px solid #E9967A;" name="date" disabled value="${wVO.w_date}" type="text" size="15">
+			    </td>
 		  </tr>
 		  		<tr>
 		    <td width="200" height="100">許願狀態:</td>
 		    <td width="550" height="100" align="left" >
-		    <input id='date1' style="text-align:left;border:1px solid #E9967A;" name="date" disabled value="${wVO.w_status}" type="text" size="14">
+		    <input id='w_status1' style="text-align:left;border:1px solid #E9967A;" name="date" disabled value="${wVO.w_status}" type="text" size="15">
 		</tr>
 		<tr>
 		    <td width="200" height="100">+1人數:</td>
 		    <td width="550" height="100" align="left" >
-		    <input id='date1' style="text-align:left;border:1px solid #E9967A;" name="date" disabled value="${wVO.w_count}" type="text" size="14">
+		    <input id='w_count1' style="text-align:left;border:1px solid #E9967A;" name="date" disabled value="${wVO.w_count}" type="text" size="15">
 		</tr>
 			
 			<tr>
 		    <td width="200" height="100">許願標題:</td>
 		    <td width="550" height="100" align="left" >
-		         <input id='title1' style="text-align:left;border:1px solid #E9967A;" name="title" disabled value="${wVO.w_title}" type="text" size="14">
+		         <input id='title1' style="text-align:left;border:1px solid #E9967A;" name="title" value="${wVO.w_title}" type="text" size="15"><br>
+		         <div style="color:#FF0000; display: inline;">${ErrorMsg.title}</div>
 		    </td>
 		 </tr>
 			<tr>
 		    <td width="200" height="100">許願內容:</td>
 		    <td width="550" height="100" align="left" >
-		         <textarea cols="40" rows="5" name="content" id="content1" disabled style="border:1px solid #E9967A;">${wVO.w_content}</textarea>
+		         <textarea cols="40" rows="5" name="content" id="content1" style="border:1px solid #E9967A;">${wVO.w_content}</textarea><br>
+		         <div style="color:#FF0000; display: inline">${ErrorMsg.content}</div>
 		    </td>
 		 </tr>
 			<c:if test="${empty p1}">
@@ -359,7 +362,7 @@ tbody{
 		<tr>
 		    <td height="150" colspan="2" align="center">
 		       <input class="btn btn-default" type="submit" value="修改許願內容" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #EEA2AD;padding:8px 18px;margin-right: 30px;color:black">
-		       <a href="CheckYourList"><input class="btn btn-default" type="button" value="回個人許願清單" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #FFC125;padding:8px 18px;margin-right: 30px;color:black"s></a>
+		       <a href="CheckYourList"><input class="btn btn-default" type="button" value="回個人許願清單" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #FFC125;padding:8px 18px;margin-right: 30px;color:black"></a>
 		       <a href="DeleteThisWish?w_Id=${wVO.w_id}"><input class="btn btn-default" type="button" value="刪除此願望" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color:#EEA2AD;padding:8px 18px"></a>
 		       <br>
 		       <font color='red' size='-1'>${ErrorMsg.deleteError}</font>

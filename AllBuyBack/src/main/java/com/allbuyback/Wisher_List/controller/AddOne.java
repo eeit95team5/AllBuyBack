@@ -102,7 +102,7 @@ public class AddOne extends HttpServlet {
 				request.setAttribute("p5", 5);
 			}
 			
-			RequestDispatcher rd = request.getRequestDispatcher("PeopleWishContent.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("_SeeOthersWish.jsp");
 			rd.forward(request, response);
 			return;
 		}
@@ -132,7 +132,7 @@ public class AddOne extends HttpServlet {
 		}
 		request.setAttribute("VOlist", list);
 
-		request.getRequestDispatcher("/PeopleMakeAWishList.jsp").forward(request, response);
+		request.getRequestDispatcher("/_WishingPool.jsp").forward(request, response);
 		return;
 	}
 

@@ -92,7 +92,7 @@ public class MakeWishComeTrue extends HttpServlet {
 			PicturesDAO pDAO = new PicturesDAO();
 			pDAO.showUpLoadedPicture(request, w_id);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("PeopleWishContent.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("_SeeOthersWish.jsp");
 			rd.forward(request, response);
 			return;
 		}

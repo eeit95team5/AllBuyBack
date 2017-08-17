@@ -267,27 +267,28 @@ tbody{
 		    <tr>
 			    <td width="200" height="100">許願編號 :</td>
 			    <td width="550" height="100" align="left" >
-			   	<input id='w_Id1' style="text-align:left;border:1px solid #E9967A;" name="w_Id" disabled value="${wVO.w_id}" type="text" size="14">
+			   		<input id='w_Id1' style="text-align:left;border:1px solid #E9967A;" name="w_Id" disabled value="${wVO.w_id}" type="text" size="15">
 			    </td>
 			</tr>
 			<tr>
 			    <td width="200" height="100">許願人 :</td>
 			    <td width="550" height="100" align="left" >
-			   <input id='account1' style="text-align:left;border:1px solid #E9967A;" name="account" disabled value="${wVO.m_account}" type="text" size="14">
+			   		<input id='account1' style="text-align:left;border:1px solid #E9967A;" name="account" disabled value="${wVO.m_account}" type="text" size="15">
 			    </td>
 			</tr>
 			<tr>
 			    <td width="200" height="100">許願時間:</td>
 			    <td width="550" height="100" align="left" >
-			    <input id='date1' style="text-align:left;border:1px solid #E9967A;" name="date" disabled value="${wVO.w_date}" type="text" size="14">
+			    	<input id='date1' style="text-align:left;border:1px solid #E9967A;" name="date" disabled value="${wVO.w_date}" type="text" size="15">
+			    </td>
 		  </tr>
 			
 			<tr>
-		    <td width="200" height="100">許願標題:</td>
-		    <td width="550" height="100" align="left" >
-		         <input id='title1' style="text-align:left;border:1px solid #E9967A;" name="title" disabled value="${wVO.w_title}" type="text" size="14">
-		    </td>
-		 </tr>
+			    <td width="200" height="100">許願標題:</td>
+			    <td width="550" height="100" align="left" >
+			         <input id='title1' style="text-align:left;border:1px solid #E9967A;" name="title" disabled value="${wVO.w_title}" type="text" size="15">
+			    </td>
+		  </tr>
 			<tr>
 		    <td width="200" height="100">許願內容:</td>
 		    <td width="550" height="100" align="left" >
@@ -357,10 +358,10 @@ tbody{
 			   <input id="CT_btn" class="btn" type="button" value="認領願望" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #EE9572;padding:8px 18px">
 			   <div id="CT_window"></div>
 		       <br>
-		       <font color='red' size='-1'>${errorMsg.login}</font>
-		       <font color='red' size='-1'>${errorMsg.duplicateAccount}</font>
-		       <font color='red' size='-1'>${errorMsg.doubleAccount}</font>
-		       <font color='red' size='-1'>${errorMsg.AccountNoRight}</font>
+		       <div style="color:#FF0000; display: inline">${errorMsg.login}</div>
+		       <div style="color:#FF0000; display: inline">${errorMsg.duplicateAccount}</div>
+		       <div style="color:#FF0000; display: inline">${errorMsg.doubleAccount}</div>
+		       <div style="color:#FF0000; display: inline">${errorMsg.AccountNoRight}</div>
 		    </td>
 		</tr>			
 		
