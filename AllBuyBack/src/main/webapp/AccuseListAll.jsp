@@ -52,7 +52,7 @@
 </head>
 <body>
 
-<table border='1' bordercolor='#CCCCFF' width='800' class="table">
+<table width='800' class="table">
 	<tr>
 		<th>申訴編號</th>
 		<th>會員編號</th>
