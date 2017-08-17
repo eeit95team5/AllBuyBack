@@ -51,7 +51,7 @@ $(function() {
 
  	
  	$("#eye").mouseout(function() {
- 		$('#eyeCount').attr("style","position:absolute;top:60px;left:35px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;");
+ 		$('#eyeCount').attr("style","display:none;");
  	});
      /*---------------------------------------------------*/
      
@@ -61,7 +61,7 @@ $(function() {
 
  	
  	$("#heart").mouseout(function() {
- 		$('#heartCount').attr("style","position:absolute;top:60px;left:100px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;");
+ 		$('#heartCount').attr("style","display:none;");
  	});
 
      
@@ -74,24 +74,62 @@ $(function() {
 
  	
  	$("#shoppingCart").mouseout(function() {
- 		$('#shoppingCartCount').attr("style","position:absolute;top:60px;left:160px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;");
+ 		$('#shoppingCartCount').attr("style","display:none;");
  	});
 
-     
+ 	
     /*----------------------------------------------------*/
+    	
+ 	$("#addToCart").click(function() {
+ 		var i_id = $('#i_id').val();
+ 		var s_id = $('#s_id').val();
+ 		console.log("ok");
+ 		var ol_quantity = $('#ol_quantity').val();
+ 		$.post("ShoppingCart.go",{'action':"addToCart",'i_id':i_id,'s_id':s_id,'ol_quantity':ol_quantity},
+ 			function(data){
+ 			var json = JSON.parse(data);
+ 			var str = json.a;
+ 			var theType = "success";
+ 			var theText = "再多看看別的商品吧!"
+ 			if(str=="加入購物車失敗，不能新增數量0以下" || str=="加入購物車失敗，剩餘數量不足"){
+				theType = "error";
+				theText = "請確定數量再加入購物車"
+ 			}
+ 			if(str=="這是您自己的商品唷!"){
+ 				theType = "error";
+				theText = "去看看其他人的賣場吧!!"
+ 			}
+				swal({
+					title: str,
+ 					text: theText,
+ 					type: theType
+				});
+			})
+ 	});
+    
+ 	/*----------------------------------------------------*/
     
     	$("#buyAdTag").mouseover(function() {
- 		$('#buyAd').attr("style","position:absolute;top:1px;left:1100px;border-radius:5px 5px;color:black;font-size:10px;width:100px;display:block");
+ 		$('#buyAd').attr("style","position:absolute;top:7px;left:1100px;border-radius:5px 5px;color:black;font-size:15px;width:100px;display:block");
  	});
     	
 
     	$("#buyAdTag").mouseout(function() {
- 		$('#buyAd').attr("style","position:absolute;top:1px;left:1100px;border-radius:5px 5px;color:black;font-size:10px;width:100px;display:none");
+ 		$('#buyAd').attr("style","display:none");
  	});
 
     	$("#buyAdTag").click(function() {/*點下去跳至買廣告頁面*/
-     		
-     	});
+    		var i_id = $('#i_id').val();
+    			window.open('Ad.go?action=prepareBuy&i_id='+i_id, '購買AllBuyBack廣告',
+    					'height=350,width=650,scrollbars=0,resizable=0,location=0');
+    	});
+    	
+    	var offset=$('#point').offset();
+    	console.log(offset.top+","+offset.left)	;
+    	if(offset.top<100){   		
+    		$('#hidden').attr("style","margin-top:70px;display:block");
+    	}
+    	
 
 
 })
@@ -102,6 +140,9 @@ $(function() {
 
 <jsp:include page="includeTop.jsp"></jsp:include>
 
+<nav id="hidden" class="navbar navbar-inverse  navbar-fixed-top " style="margin-top:70px;display:none"  >
+<div  class="container-fluid"  style="background-color: yellow;height:90px; "></div>
+</nav>
 
 <div class="container"><!--商品上半部-->
     <div class="row">
@@ -111,7 +152,7 @@ $(function() {
 
                
                 <span id="buyAdTag" class="glyphicon glyphicon-tag " style="position:absolute;top:30px;left:1090px;font-size:20px;;color:gray"></span>
-                <div id="buyAd" style="position:absolute;top:1px;left:1100px;border-radius:5px 5px;color:black;font-size:10px;display:none;">買廣告請點我</div>
+                <div id="buyAd" style="position:absolute;top:10px;left:1100px;border-radius:5px 5px;color:black;font-size:10px;display:none;">買廣告請點我</div>
                 
 
                 <div id="eyeCount" style="position:absolute;top:60px;left:35px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;">瀏覽數</div>
@@ -141,22 +182,22 @@ $(function() {
                      <img src="" width="90" />
                    </div>
 
-                <div class="price">售價:</div>  
-                <div class="brand">商品品牌:</div>  
-                <div class="country">代購國家:</div>  
-                <div class="waitDay">等待天數:</div> 
+                <div class="price">售價:</div> <div style="position: absolute;top:100px;left:650px;  height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px;">0000000000000</div> 
+                <div class="brand">商品品牌:</div> <div style="position: absolute;top:170px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">0000000000</div> 
+                <div class="country">代購國家:</div>  <div style="position: absolute;top:240px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">0000000000</div> 
+                <div class="waitDay">等待天數:</div> <div style="position: absolute;top:310px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">0000000000</div> 
                 
                 <div class="count">數量:
                  
-                   <input type="number" value="1" min="1" max="99"  style="width:60px;height:40px;padding-left: 10px;margin-left: 12px;">
+                   <input type="number" id="ol_quantity" value="1" min="1" max="99"  style="width:60px;height:40px;padding-left: 10px;margin-left: 12px;">
                 
                 </div>
-                
-                
-                <button class="shoppingCart">加入購物車</button> 
+                <input type="hidden" id="i_id" name="i_id" value="${itemVO.i_id}" />
+				<input type="hidden" id="s_id" name="s_id" value="${itemVO.s_id}" />
+                <button class="shoppingCart" id="addToCart">加入購物車</button> 
                 <button class="wantBuy">聯絡賣家</button> 
-                <div class="pay">付款方式:</div>  
-                <div class="deliver">寄送方式:</div>  
+                <div class="pay">付款方式:</div>  <div style="position: absolute;top:520px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">0000000000</div> 
+                <div class="deliver">寄送方式:</div>  <div style="position: absolute;top:590px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">0000000000</div> 
 
             </div><!--productArea1區域-->
         </div>
@@ -178,7 +219,7 @@ $(function() {
 
   <div class="tab-content">
     <div id="menu1" class="tab-pane fade in active">
-      <h3>商品描述</h3>
+      <h3 id="point">商品描述</h3>
       <p>NATIVE INSTRUMENTS 的MASCHINE系列可說是DJ必備的生財工具，不管是做EDM歌曲、派對放歌、混音編曲都可以用 MASCHINE 來完成，最大的特色是它包含Pattern編曲機、音色取樣機、多種效果器，可載入其他插件，流暢的編曲環境和控制面板讓歌曲製作更方便。</p>
     </div>
     <div id="menu2" class="tab-pane fade">

@@ -188,14 +188,14 @@ function showS_Class2JSON(data){
 <form action="<c:url value='/item.SPRINGcontroller'/>" method="get">
 	<table>
 		<tr><td>商品編號：</td><td><input type="text" name="i_id" id="i_id"  value="${itembean.i_id}" readonly="readonly"/></td><td>${errors.i_id}</td></tr>
-		<tr><td>商店編號：</td><td><input type="text" name="s_id" id="s_id"  value="${itembean.s_id}" readonly="readonly"/></td><td>${errors.s_id}</td></tr>
+		<tr><td>賣場編號：</td><td><input type="text" name="s_id" id="s_id"  value="${itembean.s_id}" readonly="readonly"/></td><td>${errors.s_id}</td></tr>
 		<tr><td>商品名稱：</td><td><input type="text" name="i_name" id="i_name" value="${itembean.i_name}"/></td><td></td></tr>
 		<tr><td>商品簡介：</td><td><input type="text" name="i_describe" id="i_describe" value="${itembean.i_describe}" /></td><td></td></tr>
 		<tr><td>商品價格：</td><td><input type="text" name="i_price" id="i_price" value="${itembean.i_price}" /></td><td>${errors.i_price}</td></tr>
 		<tr><td>商品數量：</td><td><input type="text" name="i_quantity" id="i_quantity" value="${itembean.i_quantity}" /></td><td>${errors.i_quantity}</td></tr>
 		<tr><td>所在國家：</td><td><select id="country_id" name="country_id"></select></td></tr>
-		<tr><td>到貨時間：</td><td><input type="text" name="i_arrivedDate" id="i_arrivedDate" value="${itembean.i_arrivedDate}" /></td><td>${errors.i_arrivedDate}</td></tr>
-		<tr><td>上架時間：</td><td><input type="text" name="i_onSellDate" id="i_onSellDate"  value="${itembean.i_onSellDate}" readonly="readonly"/></td><td></td></tr>
+		<tr><td>到貨時間：</td><td><input type="date" name="i_arrivedDate" id="i_arrivedDate" value="${i_arrivedDate}" /></td><td>${errors.i_arrivedDate}</td></tr>
+		<tr><td>上架時間：</td><td><input type="date" name="i_onSellDate" id="i_onSellDate"  value="${i_onSellDate}" readonly="readonly"/></td><td></td></tr>
 		<tr><td>已銷數量：</td><td><input type="text" name="i_soldQuantity"  id="i_soldQuantity" value="${itembean.i_soldQuantity}" readonly="readonly"/></td><td>${errors.i_soldQuantity}</td></tr>
 		<tr><td>上架狀態：</td><td><select id="i_status" name="i_status" <c:if test="${itembean.i_status == 3}">disabled="disabled"</c:if>>
 									<option value="1" <c:if test="${itembean.i_status == 1}">selected="selected"</c:if>>上架</option>
