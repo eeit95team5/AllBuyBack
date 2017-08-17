@@ -26,6 +26,9 @@ public class GoItemController {
 		
 		model.addAttribute("shop", shopService.select(item.getS_id()));
 		model.addAttribute("itemVO", item);
+		System.out.println(item.getI_id());
+		System.out.println(item.getI_describe());
+		System.out.println(item.getI_picture1());
 		
 		return "item";
 	}
