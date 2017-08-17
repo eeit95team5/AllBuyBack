@@ -343,20 +343,21 @@ tbody{
 		<tr>
 		    <td width="230" height="100">參與願望名單:</td>
 		    <td width="550" height="100" align="left" >
+		    	<div style="height:100px; overflow:auto">
 		    	<c:forEach var="list" items="${wlList}">
 		    		${list.m_account}<br>
 		        </c:forEach>
+		        </div>
 		    </td>
 		</tr>
 		<tr>
 		    <td width="230" height="100">實現願望賣家:</td>
 		    <td width="550" height="100" align="left" >
+		    	<div style="height:100px; overflow:auto">
 		    	<c:forEach var="as" items="${asVO}">
 		    		${as.m_account}實現願望的內容: <a href="SingleItemContent?w_id=${wVO.w_id}&i_id=${iVO.i_id}">${iVO.i_name}</a>
-		    		<c:if test="${not empty iVO.i_name}">
-		    			<input type="button" value="加入購物車"><br>
-		    		</c:if>
 		    	</c:forEach>
+		    	</div>
 		    </td>
 		</tr>
 		<tr>

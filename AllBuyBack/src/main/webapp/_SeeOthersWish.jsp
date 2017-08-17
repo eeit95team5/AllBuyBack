@@ -259,7 +259,7 @@ tbody{
  </div>
 
 
-
+<div>
 <form name="UpdateWishContent" id="UpdateWishContent1" action="UpdateWish?w_Id=${wVO.w_id}" method="POST" enctype="multipart/form-data">
 	<fieldset id="borderimg" style="background-color:#EED5B7;">
 		<table>
@@ -333,18 +333,22 @@ tbody{
 		<tr>
 		    <td width="200" height="100">參與願望名單:</td>
 		    <td width="550" height="100" align="left" >
+		    	<div style="height:100px; overflow:auto">
 		    	<c:forEach var="list" items="${wlList}">
 		    		${list.m_account}<br>
 		        </c:forEach>
+		        </div>
 		    </td>
 		</tr>
 		
         	<tr>
 		    <td width="200" height="100">實現願望賣家:</td>
 		    <td width="550" height="100" align="left" >
+		    	<div style="height:100px; overflow:auto">
 		    	<c:forEach var="as" items="${asVO}">
 		    		${as.m_account}: <a href="item.html?i_id=${iVO.i_id}">${iVO.i_name}</a><br>
 		    	</c:forEach>
+		    	</div>
 		    </td>
 		</tr>
 			<tr>
@@ -366,7 +370,7 @@ tbody{
 		</table>
 	</fieldset>
 	</form>
-
+</div>
 
         </div>
     </div>
