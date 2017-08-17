@@ -158,17 +158,17 @@ $(function() {
 
                 <div id="eyeCount" style="position:absolute;top:60px;left:35px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;">瀏覽數</div>
                 <div id="eye"><span class="glyphicon glyphicon-eye-open " style="font-size:20px;color:gray"></span></div>
-                <div style="position:absolute;top:80px;left:65px;color:gray">120</div>
+                <div style="position:absolute;top:80px;left:65px;color:gray">${shop.s_click }</div>
                 
                 
                 <div id="heartCount" style="position:absolute;top:60px;left:105px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;">收藏數</div>
                 <div id="heart"><span class="glyphicon glyphicon-heart " style="font-size:20px;;color:gray"></span></div>
-                <div style="position:absolute;top:80px;left:130px;color:gray">5</div>
+                <div style="position:absolute;top:80px;left:130px;color:gray">${keepitemcount }</div>
                 
                 
                 <div id="shoppingCartCount" style="position:absolute;top:60px;left:105px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;">代購數</div>
                 <div id="shoppingCart"><span  class="glyphicon glyphicon-shopping-cart " style="font-size:20px;;color:gray"></span></div> 
-                <div style="position:absolute;top:80px;left:195px;color:gray">3</div>
+                <div style="position:absolute;top:80px;left:195px;color:gray">${itemVO.i_soldQuantity }</div>
 
                    <div class="mainPhoto">
                      <img src="images/product.jpg" width="480" height="400" />
@@ -183,12 +183,12 @@ $(function() {
                      <img src="" width="90" />
                    </div>
 
-                <div class="price">售價:</div> <div style="position: absolute;top:100px;left:650px;  height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px;">${itemVO.i_price }</div> 
-                <div class="brand">商品品牌:</div> <div style="position: absolute;top:170px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">${itemVO.i_price }</div> 
+                <div class="price">商品售價:</div> <div style="position: absolute;top:100px;left:700px;  height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px;">${itemVO.i_price }</div> 
+                <div class="brand">商品數量:</div> <div style="position: absolute;top:170px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">${itemVO.i_quantity }</div> 
                 <div class="country">代購國家:</div>  <div style="position: absolute;top:240px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">${itemVO.country_id }</div> 
                 <div class="waitDay">到貨時間:</div> <div style="position: absolute;top:310px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">${i_arrivedDate }</div> 
                 
-                <div class="count">數量:
+                <div class="count">購買數量:
                  
                    <input type="number" id="ol_quantity" value="1" min="1" max="99"  style="width:60px;height:40px;padding-left: 10px;margin-left: 12px;">
                 
@@ -225,7 +225,7 @@ $(function() {
     </div>
     <div id="menu2" class="tab-pane fade">
       <h3>費用與寄送資訊</h3>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>${shop.s_aboutMe }</p>
     </div>
     <div id="menu3" class="tab-pane fade">
       <h3>問與答</h3>
