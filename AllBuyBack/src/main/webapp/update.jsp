@@ -90,7 +90,7 @@
 <div id="contact" class="container">
 <div class="w3-container w3-center w3-animate-zoom">
  
-	<h3 class="w3-myfont">${LoginOK.m_name }!Welcome to AllBuyBack
+	<h3 class="w3-myfont">${LoginOK.m_account }!Welcome to AllBuyBack
   			<p>We love shopping!</p>
   	</h3>
   	</div>
