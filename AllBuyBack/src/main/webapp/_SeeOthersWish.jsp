@@ -6,12 +6,62 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>別人的願望</title>
 
-  <link rel="stylesheet" href="styles/main.css"/>
-  <link rel="stylesheet" href="css/bootstrap.min.css"/>
-  <script src="js/bootstrap.min.js"></script> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+$(function(){
+	$('#CT_window').dialog({
+		autoOpen:false,
+		height:400,
+		width:650,
+	});
+	$('#CT_btn').click(function(){
+		$('#CT_window').dialog('open');
+		
+		$.ajax({
+			type:"GET",
+			url:"MakeWishComeTrue?w_Id=${wVO.w_id}",
+			success:function(changePage){
+				$('#CT_window').html(changePage);
+			}
+		});
+// 		window.open("MakeWishComeTrue?w_Id=${wVO.w_id}", 'newwindow','height=400, width=680');
+	});
+	
+	for(var i=1; i<=5; i++){
+		$('#pic'+i).dialog({
+			autoOpen:false,
+			height:640,
+			width:540,
+			show: "blind",
+			hide: "blind",
+			buttons: { 
+	             "Ok": function() { $(this).dialog("close"); }, 
+	         }	
+		});
+	}
+	
+	$('#spic1').click(function(){
+		$('#pic1').dialog('open');
+	});
+	$('#spic2').click(function(){
+		$('#pic2').dialog('open');
+	});
+	$('#spic3').click(function(){
+		$('#pic3').dialog('open');
+	});
+	$('#spic4').click(function(){
+		$('#pic4').dialog('open');
+	});
+	$('#spic5').click(function(){
+		$('#pic5').dialog('open');
+	});
+	
+});
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</script>
+
 
 <style>
 /*以下三個class貼在main裡不能跑會衝突*/
@@ -209,16 +259,28 @@ tbody{
 
 
 
-<form name="WishContent" id="WishContent1" action="MakeAWish" method="POST" enctype="multipart/form-data" ">
+<form name="UpdateWishContent" id="UpdateWishContent1" action="UpdateWish?w_Id=${wVO.w_id}" method="POST" enctype="multipart/form-data">
 	<fieldset id="borderimg" style="background-color:#EED5B7;">
 		<table>
 		<tbody>
+		    <tr>
+			    <td width="200" height="100">許願編號 :</td>
+			    <td width="550" height="100" align="left" >
+			   	<input id='w_Id1' style="text-align:left;border:1px solid #E9967A;" name="w_Id" disabled value="${wVO.w_id}" type="text" size="14">
+			    </td>
+			</tr>
 			<tr>
 			    <td width="200" height="100">許願人 :</td>
 			    <td width="550" height="100" align="left" >
-			    <input id='account1' style="text-align:left;border:1px solid #E9967A;" name="account" disabled value="${LoginOK.m_account}" type="text" size="15">
+			   <input id='account1' style="text-align:left;border:1px solid #E9967A;" name="account" disabled value="${wVO.m_account}" type="text" size="14">
 			    </td>
 			</tr>
+			<tr>
+			    <td width="200" height="100">許願時間:</td>
+			    <td width="550" height="100" align="left" >
+			    <input id='date1' style="text-align:left;border:1px solid #E9967A;" name="date" disabled value="${wVO.w_date}" type="text" size="14">
+		  </tr>
+			
 			<tr>
 			    <td width="200" height="100">許願標題 :</td>
 			    <td width="550" height="100" align="left" >
@@ -256,23 +318,7 @@ tbody{
                                                                      選擇檔案 <input type="file" name="file3" id="file3" accept="image/*">  
                      </span>  
 			    </td>
-			</tr>
-				<tr>
-			    <td width="200" height="100">圖片上傳4 :</td>
-			    <td width="550" height="100" align="left" >
-				      <span class="btn btn-default btn-file" style="background-color: #CDAF95;border:#CDAF95;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
-                                                                     選擇檔案 <input type="file" name="file4" id="file4" accept="image/*">  
-                     </span>  
-			    </td>
-			</tr>
-				<tr>
-			    <td width="200" height="100">圖片上傳5 :</td>
-			    <td width="550" height="100" align="left" >
-				      <span class="btn btn-default btn-file" style="background-color: #CDAF95;border:#CDAF95;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
-                                                                     選擇檔案 <input type="file" name="file5" id="file5" accept="image/*">  
-                     </span>  
-			    </td>
-			</tr>
+		
 			<tr>
 			    <td height="100" colspan="2" align="right">
 			       <input class="btn btn-default" type="submit" value="許願" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #FFC125;padding:8px 18px;margin-right: 30px" >
