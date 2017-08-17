@@ -64,19 +64,19 @@ public class LoginServlet extends HttpServlet {
 						response.sendRedirect(contextPath + target);
 					} else {
 						session.setAttribute("LoginOK", bean);
-						response.sendRedirect(contextPath + "/index.jsp");
+						response.sendRedirect(contextPath + "/HomeIndex.jsp");
 					}
 					
 				} else {
 					errorMsg.put("LoginError", "帳號不存在或密碼錯誤");
 					request.setAttribute("errorMsg", errorMsg);
-					RequestDispatcher rd = request.getRequestDispatcher("/HomeBeforeLogin.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("/HomeIndex.jsp");
 					rd.forward(request, response);
 				}
 			} else {
 				errorMsg.put("LoginError", "帳號不存在或密碼錯誤");
 				request.setAttribute("errorMsg", errorMsg);
-				RequestDispatcher rd = request.getRequestDispatcher("/HomeBeforeLogin.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/HomeIndex.jsp");
 				rd.forward(request, response);
 			}
 		} 
