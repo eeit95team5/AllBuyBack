@@ -329,7 +329,7 @@
       <div class="input-group" style="width:160px;margin-left:30px;margin-right:30px">
         <input type="text" class="form-control" name="keyword" placeholder="您想代購什麼？"/>
         <div class="input-group-btn">
-          <button class="btn btn-default" type="submit" >
+          <button class="btn btn-default" type="submit" style="height:34px">
             <i class="glyphicon glyphicon-search" ></i>
           </button>
         </div>
@@ -351,7 +351,7 @@
             <a href="#">我的賣場</a>
             <a href="#">挑戰時尚金頭腦</a>
             <a href="#">聯絡管理員</a>
-            <a href="LogoutServlet">登出</a>
+            <a href="LogoutServlet" >登出</a>
          </div>
 </c:if>
 <c:if test="${empty LoginOK}">

@@ -161,6 +161,7 @@
     border-image: url(images/border.png) 20 stretch;
     height:1030px;
     width:800px;
+    margin-left:170px; 
 }
 
 tbody{
@@ -208,7 +209,7 @@ tbody{
 
 
 
-<form name="WishContent" id="WishContent1" action="MakeAWish" method="POST" enctype="multipart/form-data">
+<form name="WishContent" id="WishContent1" action="MakeAWish" method="POST" enctype="multipart/form-data" ">
 	<fieldset id="borderimg" style="background-color:#EED5B7;">
 		<table>
 		<tbody>

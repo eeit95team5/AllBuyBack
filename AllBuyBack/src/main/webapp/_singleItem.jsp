@@ -51,7 +51,7 @@ $(function() {
 
  	
  	$("#eye").mouseout(function() {
- 		$('#eyeCount').attr("style","position:absolute;top:60px;left:35px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;");
+ 		$('#eyeCount').attr("style","display:none;");
  	});
      /*---------------------------------------------------*/
      
@@ -61,7 +61,7 @@ $(function() {
 
  	
  	$("#heart").mouseout(function() {
- 		$('#heartCount').attr("style","position:absolute;top:60px;left:100px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;");
+ 		$('#heartCount').attr("style","display:none;");
  	});
 
      
@@ -74,24 +74,32 @@ $(function() {
 
  	
  	$("#shoppingCart").mouseout(function() {
- 		$('#shoppingCartCount').attr("style","position:absolute;top:60px;left:160px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;");
+ 		$('#shoppingCartCount').attr("style","display:none;");
  	});
 
      
     /*----------------------------------------------------*/
     
     	$("#buyAdTag").mouseover(function() {
- 		$('#buyAd').attr("style","position:absolute;top:1px;left:1100px;border-radius:5px 5px;color:black;font-size:10px;width:100px;display:block");
+ 		$('#buyAd').attr("style","position:absolute;top:7px;left:1100px;border-radius:5px 5px;color:black;font-size:15px;width:100px;display:block");
  	});
     	
 
     	$("#buyAdTag").mouseout(function() {
- 		$('#buyAd').attr("style","position:absolute;top:1px;left:1100px;border-radius:5px 5px;color:black;font-size:10px;width:100px;display:none");
+ 		$('#buyAd').attr("style","display:none");
  	});
 
     	$("#buyAdTag").click(function() {/*點下去跳至買廣告頁面*/
      		
      	});
+    	
+    	
+    	var offset=$('#point').offset();
+    	console.log(offset.top+","+offset.left)	;
+    	if(offset.top<100){   		
+    		$('#hidden').attr("style","margin-top:70px;display:block");
+    	}
+    	
 
 
 })
@@ -102,6 +110,9 @@ $(function() {
 
 <jsp:include page="includeTop.jsp"></jsp:include>
 
+<nav id="hidden" class="navbar navbar-inverse  navbar-fixed-top " style="margin-top:70px;display:none"  >
+<div  class="container-fluid"  style="background-color: yellow;height:90px; "></div>
+</nav>
 
 <div class="container"><!--商品上半部-->
     <div class="row">
@@ -111,7 +122,7 @@ $(function() {
 
                
                 <span id="buyAdTag" class="glyphicon glyphicon-tag " style="position:absolute;top:30px;left:1090px;font-size:20px;;color:gray"></span>
-                <div id="buyAd" style="position:absolute;top:1px;left:1100px;border-radius:5px 5px;color:black;font-size:10px;display:none;">買廣告請點我</div>
+                <div id="buyAd" style="position:absolute;top:10px;left:1100px;border-radius:5px 5px;color:black;font-size:10px;display:none;">買廣告請點我</div>
                 
 
                 <div id="eyeCount" style="position:absolute;top:60px;left:35px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;">瀏覽數</div>
@@ -178,7 +189,7 @@ $(function() {
 
   <div class="tab-content">
     <div id="menu1" class="tab-pane fade in active">
-      <h3>商品描述</h3>
+      <h3 id="point">商品描述</h3>
       <p>NATIVE INSTRUMENTS 的MASCHINE系列可說是DJ必備的生財工具，不管是做EDM歌曲、派對放歌、混音編曲都可以用 MASCHINE 來完成，最大的特色是它包含Pattern編曲機、音色取樣機、多種效果器，可載入其他插件，流暢的編曲環境和控制面板讓歌曲製作更方便。</p>
     </div>
     <div id="menu2" class="tab-pane fade">

@@ -335,8 +335,8 @@
 					<form class="navbar-form navbar-left" action="KeyWordItemSearch" method="POST">
 						<div class="input-group" style="width: 160px; margin-left: 30px; margin-right: 30px">
 							<input type="text" class="form-control" name="keyword" placeholder="您想代購什麼？" />
-							<div class="input-group-btn">
-								<button class="btn btn-default" type="submit">
+							<div class="input-group-btn"  >
+								<button class="btn btn-default" type="submit" style="height:34px">
 									<i class="glyphicon glyphicon-search"></i>
 								</button>
 							</div>

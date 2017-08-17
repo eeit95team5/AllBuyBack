@@ -161,7 +161,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-12" style="background-color:white;height:1000px;margin-bottom:50px;margin-top: 40px;">
+        <div class="col-sm-12" style="background-color:white;height:1030px;margin-bottom:50px;margin-top: 40px;padding-top: 20px">
             <div style="margin-bottom:30px;text-align:center;color:#E9967A;font-family:Algerian;font-weight:900;letter-spacing:7px;font-size:50px;">
                 <span>Wishing Pool</span>
             </div>
