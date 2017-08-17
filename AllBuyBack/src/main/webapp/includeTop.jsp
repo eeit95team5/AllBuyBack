@@ -99,6 +99,7 @@
 
 </style>
 
+<c:if test="${! empty LoginOK}">
 <script type="text/javascript">
     var i = 0;
     window.onload = function () {
@@ -115,6 +116,14 @@
         }
     }
 </script>
+</c:if>
+<c:if test="${empty LoginOK}">
+<script>
+	function login(){
+		window.location = "login.jsp";
+	}
+</script>
+</c:if>
 
 <!-- <body style="background-color:rgb(234,234,234)"> -->
 
@@ -341,7 +350,7 @@
 
          <div class="dropdown-content" id="dropdown">
              <a href="#">修改基本資料</a>
-             <a href="#">我的代購車</a>
+             <a href="ShoppingCart.go?action=select">我的購物車</a>
             <a href="#">我的賣場</a>
             <a href="#">挑戰時尚金頭腦</a>
             <a href="#">聯絡管理員</a>
@@ -352,7 +361,7 @@
          <button  class="btn btn-danger navbar-btn" 
          style="font-family:微軟正黑體;background-color:rgb(185,127,109);border:rgb(185,127,109);margin-right:10px" >註冊</button>
     <button  class="btn btn-danger navbar-btn" 
-         style="font-family:微軟正黑體;background-color:rgb(185,127,109);border:rgb(185,127,109)" >登入</button>
+         style="font-family:微軟正黑體;background-color:rgb(185,127,109);border:rgb(185,127,109)" onclick="login()">登入</button>
    
 </c:if>
 <!-------------------->
