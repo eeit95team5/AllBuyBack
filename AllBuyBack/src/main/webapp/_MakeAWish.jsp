@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:if test="${empty LoginOK}">
+	<c:set var="target" value="${pageContext.request.servletPath}" scope="session"/>
+	<c:redirect url="/login.jsp"/>
+</c:if>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>我的願望</title>
+<title>許願紙</title>
 
   <link rel="stylesheet" href="styles/main.css"/>
   <link rel="stylesheet" href="css/bootstrap.min.css"/>
@@ -156,9 +161,9 @@
 #borderimg { 
     border: 10px solid transparent;
     padding: 20px 50px;
-    -webkit-border-image: url(images/border.png) 20 stretch; /* Safari 3.1-5 */
-    -o-border-image: url(images/border.png) 20 stretch; /* Opera 11-12.1 */
-    border-image: url(images/border.png) 20 stretch;
+    -webkit-border-image: url(images/border1.png) 20 stretch; /* Safari 3.1-5 */
+    -o-border-image: url(images/border1.png) 20 stretch; /* Opera 11-12.1 */
+    border-image: url(images/border1.png) 20 stretch;
     height:1030px;
     width:800px;
     margin-left:170px; 
@@ -200,43 +205,43 @@ tbody{
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-12" style="background-color:#EED5B7;height:1300px;margin-bottom:50px;margin-top: 40px;">
+        <div class="col-sm-12" style="background-color:#9AC0CD/*#00CDCD*/;height:1300px;margin-bottom:50px;margin-top: 40px;">
 
 
- <div style="margin-top:50px;margin-bottom:20px;text-align:center;color:#E9967A;font-family:Algerian;font-weight:900;letter-spacing:8px;font-size:50px;">
+ <div style="margin-top:50px;margin-bottom:20px;text-align:center;color:#00008B;font-family:Algerian;font-weight:900;letter-spacing:8px;font-size:50px;">
     <span>許願紙</span>
  </div>
 
 
 
 <form name="WishContent" id="WishContent1" action="MakeAWish" method="POST" enctype="multipart/form-data" ">
-	<fieldset id="borderimg" style="background-color:#EED5B7;">
+	<fieldset id="borderimg" style="background-color:#9AC0CD;">
 		<table>
 		<tbody>
 			<tr>
 			    <td width="200" height="100">許願人 :</td>
 			    <td width="550" height="100" align="left" >
-			    <input id='account1' style="text-align:left;border:1px solid #E9967A;" name="account" disabled value="${LoginOK.m_account}" type="text" size="15">
+			    <input id='account1' style="text-align:left;border:1px solid gray;" name="account" disabled value="${LoginOK.m_account}" type="text" size="15">
 			    </td>
 			</tr>
 			<tr>
 			    <td width="200" height="100">許願標題 :</td>
 			    <td width="550" height="100" align="left" >
-			         <input id='title1' style="text-align:left;;border:1px solid #E9967A;" name="title" value="${param.title}" type="text" size="15">
+			         <input id='title1' style="text-align:left;;border:1px solid gray;" name="title" value="${param.title}" type="text" size="15"><br>
 			         <div style="color:#FF0000; display: inline;">${ErrorMsg.title}</div>
 			    </td>
 			</tr>
 			<tr>
 			    <td width="200" height="100" style="margin-right: 50px;">許願內容 :</td>
 			    <td width="550" height="100" align="left" >
-			         <textarea cols="35" rows="5" name="content" id="content1" style="border:1px solid #E9967A;">${param.content}</textarea>
+			         <textarea cols="40" rows="5" name="content" id="content1" style="border:1px solid gray;">${param.content}</textarea><br>
 			         <div style="color:#FF0000; display: inline">${ErrorMsg.content}</div>
 			    </td>
 			</tr>
 			<tr>
 			    <td width="200" height="100">圖片上傳1 :</td>
 			    <td width="550" height="100" align="left" >
-				      <span class="btn btn-default btn-file" style="background-color: #CDAF95;border:#CDAF95;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
+				      <span class="btn btn-default btn-file" style="background-color: #EED5D2;border:#EED5D2;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
                                                                      選擇檔案 <input type="file" name="file1" id="file1" accept="image/*">  
                      </span>  
 			    </td>
@@ -244,7 +249,7 @@ tbody{
 				<tr>
 			    <td width="200" height="100">圖片上傳2 :</td>
 			    <td width="550" height="100" align="left" >
-				      <span class="btn btn-default btn-file" style="background-color: #CDAF95;border:#CDAF95;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
+				      <span class="btn btn-default btn-file" style="background-color: #EED5D2;border:#EED5D2;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
                                                                      選擇檔案 <input type="file" name="file2" id="file2" accept="image/*">  
                      </span>  
 			    </td>
@@ -252,7 +257,7 @@ tbody{
 				<tr>
 			    <td width="200" height="100">圖片上傳3 :</td>
 			    <td width="550" height="100" align="left" >
-				      <span class="btn btn-default btn-file" style="background-color: #CDAF95;border:#CDAF95;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
+				      <span class="btn btn-default btn-file" style="background-color: #EED5D2;border:#EED5D2;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
                                                                      選擇檔案 <input type="file" name="file3" id="file3" accept="image/*">  
                      </span>  
 			    </td>
@@ -260,7 +265,7 @@ tbody{
 				<tr>
 			    <td width="200" height="100">圖片上傳4 :</td>
 			    <td width="550" height="100" align="left" >
-				      <span class="btn btn-default btn-file" style="background-color: #CDAF95;border:#CDAF95;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
+				      <span class="btn btn-default btn-file" style="background-color: #EED5D2;border:#EED5D2;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
                                                                      選擇檔案 <input type="file" name="file4" id="file4" accept="image/*">  
                      </span>  
 			    </td>
@@ -268,15 +273,15 @@ tbody{
 				<tr>
 			    <td width="200" height="100">圖片上傳5 :</td>
 			    <td width="550" height="100" align="left" >
-				      <span class="btn btn-default btn-file" style="background-color: #CDAF95;border:#CDAF95;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
+				      <span class="btn btn-default btn-file" style="background-color: #EED5D2;border:#EED5D2;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
                                                                      選擇檔案 <input type="file" name="file5" id="file5" accept="image/*">  
                      </span>  
 			    </td>
 			</tr>
 			<tr>
 			    <td height="100" colspan="2" align="right">
-			       <input class="btn btn-default" type="submit" value="許願" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #FFC125;padding:8px 18px;margin-right: 30px" >
-			       <a href="CheckYourList"><input class="btn btn-default" type="button" value="個人許願池" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #EE9572;padding:8px 18px"></a>
+			       <input class="btn btn-default" type="submit" value="許願" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #8E388E;border:#8E388E;padding:8px 18px;margin-right: 30px;color:white" >
+			       <a href="CheckYourList"><input class="btn btn-default" type="button" value="我的願望清單" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #4F94CD;border:#4F94CD;padding:8px 18px;color:white"></a>
 			    </td>
 			</tr>	
 			

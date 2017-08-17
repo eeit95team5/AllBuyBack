@@ -148,7 +148,7 @@
     letter-spacing:5px;
 }
 
-.shoppingCart {/*加入購物車按鈕*/
+.shoppingButton {/*加入購物車按鈕*/
      position:absolute;
      right:340px;
      top:455px;

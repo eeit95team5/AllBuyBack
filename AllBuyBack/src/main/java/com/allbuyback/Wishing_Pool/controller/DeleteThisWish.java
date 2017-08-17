@@ -87,7 +87,7 @@ public class DeleteThisWish extends HttpServlet {
 			PicturesDAO pDAO = new PicturesDAO();
 			pDAO.showUpLoadedPicture(request, w_id);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("PersonalWishContent.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("_SeeMyWish.jsp");
 			rd.forward(request, response);
 			return;
 		}
@@ -102,12 +102,14 @@ public class DeleteThisWish extends HttpServlet {
 			String subcontent = (list.get(i).getW_content().substring(0, 20))+"...";
 			list.get(i).setW_content(subcontent);
 			}
+			
+			list.get(i).setW_date_string(list.get(i).getW_date().toString().substring(0, 16));
 		}
 		
 		request.setAttribute("account", account);
 		request.setAttribute("VOlist", list);
 
-		request.getRequestDispatcher("/PersonalMakeAWishList.jsp").forward(request, response);
+		request.getRequestDispatcher("/_MyWishList.jsp").forward(request, response);
 		return;
 	}
 
