@@ -31,6 +31,10 @@ public class Keep_ItemService {
 		return keep_ItemDAO.selectByI_Id(i_id); 
 	}
 	
+	public long selectKeepCount(int i_id){
+		return keep_ItemDAO.selectKeepCount(i_id);
+	}
+	
 	public Keep_ItemBean insert(Keep_ItemBean bean) {
 		if(bean!=null) {
 			return keep_ItemDAO.insert(bean);

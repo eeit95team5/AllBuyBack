@@ -1,6 +1,7 @@
 package com.allbuyback.Wishing_Pool.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -49,12 +50,14 @@ public class CheckYourList extends HttpServlet {
 			int memberId = list.get(i).getM_id();
 			String m_account = mDAO.selectById(memberId).getM_account();
 			list.get(i).setM_account(m_account);
+			
+			list.get(i).setW_date_string(list.get(i).getW_date().toString().substring(0, 16));
 		}
 		
 		request.setAttribute("account", account);
 		request.setAttribute("VOlist", list);
 
-		request.getRequestDispatcher("/PersonalMakeAWishList.jsp").forward(request, response);
+		request.getRequestDispatcher("/_MyWishList.jsp").forward(request, response);
 		return;
 	}
 
