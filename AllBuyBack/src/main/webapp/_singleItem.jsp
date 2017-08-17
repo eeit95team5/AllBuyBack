@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -148,7 +149,7 @@ $(function() {
     <div class="row">
         <div class="col-sm-12">
             <div class="productArea1"  >
-               <div class="productTitle" >限定預購！日本郵局「哆啦A夢餐具組」 單人9件超值華組</div>
+               <div class="productTitle" >${itemVO.i_name }</div>
 
                
                 <span id="buyAdTag" class="glyphicon glyphicon-tag " style="position:absolute;top:30px;left:1090px;font-size:20px;;color:gray"></span>
@@ -182,10 +183,10 @@ $(function() {
                      <img src="" width="90" />
                    </div>
 
-                <div class="price">售價:</div> <div style="position: absolute;top:100px;left:650px;  height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px;">0000000000000</div> 
-                <div class="brand">商品品牌:</div> <div style="position: absolute;top:170px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">0000000000</div> 
-                <div class="country">代購國家:</div>  <div style="position: absolute;top:240px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">0000000000</div> 
-                <div class="waitDay">等待天數:</div> <div style="position: absolute;top:310px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">0000000000</div> 
+                <div class="price">售價:</div> <div style="position: absolute;top:100px;left:650px;  height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px;">${itemVO.i_price }</div> 
+                <div class="brand">商品品牌:</div> <div style="position: absolute;top:170px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">${itemVO.i_price }</div> 
+                <div class="country">代購國家:</div>  <div style="position: absolute;top:240px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">${itemVO.country_id }</div> 
+                <div class="waitDay">到貨時間:</div> <div style="position: absolute;top:310px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">${i_arrivedDate }</div> 
                 
                 <div class="count">數量:
                  
@@ -220,7 +221,7 @@ $(function() {
   <div class="tab-content">
     <div id="menu1" class="tab-pane fade in active">
       <h3 id="point">商品描述</h3>
-      <p>NATIVE INSTRUMENTS 的MASCHINE系列可說是DJ必備的生財工具，不管是做EDM歌曲、派對放歌、混音編曲都可以用 MASCHINE 來完成，最大的特色是它包含Pattern編曲機、音色取樣機、多種效果器，可載入其他插件，流暢的編曲環境和控制面板讓歌曲製作更方便。</p>
+      <p>${itemVO.i_describe}</p>
     </div>
     <div id="menu2" class="tab-pane fade">
       <h3>費用與寄送資訊</h3>
@@ -228,7 +229,13 @@ $(function() {
     </div>
     <div id="menu3" class="tab-pane fade">
       <h3>問與答</h3>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+      <span id="itemmsg"></span>
+<form>
+	<input type="hidden" name="i_id" id="hidden" value="${itemVO.i_id }" />
+	<input type="hidden" name="action" value="Insert" />
+	<textarea name="im_content" id="im_content" ></textarea>
+	<button type="button" id="insertitemmessage">送出</button><span id="showerror">${errors.login }${errors.noempty }</span>
+</form>
     </div>
   </div>
 
@@ -320,4 +327,174 @@ border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑�
 
 
 </body>
+<script>
+
+$(function(){
+	$('#insertitemmessage').click(insertItemMessage);
+	getItemMessageJSON();
+})
+
+function getItemMessageJSON(){
+	$.post("<c:url value='/itemmessage.SPRINGcontroller'/>",{
+		"action":"Select",	
+		"i_id":"${itemVO.i_id}"},function(data){	
+		showItemMessageJSON(data);
+	})//post結束
+}//function結束
+
+function showItemMessageJSON(dataa){
+	var data = JSON.parse(dataa);
+	var docFragment = $(document.createDocumentFragment());				 
+	for(var i=0;i<data.data.length;i++){
+		var im_id = data.data[i].im_id;
+		var m_id = data.data[i].m_id;
+		var s_id = data.data[i].s_id;
+		var i_id = data.data[i].i_id;
+		var im_content = data.data[i].im_content;					 
+		var im_date = data.data[i].im_date;					 
+		var im_hidden = data.data[i].im_hidden;					 
+		var im_reply = data.data[i].im_reply;					 
+		var im_replyDate = data.data[i].im_replyDate;					 
+		var im_state = data.data[i].im_state;
+		var div = $("<div style=\"border-bottom:1px solid;background-color:#FFC78E\"></div>").html(m_id+" 於 "+im_date+" 留言：<br/>"+im_content);
+		if((<c:out value="${LoginOK.m_id}">-1</c:out>) == s_id){			
+			var hidden = $('<input type="hidden" id="im_id' + i + '" value="' + im_id + '"/>');
+			var reply = $('<button type=\"button\" id=\"reply' + i + '\" value=\"' + i + '\" >回覆</button>');
+			var hiddenB = $('<button type=\"button\" id=\"hiddenB' + i +'\" value=\"' + i + '\">隱藏</button>');
+			var span = $('<span style=\"font-size:12px;color:blue\" id=\"spanmsg' + i + '\"></span><br/>');
+			div.append(hidden).append(reply).append(hiddenB).append(span);
+		}
+		if(im_hidden == 2 && m_id == (<c:out value="${LoginOK.m_id}">0</c:out>)){
+			var span =$('<span style=\"font-size:12px;color:blue\">此留言已被隱藏</span>');
+			div.append(span);
+		}		
+		if(im_state == 2){
+			var div2 = $('<div style="border:1px solid;margin:10px 10px 10px 40px;background-color:#FFDCB9"></div>').html(s_id + "於" + im_replyDate + "回覆：<br/>" + im_reply + "<br/>");
+			div.append(div2);
+		}
+		if(im_hidden != 2){
+			docFragment.append(div);	
+		}else if(<c:out value="${not empty LoginOK}">false</c:out>){
+			if(s_id == <c:out value="${LoginOK.m_id}">-1</c:out>){				
+				docFragment.append(div);
+			}
+			if(m_id == <c:out value="${LoginOK.m_id}">-1</c:out>){				
+				docFragment.append(div);
+			}
+		}		
+	}
+	$('#itemmsg').empty()
+	$('#itemmsg').append(docFragment);
+	if((<c:out value="${LoginOK.m_id}">-1</c:out>) == s_id){
+		for(var i=0;i<data.data.length;i++){
+			$('#reply'+i).click(function(){
+				rep($(this).val());
+			})
+			$('#hiddenB'+i).click(function(){
+				hid($(this).val());
+			})
+			if(data.data[i].im_state==2){
+				$('#reply'+i).prop("disabled", true);
+			}
+			if((data.data[i].im_hidden)==2){
+				$('#spanmsg'+i).text("留言狀態：隱藏");
+			}else if((data.data[i].im_hidden)==1){
+				$('#spanmsg'+i).text("留言狀態：公開");			
+			}
+		}
+	}
+}
+
+function hid(v){
+	$.post("<c:url value='/itemmessage.SPRINGcontroller'/>",{"action":"Hidden","im_id":$('#im_id'+v).val()},function(data){showItemMessageJSON(data)})	
+}
+
+function rep(v){	
+	var textarea = $('<textarea id=\"textarea' + v + '\"/>');
+	var button =$('<button type=\"button\" onclick=\"rep2(' + v + ')\">送出</button>');
+	var span = $('<span id=\"rep' + v + '\"></span>');
+	$('#reply'+v).after(span).after(button).after(textarea).prop( "disabled", true );			
+}
+
+function rep2(v){
+	if(!$('#textarea'+v).val()){
+		$('#rep'+v).text("回覆不可為空白");
+	}else {
+		$.post("<c:url value='/itemmessage.SPRINGcontroller'/>",{"action":"Update","im_id":$('#im_id'+v).val(),"im_reply":$('#textarea'+v).val()},function(data){showItemMessageJSON(data);})
+		$('#rep'+v).text("");
+	}		
+}
+
+function insertItemMessage(){
+	if(<c:out value="${empty LoginOK}">true</c:out>){
+		$('#showerror').html("請先登入才能留言");
+	}else if( (<c:out value="${itemVO.s_id}">-2</c:out>) == (<c:out value="${LoginOK.m_id}">-1</c:out>) ){
+		$('#showerror').html("不能在自己的賣場留言");			
+	}else if(<c:out value="${not empty LoginOK}">false</c:out>){
+		if(!$('#im_content').val()){
+			$('#showerror').html("請輸入留言");
+		}else if($('#im_content').val()){	
+			$.post("<c:url value='/itemmessage.SPRINGcontroller'/>",
+				{"action":"Insert",
+				"i_id":<c:out value="${itemVO.i_id }">-3</c:out>,
+				"s_id":<c:out value="${itemVO.s_id }">-2</c:out>,				
+				"m_id":<c:out value="${LoginOK.m_id}">-1</c:out>,
+				"im_content":$('#im_content').val()},				
+				function(data){showItemMessageJSON(data);})/*post結束*/
+			$('#im_content').val("");
+		}/*if結尾*/
+	}/*if結尾*/
+}
+
+$('#addCart').click(function (){
+// 	 var form = $(this).parents('#cartForm');
+// 	 console.log(form);
+	 var action = $('#addToCart').val();
+	 var i_id = $('#i_id').val();
+	 var s_id = $('#s_id').val();
+	 var ol_quantity = $('#ol_quantity').val();
+	 var ol_memo = $('#ol_memo').val();
+	 $.post("ShoppingCart.go",{'action':action,'i_id':i_id,'s_id':s_id,'ol_quantity':ol_quantity,'ol_memo':ol_memo},
+			 function(data){
+		 var json = JSON.parse(data);
+		 var str = json.a;
+		 var theType = "success";
+		 var theText = "再多看看別的商品吧!"
+		 if(str=="加入購物車失敗，不能新增數量0以下" || str=="加入購物車失敗，剩餘數量不足"){
+			 theType = "error";
+			 theText = "請確定數量再加入購物車"
+		 }
+			 swal({
+				  title: str,
+				  text: theText,
+				  type: theType
+				});
+	 })
+	 
+});
+
+$('#buyAd').click(function(){
+	var i_id = $('#i_id').val();
+	console.log(i_id);
+		window.open('Ad.go?action=prepareBuy&i_id='+i_id, '購買AllBuyBack廣告',
+				'height=350,width=650,scrollbars=0,resizable=0,location=0');
+});
+
+
+$('#keepitem').click(function(){
+	if(<c:out value="${empty LoginOK}">true</c:out>){
+		$('#msg1').text("請先登入");
+	}else if((<c:out value="${LoginOK.m_id}">-1</c:out>) == (<c:out value="${itemVO.s_id}">-2</c:out>)){
+		$('#msg1').text("這是您自己的商品！");
+	}else{
+		$.post("<c:url value='/keep_item.SPRINGcontroller'/>",{"action":"Insert",
+			"i_id":<c:out value="${itemVO.i_id}">0</c:out>,
+			"m_id":<c:out value="${LoginOK.m_id}">0</c:out>},function(){
+				$('#msg1').text("已將商品加入收藏");
+			});	//post	
+	}//else	
+})//click
+
+
+</script>
 </html>
