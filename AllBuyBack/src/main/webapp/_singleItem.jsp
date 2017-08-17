@@ -77,8 +77,37 @@ $(function() {
  		$('#shoppingCartCount').attr("style","display:none;");
  	});
 
-     
+ 	
     /*----------------------------------------------------*/
+    	
+ 	$("#addToCart").click(function() {
+ 		var i_id = $('#i_id').val();
+ 		var s_id = $('#s_id').val();
+ 		console.log("ok");
+ 		var ol_quantity = $('#ol_quantity').val();
+ 		$.post("ShoppingCart.go",{'action':"addToCart",'i_id':i_id,'s_id':s_id,'ol_quantity':ol_quantity},
+ 			function(data){
+ 			var json = JSON.parse(data);
+ 			var str = json.a;
+ 			var theType = "success";
+ 			var theText = "再多看看別的商品吧!"
+ 			if(str=="加入購物車失敗，不能新增數量0以下" || str=="加入購物車失敗，剩餘數量不足"){
+				theType = "error";
+				theText = "請確定數量再加入購物車"
+ 			}
+ 			if(str=="這是您自己的商品唷!"){
+ 				theType = "error";
+				theText = "去看看其他人的賣場吧!!"
+ 			}
+				swal({
+					title: str,
+ 					text: theText,
+ 					type: theType
+				});
+			})
+ 	});
+    
+ 	/*----------------------------------------------------*/
     
     	$("#buyAdTag").mouseover(function() {
  		$('#buyAd').attr("style","position:absolute;top:7px;left:1100px;border-radius:5px 5px;color:black;font-size:15px;width:100px;display:block");
@@ -90,9 +119,10 @@ $(function() {
  	});
 
     	$("#buyAdTag").click(function() {/*點下去跳至買廣告頁面*/
-     		
-     	});
-    	
+    		var i_id = $('#i_id').val();
+    			window.open('Ad.go?action=prepareBuy&i_id='+i_id, '購買AllBuyBack廣告',
+    					'height=350,width=650,scrollbars=0,resizable=0,location=0');
+    	});
     	
     	var offset=$('#point').offset();
     	console.log(offset.top+","+offset.left)	;
@@ -159,12 +189,12 @@ $(function() {
                 
                 <div class="count">數量:
                  
-                   <input type="number" value="1" min="1" max="99"  style="width:60px;height:40px;padding-left: 10px;margin-left: 12px;">
+                   <input type="number" id="ol_quantity" value="1" min="1" max="99"  style="width:60px;height:40px;padding-left: 10px;margin-left: 12px;">
                 
                 </div>
-                
-                
-                <button class="shoppingCart">加入購物車</button> 
+                <input type="hidden" id="i_id" name="i_id" value="${itemVO.i_id}" />
+				<input type="hidden" id="s_id" name="s_id" value="${itemVO.s_id}" />
+                <button class="shoppingCart" id="addToCart">加入購物車</button> 
                 <button class="wantBuy">聯絡賣家</button> 
                 <div class="pay">付款方式:</div>  
                 <div class="deliver">寄送方式:</div>  
