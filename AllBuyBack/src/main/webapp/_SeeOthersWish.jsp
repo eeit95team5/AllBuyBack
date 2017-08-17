@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>我的願望</title>
+<title>別人的願望</title>
 
   <link rel="stylesheet" href="styles/main.css"/>
   <link rel="stylesheet" href="css/bootstrap.min.css"/>
@@ -204,7 +204,7 @@ tbody{
 
 
  <div style="margin-top:50px;margin-bottom:20px;text-align:center;color:#E9967A;font-family:Algerian;font-weight:900;letter-spacing:8px;font-size:50px;">
-    <span>許願紙</span>
+    <span>喜歡這個願望嗎？趕快+1喔!</span>
  </div>
 
 
@@ -276,7 +276,7 @@ tbody{
 			<tr>
 			    <td height="100" colspan="2" align="right">
 			       <input class="btn btn-default" type="submit" value="許願" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #FFC125;padding:8px 18px;margin-right: 30px" >
-			       <a href="CheckYourList"><input class="btn btn-default" type="button" value="個人許願池" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #EE9572;padding:8px 18px"></a>
+			       <a href="CheckYourList"><input class="btn btn-default" type="button" value="我的願望清單" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #EE9572;padding:8px 18px"></a>
 			    </td>
 			</tr>	
 			

@@ -58,7 +58,7 @@ public class ItemController {
 		if(prodaction==null){						
 			return "product";
 		}
-		
+	
 		List<CountryBean> country = countryDAOHibernate.select();
 		model.addAttribute("country", country);					
 		
@@ -203,6 +203,11 @@ public class ItemController {
 				if(result3==null) {
 					errors.put("action", "Update fail");
 				} else {
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					String i_arrivedDate = sdf.format(result3.getI_arrivedDate());
+					String i_onSellDate = sdf.format(result3.getI_onSellDate());
+					model.addAttribute("i_arrivedDate", i_arrivedDate);
+					model.addAttribute("i_onSellDate", i_onSellDate);
 					model.addAttribute("itembean", result3);
 					model.addAttribute("update", 1);
 				}
