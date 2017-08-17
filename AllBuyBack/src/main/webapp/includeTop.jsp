@@ -2,13 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <link rel="stylesheet" href="styles/main.css"/>
-<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
-<link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
-<link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
-<script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
-<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
-<script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
-<script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
+
  
 <style>
      /*設定熱門代購搜尋Bar，只有"首頁"和"導覽列進入找國家之後"用得到*/
@@ -329,7 +323,7 @@
       <div class="input-group" style="width:160px;margin-left:30px;margin-right:30px">
         <input type="text" class="form-control" name="keyword" placeholder="您想代購什麼？"/>
         <div class="input-group-btn">
-          <button class="btn btn-default" type="submit" >
+          <button class="btn btn-default" type="submit" style="height:34px">
             <i class="glyphicon glyphicon-search" ></i>
           </button>
         </div>
@@ -351,7 +345,7 @@
             <a href="#">我的賣場</a>
             <a href="#">挑戰時尚金頭腦</a>
             <a href="#">聯絡管理員</a>
-            <a href="LogoutServlet">登出</a>
+            <a href="LogoutServlet" >登出</a>
          </div>
 </c:if>
 <c:if test="${empty LoginOK}">

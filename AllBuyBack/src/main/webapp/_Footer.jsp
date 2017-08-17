@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+   
 <link rel="stylesheet" href="styles/main.css"/>
 <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
 <link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
@@ -9,8 +9,6 @@
 <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 <script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
 <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
-
-
 
 
 <footer>

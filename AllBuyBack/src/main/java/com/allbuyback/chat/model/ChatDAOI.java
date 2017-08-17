@@ -8,6 +8,7 @@ public interface ChatDAOI {
 	public List<ChatVO> findBySeller(int s_id);
 	public List<ChatVO> findByMember(int m_id);
 	public List<ChatVO> findByBoth(int m_id,int s_id);
+	public List<ChatVO> findByBoth2(int m_id,int s_id);
 	public void insert2(ChatVO chatVO);
 	public void insert3(ChatVO chatVO);
 

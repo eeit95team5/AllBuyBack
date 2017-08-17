@@ -90,7 +90,7 @@
 /*------許願池部份-----*/
     .wishOwner {
     /*background-color:yellow;*/
-    width:150px;
+     width:160px;
      float:left;
      color:black;
      font-size:25px;
@@ -102,7 +102,7 @@
     }
     .wish {
     /*background-color:pink;*/
-    width:200px;
+     width:180px;
      float:left;
      padding-left:20px;
      color:black;
@@ -113,11 +113,22 @@
     }
     .wishContent {
       /*background-color:yellow;*/
-      width:500px;
+      width:400px;
       float:left;
      color:black;
       font-weight:500;
       font-size:25px;
+      font-family: 新細明體;
+    
+    }
+    
+     .wishTime {
+      /*background-color:yellow;*/
+      width:200px;
+      float:left;
+      color:black;
+      font-weight:500;
+      font-size:20px;
       font-family: 新細明體;
     
     }
@@ -161,7 +172,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-12" style="background-color:white;height:1000px;margin-bottom:50px;margin-top: 40px;">
+        <div class="col-sm-12" style="background-color:white;height:1030px;margin-bottom:50px;margin-top: 40px;padding-top: 20px">
             <div style="margin-bottom:30px;text-align:center;color:#E9967A;font-family:Algerian;font-weight:900;letter-spacing:7px;font-size:50px;">
                 <span>Wishing Pool</span>
             </div>
@@ -169,7 +180,8 @@
             <div style="clear:both;padding-bottom:10px;border-bottom:1px solid #E9967A;letter-spacing:7px;font-size:25px;">
                 <div class="wishOwner" style="font-size:20px;font-family:微軟正黑體;font-weight:700;color:#CD8162;margin-top: 15px;">許願人    </div><div class="wish" style="font-size:20px;font-family:微軟正黑體;font-weight:700;color:#CD8162;margin-top: 15px;">願望</div>
                 <div class="wishContent" style="text-align:center;font-size:20px;font-family:微軟正黑體;font-weight:700;color:#CD8162;margin-top: 15px;">內容</div>
-                 <button id="makeAWish" style="margin-left:145px;border:#20B2AA 2px solid;font-size:23px;font-weight:600;padding:10px 10px;background-color:white;color:#778899;">我要許願</button>
+                  <div class="wishTime" style="text-align:center;font-size:20px;font-family:微軟正黑體;font-weight:700;color:#CD8162;margin-top: 15px;">許願時間</div>  
+                <button id="makeAWish" style="margin-left:65px;border:#20B2AA 2px solid;font-size:23px;font-weight:600;padding:10px 10px;background-color:white;color:#778899;">我要許願</button>
             
             </div>
 
@@ -177,44 +189,53 @@
             <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
                 <div class="wishOwner" style="height:80px;line-height:100px;">小叮噹</div><div class="wish" style="height:80px;line-height:100px;">變白</div>
                 <div class="wishContent" style="text-align:center;height:80px;line-height:100px;">請幫忙代購日本強力美白面膜</div>
-                <button style="margin-top:22px;margin-left:150px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button>
+                <div class="wishTime" style="text-align:center;height:80px;line-height:100px;">2017/06/07</div>
+                <button style="margin-top:22px;margin-left:70px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button>
             </div>
             
-             <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
+               <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
                 <div class="wishOwner" style="height:80px;line-height:100px;">小叮噹</div><div class="wish" style="height:80px;line-height:100px;">變白</div>
                 <div class="wishContent" style="text-align:center;height:80px;line-height:100px;">請幫忙代購日本強力美白面膜</div>
-                <button style="margin-top:22px;margin-left:150px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button>
+                <div class="wishTime" style="text-align:center;height:80px;line-height:100px;">2017/06/07</div>
+                <button style="margin-top:22px;margin-left:70px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button>
             </div>
             
-             <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
+               <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
                 <div class="wishOwner" style="height:80px;line-height:100px;">小叮噹</div><div class="wish" style="height:80px;line-height:100px;">變白</div>
                 <div class="wishContent" style="text-align:center;height:80px;line-height:100px;">請幫忙代購日本強力美白面膜</div>
-                <button style="margin-top:22px;margin-left:150px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button>
+                <div class="wishTime" style="text-align:center;height:80px;line-height:100px;">2017/06/07</div>
+                <button style="margin-top:22px;margin-left:70px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button>
             </div>
             
-             <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
+               <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
                 <div class="wishOwner" style="height:80px;line-height:100px;">小叮噹</div><div class="wish" style="height:80px;line-height:100px;">變白</div>
                 <div class="wishContent" style="text-align:center;height:80px;line-height:100px;">請幫忙代購日本強力美白面膜</div>
-                <button style="margin-top:22px;margin-left:150px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button>
+                <div class="wishTime" style="text-align:center;height:80px;line-height:100px;">2017/06/07</div>
+                <button style="margin-top:22px;margin-left:70px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button>
             </div>
             
-             <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
+               <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
                 <div class="wishOwner" style="height:80px;line-height:100px;">小叮噹</div><div class="wish" style="height:80px;line-height:100px;">變白</div>
                 <div class="wishContent" style="text-align:center;height:80px;line-height:100px;">請幫忙代購日本強力美白面膜</div>
-                <button style="margin-top:22px;margin-left:150px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button>
-            </div>
-
-             <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
-                <div class="wishOwner" style="height:80px;line-height:100px;">小叮噹</div><div class="wish" style="height:80px;line-height:100px;">變白</div>
-                <div class="wishContent" style="text-align:center;height:80px;line-height:100px;">請幫忙代購日本強力美白面膜</div>
-                <button style="margin-top:22px;margin-left:150px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button>
+                <div class="wishTime" style="text-align:center;height:80px;line-height:100px;">2017/06/07</div>
+                <button style="margin-top:22px;margin-left:70px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button>
             </div>
             
-             <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
+               <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
                 <div class="wishOwner" style="height:80px;line-height:100px;">小叮噹</div><div class="wish" style="height:80px;line-height:100px;">變白</div>
                 <div class="wishContent" style="text-align:center;height:80px;line-height:100px;">請幫忙代購日本強力美白面膜</div>
-                <button style="margin-top:22px;margin-left:150px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button>
+                <div class="wishTime" style="text-align:center;height:80px;line-height:100px;">2017/06/07</div>
+                <button style="margin-top:22px;margin-left:70px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button>
             </div>
+            
+               <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
+                <div class="wishOwner" style="height:80px;line-height:100px;">小叮噹</div><div class="wish" style="height:80px;line-height:100px;">變白</div>
+                <div class="wishContent" style="text-align:center;height:80px;line-height:100px;">請幫忙代購日本強力美白面膜</div>
+                <div class="wishTime" style="text-align:center;height:80px;line-height:100px;">2017/06/07</div>
+                <button style="margin-top:22px;margin-left:70px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button>
+            </div>
+            
+            
 
           
           

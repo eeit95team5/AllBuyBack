@@ -222,7 +222,7 @@
 		<c:if test="${!empty LoginOK }">
 			<form method="post"
 			action="<c:url value="/ChatController"/>">
-			<input type="submit" value="聯絡賣場" class="btn btn-success"> 
+			<input type="submit" value="聯絡買家" class="btn btn-success"> 
 			<input type="hidden" name="m_id" value="${OrderVO.m_id}"> 
 			<input type="hidden" name="m_account" value="${LoginOK.m_account}">
 			<input type="hidden" name="s_id" value="${OrderVO.s_id}"> 

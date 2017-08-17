@@ -32,6 +32,8 @@ public class AdDAO implements AdDAOI {
 			"UPDATE [AD] SET ad_type=? WHERE ad_id=?";
 	private static final String GET_ONE_BY_I_ID =
 			"SELECT * FROM [AD] where i_id=?";
+	private static final String GET_BY_I_ID_FOR_PAY =
+			"SELECT * FROM [AD] where i_id=? and (ad_type=3 or ad_type=4) order by ad_endDate desc";
 	private static final String GET_ALL_BY_SHOP =
 			"SELECT * FROM [AD] where s_id = ? ORDER BY ad_id desc";
 	private static final String GET_ALL =
@@ -132,6 +134,47 @@ public class AdDAO implements AdDAOI {
 			pstmt.setInt(1, i_id);		
 			rs = pstmt.executeQuery();
 			while(rs.next()){
+				adVO = new AdVO();
+				adVO.setAd_id(rs.getInt("ad_id"));
+				adVO.setS_id(rs.getInt("s_id"));
+				adVO.setI_id(rs.getInt("i_id"));
+				adVO.setAd_picture(rs.getBytes("ad_picture"));
+				adVO.setAd_startDate(rs.getTimestamp("ad_startDate"));
+				adVO.setAd_endDate(rs.getTimestamp("ad_endDate"));
+				adVO.setAd_price(rs.getInt("ad_price"));
+				adVO.setAd_link(rs.getString("ad_link"));
+				adVO.setAd_type(rs.getInt("ad_type"));
+				list.add(adVO);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+	@Override
+	public List<AdVO> selectPay(int i_id) {
+		List<AdVO> list = new ArrayList<AdVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;		
+		ResultSet rs = null;
+		AdVO adVO = null;
+		try {
+			con = ds.getConnection();
+			
+			pstmt = con.prepareStatement(GET_BY_I_ID_FOR_PAY);
+			pstmt.setInt(1, i_id);		
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				adVO = new AdVO();
 				adVO.setAd_id(rs.getInt("ad_id"));
 				adVO.setS_id(rs.getInt("s_id"));
 				adVO.setI_id(rs.getInt("i_id"));

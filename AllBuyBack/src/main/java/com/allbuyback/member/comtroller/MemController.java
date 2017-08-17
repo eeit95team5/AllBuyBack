@@ -235,6 +235,7 @@ public class MemController extends HttpServlet {
 
 			request.setAttribute("MemVO", memVO);
 			request.getRequestDispatcher("/MemController?action=MemberListAll").forward(request, response);
+//			request.getRequestDispatcher("/_system.jsp").forward(request, response);
 
 		}
 		

@@ -54,30 +54,27 @@
 			
 			<td>
 				<c:if test="${!empty LoginOK}">
-					<form method="post"
-							action="<c:url value="/ItemController"/>">
-							<input type="submit" value="檢舉"> <input type="hidden"
-								name="m_id" value="${LoginOK.m_id}"> <input
-								type="hidden" name="i_id" value="${itemVO.i_id}"> <input
-								type="hidden" name="action" value="product_accuse">
-
-						</form>
+					<form method="post" action="<c:url value="/ItemController"/>">
+						<input type="submit" value="檢舉"> 
+						<input type="hidden"name="m_id" value="${LoginOK.m_id}"> 
+						<input type="hidden" name="i_id" value="${itemVO.i_id}"> 
+						<input type="hidden" name="action" value="product_accuse">
+					</form>
 				</c:if>
 			</td>
 			<td>
-							<c:if test="${!empty LoginOK }">
-					<form method="post"
-							action="<c:url value="/ChatController"/>">
-							<input type="submit" value="議價"> <input type="hidden"
-								name="m_id" value="${LoginOK.m_id}"> 
-								<input type="hidden"
-								name="m_account" value="${LoginOK.m_account}">
-								<input
-								type="hidden" name="s_id" value="${itemVO.s_id}"> <input
-								type="hidden" name="action" value="price_bargain">
-
-						</form>
+				<c:if test="${!empty LoginOK }">
+					<form method="post" action="<c:url value="/ChatController"/>">
+						<input type="submit" value="議價">
+						<input type="hidden" name="m_id" value="${LoginOK.m_id}"> 
+						<input type="hidden" name="m_account" value="${LoginOK.m_account}">
+						<input type="hidden" name="s_id" value="${itemVO.s_id}">
+						<input type="hidden" name="action" value="price_bargain">
+					</form>
 				</c:if>
+			</td>
+			<td>
+				<button type="button" id="buyAd">購買廣告</button>
 			</td>
 			</tr>		
 	</tbody>
@@ -95,6 +92,7 @@
 	<input type="hidden" name="s_id" value="${itemVO.s_id }"/><button type="submit" >回到賣場</button>	
 </form><br/>
 <a href="<c:url value='/index.jsp'/>"> <input type="button" value="回首頁"></a>
+
 <span id="itemmsg"></span>
 <form>
 	<input type="hidden" name="i_id" id="hidden" value="${itemVO.i_id }" />
@@ -104,6 +102,7 @@
 </form>
 
 </body>
+
 <script>
 $(function(){
 	$('#insertitemmessage').click(insertItemMessage);
@@ -248,6 +247,14 @@ $('#addCart').click(function (){
 	 })
 	 
 });
+
+$('#buyAd').click(function(){
+	var i_id = $('#i_id').val();
+	console.log(i_id);
+		window.open('Ad.go?action=prepareBuy&i_id='+i_id, '購買AllBuyBack廣告',
+				'height=350,width=650,scrollbars=0,resizable=0,location=0');
+});
+
 
 $('#keepitem').click(function(){
 	if(<c:out value="${empty LoginOK}">true</c:out>){

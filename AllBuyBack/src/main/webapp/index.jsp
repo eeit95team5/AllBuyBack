@@ -10,6 +10,7 @@
 <body>
 	
 	<a href="HomeIndex.jsp">新首頁</a><br>
+	<a href="_systemLogin.jsp">管理員登入</a><br>
 	<a href="login.jsp">登入</a><br>
 	<a href="logout.jsp">登出</a><br>
 	<br>
@@ -51,6 +52,7 @@
 	<a href="shop.html?s_id=1000002">2號賣場</a>
 	<a href="shop.html?s_id=1000006">6號賣場</a>
 	<a href="Ad.go?action=selectBySId&s_id=${LoginOK.m_id}">我的廣告</a><br>
+	<a href="BuyAd.jsp">購買廣告</a><br>
 	<h3><a href="<c:url value="/checkGB.do"/>">時尚金頭腦</a></h3>
 <br>
 <h4>${alreadyPlay}</h4>
