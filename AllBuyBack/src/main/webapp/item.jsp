@@ -51,7 +51,6 @@
 				</td>
 							
 			</form>
-			
 			<td>
 				<c:if test="${!empty LoginOK}">
 					<form method="post" action="<c:url value="/ItemController"/>">

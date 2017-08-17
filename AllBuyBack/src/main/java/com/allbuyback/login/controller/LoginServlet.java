@@ -12,81 +12,72 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.allbuyback.login.model.LoginService;
-import com.allbuyback.login.model.MemberVO;
+import com.allbuyback.login.model.*;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	public LoginServlet() {
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doPost(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		String contextPath = getServletContext().getContextPath();
+		String status = "status";
+
+		Map<Object, Object> errorMsg = new HashMap<>();
+
 		HttpSession session = request.getSession();
-		
-		Map<String, String> errorMsg = new HashMap<String, String>();
-		request.setAttribute("errorMsg", errorMsg);
-		
-		String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
-		
-		if(userId == null || userId.trim().length() == 0){
-			errorMsg.put("userId", "userId must be entered");
-		}
-		
-		if(password == null || password.trim().length() == 0){
-			errorMsg.put("password", "password must be entered");
-		}
-		
-		if(!errorMsg.isEmpty()){
-			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
-			rd.forward(request, response);
-			return;
-		}
-		
-		LoginService ls = new LoginService();
-		MemberVO mVO = ls.checkIdPassword(userId, password);
-		if(mVO != null){
-			session.setAttribute("LoginOK", mVO);
-			if ((mVO.getM_authority()) == 9) {
-				
-				session.setAttribute("AdminOK", mVO);
+			String account = request.getParameter("userId").trim();
+			String password = request.getParameter("password").trim();
+			if ((account != null || account.trim().length() != 0)
+					&& (password != null || password.trim().length() != 0)) {
+				LoginService service = new LoginService();
+				MemberVO bean = service.checkAccount(account, password);
 
-				request.getRequestDispatcher("/_system.jsp").forward(request, response);
-				
-			}else if((mVO.getM_authority()) == 2){
-				
-				session.setAttribute("SellerOK", mVO);
-				
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
-			}else if((mVO.getM_authority()) == 0){
-				request.setAttribute("msg", "沒有登錄權限");
-				request.getRequestDispatcher("/login.jsp").forward(request, response);
+				if (bean != null && (bean.getM_account().equals("admin"))) {
+					session.setAttribute("AdminOK", bean);
+					RequestDispatcher rd = request.getRequestDispatcher("/Admin.jsp");
+					rd.forward(request, response);
+				} else if (bean != null && (bean.getM_authority() == 2)) {
+						String target = (String) session.getAttribute("target");
+						if (target != null) {
+							session.removeAttribute("target");
+							session.setAttribute("SellerOK", bean);
+							session.setAttribute("LoginOK", bean);
+							response.sendRedirect(contextPath + target);
+						} else {
+							session.setAttribute("LoginOK", bean);
+							response.sendRedirect(contextPath + "/HomeAfteLogin.html");
+						}
+				} else if (bean != null && !(bean.getM_account().equals("admin"))) {
+					String target = (String) session.getAttribute("target");
+					if (target != null) {
+						session.removeAttribute("target");
+						session.setAttribute("LoginOK", bean);
+						response.sendRedirect(contextPath + target);
+					} else {
+						session.setAttribute("LoginOK", bean);
+						response.sendRedirect(contextPath + "/HomeAfteLogin.html");
+					}
+					
+				} else {
+					errorMsg.put("LoginError", "帳號不存在或密碼錯誤");
+					request.setAttribute("errorMsg", errorMsg);
+					RequestDispatcher rd = request.getRequestDispatcher("/HomeBeforeLogin.jsp");
+					rd.forward(request, response);
+				}
+			} else {
+				errorMsg.put("LoginError", "帳號不存在或密碼錯誤");
+				request.setAttribute("errorMsg", errorMsg);
+				RequestDispatcher rd = request.getRequestDispatcher("/HomeBeforeLogin.jsp");
+				rd.forward(request, response);
 			}
-		}else{
-			errorMsg.put("LoginError", "帳號不存在或密碼錯誤");
-		}
-		
-		if(errorMsg.isEmpty()){
-			String contextPath = getServletContext().getContextPath();
-			String target = (String)session.getAttribute("target");
-			if(target != null){
-				session.removeAttribute("target");
-				response.sendRedirect(contextPath + target);
-			}else{
-				response.sendRedirect(contextPath + "/index.jsp");				
-			}
-		}else{
-			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
-			rd.forward(request, response);
-			return;
-		}
-		
-		
-		
-	}
-
+		} 
 }
