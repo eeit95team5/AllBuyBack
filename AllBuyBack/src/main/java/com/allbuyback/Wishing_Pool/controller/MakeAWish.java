@@ -54,7 +54,7 @@ public class MakeAWish extends HttpServlet {
 		}
 		
 		if (!errorMessage.isEmpty()) {
-			RequestDispatcher rd = request.getRequestDispatcher("MakeAWishForm.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("_MakeAWish.jsp");
 			rd.forward(request, response);
 			return;
 		}
@@ -106,7 +106,7 @@ public class MakeAWish extends HttpServlet {
 		request.setAttribute("account", account);
 		request.setAttribute("VOlist", list);
 
-		request.getRequestDispatcher("/PersonalMakeAWishList.jsp").forward(request, response);
+		request.getRequestDispatcher("/_MyWishList.jsp").forward(request, response);
 		return;
 
 	}

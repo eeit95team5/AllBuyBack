@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -169,38 +170,18 @@
                   <div class="wish" style="font-size:20px;font-family:微軟正黑體;font-weight:700;color:#CD8162;margin-top: 15px;">願望</div>
                 <div class="wishContent" style="text-align:center;font-size:20px;font-family:微軟正黑體;font-weight:700;color:#CD8162;margin-top: 15px;">內容</div>
                   <div class="wishTime" style="text-align:center;font-size:20px;font-family:微軟正黑體;font-weight:700;color:#CD8162;margin-top: 15px;">許願時間</div>  
-                <button id="makeAWish" style="margin-left:75px;border:#20B2AA 2px solid;font-size:23px;font-weight:600;padding:10px 10px;background-color:white;color:#778899;">我要許願</button>
+                <a href="_MakeAWish.jsp"><button id="makeAWish" style="margin-left:75px;border:#20B2AA 2px solid;font-size:23px;font-weight:600;padding:10px 10px;background-color:white;color:#778899;">我要許願</button></a>
             
             </div>
 
-
-            <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
-                <div class="wish" style="height:80px;line-height:100px;">變白</div>
-                <div class="wishContent" style="text-align:center;height:80px;line-height:100px;">請幫忙代購日本強力美白面膜</div>
-                <div class="wishTime" style="text-align:center;height:80px;line-height:100px;">2017/06/07</div>
-                <button style="margin-top:22px;margin-left:80px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button>
-            </div>
-            
-              <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
-                <div class="wish" style="height:80px;line-height:100px;">變帥</div>
-                <div class="wishContent" style="text-align:center;height:80px;line-height:100px;">請幫忙代購韓國明星代言的棒球帽</div>
-                <div class="wishTime" style="text-align:center;height:80px;line-height:100px;">2017/06/07</div>
-                <button style="margin-top:22px;margin-left:80px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button>
-            </div>
-            
-            <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
-                <div class="wish" style="height:80px;line-height:100px;">變白</div>
-                <div class="wishContent" style="text-align:center;height:80px;line-height:100px;">請幫忙代購日本強力美白面膜</div>
-                <div class="wishTime" style="text-align:center;height:80px;line-height:100px;">2017/06/07</div>
-                <button style="margin-top:22px;margin-left:80px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button>
-            </div>
-            
-              <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
-                <div class="wish" style="height:80px;line-height:100px;">變帥</div>
-                <div class="wishContent" style="text-align:center;height:80px;line-height:100px;">請幫忙代購韓國明星代言的棒球帽</div>
-                <div class="wishTime" style="text-align:center;height:80px;line-height:100px;">2017/06/07</div>
-                <button style="margin-top:22px;margin-left:80px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button>
-            </div>
+			<c:forEach var="mVO" items="${VOlist}">
+	            <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
+	                <div class="wish" style="height:80px;line-height:100px;">${mVO.w_title}</div>
+	                <div class="wishContent" style="text-align:center;height:80px;line-height:100px;">${mVO.w_content}</div>
+	                <div class="wishTime" style="text-align:center;height:80px;line-height:100px;">${mVO.w_date_string}</div>
+	                <a href="PersonalWishContent?w_id=${mVO.w_id}"><button style="margin-top:22px;margin-left:80px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button></a>
+	            </div>
+            </c:forEach>
               
               <!--分頁搜尋-->
 			<div class="center" style="margin-top: 50px;">
