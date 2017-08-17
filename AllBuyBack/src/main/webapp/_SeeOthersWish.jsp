@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>別人的願望</title>
+<title>看願望</title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -209,7 +210,7 @@ $(function(){
     -webkit-border-image: url(images/border.png) 20 stretch; /* Safari 3.1-5 */
     -o-border-image: url(images/border.png) 20 stretch; /* Opera 11-12.1 */
     border-image: url(images/border.png) 20 stretch;
-    height:1030px;
+    height:1100px;
     width:800px;
     margin-left:170px; 
 }
@@ -282,50 +283,78 @@ tbody{
 		  </tr>
 			
 			<tr>
-			    <td width="200" height="100">許願標題 :</td>
-			    <td width="550" height="100" align="left" >
-			         <input id='title1' style="text-align:left;;border:1px solid #E9967A;" name="title" value="${param.title}" type="text" size="15">
-			         <div style="color:#FF0000; display: inline;">${ErrorMsg.title}</div>
-			    </td>
-			</tr>
+		    <td width="200" height="100">許願標題:</td>
+		    <td width="550" height="100" align="left" >
+		         <input id='title1' style="text-align:left;border:1px solid #E9967A;" name="title" disabled value="${wVO.w_title}" type="text" size="14">
+		    </td>
+		 </tr>
 			<tr>
-			    <td width="200" height="100" style="margin-right: 50px;">許願內容 :</td>
-			    <td width="550" height="100" align="left" >
-			         <textarea cols="35" rows="5" name="content" id="content1" style="border:1px solid #E9967A;">${param.content}</textarea>
-			         <div style="color:#FF0000; display: inline">${ErrorMsg.content}</div>
-			    </td>
-			</tr>
+		    <td width="200" height="100">許願內容:</td>
+		    <td width="550" height="100" align="left" >
+		         <textarea cols="40" rows="5" name="content" id="content1" disabled style="border:1px solid #E9967A;">${wVO.w_content}</textarea>
+		    </td>
+		 </tr>
 			<tr>
-			    <td width="200" height="100">圖片上傳1 :</td>
-			    <td width="550" height="100" align="left" >
-				      <span class="btn btn-default btn-file" style="background-color: #CDAF95;border:#CDAF95;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
-                                                                     選擇檔案 <input type="file" name="file1" id="file1" accept="image/*">  
-                     </span>  
-			    </td>
-			</tr>
-				<tr>
-			    <td width="200" height="100">圖片上傳2 :</td>
-			    <td width="550" height="100" align="left" >
-				      <span class="btn btn-default btn-file" style="background-color: #CDAF95;border:#CDAF95;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
-                                                                     選擇檔案 <input type="file" name="file2" id="file2" accept="image/*">  
-                     </span>  
-			    </td>
-			</tr>
-				<tr>
-			    <td width="200" height="100">圖片上傳3 :</td>
-			    <td width="550" height="100" align="left" >
-				      <span class="btn btn-default btn-file" style="background-color: #CDAF95;border:#CDAF95;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
-                                                                     選擇檔案 <input type="file" name="file3" id="file3" accept="image/*">  
-                     </span>  
-			    </td>
+		    <td width="200" height="100">圖片:</td>
+		    <td width="550" height="100" align="left" >
+			    	<c:if test="${not empty p1}">
+			    		<div style="float:left; margin:5px">
+			    		<div id="pic1"><img height='500' width='500' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'></div>
+						<img id="spic1" height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p1}'>
+						</div>
+					</c:if>
+					<c:if test="${not empty p2}">
+						<div style="float:left; margin:5px">
+						<div id="pic2"><img height='500' width='500' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p2}'></div>
+						<img id="spic2" height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p2}'>
+						</div>
+					</c:if>
+					<c:if test="${not empty p3}">
+						<div style="float:left; margin:5px">
+						<div id="pic3"><img height='500' width='500' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p3}'></div>
+						<img id="spic3" height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p3}'>
+						</div>
+					</c:if>
+					<c:if test="${not empty p4}">
+						<div style="float:left; margin:5px">
+						<div id="pic4"><img height='500' width='500' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p4}'></div>
+						<img id="spic4" height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p4}'>
+						</div>
+					</c:if>
+					<c:if test="${not empty p5}">
+						<div style="float:left; margin:5px">
+						<div id="pic5"><img height='500' width='500' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p5}'></div>
+						<img id="spic5" height='100' width='100' src='ReadPictureForWP?w_Id=${wVO.w_id}&pic_id=${p5}'>
+						</div>
+					</c:if>
+		    </td>
+		</tr>
+        	<tr>
+		    <td width="300" height="100">實現願望賣家:</td>
+		    <td width="100" height="100" align="left" >
+		    	<c:forEach var="as" items="${asVO}">
+		    		${as.m_account}實現願望的內容: <a href="SingleItemContent?w_id=${wVO.w_id}&i_id=${iVO.i_id}">${iVO.i_name}</a>
+		    		<c:if test="${not empty iVO.i_name}">
+		    			<input type="button" value="加入購物車"><br>
+		    		</c:if>
+		    	</c:forEach>
+		    </td>
+		</tr>
+			<tr>
+		    <td height="350" colspan="2" align="center" style="margin-top: 50px;">
+		       <a href="AddOne?w_Id=${wVO.w_id}"><input class="btn" type="button" value="+1" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #EE9572;padding:8px 18px;margin-right: 30px;color:black"></a>
+		       <a href="CheckPeopleList"><input class="btn" type="button" value="回許願池" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #FFC125;padding:8px 18px;margin-right: 30px;color:black"></a>
+<%--                <a href="MakeWishComeTrue?w_Id=${wVO.w_id}"><input class="btn" type="button" value="接受願望"></a> --%>
+			   <input id="CT_btn" class="btn" type="button" value="接受願望" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #EE9572;padding:8px 18px">
+			   <div id="CT_window"></div>
+		       <br>
+		       <font color='red' size='-1'>${errorMsg.login}</font>
+		       <font color='red' size='-1'>${errorMsg.duplicateAccount}</font>
+		       <font color='red' size='-1'>${errorMsg.doubleAccount}</font>
+		       <font color='red' size='-1'>${errorMsg.AccountNoRight}</font>
+		    </td>
+		</tr>			
 		
-			<tr>
-			    <td height="100" colspan="2" align="right">
-			       <input class="btn btn-default" type="submit" value="許願" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #FFC125;padding:8px 18px;margin-right: 30px" >
-			       <a href="CheckYourList"><input class="btn btn-default" type="button" value="我的願望清單" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #EE9572;padding:8px 18px"></a>
-			    </td>
-			</tr>	
-			
 		</tbody>
 		</table>
 	</fieldset>
