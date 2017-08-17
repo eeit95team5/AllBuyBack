@@ -236,7 +236,7 @@ tbody{
 			<tr>
 			    <td width="200" height="100">圖片上傳1 :</td>
 			    <td width="550" height="100" align="left" >
-				      <span class="btn btn-default btn-file" style="background-color: #CDAF95;border:#CDAF95;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
+				      <span class="btn btn-default btn-file" style="background-color: #EED5D2;border:#EED5D2;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
                                                                      選擇檔案 <input type="file" name="file1" id="file1" accept="image/*">  
                      </span>  
 			    </td>
@@ -244,7 +244,7 @@ tbody{
 				<tr>
 			    <td width="200" height="100">圖片上傳2 :</td>
 			    <td width="550" height="100" align="left" >
-				      <span class="btn btn-default btn-file" style="background-color: #CDAF95;border:#CDAF95;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
+				      <span class="btn btn-default btn-file" style="background-color: #EED5D2;border:#EED5D2;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
                                                                      選擇檔案 <input type="file" name="file2" id="file2" accept="image/*">  
                      </span>  
 			    </td>
@@ -252,7 +252,7 @@ tbody{
 				<tr>
 			    <td width="200" height="100">圖片上傳3 :</td>
 			    <td width="550" height="100" align="left" >
-				      <span class="btn btn-default btn-file" style="background-color: #CDAF95;border:#CDAF95;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
+				      <span class="btn btn-default btn-file" style="background-color: #EED5D2;border:#EED5D2;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
                                                                      選擇檔案 <input type="file" name="file3" id="file3" accept="image/*">  
                      </span>  
 			    </td>
@@ -260,7 +260,7 @@ tbody{
 				<tr>
 			    <td width="200" height="100">圖片上傳4 :</td>
 			    <td width="550" height="100" align="left" >
-				      <span class="btn btn-default btn-file" style="background-color: #CDAF95;border:#CDAF95;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
+				      <span class="btn btn-default btn-file" style="background-color: #EED5D2;border:#EED5D2;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
                                                                      選擇檔案 <input type="file" name="file4" id="file4" accept="image/*">  
                      </span>  
 			    </td>
@@ -268,15 +268,15 @@ tbody{
 				<tr>
 			    <td width="200" height="100">圖片上傳5 :</td>
 			    <td width="550" height="100" align="left" >
-				      <span class="btn btn-default btn-file" style="background-color: #CDAF95;border:#CDAF95;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
+				      <span class="btn btn-default btn-file" style="background-color: #EED5D2;border:#EED5D2;font-size: 23px;font-family: 微軟正黑體;border-radius: 5px 5px">  
                                                                      選擇檔案 <input type="file" name="file5" id="file5" accept="image/*">  
                      </span>  
 			    </td>
 			</tr>
 			<tr>
 			    <td height="100" colspan="2" align="right">
-			       <input class="btn btn-default" type="submit" value="許願" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #FFC125;padding:8px 18px;margin-right: 30px" >
-			       <a href="CheckYourList"><input class="btn btn-default" type="button" value="我的願望清單" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #EE9572;padding:8px 18px"></a>
+			       <input class="btn btn-default" type="submit" value="許願" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #8E388E;border:#8E388E;padding:8px 18px;margin-right: 30px;color:white" >
+			       <a href="CheckYourList"><input class="btn btn-default" type="button" value="我的願望清單" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #4F94CD;border:#4F94CD;padding:8px 18px;color:white"></a>
 			    </td>
 			</tr>	
 			
