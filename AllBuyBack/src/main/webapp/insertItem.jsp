@@ -1,4 +1,4 @@
-<%@page import="java.util.List"%>
+<%@page import="java.util.List,java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -25,6 +25,8 @@ $(function(){
 	$('#i_class2').change(getJSON3);
 	$('#adds_class1').click(InsertS_Class1JSON)
 	$('#adds_class2').click(InsertS_Class2JSON)
+	document.getElementById('i_arrivedDate').valueAsDate = new Date();	
+	document.getElementById('i_onSellDate').valueAsDate = new Date();
 	getJSON1();	
 	getS_Class1JSON()
 })
@@ -156,12 +158,12 @@ function showS_Class2JSON(data){
 	<form action="<c:url value="/item.SPRINGcontroller"/>" method="get">
 		<table>
 			<tr>
-				<td>i_id :</td>
+				<td>商品編號：</td>
 				<td><input type="text" name="i_id"  value="" readonly="readonly"></td>
 				<td>${errors.i_id}</td>
 			</tr>
 			<tr>
-				<td>s_id :</td>
+				<td>賣場編號：</td>
 				<td><input type="text" name="s_id" readonly="readonly"
 						value=<c:choose>
 								<c:when test="${not empty result}">${result.s_id}</c:when>
@@ -173,28 +175,28 @@ function showS_Class2JSON(data){
 			</tr>
 
 			<tr>
-				<td>i_name :</td>
+				<td>商品名稱：</td>
 				<td><input type="text" name="i_name" value="${result.i_name}"></td>
 				<td>${errors.i_name}</td>
 			</tr>
 			<tr>
-				<td>i_describe :</td>
+				<td>商品簡介：</td>
 				<td><input type="text" name="i_describe"
 					value="${result.i_describe}"></td>
 				<td>${errors.i_describe}</td>
 			</tr>
 			<tr>
-				<td>i_price :</td>
+				<td>商品價格：</td>
 				<td><input type="text" name="i_price" value="${result.i_price}"></td>
 				<td>${errors.i_price}</td>
 			</tr>
 			<tr>
-				<td>i_quantity :</td>
+				<td>商品數量：</td>
 				<td><input type="text" name="i_quantity" value="${result.i_quantity}"></td>
 				<td>${errors.i_quantity}</td>
 			</tr>
 			<tr>
-				<td>country_id :</td>
+				<td>所在國家：</td>
 				<td><select id="country_id" name="country_id" >
 						<c:if test="${not empty country }">
 							<c:forEach var="cBean" items="${country}">
@@ -205,18 +207,18 @@ function showS_Class2JSON(data){
 				<td>${errors.country_id}</td>
 			</tr>
 			<tr>
-				<td>i_arrivedDate :</td>
-				<td><input type="text" name="i_arrivedDate" value=""></td>
+				<td>到貨時間：</td>
+				<td><input type="date" name="i_arrivedDate" id="i_arrivedDate"></td>
 				<td>${errors.i_arrivedDate}</td>
 			</tr>
 			<tr>
-				<td>i_onSellDate :</td>
-				<td><input type="text" name="i_onSellDate"
-					value="" readonly="readonly"></td>
+				<td>上架時間：</td>
+				<td><input type="date" name="i_onSellDate" id="i_onSellDate"
+					 readonly="readonly"></td>
 				<td>${errors.i_onSellDate}</td>
 			</tr>
 			<tr>
-				<td>i_soldQuantity :</td>
+				<td>已銷數量：</td>
 				<td><input type="text" name="i_soldQuantity" readonly="readonly"
 					value=<c:choose>
 								<c:when test="${not empty result}">"${result.i_soldQuantity}"</c:when>
@@ -226,7 +228,7 @@ function showS_Class2JSON(data){
 			</tr>
 			
 			<tr>
-				<td>i_status :</td>
+				<td>上架狀態：</td>
 				<td><input type="text" name="i_status" readonly="readonly"
 					value=<c:choose>
 								<c:when test="${not empty result}">"${result.i_status}"</c:when>
@@ -235,7 +237,7 @@ function showS_Class2JSON(data){
 				<td>${errors.i_status}</td>
 			</tr>
 			<tr>
-				<td>i_class1 :</td>
+				<td>商品分類一：</td>
 				<td><select id="i_class1" name="i_class1">
 						<c:if test="${not empty item_class1 }">
 							<c:forEach var="c1Bean" items="${item_class1}">
@@ -246,19 +248,19 @@ function showS_Class2JSON(data){
 				<td>${errors.country_id}</td>
 			</tr>
 			<tr>
-				<td>i_class2 :</td>
+				<td>商品分類二：</td>
 				<td><select id="i_class2" name="i_class2">
 				</select></td>
 				<td>${errors.i_class2}</td>
 			</tr>
 			<tr>
-				<td>i_class3 :</td>
+				<td>商品分類三：</td>
 				<td><select id="i_class3" name="i_class3">
 				</select></td>
 				<td>${errors.i_class3}</td>
 			</tr>
 			<tr>
-				<td>i_popular :</td>
+				<td>搜尋次數：</td>
 				<td><input type="text" name="i_popular" readonly="readonly"
 					value=<c:choose>
 								<c:when test="${not empty result.i_popular}">"${result.i_popular}"</c:when>
@@ -267,7 +269,7 @@ function showS_Class2JSON(data){
 				<td>${errors.i_popular}</td>
 			</tr>
 			<tr>
-				<td>i_click :</td>
+				<td>點閱次數：</td>
 				<td><input type="text" name="i_click" readonly="readonly"
 					value=<c:choose>
 								<c:when test="${not empty result.i_click}">"${result.i_click}"</c:when>
@@ -279,7 +281,7 @@ function showS_Class2JSON(data){
 				<td>${errors.i_click}</td>
 			</tr>
 			<tr>
-				<td>s_class1 :</td>
+				<td>商店分類一：</td>
 				<td><select id="s_class1" name="s_class1"></select></td>
 				<td>新增商店分類一：</td>
 				<td><input type="text" id="2_s_class1name"/></td>
@@ -288,7 +290,7 @@ function showS_Class2JSON(data){
 				<td>${errors.s_class1}</td>
 			</tr>
 			<tr>
-				<td>s_class2 :</td>
+				<td>商店分類二：</td>
 				<td><select id="s_class2" name="s_class2"></select></td>
 				<td>新增商店分類二：</td>
 				<td><input type="text" id="2_s_class2name"/></td>
