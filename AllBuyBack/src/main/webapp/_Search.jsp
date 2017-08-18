@@ -96,7 +96,7 @@
  <div class="row">
 	     <div class="col-sm-3">
 	        <div class="adOuter" >
-	           <img class="imgsrc" src="images/cho_05.jpg" >
+	           <img class="imgsrc" src="" >
 	           <div  class="adContent">來自日本的草莓巧克力，可以吃到一整顆完整的草莓喔!超級幸福~</div>
 	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
 	             <div id="country" class="countryFrom">美國</div>

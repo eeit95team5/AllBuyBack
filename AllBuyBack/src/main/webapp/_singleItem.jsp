@@ -131,11 +131,20 @@ $(function() {
     					'height=370,width=650,scrollbars=0,resizable=0,location=0');
     	});
     	
-    	var offset=$('#point').offset();
-    	console.log(offset.top+","+offset.left)	;
-    	if(offset.top<100){   		
-    		$('#hidden').attr("style","margin-top:70px;display:block");
-    	}
+    	
+    	
+    	
+    	$("#reportTag").mouseover(function() {
+     		$('#report').attr("style","position:absolute;top:7px;left:1000px;border-radius:5px 5px;color:black;font-size:15px;width:100px;display:block");
+     	});
+        	
+
+        	$("#reportTag").mouseout(function() {
+     		$('#report').attr("style","display:none");
+     	});
+    	
+    	
+    	
     	
 
 });
@@ -158,6 +167,9 @@ $(function() {
             <div class="productArea1"  >
                <div class="productTitle" >${itemVO.i_name }</div>
 
+               
+                <span id="reportTag" class="glyphicon glyphicon-bullhorn" style="position:absolute;top:30px;left:1040px;font-size:20px;;color:gray"></span>
+                <div id="report" style="position:absolute;top:10px;left:1000px;border-radius:5px 5px;color:black;font-size:10px;display:none;">檢舉商品</div>
                
                 <span id="buyAdTag" class="glyphicon glyphicon-tag " style="position:absolute;top:30px;left:1090px;font-size:20px;;color:gray"></span>
                 <div id="buyAd" style="position:absolute;top:10px;left:1100px;border-radius:5px 5px;color:black;font-size:10px;display:none;">買廣告請點我</div>
@@ -268,7 +280,7 @@ border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑�
     
     <span class="glyphicon glyphicon-plane" style="color:white;font-size:25px;"></span>
     欲購買或發問點請選<br /><br /><br />
-<button style="border-radius:5px 5px;border:rgb(42,186,171);background-color:rgb(42,186,171);color:white;padding:10px 30px;font-size:20px;margin-top:10px;font-weight:500;">聯絡賣家</button>
+<button id="wantBuy" style="border-radius:5px 5px;border:rgb(42,186,171);background-color:rgb(42,186,171);color:white;padding:10px 30px;font-size:20px;margin-top:10px;font-weight:500;">聯絡賣家</button>
 
 </div>
 
@@ -498,6 +510,15 @@ function insertItemMessage(){
 
 
 $('.wantBuy').click(function(){
+	var m_id = $('#m_id').val();
+	var s_id = $('#s_id').val();
+	
+	console.log(i_id);
+		window.open('ChatController?action=show_both_message_seller&m_id='+m_id+'&s_id='+s_id,'購買AllBuyBack廣告',
+				'height=650,width=650,scrollbars=0,resizable=0,location=0');
+});
+
+$('#wantBuy').click(function(){
 	var m_id = $('#m_id').val();
 	var s_id = $('#s_id').val();
 	
