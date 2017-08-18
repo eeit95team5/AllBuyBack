@@ -208,5 +208,48 @@ public class PicturesDAO implements PicturesDAOI {
 		}
 		
 	}
+	
+	public void readPictureForItem(HttpServletResponse response, int i_id,int i_pictureX) throws IOException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		OutputStream os = null;
+		InputStream is = null;
+		ResultSet rs = null;
 
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(SELECT_BY_IID);
+			pstmt.setInt(1, i_id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				is = rs.getBinaryStream(i_pictureX+4);
+				if (is != null) {
+					String mimeType = "image/png";
+					response.setContentType(mimeType);
+					os = response.getOutputStream();
+					int count = 0;
+					byte[] bytes = new byte[4096];
+					while ((count = is.read(bytes)) != -1) {
+						os.write(bytes, 0, count);
+					}
+				}
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (os != null) {
+				os.close();
+			}
+		}
+		
+	}
 }

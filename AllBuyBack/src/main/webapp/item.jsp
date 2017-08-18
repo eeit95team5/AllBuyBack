@@ -87,7 +87,7 @@
 	<input type="hidden" name="action" value="select" />
 </form>
 <c:if test="${! empty errorMsgs}"><p>${errorMsgs}</p></c:if>
-<button type="button" id="keepitem">加入收藏</button><span id="msg1"></span><br/>
+<button type="button" id="keepitem">加入收藏</button><span id="KeepItemMsg"></span><br/>
 <form action="<c:url value='/shop.html'/>" method="get">
 	<input type="hidden" name="s_id" value="${itemVO.s_id }"/><button type="submit" >回到賣場</button>	
 </form><br/>
@@ -266,14 +266,14 @@ $('#accuse').click(function(){
 
 $('#keepitem').click(function(){
 	if(<c:out value="${empty LoginOK}">true</c:out>){
-		$('#msg1').text("請先登入");
+		$('#KeepItemMsg').text("請先登入");
 	}else if((<c:out value="${LoginOK.m_id}">-1</c:out>) == (<c:out value="${itemVO.s_id}">-2</c:out>)){
-		$('#msg1').text("這是您自己的商品！");
+		$('#KeepItemMsg').text("這是您自己的商品！");
 	}else{
 		$.post("<c:url value='/keep_item.SPRINGcontroller'/>",{"action":"Insert",
 			"i_id":<c:out value="${itemVO.i_id}">0</c:out>,
 			"m_id":<c:out value="${LoginOK.m_id}">0</c:out>},function(){
-				$('#msg1').text("已將商品加入收藏");
+				$('#KeepItemMsg').text("已將商品加入收藏");
 			});	//post	
 	}//else	
 })//click
