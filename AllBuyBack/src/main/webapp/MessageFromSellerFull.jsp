@@ -184,6 +184,6 @@
 	</form>
 
 	<a href="ChatController?action=MessageFromSeller&id=${LoginOK.m_id}">回上一頁</a>
-	<a href="index.jsp">回首頁</a>
+	<a href="HomeIndex.jsp">回首頁</a>
 </body>
 </html>

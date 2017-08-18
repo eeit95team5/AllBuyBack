@@ -28,7 +28,7 @@
 // 	<!-- 聊天室結束(發訊者) -->
 
 // 	<!-- 聊天室開始(收件者) -->
-	setInterval(check, 2000);
+// 	setInterval(check, 2000);
 	
 	var xhr = null;
 	function check(){
