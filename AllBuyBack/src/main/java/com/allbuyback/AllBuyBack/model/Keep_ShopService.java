@@ -31,6 +31,12 @@ public class Keep_ShopService {
 		return keep_ShopDAO.selectByS_Id(s_id); 
 	}
 	
+	public long selectKeepCount(int s_id){
+		return keep_ShopDAO.selectKeepCount(s_id);
+	}
+	
+	
+	
 	public Keep_ShopBean insert(Keep_ShopBean bean) {
 		if(bean!=null) {
 			return keep_ShopDAO.insert(bean);

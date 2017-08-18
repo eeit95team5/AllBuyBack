@@ -23,9 +23,15 @@ public class LogoutServlet extends HttpServlet {
 		session.removeAttribute("LoginOK");
 		session.removeAttribute("AdminOK");
 		session.removeAttribute("SellerOK");
+<<<<<<< HEAD
 		//RequestDispatcher rd = request.getRequestDispatcher("/HomeIndex.jsp");
 		RequestDispatcher rd = request.getRequestDispatcher("/HomeBeforeLogin.jsp");
 		rd.forward(request, response);	
+=======
+//		RequestDispatcher rd = request.getRequestDispatcher("/HomeIndex.jsp");
+//		rd.forward(request, response);
+		response.sendRedirect("HomeIndex.jsp");
+>>>>>>> branch 'master' of https://github.com/eeit95team5/AllBuyBackRespository.git
 	}
 
 }

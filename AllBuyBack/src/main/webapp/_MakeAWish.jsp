@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:if test="${empty LoginOK}">
+	<c:set var="target" value="${pageContext.request.servletPath}" scope="session"/>
+	<c:redirect url="/login.jsp"/>
+</c:if>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -223,14 +227,14 @@ tbody{
 			<tr>
 			    <td width="200" height="100">許願標題 :</td>
 			    <td width="550" height="100" align="left" >
-			         <input id='title1' style="text-align:left;;border:1px solid gray;" name="title" value="${param.title}" type="text" size="15">
+			         <input id='title1' style="text-align:left;;border:1px solid gray;" name="title" value="${param.title}" type="text" size="15"><br>
 			         <div style="color:#FF0000; display: inline;">${ErrorMsg.title}</div>
 			    </td>
 			</tr>
 			<tr>
 			    <td width="200" height="100" style="margin-right: 50px;">許願內容 :</td>
 			    <td width="550" height="100" align="left" >
-			         <textarea cols="40" rows="5" name="content" id="content1" style="border:1px solid gray;">${param.content}</textarea>
+			         <textarea cols="40" rows="5" name="content" id="content1" style="border:1px solid gray;">${param.content}</textarea><br>
 			         <div style="color:#FF0000; display: inline">${ErrorMsg.content}</div>
 			    </td>
 			</tr>

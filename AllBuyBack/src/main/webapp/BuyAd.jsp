@@ -93,7 +93,7 @@
 				<label>廣告價格:</label><b id="thePrice"></b>
 			</td>
 			<td>
-				<input type="submit" value="我要買" class="btn btn-primary" id="tobuy">
+				<input type="submit" value="購買" class="btn btn-primary" id="tobuy">
 				<input type="hidden" name="s_id" value="${LoginOK.m_id}">
 				<input type="hidden" name="i_id" value="${i_id}">
 				<input type="hidden" name="action" value="buyAd" />
@@ -138,6 +138,9 @@
 	</c:forEach>
 	</table>
 </c:if>
+<div>
+	<p style="font-size:8px;text-align:left;">1.廣告以日計費，以開始日之凌晨0點0分起算，至結束日之凌晨0點0分結束。<br>2.指定開始日為購買當日者，購買日以一日計算。</p>
+</div>
 <br>
 <button type="button" onclick="window.close()" id="bot">關閉視窗</button>
 

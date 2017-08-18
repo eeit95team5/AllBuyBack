@@ -14,7 +14,14 @@ public class Wishing_PoolVO implements java.io.Serializable{
 	private java.sql.Timestamp w_date;
 	private int w_status;
 	private String m_account;  //自己新增的
+	private String w_date_string;  //自己新增的
 	
+	public String getW_date_string() {
+		return w_date_string;
+	}
+	public void setW_date_string(String w_date_string) {
+		this.w_date_string = w_date_string;
+	}
 	public String getM_account() {
 		return m_account;
 	}

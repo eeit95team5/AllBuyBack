@@ -70,7 +70,7 @@ public class PersonalWishContent extends HttpServlet {
 		PicturesDAO pDAO = new PicturesDAO();
 		pDAO.showUpLoadedPicture(request, w_id);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/PersonalWishContent.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/_SeeMyWish.jsp");
 		rd.forward(request, response);
 	}
 

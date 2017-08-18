@@ -350,7 +350,7 @@
 							</ul></li>
         <li><a href="#">許願池<span class="glyphicon glyphicon-menu-down"></span></a>
 			<ul>
-			<li><a href="MakeAWishForm.jsp" >許願</a></li>
+			<li><a href="_MakeAWish.jsp" >許願</a></li>
 			<li><a href="CheckYourList">本人願望</a></li>
 			<li><a href="CheckPeopleList">大家願望</a></li>
 			</ul></li>
