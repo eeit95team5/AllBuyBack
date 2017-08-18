@@ -39,7 +39,18 @@ public class BClassItemSearch extends HttpServlet {
 		int i_class1 = Integer.parseInt(request.getParameter("BClass"));
 		list = is.getAll_FirstLayer(i_class1);
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/HomeIndex.jsp").forward(request, response);
+		request.setAttribute("AllClass", "依類別");
+		switch(i_class1){
+		 case 1000001:
+			 request.setAttribute("BClass", "/ 流行服飾");
+			 request.setAttribute("BClassNo", i_class1);
+			 break;
+		 case 1000002:
+			 request.setAttribute("BClass", "/ 異國美食");
+			 request.setAttribute("BClassNo", i_class1);
+			 break;
+		}
+		request.getRequestDispatcher("/_SearchForItem.jsp").forward(request, response);
 //		jsonString = JSONValue.toJSONString(is.getAll_FirstLayer(i_class1));
 //		out.println(jsonString);
 	}

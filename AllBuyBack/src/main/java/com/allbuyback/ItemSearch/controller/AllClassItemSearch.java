@@ -38,7 +38,8 @@ public class AllClassItemSearch extends HttpServlet {
 		
 		list = is.getAll();
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/HomeIndex.jsp").forward(request, response);
+		request.setAttribute("AllClass", "依類別");
+		request.getRequestDispatcher("/_SearchForItem.jsp").forward(request, response);
 		
 //		jsonString = JSONValue.toJSONString(is.getAll());
 //		out.println(jsonString);
