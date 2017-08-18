@@ -28,7 +28,7 @@
 // 	<!-- 聊天室結束(發訊者) -->
 
 // 	<!-- 聊天室開始(收件者) -->
-	setInterval(check, 2000);
+// 	setInterval(check, 2000);
 	
 	var xhr = null;
 	function check(){
@@ -399,7 +399,7 @@
 <!------------------->
 <c:if test="${! empty LoginOK}">
          <div class="myPicture">
-             <!--<img src="<c:url value='/UpdateDataServlet?status=selectPic&id=${LoginOK.m_id}' />" />-->
+             <img src="<c:url value='/UpdateDataServlet?status=selectPic&id=${LoginOK.m_id}' />" />
          </div>
 
       <div class="threeDot" id="threeDot">

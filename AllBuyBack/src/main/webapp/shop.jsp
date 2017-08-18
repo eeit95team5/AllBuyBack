@@ -67,7 +67,7 @@ function showJSON(data){
 </script>
 </head>
 <body>
-	<h3 id="head">${shop.s_id }的商店</h3><button type="button" id="keep_shop" value="${shop.s_id }">將商店加入我的收藏</button><span id="spanmsg2"></span>
+	<h3 id="head">${member.m_name }的商店</h3><button type="button" id="keep_shop" value="${shop.s_id }">將商店加入我的收藏</button><span id="spanmsg2"></span>
 	<h5>${shop.s_aboutMe }</h5>
 	<table>
 		<tr>

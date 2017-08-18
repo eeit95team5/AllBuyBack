@@ -31,6 +31,9 @@
 	<bean id="index" class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/index.jsp"></property>
 	</bean>
+	<bean id="HomeIndex" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/HomeIndex.jsp"></property>
+	</bean>
 	<bean id="shopmanager" class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/shopManager.jsp"></property>
 	</bean>
