@@ -133,38 +133,46 @@ public class AdServlet extends HttpServlet {
 			} catch (ParseException e1) {
 				e1.printStackTrace();
 			}
+			System.out.println(now);
+			System.out.println(ad_start);
 			long ad_start_time = ad_start.getTime();
 			long now_time = new Date().getTime();
 			long ad_end_time = 0;
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(ad_start);
+			Calendar cal2 = Calendar.getInstance();
+			cal2.setTime(now);
 			if(now_time>ad_start_time){
-				System.out.println("時間已過");
-				request.setAttribute("msg", "開始時間最早為明天");
-				request.getRequestDispatcher("/Ad.go?action=prepareBuy&i_id="+i_id).forward(request, response);
-				return;
-			}else{
-				System.out.println("時間OK");
-				Calendar cal = Calendar.getInstance();
-				cal.setTime(ad_start);
-				cal.add(Calendar.DAY_OF_YEAR, ad_days);
-				ad_end_time = cal.getTimeInMillis();
-				
-				Calendar cal2 = Calendar.getInstance();
-				cal2.setTime(now);
-				cal2.add(Calendar.MONTH, 2);
-				if(cal.getTimeInMillis()>cal2.getTimeInMillis()){
-					request.setAttribute("msg", "開始時間須為2個月以內");
+				if(!now.equals(ad_start)){
+					System.out.println("時間已過");
+					request.setAttribute("msg", "您輸入的日期已成為歷史");
 					request.getRequestDispatcher("/Ad.go?action=prepareBuy&i_id="+i_id).forward(request, response);
 					return;
+				//如果是今天
+				}else{
+					System.out.println("今天");
 				}
 			}
+			System.out.println("開始時間OK");
+			//計算結束日期
+			cal.add(Calendar.DAY_OF_YEAR, ad_days);
+			ad_end_time = cal.getTimeInMillis();
+			//設定最遠開始時間
+			cal2.add(Calendar.MONTH, 2);
+			if(cal.getTimeInMillis()>cal2.getTimeInMillis()){
+				request.setAttribute("msg", "開始時間須為2個月以內");
+				request.getRequestDispatcher("/Ad.go?action=prepareBuy&i_id="+i_id).forward(request, response);
+				return;
+			}
+			System.out.println("結束時間OK");
 
 			Timestamp ad_startDate = new Timestamp(ad_start_time);
 			Timestamp ad_endDate = new Timestamp(ad_end_time);
 			//依廣告類型與天數計算價格
 			int ad_price =0;
-			if(ad_type==1){
+			if(ad_type==3){
 				ad_price = ad_days*200;
-			}else if(ad_type==3){
+			}else if(ad_type==4){
 				ad_price = ad_days*1000;
 			}
 			//將資料insert
