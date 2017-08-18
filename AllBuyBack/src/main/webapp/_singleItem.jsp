@@ -82,6 +82,9 @@ $(function() {
     /*----------------------------------------------------*/
     	
  	$("#addToCart").click(function() {
+ 		if(${empty LoginOK}){
+ 			$('#ab123').dialog('open');
+ 		}else{
  		var i_id = $('#i_id').val();
  		var s_id = $('#s_id').val();
  		console.log("ok");
@@ -106,6 +109,7 @@ $(function() {
  					type: theType
 				});
 			})
+ 		}
  	});
     
  	/*----------------------------------------------------*/
@@ -122,7 +126,7 @@ $(function() {
     	$("#buyAdTag").click(function() {/*點下去跳至買廣告頁面*/
     		var i_id = $('#i_id').val();
     			window.open('Ad.go?action=prepareBuy&i_id='+i_id, '購買AllBuyBack廣告',
-    					'height=350,width=650,scrollbars=0,resizable=0,location=0');
+    					'height=370,width=650,scrollbars=0,resizable=0,location=0');
     	});
     	
     	var offset=$('#point').offset();
@@ -445,41 +449,6 @@ function insertItemMessage(){
 		}/*if結尾*/
 	}/*if結尾*/
 }
-
-$('#addCart').click(function (){
-// 	 var form = $(this).parents('#cartForm');
-// 	 console.log(form);
-	 var action = $('#addToCart').val();
-	 var i_id = $('#i_id').val();
-	 var s_id = $('#s_id').val();
-	 var ol_quantity = $('#ol_quantity').val();
-	 var ol_memo = $('#ol_memo').val();
-	 $.post("ShoppingCart.go",{'action':action,'i_id':i_id,'s_id':s_id,'ol_quantity':ol_quantity,'ol_memo':ol_memo},
-			 function(data){
-		 var json = JSON.parse(data);
-		 var str = json.a;
-		 var theType = "success";
-		 var theText = "再多看看別的商品吧!"
-		 if(str=="加入購物車失敗，不能新增數量0以下" || str=="加入購物車失敗，剩餘數量不足"){
-			 theType = "error";
-			 theText = "請確定數量再加入購物車"
-		 }
-			 swal({
-				  title: str,
-				  text: theText,
-				  type: theType
-				});
-	 })
-	 
-});
-
-$('#buyAd').click(function(){
-	var i_id = $('#i_id').val();
-	console.log(i_id);
-		window.open('Ad.go?action=prepareBuy&i_id='+i_id, '購買AllBuyBack廣告',
-				'height=400,width=650,scrollbars=0,resizable=0,location=0');
-});
-
 
 $('#keepitem').click(function(){
 	if(<c:out value="${empty LoginOK}">true</c:out>){
