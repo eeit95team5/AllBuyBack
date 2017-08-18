@@ -42,7 +42,7 @@ public class TalkTalk extends HttpServlet {
 		if(content.length()!=0){
 			cDAO.SaveTalk(m_id, s_id, content); //存進去
 		}
-		jsonString = JSONValue.toJSONString(cDAO.ReadTalk2()); //讀出來
+		jsonString = JSONValue.toJSONString(cDAO.ReadTalk2(m_id, s_id)); //讀出來
 		
 		out.println(jsonString);
 	}

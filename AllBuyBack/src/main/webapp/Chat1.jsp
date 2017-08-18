@@ -48,7 +48,7 @@
 		 		var items = JSON.parse(datas);
 	 			var showContent = "";
 		 		for(var i=0; i<items.length; i++){
-		 			if(items[i].m_id == 1000001){
+		 			if(items[i].m_id == "${m_id}"){
 						showContent = showContent + items[i].m_id + ": " + items[i].chat_content;
 		 			}else{
 		 				showContent = showContent + "\t\t" + items[i].chat_content + " :" + items[i].m_id;

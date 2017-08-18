@@ -19,15 +19,15 @@
 <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
 
 <script type="text/javascript">
-	<!-- 聊天室開始(發訊者) -->
+// 	<!-- 聊天室開始(發訊者) -->
 	$(function(){
 		$('#liid').click(function(){
-			window.open("BeginToTalk?s_id=1000002","","toolbar=no,location=no,directories=no,width=300,height=350");
+			window.open("BeginToTalk?s_id=1000007","","toolbar=no,location=no,directories=no,width=300,height=350");
 		});		
 	})
-	<!-- 聊天室結束(發訊者) -->
+// 	<!-- 聊天室結束(發訊者) -->
 
-	<!-- 聊天室開始(收件者) -->
+// 	<!-- 聊天室開始(收件者) -->
 	setInterval(check, 2000);
 	
 	var xhr = null;
@@ -68,7 +68,7 @@
 	 		}
 		}
 	}
-	<!-- 聊天室結束(收件者) -->
+// 	<!-- 聊天室結束(收件者) -->
 </script>
 
 

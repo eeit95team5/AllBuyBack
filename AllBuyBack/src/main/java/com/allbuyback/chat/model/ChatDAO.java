@@ -41,7 +41,7 @@ public class ChatDAO implements ChatDAOI {
 	private static final String INSERT_BUYER_REPLY = "INSERT INTO CHAT (m_id,s_id,m_account,chat_content,chat_date) VALUES (?,?,?,?, getdate())";
 	private static final String SAVE_STMT = "insert into CHAT values (?, ?, ?, ?, GETDATE())";
 	private static final String READ_STMT = "select * from CHAT where m_id=? and s_id=? order by chat_date desc";
-	private static final String GET_CHAT_STMT = "select * from CHAT order by chat_date desc";
+	private static final String GET_CHAT_STMT = "select * from CHAT where (m_id=? and s_id=?) or (m_id=? and s_id=?) order by chat_date desc";
 	private static final String GET_CHECK_STMT = "select * from CHAT where s_id=? order by chat_date desc";
 	
 	@Override
@@ -432,7 +432,7 @@ public class ChatDAO implements ChatDAOI {
 		return list;
 	}
 	@Override
-	public List<ChatVO> ReadTalk2() {
+	public List<ChatVO> ReadTalk2(int m_id, int s_id) {
 		List list = new ArrayList<ChatVO>();
 		ChatVO chatVO = null;
 		
@@ -443,6 +443,10 @@ public class ChatDAO implements ChatDAOI {
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(GET_CHAT_STMT);
+			pstmt.setInt(1, m_id);
+			pstmt.setInt(2, s_id);
+			pstmt.setInt(3, s_id);
+			pstmt.setInt(4, m_id);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
