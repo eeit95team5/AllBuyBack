@@ -191,6 +191,7 @@ $(function(){
  <!------------------------------你的部分------------------------------>     
             <div id="show" style="position:absolute;top:120px;left:330px;background-color:lightgray;height:800px;width:1550px;overflow: auto">
             
+            <c:if test="${!empty Admin }"><h1>修改成功</h1></c:if>
 
             </div>
 <!------------------------------你的部分結束------------------------------> 

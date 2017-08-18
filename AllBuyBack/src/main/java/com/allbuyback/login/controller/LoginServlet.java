@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 
 				if (bean != null && (bean.getM_account().equals("admin"))) {
 					session.setAttribute("AdminOK", bean);
-					RequestDispatcher rd = request.getRequestDispatcher("/Admin.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("/_system.jsp");
 					rd.forward(request, response);
 				} else if (bean != null && (bean.getM_authority() == 2)) {
 						String target = (String) session.getAttribute("target");

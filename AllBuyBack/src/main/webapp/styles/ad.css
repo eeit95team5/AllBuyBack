@@ -1,0 +1,41 @@
+﻿.adOuter{ /*廣告外框*/
+  border:3px lightgray solid;
+  height:365px;
+
+}
+.imgsrc{
+  width:258px;
+  height:270px;
+}
+
+.adContent{
+  height:55px;
+  padding:6px 10px;
+  border-bottom:1px lightgray solid;
+  font-family:微軟正黑體;
+  font-weight:700;
+  text-align: center;
+}
+
+.marker{/*span的地標圖片*/
+  color:gray;
+  font-size:20px;
+  margin-left: 10px;
+  margin-top: 6px;
+}
+
+.countryFrom{
+  position:absolute; 
+  top:338px;
+  left:52px;
+  font-family:微軟正黑體;
+  font-size:10px;
+}
+
+.sellerWho{
+  position:absolute; 
+  top:338px;
+  right:30px;
+  font-family:微軟正黑體;
+  font-size:10px;
+}

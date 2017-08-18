@@ -477,7 +477,7 @@ $('#buyAd').click(function(){
 	var i_id = $('#i_id').val();
 	console.log(i_id);
 		window.open('Ad.go?action=prepareBuy&i_id='+i_id, '購買AllBuyBack廣告',
-				'height=350,width=650,scrollbars=0,resizable=0,location=0');
+				'height=400,width=650,scrollbars=0,resizable=0,location=0');
 });
 
 
