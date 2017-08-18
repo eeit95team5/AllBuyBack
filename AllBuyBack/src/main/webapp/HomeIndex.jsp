@@ -365,7 +365,7 @@
 <!------------------->
 <c:if test="${! empty LoginOK}">
          <div class="myPicture">
-             <img src=""/>
+             <!--<img src="<c:url value='/UpdateDataServlet?status=selectPic&id=${LoginOK.m_id}' />" />-->
          </div>
 
       <div class="threeDot" id="threeDot">

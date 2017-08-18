@@ -10,16 +10,6 @@ public class RegisterService {
 			30, 31, 33 };// A-Z對應的數字
 	int[] stringToIntArray = new int[26];// 放輸入的字串
 
-	public static void main(String[] args) {
-		RegisterService service = new RegisterService();
-		String s = "A123456789";
-		String identityString = s.toUpperCase();
-		boolean b = service.checkPassword("0001!1");
-		// System.out.println(identityString);
-		System.out.println(b);
-		// service.checkIdentity(identityString);
-	}
-
 	public boolean isAccountValid(String account) {
 		System.out.println(account);
 		MemberVO bean = new MemberDAO().select(account);
