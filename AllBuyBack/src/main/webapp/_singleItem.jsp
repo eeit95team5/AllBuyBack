@@ -268,7 +268,7 @@ border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑�
     
     <span class="glyphicon glyphicon-plane" style="color:white;font-size:25px;"></span>
     欲購買或發問點請選<br /><br /><br />
-<button style="border-radius:5px 5px;border:rgb(42,186,171);background-color:rgb(42,186,171);color:white;padding:10px 30px;font-size:20px;margin-top:10px;font-weight:500;">聯絡賣家</button>
+<button id="wantBuy" style="border-radius:5px 5px;border:rgb(42,186,171);background-color:rgb(42,186,171);color:white;padding:10px 30px;font-size:20px;margin-top:10px;font-weight:500;">聯絡賣家</button>
 
 </div>
 
@@ -498,6 +498,15 @@ function insertItemMessage(){
 
 
 $('.wantBuy').click(function(){
+	var m_id = $('#m_id').val();
+	var s_id = $('#s_id').val();
+	
+	console.log(i_id);
+		window.open('ChatController?action=show_both_message_seller&m_id='+m_id+'&s_id='+s_id,'購買AllBuyBack廣告',
+				'height=650,width=650,scrollbars=0,resizable=0,location=0');
+});
+
+$('#wantBuy').click(function(){
 	var m_id = $('#m_id').val();
 	var s_id = $('#s_id').val();
 	
