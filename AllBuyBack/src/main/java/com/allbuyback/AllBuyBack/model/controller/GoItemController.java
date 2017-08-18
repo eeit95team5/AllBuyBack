@@ -24,8 +24,6 @@ import com.allbuyback.member.model.MemService;
 import com.allbuyback.member.model.MemVO;
 import com.allbuyback.shopshipway.model.ShopShipwayService;
 
-import model.MemberService;
-
 @Controller
 @RequestMapping(path={"/item.html"})
 public class GoItemController {
