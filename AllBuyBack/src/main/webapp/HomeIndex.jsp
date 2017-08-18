@@ -20,29 +20,6 @@
 <link rel="stylesheet" href="styles/ad.css"/>
 
 <style>
-/*設定熱門代購搜尋Bar，只有"首頁"和"導覽列進入找國家之後"用得到*/
-.hotSearch {
-	font-family: 微軟正黑體;
-	line-height: 60px;
-	font-size: 20px;
-	font-weight: 600;
-	color: white;
-	margin-left: 10px;
-}
-
-.hotSearch a {
-	color: white;
-	font-size: 18px;
-	font-weight: 500;
-}
-
-.hotSearch a:link {
-	text-decoration: none;
-}
-
-.hotSearch a:hover {
-	color: lightgray;
-}
 
 /*以下三個class貼在main裡不能跑會衝突*/
 .ThisWeek {
@@ -493,62 +470,7 @@
 	<!--廣告看板 結束-->
 
 
-	<!--快速搜尋國家 開始-->
-	<div class="container-fluid" style="background-color: rgb(185, 152, 103); height: 60px;">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<span style="font-family: 微軟正黑體; line-height: 60px; font-size: 20px; font-weight: 600; color: white; float: left; margin-right: 10px">您想找哪一國代購:</span>
-
-					<!--          <div class="input-group" style="width:200px;line-height:50px;float:left;margin-right:20px">
-               <input type="text" class="form-control" placeholder="請選擇..." style="margin-top:8px"/>
-                 <div class="input-group-btn">
-                   <button class="btn btn-default" type="submit" >
-                   <i class="glyphicon glyphicon-triangle-bottom" ></i>
-                  </button>
-                 </div>
-           </div>-->
-
-					<form style="margin-bottom: 10px; display: inline;">
-						<!--複製go1buy1 網頁原始碼-->
-						<select data-placeholder="請選擇…" name="" id="selectCountry"	style="width: 180px; height: 30px; color: gray">
-							<optgroup label="美洲">
-								<option value="US">United States - 美國</option>
-								<option value="CA">Canada - 加拿大</option>
-								<optgroup label="歐洲">
-									<option value="UK">United Kingdom - 英國</option>
-									<option value="FR">France - 法國</option>
-									<option value="DE">Germany - 德國</option>
-									<option value="ES">Spain - 西班牙</option>
-									<option value="IT">Italy - 義大利</option>
-									<option value="GR">Greece - 希臘</option>
-									<option value="BE">Belgium - 比利時</option>
-									<option value="PT">Portugal - 葡萄牙</option>
-									<option value="DK">Denmark - 丹麥</option>
-									<option value="NL">Netherlands - 荷蘭</option>
-									<optgroup label="亞洲">
-										<option value="JP">Japan - 日本</option>
-										<option value="KR">Korea - 韓國</option>
-										<option value="TH">Thailand - 泰國</option>
-										<option value="HK">Hong Kong - 香港</option>
-										<option value="SG">Singapore - 新加坡</option>
-						</select> <input type="text" name="ref" style="display: none;" value="index" />
-						<!--作用?-->
-					</form>
-
-					<span class="hotSearch">熱門 : <a href="#">美國代購 </a> | <a
-						href="#">日本代購 </a> | <a href="#">韓國代購 </a> | <a href="#">英國代購
-					</a> | <a href="#">法國代購 </a> |
-					</span>
-
-				</div>
-				<!--col-sm-12-->
-			</div>
-			<!--row-->
-		</div>
-		<!--container-->
-	</div>
-	<!--快速搜尋國家 結束-->
+	
 	<br />
 	<br />
 
@@ -557,11 +479,11 @@
  <div class="row">
 	     <div class="col-sm-3">
 	        <div class="adOuter" >
-	           <img class="imgsrc" src="images/cho_05.jpg" >
-	           <div  class="adContent">來自日本的草莓巧克力，可以吃到一整顆完整的草莓喔!超級幸福~</div>
+	           <img class="imgsrc" src="" >
+	           <div  class="adContent">國家圖片先跳過 樣式還要改</div>
 	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom">美國</div>
-	             <div class="sellerWho" >LOVE ShaSha 樂芙夏夏</div>
+	             <div id="country" class="countryFrom"></div>
+	             <div class="sellerWho" ></div>
 	        </div>
 	      </div>
 	     
@@ -601,13 +523,13 @@
 <br />
 
 <div class="row">
-	     <div class="col-sm-3">
+	       <div class="col-sm-3">
 	        <div class="adOuter" >
-	           <img class="imgsrc" src="images/cho_05.jpg" >
-	           <div  class="adContent">來自日本的草莓巧克力，可以吃到一整顆完整的草莓喔!超級幸福~</div>
+	           <img class="imgsrc" src="" >
+	           <div  class="adContent">國家圖片先跳過</div>
 	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom">美國</div>
-	             <div class="sellerWho" >LOVE ShaSha 樂芙夏夏</div>
+	             <div id="country" class="countryFrom"></div>
+	             <div class="sellerWho" ></div>
 	        </div>
 	      </div>
 	     
@@ -640,6 +562,7 @@
 	             <div class="sellerWho" ></div>
 	        </div>
 	      </div>
+	     
 	     
 	     
 	    
