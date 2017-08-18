@@ -195,6 +195,8 @@ $(function() {
                 </div>
                 <input type="hidden" id="i_id" name="i_id" value="${itemVO.i_id}" />
 				<input type="hidden" id="s_id" name="s_id" value="${itemVO.s_id}" />
+				<input type="hidden" id="m_account" name="m_account" value="${LoginOK.m_account}" />
+				<input type="hidden" id="m_id" name="m_id" value="${LoginOK.m_id}" />
                 <button class="shoppingButton" id="addToCart">加入購物車</button> 
                 <button class="wantBuy">聯絡賣家</button> 
                 <div class="pay">付款方式:</div>  <div style="position: absolute;top:520px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">0000000000</div> 
@@ -478,6 +480,15 @@ $('#buyAd').click(function(){
 	console.log(i_id);
 		window.open('Ad.go?action=prepareBuy&i_id='+i_id, '購買AllBuyBack廣告',
 				'height=350,width=650,scrollbars=0,resizable=0,location=0');
+});
+
+$('.wantBuy').click(function(){
+	var m_id = $('#m_id').val();
+	var s_id = $('#s_id').val();
+	
+	console.log(i_id);
+		window.open('ChatController?action=show_both_message_seller&m_id='+m_id+'&s_id='+s_id,'購買AllBuyBack廣告',
+				'height=650,width=650,scrollbars=0,resizable=0,location=0');
 });
 
 
