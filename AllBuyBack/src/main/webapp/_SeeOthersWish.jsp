@@ -259,7 +259,7 @@ tbody{
  </div>
 
 
-
+<div>
 <form name="UpdateWishContent" id="UpdateWishContent1" action="UpdateWish?w_Id=${wVO.w_id}" method="POST" enctype="multipart/form-data">
 	<fieldset id="borderimg" style="background-color:#EED5B7;">
 		<table>
@@ -267,27 +267,28 @@ tbody{
 		    <tr>
 			    <td width="200" height="100">許願編號 :</td>
 			    <td width="550" height="100" align="left" >
-			   	<input id='w_Id1' style="text-align:left;border:1px solid #E9967A;" name="w_Id" disabled value="${wVO.w_id}" type="text" size="14">
+			   		<input id='w_Id1' style="text-align:left;border:1px solid #E9967A;" name="w_Id" disabled value="${wVO.w_id}" type="text" size="15">
 			    </td>
 			</tr>
 			<tr>
 			    <td width="200" height="100">許願人 :</td>
 			    <td width="550" height="100" align="left" >
-			   <input id='account1' style="text-align:left;border:1px solid #E9967A;" name="account" disabled value="${wVO.m_account}" type="text" size="14">
+			   		<input id='account1' style="text-align:left;border:1px solid #E9967A;" name="account" disabled value="${wVO.m_account}" type="text" size="15">
 			    </td>
 			</tr>
 			<tr>
 			    <td width="200" height="100">許願時間:</td>
 			    <td width="550" height="100" align="left" >
-			    <input id='date1' style="text-align:left;border:1px solid #E9967A;" name="date" disabled value="${wVO.w_date}" type="text" size="14">
+			    	<input id='date1' style="text-align:left;border:1px solid #E9967A;" name="date" disabled value="${wVO.w_date}" type="text" size="15">
+			    </td>
 		  </tr>
 			
 			<tr>
-		    <td width="200" height="100">許願標題:</td>
-		    <td width="550" height="100" align="left" >
-		         <input id='title1' style="text-align:left;border:1px solid #E9967A;" name="title" disabled value="${wVO.w_title}" type="text" size="14">
-		    </td>
-		 </tr>
+			    <td width="200" height="100">許願標題:</td>
+			    <td width="550" height="100" align="left" >
+			         <input id='title1' style="text-align:left;border:1px solid #E9967A;" name="title" disabled value="${wVO.w_title}" type="text" size="15">
+			    </td>
+		  </tr>
 			<tr>
 		    <td width="200" height="100">許願內容:</td>
 		    <td width="550" height="100" align="left" >
@@ -332,21 +333,22 @@ tbody{
 		<tr>
 		    <td width="200" height="100">參與願望名單:</td>
 		    <td width="550" height="100" align="left" >
+		    	<div style="height:100px; overflow:auto">
 		    	<c:forEach var="list" items="${wlList}">
 		    		${list.m_account}<br>
 		        </c:forEach>
+		        </div>
 		    </td>
 		</tr>
 		
         	<tr>
 		    <td width="200" height="100">實現願望賣家:</td>
 		    <td width="550" height="100" align="left" >
+		    	<div style="height:100px; overflow:auto">
 		    	<c:forEach var="as" items="${asVO}">
-		    		${as.m_account}實現願望的內容: <a href="SingleItemContent?w_id=${wVO.w_id}&i_id=${iVO.i_id}">${iVO.i_name}</a>
-		    		<c:if test="${not empty iVO.i_name}">
-		    			<input type="button" value="加入購物車"><br>
-		    		</c:if>
+		    		${as.m_account}: <a href="item.html?i_id=${iVO.i_id}">${iVO.i_name}</a><br>
 		    	</c:forEach>
+		    	</div>
 		    </td>
 		</tr>
 			<tr>
@@ -357,10 +359,10 @@ tbody{
 			   <input id="CT_btn" class="btn" type="button" value="認領願望" style="font-size:22px;font-weight:700;border-radius: 5px 5px;background-color: #EE9572;padding:8px 18px">
 			   <div id="CT_window"></div>
 		       <br>
-		       <font color='red' size='-1'>${errorMsg.login}</font>
-		       <font color='red' size='-1'>${errorMsg.duplicateAccount}</font>
-		       <font color='red' size='-1'>${errorMsg.doubleAccount}</font>
-		       <font color='red' size='-1'>${errorMsg.AccountNoRight}</font>
+		       <div style="color:#FF0000; display: inline">${errorMsg.login}</div>
+		       <div style="color:#FF0000; display: inline">${errorMsg.duplicateAccount}</div>
+		       <div style="color:#FF0000; display: inline">${errorMsg.doubleAccount}</div>
+		       <div style="color:#FF0000; display: inline">${errorMsg.AccountNoRight}</div>
 		    </td>
 		</tr>			
 		
@@ -368,7 +370,7 @@ tbody{
 		</table>
 	</fieldset>
 	</form>
-
+</div>
 
         </div>
     </div>

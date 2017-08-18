@@ -10,10 +10,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
+<link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
+<link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
+<script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+<script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
 </head>
 <body>
 
-	<table border='1' bordercolor='#CCCCFF' width='800'>
+	<table width='800' class="table">
 		<tr>
 			<th>商品編號</th>
 			<th>賣場編號</th>
@@ -80,7 +87,7 @@
 
 	</table>
 	
-	<a href="Admin.jsp">回管理頁面</a>
+<!-- 	<a href="Admin.jsp">回管理頁面</a> -->
 
 </body>
 </html>

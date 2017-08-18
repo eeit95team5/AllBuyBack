@@ -5,7 +5,14 @@
 <head>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>檢舉頁面</title>
+<title>回覆頁面</title>
+<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
+<link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
+<link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
+<script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+<script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
 <style type="text/css">
 <!--
 body {
@@ -110,7 +117,7 @@ function setFocusToUserId(){
 <!-- 引入共同的頁首 -->
 
   <div id="content"> 
-  <Table width="700" border='2' cellspacing="0" bgColor='#E7CDFF'>
+  <Table width="500" border='2' cellspacing="0" bgColor='#E7CDFF'>
      <TR height="60" >
          <TD>
          <TABLE cellspacing="1" >
@@ -123,7 +130,7 @@ function setFocusToUserId(){
          <TR>
              <TD width="240" ></TD>
              <TD width="200"  align="center">
-                 <Font color="#006600" size='4' face="標楷體">檢舉</Font>
+                 <Font color="#006600" size='4' face="標楷體">回覆</Font>
              </TD>
          <!-- 此區塊顯示程式執行後的訊息 -->
              <TD width="240" aligh="left"><font size="-1" color="#FF0000">

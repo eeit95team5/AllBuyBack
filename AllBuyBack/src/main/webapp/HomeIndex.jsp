@@ -132,6 +132,7 @@
 	color:#000;
 }
 </style>
+<c:if test="${! empty LoginOK}">
 <script type="text/javascript">
     var i = 0;
     window.onload = function () {
@@ -148,8 +149,7 @@
         }
     }
 </script>
-<script src="js/lightbox.js"></script>
-
+</c:if>
 </head>
 <body>
 
@@ -342,7 +342,7 @@
 							</ul></li>
 						<li><a href="#">許願池<span class="glyphicon glyphicon-menu-down"></span></a>
 							<ul>
-								<li><a href="MakeAWishForm.jsp" >許願</a></li>
+								<li><a href="_MakeAWish.jsp" >許願</a></li>
 								<li><a href="CheckYourList">本人願望</a></li>
 								<li><a href="CheckPeopleList">大家願望</a></li>
 							</ul></li>
@@ -556,7 +556,7 @@
 			<c:forEach var="itemsVO" items="${list}">
 			<div class="col-sm-3">
 				<div style="background-color:#C1CDCD;height:300px;margin:10px 5px; padding:15px; border-radius:20px">
-					<div><img height="160" width="160" style="margin:5px 35px" src="ReadPictureForItem?i_id=${itemsVO.i_id}"></div>
+					<div><a href="item.html?i_id=${itemsVO.i_id}"><img height="160" width="160" style="margin:5px 35px" src="ReadPictureForItem?i_id=${itemsVO.i_id}"></a></div>
 					<div>品名: ${itemsVO.i_name}</div>
 					<div>價格: ${itemsVO.i_price} 數量: ${itemsVO.i_quantity}</div>
 					<div>暢銷指數: ${itemsVO.i_popular} 點閱數: ${itemsVO.i_click}</div>

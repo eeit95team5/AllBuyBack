@@ -66,7 +66,7 @@
 				<td>${shipway[vs.index]}</td>
 				<td>${orderVO.pay_id}</td>
 				<td>
-				<form action="Order.do" method="post">
+				<form action="Order.do" method="get">
 					<input type="submit" value="詳情" class="btn btn-success"/>
 					<input type="hidden" name="action" value="getOne" />					
 					<input type="hidden" name="o_id" value="${orderVO.o_id}" />					

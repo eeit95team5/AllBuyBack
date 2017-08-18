@@ -6,6 +6,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>檢舉頁面</title>
+<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
+<link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
+<link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
+<script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+<script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
 <style type="text/css">
 <!--
 body {
@@ -103,6 +110,17 @@ br {
 function setFocusToUserId(){   
 	 document.forms[0].mid.focus();   // 將游標放在mid欄位內
 }
+$(function(){
+	if(${msg=="送出成功"}){
+		swal({
+			title: "${msg}",				
+		},function(isConfirm){
+			if(isConfirm)
+//				setTimeout("window.close()",2000);
+			window.close();
+		});
+	}
+});
 </script>
 </head>
 <body onLoad="setFocusToUserId()" >
@@ -110,7 +128,7 @@ function setFocusToUserId(){
 <!-- 引入共同的頁首 -->
 
   <div id="content"> 
-  <Table width="700" border='2' cellspacing="0" bgColor='#E7CDFF'>
+  <Table width="500" border='2' cellspacing="0" bgColor='#E7CDFF'>
      <TR height="60" >
          <TD>
          <TABLE cellspacing="1" >
@@ -176,6 +194,7 @@ function setFocusToUserId(){
          <input type="submit" name="submit" id="submit" value="送出"/>
          <input type="reset" name="cancel" id="cancel" value="重填">
          <input type="hidden" name="action" id="cancel" value="accuse_reply">
+<%--          <c:if test="${! empty msg}" ><br>${msg}</c:if> --%>
       </div>
       <br/>
 </form>

@@ -95,7 +95,7 @@ public class UpdateWish extends HttpServlet {
 			// 已上傳圖片數目重新送回
 			pDAO.showUpLoadedPicture(request, w_id);
 
-			RequestDispatcher rd = request.getRequestDispatcher("PersonalWishContent.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("_SeeMyWish.jsp");
 			rd.forward(request, response);
 			return;
 		}
@@ -123,12 +123,14 @@ public class UpdateWish extends HttpServlet {
 			int memberId = list.get(i).getM_id();
 			String m_account = mDAO.selectById(memberId).getM_account();
 			list.get(i).setM_account(m_account);
+			
+			list.get(i).setW_date_string(list.get(i).getW_date().toString().substring(0, 16));
 		}
 
 		request.setAttribute("account", account);
 		request.setAttribute("VOlist", list);
 
-		request.getRequestDispatcher("/PersonalMakeAWishList.jsp").forward(request, response);
+		request.getRequestDispatcher("/_MyWishList.jsp").forward(request, response);
 		return;
 	}
 

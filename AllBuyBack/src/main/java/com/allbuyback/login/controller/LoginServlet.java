@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 
 				if (bean != null && (bean.getM_account().equals("admin"))) {
 					session.setAttribute("AdminOK", bean);
-					RequestDispatcher rd = request.getRequestDispatcher("/Admin.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("/_system.jsp");
 					rd.forward(request, response);
 				} else if (bean != null && (bean.getM_authority() == 2)) {
 						String target = (String) session.getAttribute("target");
@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
 							response.sendRedirect(contextPath + target);
 						} else {
 							session.setAttribute("LoginOK", bean);
-							response.sendRedirect(contextPath + "/index.jsp");
+							response.sendRedirect(contextPath + "/HomeIndex.jsp");
 						}
 				} else if (bean != null && !(bean.getM_account().equals("admin"))) {
 					String target = (String) session.getAttribute("target");
@@ -64,19 +64,19 @@ public class LoginServlet extends HttpServlet {
 						response.sendRedirect(contextPath + target);
 					} else {
 						session.setAttribute("LoginOK", bean);
-						response.sendRedirect(contextPath + "/index.jsp");
+						response.sendRedirect(contextPath + "/HomeIndex.jsp");
 					}
 					
 				} else {
 					errorMsg.put("LoginError", "帳號不存在或密碼錯誤");
 					request.setAttribute("errorMsg", errorMsg);
-					RequestDispatcher rd = request.getRequestDispatcher("/HomeBeforeLogin.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("/HomeIndex.jsp");
 					rd.forward(request, response);
 				}
 			} else {
 				errorMsg.put("LoginError", "帳號不存在或密碼錯誤");
 				request.setAttribute("errorMsg", errorMsg);
-				RequestDispatcher rd = request.getRequestDispatcher("/HomeBeforeLogin.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/HomeIndex.jsp");
 				rd.forward(request, response);
 			}
 		} 

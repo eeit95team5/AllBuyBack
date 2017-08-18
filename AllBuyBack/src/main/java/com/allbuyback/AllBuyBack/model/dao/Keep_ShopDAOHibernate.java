@@ -36,6 +36,15 @@ public class Keep_ShopDAOHibernate implements Keep_ShopDAOI{
 	}
 	
 	@Override
+	public long selectKeepCount(int s_id){
+		Query<?> query = this.getSession().createQuery("select count(*) as count from Keep_ShopBean where s_id=?");
+		query.setParameter(0, s_id);
+		long a = (long) query.list().get(0);
+		System.out.println(a);
+		return a;
+	}
+	
+	@Override
 	public Keep_ShopBean select(Keep_ShopBean bean) {
 		Query<Keep_ShopBean> query = this.getSession().createQuery("from Keep_ShopBean where s_id=? and m_id=?", Keep_ShopBean.class);
 		query.setParameter(0, bean.getS_id());

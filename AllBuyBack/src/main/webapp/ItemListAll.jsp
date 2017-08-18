@@ -10,10 +10,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
+<link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
+<link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
+<script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+<script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
 </head>
 <body>
 
-	<table border='1' bordercolor='#CCCCFF' width='800'>
+	<table width='800' class="table">
 		<tr>
 			<th>商品編號</th>
 			<th>賣場編號</th>
@@ -86,37 +93,37 @@
 						</form>
 				</c:if>
 
-				<c:if test="${!empty LoginOK}">
-					<td><form method="post"
-							action="<c:url value="/ItemController"/>">
-							<input type="submit" value="檢舉"> <input type="hidden"
-								name="m_id" value="${LoginOK.m_id}"> <input
-								type="hidden" name="i_id" value="${ItemVO.i_id}"> <input
-								type="hidden" name="action" value="product_accuse">
+<%-- 				<c:if test="${!empty LoginOK}"> --%>
+<!-- 					<td><form method="post" -->
+<%-- 							action="<c:url value="/ItemController"/>"> --%>
+<!-- 							<input type="submit" value="檢舉"> <input type="hidden" -->
+<%-- 								name="m_id" value="${LoginOK.m_id}"> <input --%>
+<%-- 								type="hidden" name="i_id" value="${ItemVO.i_id}"> <input --%>
+<!-- 								type="hidden" name="action" value="product_accuse"> -->
 
-						</form>
-				</c:if>
+<!-- 						</form> -->
+<%-- 				</c:if> --%>
 
-				<c:if test="${!empty LoginOK }">
-					<td><form method="post"
-							action="<c:url value="/ChatController"/>">
-							<input type="submit" value="議價"> <input type="hidden"
-								name="m_id" value="${LoginOK.m_id}"> 
-								<input type="hidden"
-								name="m_account" value="${LoginOK.m_account}">
-								<input
-								type="hidden" name="s_id" value="${ItemVO.s_id}"> <input
-								type="hidden" name="action" value="price_bargain">
+<%-- 				<c:if test="${!empty LoginOK }"> --%>
+<!-- 					<td><form method="post" -->
+<%-- 							action="<c:url value="/ChatController"/>"> --%>
+<!-- 							<input type="submit" value="議價"> <input type="hidden" -->
+<%-- 								name="m_id" value="${LoginOK.m_id}">  --%>
+<!-- 								<input type="hidden" -->
+<%-- 								name="m_account" value="${LoginOK.m_account}"> --%>
+<!-- 								<input -->
+<%-- 								type="hidden" name="s_id" value="${ItemVO.s_id}"> <input --%>
+<!-- 								type="hidden" name="action" value="price_bargain"> -->
 
-						</form>
-				</c:if>
+<!-- 						</form> -->
+<%-- 				</c:if> --%>
 		</c:forEach>
 
 	</table>
 	
-	<c:if test="${!empty AdminOK}"><a href="Admin.jsp">回管理頁面</a></c:if>
+<%-- 	<c:if test="${!empty AdminOK}"><a href="Admin.jsp">回管理頁面</a></c:if> --%>
 	
-	<a href="index.jsp">回首頁</a>
+<!-- 	<a href="index.jsp">回首頁</a> -->
 
 
 </body>

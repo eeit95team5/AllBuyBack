@@ -20,7 +20,7 @@
 <jsp:include page="includeTop.jsp"></jsp:include>
 	<fieldset>
 	<h1>${account}的許願池</h1>
-	<a href="MakeAWishForm.jsp"><input class="btn" type="button" value="許願"></a>
+	<a href="_myWish.jsp"><input class="btn" type="button" value="許願"></a>
 	<a href="CheckPeopleList"><input class="btn" type="button" value="看看大家願望"></a>
 	<br>
 	<br>

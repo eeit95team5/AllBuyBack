@@ -47,6 +47,15 @@ public class Keep_ItemDAOHibernate implements Keep_ItemDAOI{
 			return result.get(0);
 		}
 	}
+	
+	@Override
+	public long selectKeepCount(int i_id){
+		Query<?> query = this.getSession().createQuery("select count(*) as count from Keep_ItemBean where i_id=?");
+		query.setParameter(0, i_id);
+		long a = (long) query.list().get(0);
+		System.out.println(a);
+		return a;
+	}
 
 	@Override
 	public List<Keep_ItemBean> select() {

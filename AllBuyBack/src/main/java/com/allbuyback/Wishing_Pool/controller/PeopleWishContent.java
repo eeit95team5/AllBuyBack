@@ -75,7 +75,7 @@ public class PeopleWishContent extends HttpServlet {
 		
 
 
-		RequestDispatcher rd = request.getRequestDispatcher("/PeopleWishContent.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/_SeeOthersWish.jsp");
 		rd.forward(request, response);
 	}
 
