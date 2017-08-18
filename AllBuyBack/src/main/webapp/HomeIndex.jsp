@@ -411,7 +411,7 @@
             <a href="update.jsp">修改基本資料</a>
             <a href="ShoppingCart.go?action=select">我的購物車</a>
            <c:if test="${LoginOK.m_authority==2}"><a href="shop.html?s_id=${LoginOK.m_id}">我的賣場</a></c:if>
-           <c:if test="${LoginOK.m_authority==1}"><a href="#">申請賣場</a></c:if>
+           <c:if test="${LoginOK.m_authority==1}"><a href="MallInsert.jsp">申請賣場</a></c:if>
             <a href="checkGB.do">挑戰時尚金頭腦</a>
             <a href="#">聯絡管理員</a>
             <a href="LogoutServlet" >登出</a>
