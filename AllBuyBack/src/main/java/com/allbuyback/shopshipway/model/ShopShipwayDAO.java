@@ -51,6 +51,7 @@ public class ShopShipwayDAO implements ShopShipwayDAOI {
 				m1.put("s_id", rs.getInt("s_id"));
 				m1.put("sw_id", rs.getInt("sw_id"));
 				m1.put("sw_name", rs.getString("sw_name"));
+				m1.put("sw_price", rs.getString("sw_price"));
 				list.add(m1);
 			}
 			

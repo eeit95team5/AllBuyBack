@@ -12,6 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.allbuyback.AllBuyBack.model.CountryBean;
+import com.allbuyback.AllBuyBack.model.CountryService;
 import com.allbuyback.AllBuyBack.model.ItemBean;
 import com.allbuyback.AllBuyBack.model.ItemService;
 import com.allbuyback.AllBuyBack.model.Keep_ItemService;
@@ -36,6 +38,8 @@ public class GoItemController {
 	Keep_ShopService keep_ShopService;
 	@Autowired
 	Keep_ItemService keep_ItemService;
+	@Autowired
+	CountryService countryService;
 	
 	ShopShipwayService shopShipwayService = new ShopShipwayService();
 	MemService memService = new MemService();
@@ -48,12 +52,14 @@ public class GoItemController {
 		ItemBean item = itemService.selectByI_Id(itemBean.getI_id());
 		ShopBean shop = shopService.select(item.getS_id());
 		MemVO member = memService.getOneMem(shop.getS_id());
+		CountryBean country = countryService.select(item.getCountry_id());
 		
 		item.setI_click(item.getI_click()+1);
 		
 		model.addAttribute("shop", shop);
 		model.addAttribute("itemVO", item);
 		model.addAttribute("member", member);
+		model.addAttribute("country", country);
 				
 		String i_arrivedDate = sdf.format(item.getI_arrivedDate());
 		String i_onSellDate = sdf.format(item.getI_onSellDate());		
