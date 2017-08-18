@@ -83,10 +83,26 @@
   font-family: "Comic Sans MS", cursive, sans-serif;
 }
   </style>
+  
+ <script type="text/javascript">
+
+$(function(){
+	
+	$('#menu3').click(function(){
+		
+		$.get("<c:url value='/MemController'/>",{"action":"MemberListAll"},
+				function(data){
+			$('#show').html(data)
+			
+		});	
+	});
+	
+});
+
+</script>
 </head>
 
 <body>
-
 <div id="contact" class="container">
 <div class="w3-container w3-center w3-animate-zoom">
  
@@ -97,7 +113,9 @@
 	<ul class="nav nav-tabs">
   		<li class="active"><a data-toggle="tab" href="#home">查詢會員資料</a></li>
   		<li><a data-toggle="tab" href="#menu1">修改會員資料</a></li>
-  		<li><a data-toggle="tab" href="#menu2">我的收藏</a></li>
+  		<li><a data-toggle="tab" href="#menu2">我的收藏</a></li>		
+  		<li><a data-toggle="tab" href="#menu3">賣家通知</a></li>		
+  		<li><a data-toggle="tab" href="#menu4">檢舉專區</a></li>
 	</ul>
 
 	<div class="tab-content">
@@ -130,8 +148,8 @@
        				</a>
        		<div class="w3-display-middle w3-display-hover">
        		<button class="w3-button w3-black">點我修改資料</button>
-  </div>
-</div>
+  			</div>
+		</div>
      		<div id="demo2" class="collapse">
         		<form action="<c:url value="/UpdateDataServlet" />" method="post">
 					<input type="hidden" name="status" value="update"> 
@@ -154,6 +172,12 @@
   	    <div id="menu2" class="tab-pane fade">
     		<h2>Peter Griffin, Bass player</h2>
     		<p>I mean, sometimes I enjoy the show, but other times I enjoy other things.</p>
+  		</div>
+  		<div id="menu3" class="tab-pane fade">
+    		<input type="submit" value="送出">
+  		</div>
+  		<div id="menu4" class="tab-pane fade">
+    		<input type="submit" value="送出">
   		</div>
    	</div>
 
