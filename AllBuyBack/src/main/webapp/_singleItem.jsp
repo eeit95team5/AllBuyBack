@@ -195,7 +195,7 @@ $(function() {
                 </div>
                 <input type="hidden" id="i_id" name="i_id" value="${itemVO.i_id}" />
 				<input type="hidden" id="s_id" name="s_id" value="${itemVO.s_id}" />
-                <button class="shoppingCart" id="addToCart">加入購物車</button> 
+                <button class="shoppingButton" id="addToCart">加入購物車</button> 
                 <button class="wantBuy">聯絡賣家</button> 
                 <div class="pay">付款方式:</div>  <div style="position: absolute;top:520px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">0000000000</div> 
                 <div class="deliver">寄送方式:</div>  <div style="position: absolute;top:590px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">0000000000</div> 

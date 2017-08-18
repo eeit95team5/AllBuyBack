@@ -466,7 +466,7 @@
 							</div>
 
 							<div class="item">
-								<img src="images/summer.jpg" alt="" style="width: 100%;">
+								<img src="images/summerfashion.jpg" alt="" style="width: 100%;">
 								<div class="carousel-caption"></div>
 							</div>
 
