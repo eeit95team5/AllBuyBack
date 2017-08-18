@@ -271,8 +271,6 @@ border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑�
 
 </div>
 
-
-
  </div><!--8格-->
 
         <div class="col-sm-offset-1 col-sm-3">
