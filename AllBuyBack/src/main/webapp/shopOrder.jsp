@@ -87,8 +87,7 @@
 
 <c:if test="${! empty errorMsgs}"><p>${errorMsgs}</p></c:if>
 <c:if test="${! empty delete}"><p>${delete}</p></c:if>
-<a href="Order.do?action=sGetAll">返回我的賣場訂單</a><br>
-<a id="alink" href="index.jsp">回首頁</a>
+<a id="alink" href="HomeIndex.jsp">回首頁</a>
 </div>
 <!-- 加入頁尾 -->
 <jsp:include page="_Footer.jsp"></jsp:include>
