@@ -25,6 +25,10 @@ public class CountryService {
 		return result;
 	}
 	
+	public CountryBean select(int country_id) {
+		return countryDao.select(country_id);
+	}
+	
 	public List<CountryBean> select(){
 		return countryDao.select(); 
 	}

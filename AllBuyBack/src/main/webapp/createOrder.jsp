@@ -267,8 +267,7 @@
 </div>
 <div id="endDiv">
 <p id="result"></p>
-<a href="Order.do?action=cGetAll">返回我的購買訂單</a><br>
-<a id="alink" href="index.jsp">回首頁</a>
+<a id="alink" href="HomeIndex.jsp">回首頁</a>
 </div>
 <!-- 加入頁尾 -->
 <jsp:include page="_Footer.jsp"></jsp:include>

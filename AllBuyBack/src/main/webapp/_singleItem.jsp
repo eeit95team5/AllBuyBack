@@ -151,8 +151,6 @@ $(function() {
 </nav>
 <!-- ============位置未定!============ -->
 <button type="button" id="keepitem">加入收藏</button><span id="KeepItemMsg"></span>
-${member.m_id}
-${member.m_photo}
 <!-- ============位置未定!============ -->
 <div class="container"><!--商品上半部-->
     <div class="row">
@@ -194,7 +192,7 @@ ${member.m_photo}
 
                 <div class="price">商品售價:</div> <div style="position: absolute;top:100px;left:700px;  height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px;">${itemVO.i_price }</div> 
                 <div class="brand">商品數量:</div> <div style="position: absolute;top:170px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">${itemVO.i_quantity }</div> 
-                <div class="country">代購國家:</div>  <div style="position: absolute;top:240px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">${itemVO.country_id }</div> 
+                <div class="country">代購國家:</div>  <div style="position: absolute;top:240px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">${country.country_name }</div> 
                 <div class="waitDay">到貨時間:</div> <div style="position: absolute;top:310px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">${i_arrivedDate }</div> 
                 
                 <div class="count">購買數量:
@@ -245,7 +243,10 @@ ${member.m_photo}
     </div>
     <div id="menu2" class="tab-pane fade">
       <h3>費用與寄送資訊</h3>
-      <p>${shop.s_aboutMe }</p>
+      <c:forEach items="${shipway.shipway}" var="sw" varStatus="varS">
+      	<p>${sw.sw_name }：${sw.sw_price }元</p>
+      </c:forEach>
+      
     </div>
     <div id="menu3" class="tab-pane fade">
       <h3>問與答</h3>
@@ -270,8 +271,6 @@ border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑�
 <button style="border-radius:5px 5px;border:rgb(42,186,171);background-color:rgb(42,186,171);color:white;padding:10px 30px;font-size:20px;margin-top:10px;font-weight:500;">聯絡賣家</button>
 
 </div>
-
-
 
  </div><!--8格-->
 

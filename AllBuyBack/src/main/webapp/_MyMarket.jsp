@@ -36,9 +36,9 @@
    float:left;
 }
 
-
-
-
+.myActive  {
+    border-top:pink 5px solid;
+}
 
 </style>
 </head>
@@ -65,13 +65,13 @@
    </div>
 </div><!-- 上半部賣家個人介紹結束 -->
 
-<!-- 中間賣場本館頭條 -->
+<!-- 中間賣場本館商品 -->
 
-<div class="container-fluid" style="background-color: white;height:500px;">
+<div class="container-fluid" style="background-color: wheat;height:1000px;">
 	<div class="container">  
 	   <div class="row">
 	     <div class="col-sm-12">
-	          <div style="text-align: center;margin-top:30px;font-size:30px;font-weight: 600;letter-spacing: 5px;margin-bottom: 25px;">本館頭條</div>     
+	          <div style="text-align: center;margin-top:30px;font-size:30px;font-weight: 600;letter-spacing: 5px;margin-bottom: 25px;">本館商品</div>     
 	     </div>  
 	  </div>
 	  
@@ -119,8 +119,89 @@
 	     
 	    
 	 </div>
+	 
+	 <br>
+	 <div class="row">
+	     <div class="col-sm-3">
+	        <div class="adOuter" >
+	           <img class="imgsrc" src="images/cho_05.jpg" >
+	           <div  class="adContent">來自日本的草莓巧克力，可以吃到一整顆完整的草莓喔!超級幸福~</div>
+	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
+	             <div id="country" class="countryFrom">美國</div>
+	             <div class="sellerWho" >LOVE ShaSha 樂芙夏夏</div>
+	        </div>
+	      </div>
+	     
+	       <div class="col-sm-3">
+	        <div class="adOuter" >
+	           <img class="imgsrc" src="" >
+	           <div  class="adContent"></div>
+	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
+	             <div id="country" class="countryFrom"></div>
+	             <div class="sellerWho" ></div>
+	        </div>
+	      </div>
+	      
+	     <div class="col-sm-3">
+	        <div class="adOuter" >
+	           <img class="imgsrc" src="" >
+	           <div  class="adContent"></div>
+	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
+	             <div id="country" class="countryFrom"></div>
+	             <div class="sellerWho" ></div>
+	        </div>
+	      </div>
+	      
+	      <div class="col-sm-3">
+	        <div class="adOuter" >
+	           <img class="imgsrc" src="" >
+	           <div  class="adContent"></div>
+	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
+	             <div id="country" class="countryFrom"></div>
+	             <div class="sellerWho" ></div>
+	        </div>
+	      </div>
+	     
+	     
+	    
+	 </div>
+	 
+	 
+	 
   </div>
 </div>
+
+<!-- 下半部 賣家的商品、評價留言、關於我 -->
+<div class="container"><!--商品下半部-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div style=" margin-top:30px; height:700px;background-color:rgb(255,255,255);letter-spacing:10px;">
+           
+  <ul class="nav nav-tabs">
+    <li class="active myActive" style="font-family:微軟正黑體;font-size:18px;letter-spacing:4px;font-weight:600"><a data-toggle="tab" href="#menu1">我的評價留言</a></li>
+    <li  style="font-family:微軟正黑體;font-size:18px;letter-spacing:4px;font-weight:600"><a data-toggle="tab" href="#menu2">留言板</a></li>
+
+  </ul>
+
+  <div class="tab-content">
+    <div id="menu1" class="tab-pane fade in active">
+	   
+    </div>
+    
+    <div id="menu2" class="tab-pane fade">
+      
+    </div>
+    
+  
+ </div>
+
+</div><!--第四層div結束-->
+
+   </div>
+  </div>
+</div>
+  
+
 
 
 <jsp:include page="_Footer.jsp"></jsp:include>
