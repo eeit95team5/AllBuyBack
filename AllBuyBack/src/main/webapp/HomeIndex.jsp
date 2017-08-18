@@ -17,7 +17,7 @@
 <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 <script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
 <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
-<script src="js/ReceiveChat.js"></script>
+<!-- <script src="js/ReceiveChat.js"></script> -->
 
 <script type="text/javascript">
 // 	<!-- 聊天室開始(發訊者) -->
@@ -208,53 +208,53 @@
 									<ul>
 										<li><a href="BClassItemSearch?BClass=1000001">流行服飾</a>
 											<ul>
-												<li><a href="MClassItemSearch?MClass=1000001">日系</a>
+												<li><a href="MClassItemSearch?BClass=1000001&MClass=1000001">日系</a>
 													<ul>
-														<li><a href="SClassItemSearch?SClass=1000001">無印良品</a></li>
-														<li><a href="SClassItemSearch?SClass=1000002">UNIQLO</a></li>
-														<li><a href="SClassItemSearch?SClass=1000003">GLOBAL WORK</a></li>
-														<li><a href="SClassItemSearch?SClass=1000004">23區</a></li>
-														<li id="liid">其他</li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000001&SClass=1000001">無印良品</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000001&SClass=1000002">UNIQLO</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000001&SClass=1000003">GLOBAL WORK</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000001&SClass=1000004">23區</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000001&SClass=1000005">其他</a></li>
 													</ul></li>
-												<li><a href="MClassItemSearch?MClass=1000002">韓系</a>
+												<li><a href="MClassItemSearch?BClass=1000001&MClass=1000002">韓系</a>
 													<ul>
-														<li><a href="SClassItemSearch?SClass=1000006">87MM</a></li>
-														<li><a href="SClassItemSearch?SClass=1000007">8ight Seconds</a></li>
-														<li><a href="SClassItemSearch?SClass=1000008">Ader Error</a></li>
-														<li><a href="SClassItemSearch?SClass=1000009">GOGOSING</a></li>
-														<li><a href="SClassItemSearch?SClass=1000010">其他</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000002&SClass=1000006">87MM</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000002&SClass=1000007">8ight Seconds</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000002&SClass=1000008">Ader Error</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000002&SClass=1000009">GOGOSING</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000002&SClass=1000010">其他</a></li>
 													</ul></li>
-												<li><a href="MClassItemSearch?MClass=1000003">美國</a>
+												<li><a href="MClassItemSearch?BClass=1000001&MClass=1000003">美國</a>
 													<ul>
-														<li><a href="SClassItemSearch?SClass=1000011">CK</a></li>
-														<li><a href="SClassItemSearch?SClass=1000012">GAP</a></li>
-														<li><a href="SClassItemSearch?SClass=1000013">Roots</a></li>
-														<li><a href="SClassItemSearch?SClass=1000014">Timberland</a></li>
-														<li><a href="SClassItemSearch?SClass=1000015">其他</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000003&SClass=1000011">CK</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000003&SClass=1000012">GAP</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000003&SClass=1000013">Roots</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000003&SClass=1000014">Timberland</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000003&SClass=1000015">其他</a></li>
 													</ul></li>
-												<li><a href="MClassItemSearch?MClass=1000004">歐洲</a>
+												<li><a href="MClassItemSearch?BClass=1000001&MClass=1000004">歐洲</a>
 													<ul>
-														<li><a href="SClassItemSearch?SClass=1000016">AIGLE</a></li>
-														<li><a href="SClassItemSearch?SClass=1000017">Accessorize</a></li>
-														<li><a href="SClassItemSearch?SClass=1000018">Kenzo</a></li>
-														<li><a href="SClassItemSearch?SClass=1000019">Superdry</a></li>
-														<li><a href="SClassItemSearch?SClass=1000020">其他</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000004&SClass=1000016">AIGLE</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000004&SClass=1000017">Accessorize</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000004&SClass=1000018">Kenzo</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000004&SClass=1000019">Superdry</a></li>
+														<li><a href="SClassItemSearch?BClass=1000001&MClass=1000004&SClass=1000020">其他</a></li>
 													</ul></li>
 											</ul></li>
 										<li><a href="BClassItemSearch?BClass=1000002">異國美食</a>
 											<ul>
-												<li><a href="MClassItemSearch?MClass=1000005">零食</a>
+												<li><a href="MClassItemSearch?BClass=1000002&MClass=1000005">零食</a>
 													<ul>
-														<li><a href="SClassItemSearch?SClass=1000021">巧克力</a></li>
-														<li><a href="SClassItemSearch?SClass=1000022">餅乾</a></li>
-														<li><a href="SClassItemSearch?SClass=1000023">糖果</a></li>
-														<li><a href="SClassItemSearch?SClass=1000024">其他</a></li>
+														<li><a href="SClassItemSearch?BClass=1000002&MClass=1000005&SClass=1000021">巧克力</a></li>
+														<li><a href="SClassItemSearch?BClass=1000002&MClass=1000005&SClass=1000022">餅乾</a></li>
+														<li><a href="SClassItemSearch?BClass=1000002&MClass=1000005&SClass=1000023">糖果</a></li>
+														<li><a href="SClassItemSearch?BClass=1000002&MClass=1000005&SClass=1000024">其他</a></li>
 													</ul></li>
-												<li><a href="MClassItemSearch?MClass=1000006">飲品</a>
+												<li><a href="MClassItemSearch?BClass=1000002&MClass=1000006">飲品</a>
 													<ul>
-														<li><a href="SClassItemSearch?SClass=1000025">咖啡</a></li>
-														<li><a href="SClassItemSearch?SClass=1000026">茶</a></li>
-														<li><a href="SClassItemSearch?SClass=1000027">其他</a></li>
+														<li><a href="SClassItemSearch?BClass=1000002&MClass=1000006&SClass=1000025">咖啡</a></li>
+														<li><a href="SClassItemSearch?BClass=1000002&MClass=1000006&SClass=1000026">茶</a></li>
+														<li><a href="SClassItemSearch?BClass=1000002&MClass=1000006&SClass=1000027">其他</a></li>
 													</ul></li>
 											</ul></li>
 										<!--以下分類尚未填入-->
@@ -328,13 +328,13 @@
 												<li><a href="CountryItemSearch?countryCl=1000006">英國</a></li>
 												<li><a href="CountryItemSearch?countryCl=1000007">法國</a></li>
 												<li><a href="CountryItemSearch?countryCl=1000008">德國</a></li>
-												<li><<a href="CountryItemSearch?countryCl=1000009">西班牙</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000009">西班牙</a></li>
 												<li><a href="CountryItemSearch?countryCl=1000010">義大利</a></li>
 											</ul></li>
 										<li><a href="#">美洲</a>
 											<ul>
 												<li><a href="CountryItemSearch?countryCl=1000011">美國</a></li>
-												<li><<a href="CountryItemSearch?countryCl=1000012">加拿大</a></li>
+												<li><a href="CountryItemSearch?countryCl=1000012">加拿大</a></li>
 											</ul></li>
 									</ul></li>
 
@@ -347,8 +347,8 @@
 									</ul></li>
 
 							</ul></li>
-
-						<li><a href="#">找賣家<span class="glyphicon glyphicon-menu-down"></span></a>
+        
+        <li><a href="#">找賣家<span class="glyphicon glyphicon-menu-down"></span></a>
 							<ul>
 								<li><a href="#">亞洲</a>
 									<ul>
