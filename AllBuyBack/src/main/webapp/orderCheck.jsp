@@ -58,6 +58,17 @@ $('#show').dialog({
  });
  
  
+ $('#contact').click(function(){
+		var m_id = $('#m_id').val();
+		var s_id = $('#s_id').val();
+		
+// 		console.log(i_id);
+			window.open('ChatController?action=show_both_message_seller&m_id='+m_id+'&s_id='+s_id,'購買AllBuyBack廣告',
+					'height=650,width=650,scrollbars=0,resizable=0,location=0');
+	});
+
+ 
+ 
    
         $( "#dialog" ).dialog({
            autoOpen: false,  
@@ -294,11 +305,12 @@ $('#show').dialog({
 		<td></td>
 		<td>
 		<c:if test="${!empty LoginOK }">	
-				<form method="post" action="<c:url value="/ChatController"/>">
-				<input type="submit" value="聯絡賣場" class="btn btn-success"> 
-				<input type="hidden" name="m_id" value="${LoginOK.m_id}"> 
+				<form method="get" action="<c:url value="/ChatController"/>">
+<!-- 				<input type="submit" value="聯絡賣場" class="btn btn-success">  -->
+				<input type="button" id="contact" value="聯絡賣場" class="btn btn-success"> 
+				<input type="hidden" id="m_id" name="m_id" value="${LoginOK.m_id}"> 
 				<input type="hidden" name="m_account" value="${LoginOK.m_account}">
-				<input type="hidden" name="s_id" value="${OrderVO.s_id}"> 
+				<input type="hidden" id="s_id" name="s_id" value="${OrderVO.s_id}"> 
 				<input type="hidden" name="action" value="show_both_message_seller">
 				</form>
 		</c:if>

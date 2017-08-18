@@ -35,7 +35,7 @@
 			xhr.open('POST', 'TalkTalk', true);   //***非同步***
 			xhr.addEventListener("readystatechange", callback);
 			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-			xhr.send("chat_content=" + msgCont + "&m_id=1000001&s_id=1000002");
+			xhr.send("chat_content=" + msgCont + "&m_id=${m_id}&s_id=${s_id}");
 		} else {
 			alert("您的瀏覽器不支援Ajax功能!!");
 		}
@@ -48,7 +48,7 @@
 		 		var items = JSON.parse(datas);
 	 			var showContent = "";
 		 		for(var i=0; i<items.length; i++){
-		 			if(items[i].m_id == 1000001){
+		 			if(items[i].m_id == "${m_id}"){
 						showContent = showContent + items[i].m_id + ": " + items[i].chat_content;
 		 			}else{
 		 				showContent = showContent + "\t\t" + items[i].chat_content + " :" + items[i].m_id;

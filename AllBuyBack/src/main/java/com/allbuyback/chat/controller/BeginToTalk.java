@@ -1,4 +1,4 @@
-package com.allbuyback.GetPicture.controller;
+package com.allbuyback.chat.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.allbuyback.GetPicture.model.PicturesDAO;
+import com.allbuyback.login.model.MemberVO;
 
-@WebServlet("/ReadPictureForItem")
-public class ReadPictureForItem extends HttpServlet {
+@WebServlet("/BeginToTalk")
+public class BeginToTalk extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -18,19 +18,17 @@ public class ReadPictureForItem extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		
-		int i_id = Integer.parseInt(request.getParameter("i_id"));
-		PicturesDAO pDAO = new PicturesDAO();
+		MemberVO mvo = (MemberVO) request.getSession().getAttribute("LoginOK");
+		int m_id = mvo.getM_id();
+		int s_id = Integer.parseInt(request.getParameter("s_id"));
 		
-		if(request.getParameter("i_pictureX")!=null){
-			int i_pictureX = Integer.parseInt(request.getParameter("i_pictureX"));
-			if((i_pictureX>=1)&&(i_pictureX<=5)){
-				pDAO.readPictureForItem(response, i_id,i_pictureX);
-				return;	
-			}			
-		}
-								
-		pDAO.readPictureForItem(response, i_id);
+		request.setAttribute("m_id", m_id);
+		request.setAttribute("s_id", s_id);
+		
+		request.getRequestDispatcher("/Chat1.jsp").forward(request, response);
+		return;
 	}
 
 }

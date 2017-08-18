@@ -147,7 +147,7 @@
 	</div>
 
 	<%-- 	  <form ENCTYPE="multipart/form-data" method="post" action=" <c:url value="/ChatController"/>"  id="/ItemController" > --%>
-	<form method="post" action=" <c:url value="/ChatController"/>"
+	<form method="get" action=" <c:url value="/ChatController"/>"
 		id="/ItemController">
 		<label class="fontSize">賣家編號：</label> <input type="text" name="s_id"
 			value="${SellerVO.s_id}" class="fieldWidth" style="width: 180px;">
@@ -175,8 +175,10 @@
 <!-- 			 <input type="button" name="submit" id="submit" value="送出"/> -->
 			<input type="reset" name="cancel" id="cancel" value="重填"> <input
 				type="hidden" name="action" id="cancel" value="buyer_send">
-			<input type="hidden" name="m_id" value="${LoginOK.m_id}"> <input
-				type="hidden" name="account" value="${LoginOK.m_account}">
+			<input type="hidden" name="m_id" value="${LoginOK.m_id}"> 
+<%-- 			<input type="hidden" name="m_id" value="${ChatVO.m_id}">  --%>
+			<input type="hidden" name="account" value="${LoginOK.m_account}">
+<%-- 			<input type="hidden" name="account" value="${ChatVO.m_account}"> --%>
 		</div>
 		<br />
 	</form>

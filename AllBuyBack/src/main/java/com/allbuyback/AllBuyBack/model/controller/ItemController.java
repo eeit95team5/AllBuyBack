@@ -52,13 +52,17 @@ public class ItemController {
 	}
 	// return this.returnX(prodaction);
 	
-	@RequestMapping(method={RequestMethod.GET, RequestMethod.POST})
+	
+	@RequestMapping(method={RequestMethod.GET,RequestMethod.POST})
 	public String doGet(ItemBean bean,BindingResult bindingResult,String prodaction, Model model){
 		
 		if(prodaction==null){						
 			return "product";
 		}
 	
+		
+
+		
 		List<CountryBean> country = countryDAOHibernate.select();
 		model.addAttribute("country", country);					
 		

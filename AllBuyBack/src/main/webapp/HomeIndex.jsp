@@ -12,12 +12,67 @@
 <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
 <link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
 <link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
+<link rel="stylesheet" href="styles/ad.css"/>
 <script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
 <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 <script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
 <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
 
-<link rel="stylesheet" href="styles/ad.css"/>
+<script type="text/javascript">
+// 	<!-- 聊天室開始(發訊者) -->
+	$(function(){
+		$('#liid').click(function(){
+			window.open("BeginToTalk?s_id=1000007","","toolbar=no,location=no,directories=no,width=300,height=350");
+		});		
+	})
+// 	<!-- 聊天室結束(發訊者) -->
+
+// 	<!-- 聊天室開始(收件者) -->
+	setInterval(check, 2000);
+	
+	var xhr = null;
+	function check(){
+	   xhr = new XMLHttpRequest();
+		if (xhr != null) {
+			xhr.open('POST', 'ReceiveTalk', true);   //***非同步***
+			xhr.addEventListener("readystatechange", callback);
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			xhr.send();
+		} else {
+			alert("您的瀏覽器不支援Ajax功能!!");
+		}		
+	}
+	var n=0, i=0, j=0;
+	function callback(){
+		if (xhr.readyState == 4) {
+	 		if(xhr.status == 200){
+	 			var datas = xhr.responseText;
+	 			if(datas.length != 0){
+			 		var items = JSON.parse(datas);
+				 	if(n==0){
+				 		i=items[0].chat_date;
+				 		n=1;
+				 	}else{
+				 		j=items[0].chat_date;
+				 		n=0;
+				 	}
+				 	console.log(i);
+				 	console.log(j);
+				 	console.log(i==j);
+				 	if(j != 0){
+				 		if(i != j){
+					 		window.open("BeginToTalk?s_id="+items[0].m_id,"","toolbar=no,location=no,directories=no,width=300,height=350");
+					 	}		
+				 	}		 		
+		 		}
+	 		}
+		}
+	}
+// 	<!-- 聊天室結束(收件者) -->
+</script>
+
+
+
 
 <style>
 
@@ -158,7 +213,7 @@
 														<li><a href="SClassItemSearch?SClass=1000002">UNIQLO</a></li>
 														<li><a href="SClassItemSearch?SClass=1000003">GLOBAL WORK</a></li>
 														<li><a href="SClassItemSearch?SClass=1000004">23區</a></li>
-														<li><a href="SClassItemSearch?SClass=1000005">其他</a></li>
+														<li id="liid">其他</li>
 													</ul></li>
 												<li><a href="MClassItemSearch?MClass=1000002">韓系</a>
 													<ul>
@@ -344,7 +399,7 @@
 <!------------------->
 <c:if test="${! empty LoginOK}">
          <div class="myPicture">
-             <img src=""/>
+             <!--<img src="<c:url value='/UpdateDataServlet?status=selectPic&id=${LoginOK.m_id}' />" />-->
          </div>
 
       <div class="threeDot" id="threeDot">
