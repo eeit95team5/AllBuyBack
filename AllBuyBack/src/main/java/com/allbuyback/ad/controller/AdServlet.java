@@ -274,8 +274,8 @@ public class AdServlet extends HttpServlet {
 				request.getRequestDispatcher("/Ad.go?action=selectAll").forward(request, response);
 			}else{
 				int i_id = Integer.parseInt(request.getParameter("i_id"));
-				request.setAttribute("msg", "完成");
-				request.getRequestDispatcher("/Ad.go?action=prepareBuy&i_id="+i_id).forward(request, response);
+				request.setAttribute("Admin", "完成");
+				request.getRequestDispatcher("/_system.jsp").forward(request, response);
 			}
 		}
 	}

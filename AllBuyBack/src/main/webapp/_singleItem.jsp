@@ -43,7 +43,9 @@
 
 </style>
 <script type="text/javascript">
+
 $(function() {		
+
 
  	$("#eye").mouseover(function() {
  		$('#eyeCount').attr("style","position:absolute;top:60px;left:35px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:block;");
@@ -79,8 +81,64 @@ $(function() {
 
  	
     /*----------------------------------------------------*/
-    	 	
-})
+
+    	
+ 	$("#addToCart").click(function() {
+ 		if(${empty LoginOK}){
+ 			$('#ab123').dialog('open');
+ 		}else{
+ 		var i_id = $('#i_id').val();
+ 		var s_id = $('#s_id').val();
+ 		console.log("ok");
+ 		var ol_quantity = $('#ol_quantity').val();
+ 		$.post("ShoppingCart.go",{'action':"addToCart",'i_id':i_id,'s_id':s_id,'ol_quantity':ol_quantity},
+ 			function(data){
+ 			var json = JSON.parse(data);
+ 			var str = json.a;
+ 			var theType = "success";
+ 			var theText = "再多看看別的商品吧!"
+ 			if(str=="加入購物車失敗，不能新增數量0以下" || str=="加入購物車失敗，剩餘數量不足"){
+				theType = "error";
+				theText = "請確定數量再加入購物車"
+ 			}
+ 			if(str=="這是您自己的商品唷!"){
+ 				theType = "error";
+				theText = "去看看其他人的賣場吧!!"
+ 			}
+				swal({
+					title: str,
+ 					text: theText,
+ 					type: theType
+				});
+			})
+ 		}
+ 	});
+    
+ 	/*----------------------------------------------------*/
+    
+    	$("#buyAdTag").mouseover(function() {
+ 		$('#buyAd').attr("style","position:absolute;top:7px;left:1100px;border-radius:5px 5px;color:black;font-size:15px;width:100px;display:block");
+ 	});
+    	
+
+    	$("#buyAdTag").mouseout(function() {
+ 		$('#buyAd').attr("style","display:none");
+ 	});
+
+    	$("#buyAdTag").click(function() {/*點下去跳至買廣告頁面*/
+    		var i_id = $('#i_id').val();
+    			window.open('Ad.go?action=prepareBuy&i_id='+i_id, '購買AllBuyBack廣告',
+    					'height=370,width=650,scrollbars=0,resizable=0,location=0');
+    	});
+    	
+    	var offset=$('#point').offset();
+    	console.log(offset.top+","+offset.left)	;
+    	if(offset.top<100){   		
+    		$('#hidden').attr("style","margin-top:70px;display:block");
+    	}
+    	
+
+});
 </script>
 
 </head>
@@ -213,8 +271,6 @@ border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑�
 <button style="border-radius:5px 5px;border:rgb(42,186,171);background-color:rgb(42,186,171);color:white;padding:10px 30px;font-size:20px;margin-top:10px;font-weight:500;">聯絡賣家</button>
 
 </div>
-
-
 
  </div><!--8格-->
 
@@ -440,39 +496,6 @@ function insertItemMessage(){
 	}/*if結尾*/
 }
 
-$('#addCart').click(function (){
-// 	 var form = $(this).parents('#cartForm');
-// 	 console.log(form);
-	 var action = $('#addToCart').val();
-	 var i_id = $('#i_id').val();
-	 var s_id = $('#s_id').val();
-	 var ol_quantity = $('#ol_quantity').val();
-	 var ol_memo = $('#ol_memo').val();
-	 $.post("ShoppingCart.go",{'action':action,'i_id':i_id,'s_id':s_id,'ol_quantity':ol_quantity,'ol_memo':ol_memo},
-			 function(data){
-		 var json = JSON.parse(data);
-		 var str = json.a;
-		 var theType = "success";
-		 var theText = "再多看看別的商品吧!"
-		 if(str=="加入購物車失敗，不能新增數量0以下" || str=="加入購物車失敗，剩餘數量不足"){
-			 theType = "error";
-			 theText = "請確定數量再加入購物車"
-		 }
-			 swal({
-				  title: str,
-				  text: theText,
-				  type: theType
-				});
-	 })
-	 
-});
-
-$('#buyAd').click(function(){
-	var i_id = $('#i_id').val();
-	console.log(i_id);
-		window.open('Ad.go?action=prepareBuy&i_id='+i_id, '購買AllBuyBack廣告',
-				'height=400,width=650,scrollbars=0,resizable=0,location=0');
-});
 
 $('.wantBuy').click(function(){
 	var m_id = $('#m_id').val();
@@ -482,6 +505,7 @@ $('.wantBuy').click(function(){
 		window.open('ChatController?action=show_both_message_seller&m_id='+m_id+'&s_id='+s_id,'購買AllBuyBack廣告',
 				'height=650,width=650,scrollbars=0,resizable=0,location=0');
 });
+
 
 
 
