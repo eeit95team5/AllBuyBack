@@ -103,7 +103,7 @@ public class RegisterServlet extends HttpServlet {
 		//呼叫view
 		if(errorMsg.isEmpty()){
 			service.saveMember(bean);
-			request.getRequestDispatcher("/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/HomeIndex.jsp").forward(request, response);
 			return;
 		}else{
 			request.setAttribute("temp", bean);

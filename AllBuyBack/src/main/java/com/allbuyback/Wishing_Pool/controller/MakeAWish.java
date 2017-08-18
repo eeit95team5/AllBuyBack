@@ -101,6 +101,8 @@ public class MakeAWish extends HttpServlet {
 			int memberId = list.get(i).getM_id();
 			String m_account = mDAO.selectById(memberId).getM_account();
 			list.get(i).setM_account(m_account);
+			
+			list.get(i).setW_date_string(list.get(i).getW_date().toString().substring(0, 16));
 		}
 
 		request.setAttribute("account", account);

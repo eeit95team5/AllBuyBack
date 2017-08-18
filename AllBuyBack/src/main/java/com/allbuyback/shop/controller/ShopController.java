@@ -91,8 +91,10 @@ public class ShopController extends HttpServlet {
 
 			// 查詢完成，準備轉交
 
-			request.setAttribute("MemVO", memVO);
-			request.getRequestDispatcher("/ShopController?action=MallApply").forward(request, response);
+//			request.setAttribute("MemVO", memVO);
+//			request.getRequestDispatcher("/ShopController?action=MallApply").forward(request, response);
+			request.setAttribute("Admin", memVO);
+			request.getRequestDispatcher("/_system.jsp").forward(request, response);
 
 		}
 

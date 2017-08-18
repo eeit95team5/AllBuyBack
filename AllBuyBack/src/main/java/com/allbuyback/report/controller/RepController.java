@@ -55,7 +55,9 @@ public class RepController extends HttpServlet {
 			repSvc.addAccuse(repVO);
 
 			request.setAttribute("ReportVO", repVO);
-			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			request.setAttribute("msg", "送出成功");
+//			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			request.getRequestDispatcher("/Accuse.jsp").forward(request, response);
 
 		}
 
@@ -105,7 +107,8 @@ public class RepController extends HttpServlet {
 			repSvc.updateReply(repVO);
 
 			request.setAttribute("ReportVO", repVO);
-			request.getRequestDispatcher("/Admin.jsp").forward(request, response);
+			request.setAttribute("msg", "送出成功");
+			request.getRequestDispatcher("/AccuseContent.jsp").forward(request, response);
 
 		}
 

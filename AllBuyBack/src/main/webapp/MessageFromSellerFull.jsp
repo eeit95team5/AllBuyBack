@@ -10,6 +10,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
+<link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
+<link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
+<script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+<script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
 <script>
 // $(function(){
 	
@@ -81,7 +88,7 @@
 	<div id="msgContent"
 		style="width: 800px; height: 500px; overflow: auto">
 		<!-- <table border='1' bordercolor='#CCCCFF' width='800'> -->
-		<table>
+		<table class="table">
 			<!-- 	<tr> -->
 			<!-- 	    <th>會員編號</th> -->
 			<!-- 	    <th>賣場編號</th>		 -->
@@ -140,7 +147,7 @@
 	</div>
 
 	<%-- 	  <form ENCTYPE="multipart/form-data" method="post" action=" <c:url value="/ChatController"/>"  id="/ItemController" > --%>
-	<form method="post" action=" <c:url value="/ChatController"/>"
+	<form method="get" action=" <c:url value="/ChatController"/>"
 		id="/ItemController">
 		<label class="fontSize">賣家編號：</label> <input type="text" name="s_id"
 			value="${SellerVO.s_id}" class="fieldWidth" style="width: 180px;">
@@ -168,8 +175,10 @@
 <!-- 			 <input type="button" name="submit" id="submit" value="送出"/> -->
 			<input type="reset" name="cancel" id="cancel" value="重填"> <input
 				type="hidden" name="action" id="cancel" value="buyer_send">
-			<input type="hidden" name="m_id" value="${LoginOK.m_id}"> <input
-				type="hidden" name="account" value="${LoginOK.m_account}">
+			<input type="hidden" name="m_id" value="${LoginOK.m_id}"> 
+<%-- 			<input type="hidden" name="m_id" value="${ChatVO.m_id}">  --%>
+			<input type="hidden" name="account" value="${LoginOK.m_account}">
+<%-- 			<input type="hidden" name="account" value="${ChatVO.m_account}"> --%>
 		</div>
 		<br />
 	</form>

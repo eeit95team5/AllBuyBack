@@ -53,24 +53,25 @@
 			</form>
 			<td>
 				<c:if test="${!empty LoginOK}">
-					<form method="post" action="<c:url value="/ItemController"/>">
-						<input type="submit" value="檢舉"> 
-						<input type="hidden"name="m_id" value="${LoginOK.m_id}"> 
-						<input type="hidden" name="i_id" value="${itemVO.i_id}"> 
+					<form method="get" action="<c:url value="/ItemController"/>">
+<!-- 						<input type="submit" value="檢舉">  -->
+						<input type="button" id="accuse" value="檢舉"> 
+						<input type="hidden" id="m_id" name="m_id" value="${LoginOK.m_id}"> 
+						<input type="hidden" id="i_id" name="i_id" value="${itemVO.i_id}"> 
 						<input type="hidden" name="action" value="product_accuse">
 					</form>
 				</c:if>
 			</td>
 			<td>
-				<c:if test="${!empty LoginOK }">
-					<form method="post" action="<c:url value="/ChatController"/>">
-						<input type="submit" value="議價">
-						<input type="hidden" name="m_id" value="${LoginOK.m_id}"> 
-						<input type="hidden" name="m_account" value="${LoginOK.m_account}">
-						<input type="hidden" name="s_id" value="${itemVO.s_id}">
-						<input type="hidden" name="action" value="price_bargain">
-					</form>
-				</c:if>
+				<c:if test="${!empty LoginOK }">	
+				<form method="get" action="<c:url value="/ChatController"/>">
+				<input type="submit" value="聯絡賣場" class="btn btn-success"> 
+				<input type="hidden" name="m_id" value="${LoginOK.m_id}"> 
+				<input type="hidden" name="m_account" value="${LoginOK.m_account}">
+				<input type="hidden" name="s_id" value="${itemVO.s_id}"> 
+				<input type="hidden" name="action" value="show_both_message_seller">
+				</form>
+		</c:if>
 			</td>
 			<td>
 				<button type="button" id="buyAd">購買廣告</button>
@@ -251,6 +252,14 @@ $('#buyAd').click(function(){
 	var i_id = $('#i_id').val();
 	console.log(i_id);
 		window.open('Ad.go?action=prepareBuy&i_id='+i_id, '購買AllBuyBack廣告',
+				'height=350,width=650,scrollbars=0,resizable=0,location=0');
+});
+
+$('#accuse').click(function(){
+	var i_id = $('#i_id').val();
+	var m_id = $('#m_id').val();
+	console.log(i_id);
+		window.open('ItemController?action=product_accuse&i_id='+i_id+'&m_id='+m_id, '購買AllBuyBack廣告',
 				'height=350,width=650,scrollbars=0,resizable=0,location=0');
 });
 

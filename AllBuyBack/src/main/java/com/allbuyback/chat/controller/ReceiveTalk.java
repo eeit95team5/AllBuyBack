@@ -16,9 +16,10 @@ import org.json.simple.JSONValue;
 import com.allbuyback.ItemSearch.model.ItemSearchDAO;
 import com.allbuyback.ItemSearch.model.ItemVO;
 import com.allbuyback.chat.model.ChatDAO;
+import com.allbuyback.login.model.MemberVO;
 
-@WebServlet("/TalkTalk")
-public class TalkTalk extends HttpServlet {
+@WebServlet("/ReceiveTalk")
+public class ReceiveTalk extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,16 +36,16 @@ public class TalkTalk extends HttpServlet {
 		
 		String jsonString = "";
 		
-		int m_id = Integer.parseInt(request.getParameter("m_id"));
-		int s_id = Integer.parseInt(request.getParameter("s_id"));
-		String content = request.getParameter("chat_content");
-		ChatDAO cDAO = new ChatDAO();
-		if(content.length()!=0){
-			cDAO.SaveTalk(m_id, s_id, content); //存進去
+		MemberVO mvo = (MemberVO) request.getSession().getAttribute("LoginOK");
+		if(mvo != null){
+			int s_id = mvo.getM_id();
+			ChatDAO cDAO = new ChatDAO();
+	
+			jsonString = JSONValue.toJSONString(cDAO.CheckTalk(s_id)); //讀出來
+			
+			out.println(jsonString);
 		}
-		jsonString = JSONValue.toJSONString(cDAO.ReadTalk2(m_id, s_id)); //讀出來
 		
-		out.println(jsonString);
 	}
 
 }
