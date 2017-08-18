@@ -46,6 +46,16 @@
 </style>
 <script>
      $(function() {
+    	 $('#contact').click(function(){
+    			var m_id = $('#m_id').val();
+    			var s_id = $('#s_id').val();
+    			
+//    	 		console.log(i_id);
+    				window.open('ChatController?action=show_both_message_buyer&m_id='+m_id+'&s_id='+s_id,'購買AllBuyBack廣告',
+    						'height=650,width=650,scrollbars=0,resizable=0,location=0');
+    		});
+    	 
+    	 
         $( "#dialog" ).dialog({
            autoOpen: false,  
         });
@@ -220,12 +230,13 @@
 		<td></td>
 		<td>
 		<c:if test="${!empty LoginOK }">
-			<form method="post"
+			<form method="get"
 			action="<c:url value="/ChatController"/>">
-			<input type="submit" value="聯絡買家" class="btn btn-success"> 
-			<input type="hidden" name="m_id" value="${OrderVO.m_id}"> 
+<!-- 			<input type="submit" value="聯絡買家" class="btn btn-success">  -->
+			<input type="button" id="contact" value="聯絡買家" class="btn btn-success"> 
+			<input type="hidden" name="m_id" id="m_id" value="${OrderVO.m_id}"> 
 			<input type="hidden" name="m_account" value="${LoginOK.m_account}">
-			<input type="hidden" name="s_id" value="${OrderVO.s_id}"> 
+			<input type="hidden" name="s_id" id="s_id" value="${OrderVO.s_id}"> 
 			<input type="hidden" name="action" value="show_both_message_buyer">
 			</form>
 		</c:if>
@@ -309,7 +320,7 @@
 <c:if test="${! empty res}"><p>${res}</p></c:if>
 <c:if test="${! empty errorMsgs}"><p>${errorMsgs}</p></c:if>
 <a href="Order.do?action=sGetAll">返回我的賣場訂單</a>
-<a href="index.jsp">回首頁</a>
+<a href="HomeIndex.jsp">回首頁</a>
 </div>
 <!-- 加入頁尾 -->
 <jsp:include page="_Footer.jsp"></jsp:include>

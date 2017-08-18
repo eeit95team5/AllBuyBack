@@ -36,13 +36,10 @@ public class OpenSessionInViewFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) resp;
 		try {
 			sessionFactory.getCurrentSession().beginTransaction();
-			System.out.println("session--auto--beginTransaction");
 			chain.doFilter(request, response);
 			sessionFactory.getCurrentSession().getTransaction().commit();
-			System.out.println("session--auto--commit");
 		} catch (Exception e) {
 			sessionFactory.getCurrentSession().getTransaction().rollback();
-			System.out.println("session--auto--rollback");
 			e.printStackTrace();
 			chain.doFilter(request, response);
 		}

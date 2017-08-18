@@ -40,6 +40,93 @@
     border-top:pink 5px solid;
 }
 
+
+
+  
+/*-------評價留言部分------*/
+
+.imgP{
+  width:90px;
+  height:90px;
+  border-radius:99em;
+  border:2px white solid;
+  margin-top:10px;
+  margin-left:30px;
+}
+
+.name{
+  position:absolute;
+  top:25px;
+  left:150px;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+.buy{
+  position:absolute;
+  top:25px;
+  left:230px;
+  letter-spacing: 2px;
+  color:gray;
+}
+.time{
+  position:absolute;
+  top:25px;
+  left:980px;
+  letter-spacing: 2px;
+  color:gray;
+}
+.buyWhat{
+  position:absolute;
+  top:1px;/*a 的距離設定比較特殊*/
+  left:60px;
+  letter-spacing: 2px;
+  color:red;
+  width:600px;
+  background-color: yellow;
+
+}
+
+.saySomething{
+  position:absolute;
+  top:60px;
+  left:150px;
+  letter-spacing: 2px;
+/*   font-weight: 600; */
+  font-size:18px;
+  font-family:微軟正黑體;
+
+}
+
+/*底下分頁*/
+.center {
+    text-align: center;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+    font-size: 20px;
+}
+
+.pagination a.active {
+    background-color: gray;
+    color: white;
+    border: 1px solid gray;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+
+}/*底下分頁結束*/
 </style>
 </head>
 <body style="background-color:rgb(234,234,234)">
@@ -107,12 +194,11 @@
 	      </div>
 	      
 	      <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
+	        <div style="height:365px;background-color: #CDCDC1" >
+	            <div style="color:gray;padding:10px  20px;font-family: 微軟正黑體;font-size:15px">分類:</div>
+	              <div style="color:black;font-family: 微軟正黑體;font-size:15px;"><!-- 賣家自定義分類 -->  
+	                   <a>全部</a>
+	              </div>
 	        </div>
 	      </div>
 	     
@@ -151,22 +237,23 @@
 	             <div class="sellerWho" ></div>
 	        </div>
 	      </div>
-	      
-	      <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
-	        </div>
-	      </div>
-	     
 	     
 	    
 	 </div>
 	 
-	 
+			   <!--分頁搜尋-->
+	     <br><br>
+		<div class="center">
+		  <div class="pagination">
+		    <a href="#">&laquo;</a>
+		    <a href="#"  class="active">1</a>
+		    <a href="#">2</a>
+		    <a href="#">3</a>
+		    <a href="#">4</a>
+		    <a href="#">5</a>
+		    <a href="#">&raquo;</a>
+		  </div>
+		</div>
 	 
   </div>
 </div>
@@ -185,8 +272,30 @@
 
   <div class="tab-content">
     <div id="menu1" class="tab-pane fade in active">
-	   
-    </div>
+	   <!-- 一個人的留言區塊 -->
+	   <div style="position: relative;">
+	   <img src="images/myPicture.jpg"  class="imgP" >
+       <div class="name" >米老鼠</div>
+       <div class="buy" >代購了:<a href="" class="buyWhat" >棒球帽</a></div>
+       <div class="time" >顯示時間</div>
+       <div class="saySomething">包裝精美，謝謝!</div>
+       </div><br>
+       <!-- 一個人的留言結束 -->
+       <!-- 一個人的留言區塊 -->
+	   <div style="position: relative;">
+	   <img src="images/myPicture.jpg"  class="imgP" >
+       <div class="name" >米老鼠</div>
+       <div class="buy" >代購了:<a href="" class="buyWhat" >棒球帽</a></div>
+       <div class="time" >顯示時間</div>
+       <div class="saySomething">包裝精美，謝謝!</div>
+       </div><br>
+       <!-- 一個人的留言結束 -->
+       
+     
+    
+    
+    
+    </div><!-- 評價留言結束 -->
     
     <div id="menu2" class="tab-pane fade">
       

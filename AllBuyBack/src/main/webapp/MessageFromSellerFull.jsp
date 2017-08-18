@@ -176,14 +176,13 @@
 			<input type="reset" name="cancel" id="cancel" value="重填"> <input
 				type="hidden" name="action" id="cancel" value="buyer_send">
 			<input type="hidden" name="m_id" value="${LoginOK.m_id}"> 
-<%-- 			<input type="hidden" name="m_id" value="${ChatVO.m_id}">  --%>
 			<input type="hidden" name="account" value="${LoginOK.m_account}">
-<%-- 			<input type="hidden" name="account" value="${ChatVO.m_account}"> --%>
+
 		</div>
 		<br />
 	</form>
 
 	<a href="ChatController?action=MessageFromSeller&id=${LoginOK.m_id}">回上一頁</a>
-	<a href="index.jsp">回首頁</a>
+	<a href="HomeIndex.jsp">回首頁</a>
 </body>
 </html>
