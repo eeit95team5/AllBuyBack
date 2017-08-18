@@ -142,6 +142,15 @@ $(function() {
         	$("#reportTag").mouseout(function() {
      		$('#report').attr("style","display:none");
      	});
+        	
+        	$('#reportTag').click(function(){
+        		var i_id = $('#i_id').val();
+        		var m_id = $('#m_id').val();
+        		//console.log(i_id);
+        			window.open('ItemController?action=product_accuse&i_id='+i_id+'&m_id='+m_id, '購買AllBuyBack廣告',
+        					'height=350,width=650,scrollbars=0,resizable=0,location=0');
+        	});
+
     	
     	
     	
@@ -168,7 +177,10 @@ $(function() {
                <div class="productTitle" >${itemVO.i_name }</div>
 
                
-                <span id="reportTag" class="glyphicon glyphicon-bullhorn" style="position:absolute;top:30px;left:1040px;font-size:20px;;color:gray"></span>
+                <span id="reportTag" class="glyphicon glyphicon-bullhorn" style="position:absolute;top:30px;left:1040px;font-size:20px;;color:gray">
+                <input type="hidden" id="m_id" name="m_id" value="${LoginOK.m_id}"> 
+				<input type="hidden" id="i_id" name="i_id" value="${itemVO.i_id}">
+                </span>
                 <div id="report" style="position:absolute;top:10px;left:1000px;border-radius:5px 5px;color:black;font-size:10px;display:none;">檢舉商品</div>
                
                 <span id="buyAdTag" class="glyphicon glyphicon-tag " style="position:absolute;top:30px;left:1090px;font-size:20px;;color:gray"></span>
@@ -526,6 +538,7 @@ $('#wantBuy').click(function(){
 		window.open('ChatController?action=show_both_message_seller&m_id='+m_id+'&s_id='+s_id,'購買AllBuyBack廣告',
 				'height=650,width=650,scrollbars=0,resizable=0,location=0');
 });
+
 
 
 
