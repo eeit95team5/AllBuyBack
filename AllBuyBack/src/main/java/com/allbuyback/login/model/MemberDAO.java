@@ -211,7 +211,6 @@ public class MemberDAO {
 //			conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
 			
 			conn = ds.getConnection();
-			System.out.println(bean.getM_password());
 			pstmt = conn.prepareStatement(INSERT);
 			pstmt.setString(1, bean.getM_account());
 			pstmt.setString(2, bean.getM_password());

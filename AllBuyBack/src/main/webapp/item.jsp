@@ -64,7 +64,7 @@
 			</td>
 			<td>
 				<c:if test="${!empty LoginOK }">	
-				<form method="post" action="<c:url value="/ChatController"/>">
+				<form method="get" action="<c:url value="/ChatController"/>">
 				<input type="submit" value="聯絡賣場" class="btn btn-success"> 
 				<input type="hidden" name="m_id" value="${LoginOK.m_id}"> 
 				<input type="hidden" name="m_account" value="${LoginOK.m_account}">
