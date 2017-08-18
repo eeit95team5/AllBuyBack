@@ -43,6 +43,7 @@ public class LoginServlet extends HttpServlet {
 
 				if (bean != null && (bean.getM_account().equals("admin"))) {
 					session.setAttribute("AdminOK", bean);
+					session.setAttribute("LoginOK", bean);
 					RequestDispatcher rd = request.getRequestDispatcher("/_system.jsp");
 					rd.forward(request, response);
 				} else if (bean != null && (bean.getM_authority() == 2)) {
@@ -54,12 +55,10 @@ public class LoginServlet extends HttpServlet {
 							response.sendRedirect(contextPath + target);
 						} else {
 							session.setAttribute("LoginOK", bean);
-<<<<<<< HEAD
-							response.sendRedirect(contextPath + "/index.jsp");
-						//	response.sendRedirect(contextPath + "/HomeIndex.jsp");
-=======
+
+						//	response.sendRedirect(contextPath + "/index.jsp");
 							response.sendRedirect(contextPath + "/HomeIndex.jsp");
->>>>>>> branch 'master' of https://github.com/eeit95team5/AllBuyBackRespository.git
+
 						}
 				} else if (bean != null && !(bean.getM_account().equals("admin"))) {
 					String target = (String) session.getAttribute("target");
