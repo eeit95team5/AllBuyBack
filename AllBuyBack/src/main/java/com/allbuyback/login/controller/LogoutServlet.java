@@ -23,6 +23,7 @@ public class LogoutServlet extends HttpServlet {
 		session.removeAttribute("LoginOK");
 		session.removeAttribute("AdminOK");
 		session.removeAttribute("SellerOK");
+		//RequestDispatcher rd = request.getRequestDispatcher("/HomeIndex.jsp");
 		RequestDispatcher rd = request.getRequestDispatcher("/HomeBeforeLogin.jsp");
 		rd.forward(request, response);	
 	}
