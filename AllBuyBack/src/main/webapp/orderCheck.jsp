@@ -58,6 +58,17 @@ $('#show').dialog({
  });
  
  
+ $('#contact').click(function(){
+		var m_id = $('#m_id').val();
+		var s_id = $('#s_id').val();
+		
+// 		console.log(i_id);
+			window.open('ChatController?action=show_both_message_seller&m_id='+m_id+'&s_id='+s_id,'購買AllBuyBack廣告',
+					'height=650,width=650,scrollbars=0,resizable=0,location=0');
+	});
+
+ 
+ 
    
         $( "#dialog" ).dialog({
            autoOpen: false,  
@@ -159,9 +170,6 @@ $('#show').dialog({
 <%-- <jsp:include page="includeTop.jsp"></jsp:include> --%>
 <%@ include file="includeTop.jsp" %>
 <!-- 主頁面開始 -->
-
-<button type="button" id="toSeller">給賣家</button>
-<div id="show" style="display: none"></div>
 <c:if test="${! empty OrderVO}">
 <h1 align="center">訂單詳情</h1>
 <form action="Order.do" method="post">
@@ -294,11 +302,12 @@ $('#show').dialog({
 		<td></td>
 		<td>
 		<c:if test="${!empty LoginOK }">	
-				<form method="post" action="<c:url value="/ChatController"/>">
-				<input type="submit" value="聯絡賣場" class="btn btn-success"> 
-				<input type="hidden" name="m_id" value="${LoginOK.m_id}"> 
+				<form method="get" action="<c:url value="/ChatController"/>">
+<!-- 				<input type="submit" value="聯絡賣場" class="btn btn-success">  -->
+				<input type="button" id="contact" value="聯絡賣場" class="btn btn-success"> 
+				<input type="hidden" id="m_id" name="m_id" value="${LoginOK.m_id}"> 
 				<input type="hidden" name="m_account" value="${LoginOK.m_account}">
-				<input type="hidden" name="s_id" value="${OrderVO.s_id}"> 
+				<input type="hidden" id="s_id" name="s_id" value="${OrderVO.s_id}"> 
 				<input type="hidden" name="action" value="show_both_message_seller">
 				</form>
 		</c:if>
@@ -386,7 +395,7 @@ $('#show').dialog({
 	<c:if test="${! empty res}"><p>${res}</p></c:if>
 	<c:if test="${! empty errorMsgs}"><p>${errorMsgs}</p></c:if>
 	<a href="Order.do?action=cGetAll">返回我的購買訂單</a><br>
-	<a href="index.jsp">回首頁</a>
+	<a href="HomeIndex.jsp">回首頁</a>
 	<c:forEach var="ship" items="${shipwayList}">
 		<input type="hidden" value="${ship.sw_price}" id="${ship.sw_id}" />
 	</c:forEach>

@@ -135,6 +135,122 @@ public class ChatController extends HttpServlet {
 
 		}
 
+		// 顯示賣家傳來完整訊息
+		if ("show_both_message_seller".equals(action)) {
+			String m_id = request.getParameter("m_id");
+			String s_id = request.getParameter("s_id");
+
+			ChatVO chatVO = new ChatVO();
+			// chatVO.setM_id(m_id);
+			chatVO.setS_id(Integer.parseInt(s_id));
+
+			ChatService chatSvc = new ChatService();
+			List<ChatVO> list = chatSvc.showBothMessage(Integer.parseInt(m_id), Integer.parseInt(s_id));
+			request.setAttribute("list", list);
+
+			request.setAttribute("SellerVO", chatVO);
+			request.getRequestDispatcher("/MessageFromSellerFull.jsp").forward(request, response);
+
+		}
+
+		// 送出買家回覆
+
+		if ("buyer_send".equals(action)) {
+
+			// List<ChatVO> list = new ArrayList<ChatVO>();
+
+			int m_id = new Integer(request.getParameter("m_id"));
+			int s_id = new Integer(request.getParameter("s_id"));
+			String reply = request.getParameter("reply").trim();
+			String account = request.getParameter("account").trim();
+			// String message = account +":" + reply;
+			// System.out.println(m_id);
+			// System.out.println(s_id);
+
+			ChatVO chatVO = new ChatVO();
+			chatVO.setM_id(m_id);
+			chatVO.setS_id(s_id);
+			chatVO.setM_account(account);
+			// chatVO.setChat_content(reply);
+			// chatVO.setChat_content(message);
+			chatVO.setChat_content(reply);
+			// list.add(chatVO);
+
+			ChatService chatSvc = new ChatService();
+			chatSvc.addBuyerReply(chatVO);
+
+			// this.getJSON(request, response);
+
+			request.setAttribute("ChatVO", chatVO);
+			request.getRequestDispatcher("/ChatController?action=show_both_message_seller").forward(request, response);
+
+		}
+
+		// 顯示買家傳來完整訊息
+		if ("show_both_message_buyer".equals(action)) {
+
+			int m_id = new Integer(request.getParameter("m_id"));
+			int s_id = new Integer(request.getParameter("s_id"));
+
+			ChatVO chatVO = new ChatVO();
+			chatVO.setM_id(m_id);
+			chatVO.setS_id(s_id);
+
+			ChatService chatSvc = new ChatService();
+			List<ChatVO> list = chatSvc.showBothMessage(m_id, s_id);
+			request.setAttribute("list", list);
+			request.setAttribute("BuyerVO", chatVO);
+			request.getRequestDispatcher("/MessageFromBuyerFull.jsp").forward(request, response);
+		}
+
+		// 送出賣家回覆
+
+		if ("seller_send".equals(action)) {
+
+			int m_id = new Integer(request.getParameter("m_id"));
+			int s_id = new Integer(request.getParameter("s_id"));
+			String reply = request.getParameter("reply").trim();
+			String account = request.getParameter("account").trim();
+			// String message = account +":" + reply;
+
+			ChatVO chatVO = new ChatVO();
+			chatVO.setM_id(m_id);
+			chatVO.setS_id(s_id);
+			// chatVO.setChat_content(reply);
+			// chatVO.setChat_content(message);
+			chatVO.setChat_content(reply);
+			chatVO.setM_account(account);
+
+			ChatService chatSvc = new ChatService();
+			chatSvc.addSellerReply(chatVO);
+
+			// List<ChatVO> list = chatSvc.showBothMessage(m_id,s_id);
+			//
+			// List jsonList = new LinkedList();
+			//
+			// for(ChatVO msg:list){
+			// Map map = new HashMap();
+			// map.put("m_id", msg.getM_id());
+			// map.put("s_id", msg.getS_id());
+			// map.put("reply", msg.getChat_content());
+			// map.put("account", msg.getM_account());
+			// map.put("date", msg.getChat_date());
+			// jsonList.add(map);
+			//
+			// }
+			//
+			// String jsonString = JSONValue.toJSONString(jsonList);
+			// System.out.println(jsonString);
+			// out.println(jsonString);
+			request.setAttribute("ChatVO", chatVO);
+			// request.getRequestDispatcher("/ChatController?action=MessageFromBuyer&id="+s_id+"").forward(request,
+			// response);
+			request.getRequestDispatcher("/ChatController?action=show_both_message_buyer").forward(request, response);
+			// request.getRequestDispatcher("/MessageFromSellerFull.jsp").forward(request,
+			// response);
+
+		}
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -204,262 +320,110 @@ public class ChatController extends HttpServlet {
 
 		}
 
-		// 顯示買家傳來完整訊息
-		if ("show_both_message_buyer".equals(action)) {
+		// // 顯示買家傳來完整訊息
+		// if ("show_both_message_buyer".equals(action)) {
+		//
+		// int m_id = new Integer(request.getParameter("m_id"));
+		// int s_id = new Integer(request.getParameter("s_id"));
+		//
+		// ChatVO chatVO = new ChatVO();
+		// chatVO.setM_id(m_id);
+		// chatVO.setS_id(s_id);
+		//
+		// ChatService chatSvc = new ChatService();
+		// List<ChatVO> list = chatSvc.showBothMessage(m_id, s_id);
+		// request.setAttribute("list", list);
+		// request.setAttribute("BuyerVO", chatVO);
+		// request.getRequestDispatcher("/MessageFromBuyerFull.jsp").forward(request,
+		// response);
+		// }
+		//
+		// // 送出賣家回覆
+		//
+		// if ("seller_send".equals(action)) {
+		//
+		// int m_id = new Integer(request.getParameter("m_id"));
+		// int s_id = new Integer(request.getParameter("s_id"));
+		// String reply = request.getParameter("reply").trim();
+		// String account = request.getParameter("account").trim();
+		// // String message = account +":" + reply;
+		//
+		// ChatVO chatVO = new ChatVO();
+		// chatVO.setM_id(m_id);
+		// chatVO.setS_id(s_id);
+		// // chatVO.setChat_content(reply);
+		// // chatVO.setChat_content(message);
+		// chatVO.setChat_content(reply);
+		// chatVO.setM_account(account);
+		//
+		// ChatService chatSvc = new ChatService();
+		// chatSvc.addSellerReply(chatVO);
+		//
+		// // List<ChatVO> list = chatSvc.showBothMessage(m_id,s_id);
+		// //
+		// // List jsonList = new LinkedList();
+		// //
+		// // for(ChatVO msg:list){
+		// // Map map = new HashMap();
+		// // map.put("m_id", msg.getM_id());
+		// // map.put("s_id", msg.getS_id());
+		// // map.put("reply", msg.getChat_content());
+		// // map.put("account", msg.getM_account());
+		// // map.put("date", msg.getChat_date());
+		// // jsonList.add(map);
+		// //
+		// // }
+		// //
+		// // String jsonString = JSONValue.toJSONString(jsonList);
+		// // System.out.println(jsonString);
+		// // out.println(jsonString);
+		// request.setAttribute("ChatVO", chatVO);
+		// //
+		// request.getRequestDispatcher("/ChatController?action=MessageFromBuyer&id="+s_id+"").forward(request,
+		// // response);
+		// request.getRequestDispatcher("/ChatController?action=show_both_message_buyer").forward(request,
+		// response);
+		// //
+		// request.getRequestDispatcher("/MessageFromSellerFull.jsp").forward(request,
+		// // response);
+		//
+		// }
 
-			int m_id = new Integer(request.getParameter("m_id"));
-			int s_id = new Integer(request.getParameter("s_id"));
-
-			ChatVO chatVO = new ChatVO();
-			chatVO.setM_id(m_id);
-			chatVO.setS_id(s_id);
-
-			ChatService chatSvc = new ChatService();
-			List<ChatVO> list = chatSvc.showBothMessage(m_id, s_id);
-			request.setAttribute("list", list);
-			request.setAttribute("BuyerVO", chatVO);
-			request.getRequestDispatcher("/MessageFromBuyerFull.jsp").forward(request, response);
-		}
-
-		// 顯示賣家傳來完整訊息
-		if ("show_both_message_seller".equals(action)) {
-			String m_id = request.getParameter("m_id");
-			String s_id = request.getParameter("s_id");
-			// System.out.println("m_id="+m_id+", s_id="+s_id);
-
-			// int buyer_id = new Integer(request.getParameter("buyer_id"));
-
-			ChatVO chatVO = new ChatVO();
-			// chatVO.setM_id(m_id);
-			chatVO.setS_id(Integer.parseInt(s_id));
-
-			ChatService chatSvc = new ChatService();
-			List<ChatVO> list = chatSvc.showBothMessage(Integer.parseInt(m_id), Integer.parseInt(s_id));
-			request.setAttribute("list", list);
-			
-			request.setAttribute("SellerVO", chatVO);
-			request.getRequestDispatcher("/MessageFromSellerFull.jsp").forward(request, response);
-			
-//			List jsonList = new LinkedList();
-//
-//			for (ChatVO msg : list) {
-//				Map map = new HashMap();
-//				map.put("m_id", msg.getM_id());
-//				map.put("s_id", msg.getS_id());
-//				map.put("reply", msg.getChat_content());
-//				map.put("account", msg.getM_account());
-//				map.put("date", msg.getChat_date());
-//				jsonList.add(map);
-//
-//			}
-//
-//			String jsonString = JSONValue.toJSONString(jsonList);
-//			System.out.println(jsonString);
-//			out.println(jsonString);
-			// PrintWriter out = response.getWriter();
-			// String jsonString = JSONValue.toJSONString(list);
-			// out.println(jsonString);
-
-//			request.setAttribute("SellerVO", chatVO);
-//			request.getRequestDispatcher("/MessageFromSellerFull.jsp").forward(request, response);
-		}
-		
-		// 顯示賣家傳來JSON訊息
-				if ("show_both_message_seller_JSON".equals(action)) {
-					String m_id = request.getParameter("m_id");
-					String s_id = request.getParameter("s_id");
-					// System.out.println("m_id="+m_id+", s_id="+s_id);
-
-					// int buyer_id = new Integer(request.getParameter("buyer_id"));
-
-					ChatVO chatVO = new ChatVO();
-					// chatVO.setM_id(m_id);
-					chatVO.setS_id(Integer.parseInt(s_id));
-
-					ChatService chatSvc = new ChatService();
-					List<ChatVO> list = chatSvc.showBothMessage(Integer.parseInt(m_id), Integer.parseInt(s_id));
-					//request.setAttribute("list", list);
-					
-					//request.setAttribute("SellerVO", chatVO);
-					//request.getRequestDispatcher("/MessageFromSellerFull.jsp").forward(request, response);
-					
-					List jsonList = new LinkedList();
-
-					for (ChatVO msg : list) {
-						Map map = new HashMap();
-						map.put("m_id", msg.getM_id());
-						map.put("s_id", msg.getS_id());
-						map.put("reply", msg.getChat_content());
-						map.put("account", msg.getM_account());
-						map.put("date", msg.getChat_date());
-						jsonList.add(map);
-
-					}
-
-					String jsonString = JSONValue.toJSONString(jsonList);
-					System.out.println(jsonString);
-					out.println(jsonString);
-					// PrintWriter out = response.getWriter();
-					// String jsonString = JSONValue.toJSONString(list);
-					// out.println(jsonString);
-
-//					request.setAttribute("SellerVO", chatVO);
-//					request.getRequestDispatcher("/MessageFromSellerFull.jsp").forward(request, response);
-				}
-
-		// 送出賣家回覆
-
-		if ("seller_send".equals(action)) {
-
-			int m_id = new Integer(request.getParameter("m_id"));
-			int s_id = new Integer(request.getParameter("s_id"));
-			String reply = request.getParameter("reply").trim();
-			String account = request.getParameter("account").trim();
-			// String message = account +":" + reply;
-
-			ChatVO chatVO = new ChatVO();
-			chatVO.setM_id(m_id);
-			chatVO.setS_id(s_id);
-			// chatVO.setChat_content(reply);
-			// chatVO.setChat_content(message);
-			chatVO.setChat_content(reply);
-			chatVO.setM_account(account);
-
-			ChatService chatSvc = new ChatService();
-			chatSvc.addSellerReply(chatVO);
-
-			// List<ChatVO> list = chatSvc.showBothMessage(m_id,s_id);
-			//
-			// List jsonList = new LinkedList();
-			//
-			// for(ChatVO msg:list){
-			// Map map = new HashMap();
-			// map.put("m_id", msg.getM_id());
-			// map.put("s_id", msg.getS_id());
-			// map.put("reply", msg.getChat_content());
-			// map.put("account", msg.getM_account());
-			// map.put("date", msg.getChat_date());
-			// jsonList.add(map);
-			//
-			// }
-			//
-			// String jsonString = JSONValue.toJSONString(jsonList);
-			// System.out.println(jsonString);
-			// out.println(jsonString);
-			// request.setAttribute("ChatVO", chatVO);
-			// request.getRequestDispatcher("/ChatController?action=MessageFromBuyer&id="+s_id+"").forward(request,
-			// response);
-			request.getRequestDispatcher("/ChatController?action=show_both_message_buyer").forward(request, response);
-			// request.getRequestDispatcher("/MessageFromSellerFull.jsp").forward(request,
-			// response);
-
-		}
-
-		// 送出買家回覆
-
-		if ("buyer_send".equals(action)) {
-
-			// List<ChatVO> list = new ArrayList<ChatVO>();
-
-			int m_id = new Integer(request.getParameter("m_id"));
-			int s_id = new Integer(request.getParameter("s_id"));
-			String reply = request.getParameter("reply").trim();
-			String account = request.getParameter("account").trim();
-			// String message = account +":" + reply;
-			// System.out.println(m_id);
-			// System.out.println(s_id);
-
-			ChatVO chatVO = new ChatVO();
-			chatVO.setM_id(m_id);
-			chatVO.setS_id(s_id);
-			chatVO.setM_account(account);
-			// chatVO.setChat_content(reply);
-			// chatVO.setChat_content(message);
-			chatVO.setChat_content(reply);
-			// list.add(chatVO);
-
-			ChatService chatSvc = new ChatService();
-			chatSvc.addBuyerReply(chatVO);
-			
-			this.getJSON(request, response);
-			
-			//request.setAttribute("ChatVO", chatVO);
-			//request.getRequestDispatcher("/ChatController?action=show_both_message_seller").forward(request, response);
-
-//			List<ChatVO> list = chatSvc.showBothMessage(m_id, s_id);
-//
-//			List jsonList = new LinkedList();
-//
-//			for (ChatVO msg : list) {
-//				Map map = new HashMap();
-//				map.put("m_id", msg.getM_id());
-//				map.put("s_id", msg.getS_id());
-//				map.put("reply", msg.getChat_content());
-//				map.put("account", msg.getM_account());
-//				map.put("date", msg.getChat_date());
-//				jsonList.add(map);
-//
-//			}
-//
-//			String jsonString = JSONValue.toJSONString(jsonList);
-//			System.out.println(jsonString);
-//			out.println(jsonString);
-
-			// ChatService chatSvc = new ChatService();
-			// List<ChatVO> list = chatSvc.showBothMessage(m_id, s_id);
-
-			//request.setAttribute("ChatVO", chatVO);
-			// request.setAttribute("list", list);
-			// session.setAttribute("BuyerSend", chatVO);
-			// request.getRequestDispatcher("/ChatController?action=MessageFromSeller&id="+m_id+"").forward(request,
-			// response);
-			//request.getRequestDispatcher("/ChatController?action=show_both_message_seller").forward(request, response);
-			// response.sendRedirect("ChatController?action=show_both_message_seller");
-			// request.getRequestDispatcher("/MessageFromSellerFull.jsp").forward(request,response);
-			// response.sendRedirect("MessageFromSellerFull.jsp");
-			//return;
-
-		}
-		}
-		
-		private void getJSON(HttpServletRequest request, HttpServletResponse response)
-				throws ServletException, IOException {
-
-			request.setCharacterEncoding("UTF-8");
-			String action = request.getParameter("action");
-			HttpSession session = request.getSession();
-			response.setHeader("Access-Control-Allow-Origin", "*");
-			response.setHeader("content-type", "text/html;charset=UTF-8");
-			response.setCharacterEncoding("UTF-8");
-			PrintWriter out = null;
-			
-			String m_id = request.getParameter("m_id");
-			String s_id = request.getParameter("s_id");
-	
-			ChatVO chatVO = new ChatVO();
-		
-			chatVO.setS_id(Integer.parseInt(s_id));
-			ChatService chatSvc = new ChatService();
-			List<ChatVO> list = chatSvc.showBothMessage(Integer.parseInt(m_id), Integer.parseInt(s_id));
-			
-			List jsonList = new LinkedList();
-
-			for (ChatVO msg : list) {
-				Map map = new HashMap();
-				map.put("m_id", msg.getM_id());
-				map.put("s_id", msg.getS_id());
-				map.put("reply", msg.getChat_content());
-				map.put("account", msg.getM_account());
-				map.put("date", msg.getChat_date());
-				jsonList.add(map);
-
-			}
-
-			String jsonString = JSONValue.toJSONString(jsonList);
-			System.out.println(jsonString);
-			out.println(jsonString);
-		
-
+		// // 送出買家回覆
+		//
+		// if ("buyer_send".equals(action)) {
+		//
+		// // List<ChatVO> list = new ArrayList<ChatVO>();
+		//
+		// int m_id = new Integer(request.getParameter("m_id"));
+		// int s_id = new Integer(request.getParameter("s_id"));
+		// String reply = request.getParameter("reply").trim();
+		// String account = request.getParameter("account").trim();
+		// // String message = account +":" + reply;
+		// // System.out.println(m_id);
+		// // System.out.println(s_id);
+		//
+		// ChatVO chatVO = new ChatVO();
+		// chatVO.setM_id(m_id);
+		// chatVO.setS_id(s_id);
+		// chatVO.setM_account(account);
+		// // chatVO.setChat_content(reply);
+		// // chatVO.setChat_content(message);
+		// chatVO.setChat_content(reply);
+		// // list.add(chatVO);
+		//
+		// ChatService chatSvc = new ChatService();
+		// chatSvc.addBuyerReply(chatVO);
+		//
+		// //this.getJSON(request, response);
+		//
+		// request.setAttribute("ChatVO", chatVO);
+		// request.getRequestDispatcher("/ChatController?action=show_both_message_seller").forward(request,
+		// response);
+		//
+		//
+		//
+		// }
 	}
 
 }

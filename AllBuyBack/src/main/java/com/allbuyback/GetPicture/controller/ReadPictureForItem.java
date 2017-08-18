@@ -18,9 +18,18 @@ public class ReadPictureForItem extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int i_id = Integer.parseInt(request.getParameter("i_id"));
 		
+		int i_id = Integer.parseInt(request.getParameter("i_id"));
 		PicturesDAO pDAO = new PicturesDAO();
+		
+		if(request.getParameter("i_pictureX")!=null){
+			int i_pictureX = Integer.parseInt(request.getParameter("i_pictureX"));
+			if((i_pictureX>=1)&&(i_pictureX<=5)){
+				pDAO.readPictureForItem(response, i_id,i_pictureX);
+				return;	
+			}			
+		}
+								
 		pDAO.readPictureForItem(response, i_id);
 	}
 
