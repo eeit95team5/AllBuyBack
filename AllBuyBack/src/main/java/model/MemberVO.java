@@ -16,18 +16,34 @@ public class MemberVO {
 	byte[] m_photo;
 	byte[] m_background;
 	int m_scoreCount;
-	int m_avgScore;
+	double m_avgScore;
 	Date m_lastUsed;
 	int m_point;
 	int m_times_gb;
+	String photoString;
 	
+	public String getPhotoString() {
+		return photoString;
+	}
+	public void setPhotoString(String photoString) {
+		this.photoString = photoString;
+	}
 	@Override
 	public String toString() {
 		return "MemberBean [m_id=" + m_id + ", m_account=" + m_account + ", m_password=" + m_password + ", m_name="
 				+ m_name + ", m_phone=" + m_phone + ", m_address=" + m_address + ", m_identity=" + m_identity
 				+ ", m_email=" + m_email + ", m_authority=" + m_authority + ", m_photo=" + Arrays.toString(m_photo)
-				+ ", m_background=" + Arrays.toString(m_background) + ", m_scoreCount=" + m_scoreCount + ", m_avgScore=" + m_avgScore + ", m_lastUsed="
-				+ m_lastUsed + ", m_point=" + m_point + ", m_times_gb=" + m_times_gb + "]";
+				+ ", m_background=" + Arrays.toString(m_background) + ", m_scoreCount=" + m_scoreCount + ", m_lastUsed="
+				+ m_lastUsed + ", m_point=" + m_point + ", m_times_gb=" + m_times_gb + ", photoString=" + photoString
+				+ ", getPhotoString()=" + getPhotoString() + ", getM_id()=" + getM_id() + ", getM_account()="
+				+ getM_account() + ", getM_password()=" + getM_password() + ", getM_name()=" + getM_name()
+				+ ", getM_phone()=" + getM_phone() + ", getM_address()=" + getM_address() + ", getM_identity()="
+				+ getM_identity() + ", getM_email()=" + getM_email() + ", getM_authority()=" + getM_authority()
+				+ ", getM_photo()=" + Arrays.toString(getM_photo()) + ", getM_background()="
+				+ Arrays.toString(getM_background()) + ", getM_scoreCount()=" + getM_scoreCount() + ", getM_avgScore()=" + getM_avgScore()
+				+", getM_lastUsed()="+ getM_lastUsed() + ", getM_point()=" + getM_point() + ", getM_times_gb()=" + getM_times_gb()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
 	public int getM_id() {
 		return m_id;
@@ -88,6 +104,7 @@ public class MemberVO {
 	}
 	public void setM_photo(byte[] m_photo) {
 		this.m_photo = m_photo;
+		this.photoString = new String(this.m_photo);
 	}
 	public byte[] getM_background() {
 		return m_background;
@@ -101,10 +118,10 @@ public class MemberVO {
 	public void setM_scoreCount(int m_scoreCount) {
 		this.m_scoreCount = m_scoreCount;
 	}
-	public int getM_avgScore() {
+	public double getM_avgScore() {
 		return m_avgScore;
 	}
-	public void setM_avgScore(int m_avgScore) {
+	public void setM_avgScore(double m_avgScore) {
 		this.m_avgScore = m_avgScore;
 	}
 	public Date getM_lastUsed() {

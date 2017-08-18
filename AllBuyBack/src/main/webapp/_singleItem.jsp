@@ -43,8 +43,9 @@
 
 </style>
 <script type="text/javascript">
-$(function() {
-	
+
+$(function() {		
+
 
  	$("#eye").mouseover(function() {
  		$('#eyeCount').attr("style","position:absolute;top:60px;left:35px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:block;");
@@ -80,8 +81,12 @@ $(function() {
 
  	
     /*----------------------------------------------------*/
+
     	
  	$("#addToCart").click(function() {
+ 		if(${empty LoginOK}){
+ 			$('#ab123').dialog('open');
+ 		}else{
  		var i_id = $('#i_id').val();
  		var s_id = $('#s_id').val();
  		console.log("ok");
@@ -106,6 +111,7 @@ $(function() {
  					type: theType
 				});
 			})
+ 		}
  	});
     
  	/*----------------------------------------------------*/
@@ -122,7 +128,7 @@ $(function() {
     	$("#buyAdTag").click(function() {/*點下去跳至買廣告頁面*/
     		var i_id = $('#i_id').val();
     			window.open('Ad.go?action=prepareBuy&i_id='+i_id, '購買AllBuyBack廣告',
-    					'height=350,width=650,scrollbars=0,resizable=0,location=0');
+    					'height=370,width=650,scrollbars=0,resizable=0,location=0');
     	});
     	
     	var offset=$('#point').offset();
@@ -132,8 +138,7 @@ $(function() {
     	}
     	
 
-
-})
+});
 </script>
 
 </head>
@@ -144,7 +149,11 @@ $(function() {
 <nav id="hidden" class="navbar navbar-inverse  navbar-fixed-top " style="margin-top:70px;display:none"  >
 <div  class="container-fluid"  style="background-color: yellow;height:90px; "></div>
 </nav>
-
+<!-- ============位置未定!============ -->
+<button type="button" id="keepitem">加入收藏</button><span id="KeepItemMsg"></span>
+${member.m_id}
+${member.m_photo}
+<!-- ============位置未定!============ -->
 <div class="container"><!--商品上半部-->
     <div class="row">
         <div class="col-sm-12">
@@ -158,12 +167,12 @@ $(function() {
 
                 <div id="eyeCount" style="position:absolute;top:60px;left:35px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;">瀏覽數</div>
                 <div id="eye"><span class="glyphicon glyphicon-eye-open " style="font-size:20px;color:gray"></span></div>
-                <div style="position:absolute;top:80px;left:65px;color:gray">${shop.s_click }</div>
+                <div style="position:absolute;top:80px;left:65px;color:gray">${itemVO.i_click }</div>
                 
                 
                 <div id="heartCount" style="position:absolute;top:60px;left:105px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;">收藏數</div>
                 <div id="heart"><span class="glyphicon glyphicon-heart " style="font-size:20px;;color:gray"></span></div>
-                <div style="position:absolute;top:80px;left:130px;color:gray">${keepitemcount }</div>
+                <div id="keepitemcount" style="position:absolute;top:80px;left:130px;color:gray">${keepitemcount }</div>
                 
                 
                 <div id="shoppingCartCount" style="position:absolute;top:60px;left:105px;border-radius:5px 5px;background-color:black;color:white;font-size:10px;padding:2px 5px;display:none;">代購數</div>
@@ -171,16 +180,16 @@ $(function() {
                 <div style="position:absolute;top:80px;left:195px;color:gray">${itemVO.i_soldQuantity }</div>
 
                    <div class="mainPhoto">
-                     <img src="images/product.jpg" width="480" height="400" />
+                     <img src='ReadPictureForItem?i_id=${itemVO.i_id}&i_pictureX=1' width="480" height="400" />
                    </div> 
                    <div class="smallPhoto1" >
-                     <img src="images/product.jpg" width="90" />
+                     <img src='ReadPictureForItem?i_id=${itemVO.i_id}&i_pictureX=1' width="90" />
                    </div>
                   <div class="smallPhoto2" >
-                     <img src="images/product2.jpg" width="90" />
+                     <img src='ReadPictureForItem?i_id=${itemVO.i_id}&i_pictureX=2' width="90" />
                    </div>
                   <div class="smallPhoto3" >
-                     <img src="" width="90" />
+                     <img src='ReadPictureForItem?i_id=${itemVO.i_id}&i_pictureX=3' width="90" />
                    </div>
 
                 <div class="price">商品售價:</div> <div style="position: absolute;top:100px;left:700px;  height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px;">${itemVO.i_price }</div> 
@@ -195,10 +204,21 @@ $(function() {
                 </div>
                 <input type="hidden" id="i_id" name="i_id" value="${itemVO.i_id}" />
 				<input type="hidden" id="s_id" name="s_id" value="${itemVO.s_id}" />
+				<input type="hidden" id="m_account" name="m_account" value="${LoginOK.m_account}" />
+				<input type="hidden" id="m_id" name="m_id" value="${LoginOK.m_id}" />
                 <button class="shoppingButton" id="addToCart">加入購物車</button> 
                 <button class="wantBuy">聯絡賣家</button> 
-                <div class="pay">付款方式:</div>  <div style="position: absolute;top:520px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">0000000000</div> 
-                <div class="deliver">寄送方式:</div>  <div style="position: absolute;top:590px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">0000000000</div> 
+                <div class="pay">付款方式:</div>  <div style="position: absolute;top:520px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">超商付款,匯款,信用卡,貨到付款</div> 
+                <div class="deliver">寄送方式:</div>  <div style="position: absolute;top:590px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">
+                <c:if test="${not empty shipway }">
+	                <c:forEach items="${shipway.shipway }" var="sway" varStatus="vars">
+	                	<c:choose>
+	                		<c:when test="${not vars.last }">${sway.sw_name },</c:when>
+	                		<c:when test="${vars.last }">${sway.sw_name }</c:when>	                				                		
+	                	</c:choose>	                	
+	                </c:forEach>
+                </c:if>
+                </div> 
 
             </div><!--productArea1區域-->
         </div>
@@ -251,15 +271,13 @@ border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑�
 
 </div>
 
-
-
  </div><!--8格-->
 
         <div class="col-sm-offset-1 col-sm-3">
             <div class="seller" >
                 <div style="margin-top:20px;text-align:center;">ABOUT SELLER</div>
-                <div style=" width:120px;height:120px; border-radius:99em;  /*border:2px lightgray solid*/margin-left:70px;margin-top:10px;"><img src="images/myPicture.jpg" style="border-radius:99em;width:120px;height:120px;"/></div>
-                <div><h4 style="font-family:微軟正黑體;text-align:center;padding-top:10px;">韓國代購天堂</h4></div>
+                <div style="width:120px;height:120px; border-radius:99em;  /*border:2px lightgray solid*/margin-left:70px;margin-top:10px;"><a href="<c:url value='/shop.html?s_id=${shop.s_id }'/>"><img src="<c:url value='/UpdateDataServlet?status=selectPic&id=${shop.s_id }' />" /></a></div>
+                <div><h4 style="font-family:微軟正黑體;text-align:center;padding-top:10px;"><a href="<c:url value='/shop.html?s_id=${shop.s_id }'/>">${member.m_name }的賣場</a></h4></div>
                 
                 <div style="text-align:center;margin-top:20px;">
                 <span class="glyphicon glyphicon-plane" style="color:#EEB4B4;font-size:25px;"></span><span class="glyphicon glyphicon-plane" style="color:#EEB4B4;font-size:25px;"></span><span class="glyphicon glyphicon-plane" style="color:#EEB4B4;font-size:25px;"></span><span class="glyphicon glyphicon-plane" style="color:#EEB4B4;font-size:25px;"></span><span class="glyphicon glyphicon-plane" style="color:#EEB4B4;font-size:25px;"></span>
@@ -267,8 +285,9 @@ border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑�
                     
                 <div style="color:gray;font-family:微軟正黑體;font-size:12px;text-align:center;margin-top:20px;">評價 | 關於我 | 代購商品</div>
 
-                 <div style="text-align:center;margin-top:20px;"><button style="border-radius:5px 5px;border:black;background-color:black;color:white;width:250px;padding:7px 10px;"> <span class="glyphicon glyphicon-eye-open"><span style="margin-left:10px;font-size:20px;font-family:微軟正黑體;">&nbsp訂閱我</span></button></div>
-                 <div style="color:gray;font-family:微軟正黑體;font-size:12px;text-align:center;margin-top:20px;">目前共有100人訂閱</div>
+                 <div style="text-align:center;margin-top:20px;"><button id="keep_shop" value="${shop.s_id }" style="border-radius:5px 5px;border:black;background-color:black;color:white;width:250px;padding:7px 10px;"> <span class="glyphicon glyphicon-eye-open"><span style="margin-left:10px;font-size:20px;font-family:微軟正黑體;">&nbsp訂閱我</span></button></div>
+                 <span id="spanmsg2">　</span>
+                 <div id="keepshopcount" style="color:gray;font-family:微軟正黑體;font-size:12px;text-align:center;margin-top:20px;">目前共有${keepshopcount}人訂閱</div>
                   
                 <div style="padding:2px 20px;color:#8B7B8B;font-family:微軟正黑體;font-size:15px;text-align:center;margin-top:20px;">喜歡賣家代購的好物？<br />訂閱即可在第一時間收到代購分享的最新代購文章、商品資訊和專欄喔！</div>
 
@@ -329,10 +348,40 @@ border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑�
 </body>
 <script>
 
-$(function(){
+$(function(){	
 	$('#insertitemmessage').click(insertItemMessage);
+	$('#keep_shop').click(keep_shop);
+	$('#keepitem').click(keep_item);
 	getItemMessageJSON();
 })
+
+function keep_item(){	
+	if(<c:out value="${empty LoginOK}">true</c:out>){
+		$('#KeepItemMsg').text("請先登入");
+	}else if((<c:out value="${LoginOK.m_id}">-1</c:out>) == (<c:out value="${itemVO.s_id}">-2</c:out>)){
+		$('#KeepItemMsg').text("這是您自己的商品！");
+	}else{
+		$.post("<c:url value='/keep_item.SPRINGcontroller'/>",{"action":"Insert",
+			"i_id":<c:out value="${itemVO.i_id}">0</c:out>,
+			"m_id":<c:out value="${LoginOK.m_id}">0</c:out>},function(data){
+				$('#KeepItemMsg').text("已將商品加入收藏");
+				$('#keepitemcount').text(data);
+			});	//post	
+	}//else	
+}//click
+
+function keep_shop(){
+	if(<c:out value="${empty LoginOK}">true</c:out>){
+		$('#spanmsg2').text("請先登入");
+	}else{
+		$('#spanmsg2').text("test");		
+		$.post("<c:url value='/keep_shop.SPRINGcontroller'/>",{"action":"Insert","m_id":<c:out value="${LoginOK.m_id}">0</c:out>,
+			"s_id":<c:out value="${shop.s_id}">0</c:out>},function(data){
+				$('#spanmsg2').text("已將商店加入收藏");
+				$('#keepshopcount').text("目前共有"+data+"人訂閱");
+			})			
+	}
+}
 
 function getItemMessageJSON(){
 	$.post("<c:url value='/itemmessage.SPRINGcontroller'/>",{
@@ -446,54 +495,18 @@ function insertItemMessage(){
 	}/*if結尾*/
 }
 
-$('#addCart').click(function (){
-// 	 var form = $(this).parents('#cartForm');
-// 	 console.log(form);
-	 var action = $('#addToCart').val();
-	 var i_id = $('#i_id').val();
-	 var s_id = $('#s_id').val();
-	 var ol_quantity = $('#ol_quantity').val();
-	 var ol_memo = $('#ol_memo').val();
-	 $.post("ShoppingCart.go",{'action':action,'i_id':i_id,'s_id':s_id,'ol_quantity':ol_quantity,'ol_memo':ol_memo},
-			 function(data){
-		 var json = JSON.parse(data);
-		 var str = json.a;
-		 var theType = "success";
-		 var theText = "再多看看別的商品吧!"
-		 if(str=="加入購物車失敗，不能新增數量0以下" || str=="加入購物車失敗，剩餘數量不足"){
-			 theType = "error";
-			 theText = "請確定數量再加入購物車"
-		 }
-			 swal({
-				  title: str,
-				  text: theText,
-				  type: theType
-				});
-	 })
-	 
-});
 
-$('#buyAd').click(function(){
-	var i_id = $('#i_id').val();
+$('.wantBuy').click(function(){
+	var m_id = $('#m_id').val();
+	var s_id = $('#s_id').val();
+	
 	console.log(i_id);
-		window.open('Ad.go?action=prepareBuy&i_id='+i_id, '購買AllBuyBack廣告',
-				'height=400,width=650,scrollbars=0,resizable=0,location=0');
+		window.open('ChatController?action=show_both_message_seller&m_id='+m_id+'&s_id='+s_id,'購買AllBuyBack廣告',
+				'height=650,width=650,scrollbars=0,resizable=0,location=0');
 });
 
 
-$('#keepitem').click(function(){
-	if(<c:out value="${empty LoginOK}">true</c:out>){
-		$('#msg1').text("請先登入");
-	}else if((<c:out value="${LoginOK.m_id}">-1</c:out>) == (<c:out value="${itemVO.s_id}">-2</c:out>)){
-		$('#msg1').text("這是您自己的商品！");
-	}else{
-		$.post("<c:url value='/keep_item.SPRINGcontroller'/>",{"action":"Insert",
-			"i_id":<c:out value="${itemVO.i_id}">0</c:out>,
-			"m_id":<c:out value="${LoginOK.m_id}">0</c:out>},function(){
-				$('#msg1').text("已將商品加入收藏");
-			});	//post	
-	}//else	
-})//click
+
 
 
 </script>

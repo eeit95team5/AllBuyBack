@@ -42,6 +42,8 @@ public class Keep_ShopController {
 				
 		if("Insert".equals(action)){
 			keep_ShopService.insert(keep_ShopBean);
+			long i = keep_ShopService.selectKeepCount(keep_ShopBean.getS_id());
+			this.getKeepShopCount(request, response, i);
 			return;
 		}
 		
@@ -60,6 +62,18 @@ public class Keep_ShopController {
 			return;
 		}
 	}
+	private void getKeepShopCount(HttpServletRequest request, HttpServletResponse response,long count){
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("content-type", "text/html;charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		out.println(count);
+	} 
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void getJSON(HttpServletRequest request, HttpServletResponse response,List<Keep_ShopBean> result){

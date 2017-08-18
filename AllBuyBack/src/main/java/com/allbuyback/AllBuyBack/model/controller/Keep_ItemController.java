@@ -42,6 +42,8 @@ public class Keep_ItemController {
 		
 		if("Insert".equals(action)){
 			keep_ItemService.insert(keep_ItemBean);
+			long i = keep_ItemService.selectKeepCount(keep_ItemBean.getI_id());
+			this.getKeepItemCount(request, response, i);	
 			return;
 		}
 		
@@ -59,6 +61,19 @@ public class Keep_ItemController {
 			return;
 		}			
 	}
+	
+	private void getKeepItemCount(HttpServletRequest request, HttpServletResponse response,long count){
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("content-type", "text/html;charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		out.println(count);
+	} 
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void getJSON(HttpServletRequest request, HttpServletResponse response,List<Keep_ItemBean> result){
