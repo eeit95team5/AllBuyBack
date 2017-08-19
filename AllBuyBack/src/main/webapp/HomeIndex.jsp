@@ -158,7 +158,7 @@
 					</div>
 
 					<ul class="drop-down-menu  nav navbar-nav" style="text-align: left">
-						<li><a href="HomeIndex.jsp">首頁</a></li>
+						<li id="liid"><a href="HomeIndex.jsp">首頁</a></li>
 
 						<li><a href="#">找商品<span class="glyphicon glyphicon-menu-down"></span></a>
 							<ul>
