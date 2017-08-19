@@ -149,13 +149,6 @@
     }
 </script>
 </c:if>
-<c:if test="${empty LoginOK}">
-<script>
-	function login(){
-		window.location = "login.jsp";
-	}
-</script>
-</c:if>
 
 <!-- <body style="background-color:rgb(234,234,234)"> -->
 

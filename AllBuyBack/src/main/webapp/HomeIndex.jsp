@@ -17,7 +17,10 @@
 <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 <script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
 <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
-<!-- <script src="js/ReceiveChat.js"></script> -->
+
+<c:if test="${! empty LoginOK}">
+	<script src="js/ReceiveChat.js"></script>
+</c:if>
 
 <script type="text/javascript">
 // 	<!-- 聊天室開始(發訊者) -->
@@ -28,9 +31,6 @@
 	})
 // 	<!-- 聊天室結束(發訊者) -->
 </script>
-
-
-
 
 <style>
 
@@ -124,6 +124,7 @@
 	color:#000;
 }
 </style>
+
 <c:if test="${! empty LoginOK}">
 <script type="text/javascript">
     var i = 0;
@@ -144,7 +145,7 @@
 </c:if>
 </head>
 <body>
-
+<div id="asdf" style="display:none;"></div>
 	<nav class="navbar navbar-inverse  navbar-fixed-top" style="border-bottom:1px #F5F5F5 solid;">
 	<div class="container-fluid" style="background-color: #F5F5F5;">
 

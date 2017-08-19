@@ -98,6 +98,7 @@
 		<c:forEach var="shopVO" items="${shoplist}">
 		<div class="col-sm-3">
 			<div style="background-color:#C1CDCD;height:300px;margin:10px 5px; padding:15px; border-radius:20px">
+				<a href="shop.html?s_id=${shopVO.s_id}"><img height="160" width="160" style="margin:5px 35px" src="ReadPictureForItem?i_id=${shopVO.i_id}"></a>
 				<div>關於我: ${shopVO.s_aboutMe}</div>
 				<div>平均評價: ${shopVO.s_avgScore}</div>
 				<div>被收藏數: ${shopVO.s_popular} 被點擊數: ${shopVO.s_click}</div>

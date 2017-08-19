@@ -38,7 +38,6 @@ public class CheckPeopleList extends HttpServlet {
 		}
 		
 		request.setAttribute("VOlist", list);
-		System.out.println("here");
 		request.getRequestDispatcher("/_WishingPool.jsp").forward(request, response);
 		return;
 	}
