@@ -57,7 +57,7 @@ public class ShopController extends HttpServlet {
 			shopSvc.addShop(shopVO, memVO);
 			session.setAttribute("ShopVO", shopVO);
 			// session.setAttribute("Mixed", list);
-			response.sendRedirect("WaitApply.jsp");
+			response.sendRedirect("HomeIndex.jsp");
 
 		}
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -128,6 +129,25 @@
 
 }/*底下分頁結束*/
 </style>
+<script type="text/javascript">
+
+$(function() {
+	
+	 $('#seller').click(function(){
+			var id = $('#m_id').val();
+// 			var s_id = $('#s_id').val();
+			
+//	 		console.log(i_id);
+				window.open('ChatController?action=MessageFromSeller&id='+id,'購買AllBuyBack廣告',
+						'height=650,width=650,scrollbars=0,resizable=0,location=0');
+				
+				
+				
+		});
+});
+
+
+</script>
 </head>
 <body style="background-color:rgb(234,234,234)">
 <jsp:include page="includeTop.jsp"></jsp:include>
@@ -146,6 +166,11 @@
                    
                   <button style="position:absolute;top:1px;left:850px;color:white;font-family:微軟正黑體;font-size:18px;background-color: gray;border:gray;border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-eye-open" style="margin-right:6px;"></span>訂閱我</button>
                   <button style="position:absolute;top:1px;left:980px;color:white;font-family:微軟正黑體;font-size:18px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-plane" style="margin-right:6px;"></span>找我報價</button>
+                  <button id="seller"><span class="glyphicon glyphicon-plane" style="margin-right:6px;"></span>買家訊息</button>
+			      <input type="hidden" name="m_id" id="m_id" value="${LoginOK.m_id}"> 
+<%-- 			<input type="hidden" name="m_account" value="${LoginOK.m_account}"> --%>
+<%-- 			<input type="hidden" name="s_id" id="s_id" value="${OrderVO.s_id}">  --%>
+                 
            </div>
            <div style="height:150px;background-color:rgb(235,179,179);color:white;font-family:微軟正黑體;font-size:16px;font-weight:500;letter-spacing:3px;text-align: center;padding:30px  150px;">{LOVE ShaSha 樂芙夏夏} 8/13~8/18 日本東京連線代購...✈ "日本美妝、服飾包包、伴手禮以及日本迪士尼的全系列商品皆可代購噢！ ♡♡有需要什麼日本代購商品，歡迎聯絡我們提單詢問喔！公告更新時間：2017/07/24 23:21:38</div>
       </div>
