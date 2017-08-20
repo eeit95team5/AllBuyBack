@@ -41,11 +41,10 @@ public class UpdateDataServlet extends HttpServlet {
 		
 		RegisterService regService = new RegisterService();
 		HttpSession session = request.getSession();	
+		Map<Object, Object> errorMsg = null;
 		request.setCharacterEncoding("UTF-8");
-		
+		String contextPath = getServletContext().getContextPath();
 		String status = request.getParameter("status");
-		System.out.println(status);
-		System.out.println(status);
 		if (status.equals("query")) {
 			System.out.println("query");
 			String account = request.getParameter("account");
@@ -57,7 +56,7 @@ public class UpdateDataServlet extends HttpServlet {
 			request.getRequestDispatcher("/update.jsp").forward(request, response);
 		} else if (status.equals("update")) {
 			System.out.println("update");
-			Map<Object, Object> errorMsg = new HashMap<>();
+			errorMsg = new HashMap<>();
 			beforeUpdateBean = new MemberVO();
 			beforeUpdateBean.setM_id(Integer.valueOf(request.getParameter("id").trim()));
 			beforeUpdateBean.setM_account(request.getParameter("account").trim());
@@ -85,7 +84,9 @@ public class UpdateDataServlet extends HttpServlet {
 			if (beforeUpdateBean.getM_email().length() == 0 || beforeUpdateBean.getM_email() == null) {
 				errorMsg.put("email", "email不能空白");
 			}
-
+			
+			System.out.println(errorMsg);
+			
 			if (errorMsg.isEmpty()) {
 				memService = new MemberService();
 				//System.out.println("beforeBean = " + beforeUpdateBean);
@@ -102,10 +103,17 @@ public class UpdateDataServlet extends HttpServlet {
 				request.setAttribute("temp", afterUpdateBean);
 				request.getRequestDispatcher("/update.jsp").forward(request, response);
 				} else{
+					System.out.println("result = 0");
 					request.getRequestDispatcher("/update.jsp").forward(request, response);
 				}
 			} else {
 				request.setAttribute("wrong", errorMsg);
+				request.removeAttribute("temp");
+				request.setAttribute("temp", beforeUpdateBean);
+//				System.out.println("return errorMsg");
+//				System.out.println("reset temp");
+//				System.out.println(beforeUpdateBean);
+				
 				request.getRequestDispatcher("/update.jsp").forward(request, response);
 			}
 		}else if(status.equals("selectPic")){

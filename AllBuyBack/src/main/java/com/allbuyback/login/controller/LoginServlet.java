@@ -36,6 +36,7 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 			String account = request.getParameter("userId").trim();
 			String password = request.getParameter("password").trim();
+			System.out.println("LoginServlet");
 			if ((account != null || account.trim().length() != 0)
 					&& (password != null || password.trim().length() != 0)) {
 				LoginService service = new LoginService();
