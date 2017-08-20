@@ -165,12 +165,12 @@
     font-weight:700;
     font-family: 標楷體;
     color:black;
-    padding-top:110px;
+    padding-top:80px;
    
 }
 
 #showAns:before{/*說明背景圖部分*/
-    background: url(<c:url value="/images/shoppingEnd.jpg"/>);
+    background: url(<c:url value="/images/12345.jpg"/>);
     background-size: cover;
     width: 804px;
     height: 420px;
@@ -480,8 +480,8 @@ function _testBysetInterval(timer) {
         <div id="view6" style="display:none">  
 	        <div id="showAns"></div>
 	        <form action='<c:url value="/seeMyBonus.do"/>' method="post">	        
-	          <input type="hidden" id="bonus" name="bonus" value="" >
-	          <input type="submit" value="查看紅利" style="font-family:標楷體;font-size:25px;background-color:#EE9572;border-radius:5px;border:#EE9572">
+	          <input type="hidden" id="bonus" name="bonus" value="" ><br><br><br>
+	          <input type="submit" value="查看紅利" style="padding:3px 10px;font-family:標楷體;font-size:25px;background-color:#EE9572;border-radius:5px;border:#EE9572">
 	        </form>   
         </div>
 
