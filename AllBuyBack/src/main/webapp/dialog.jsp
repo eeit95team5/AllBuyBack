@@ -6,26 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>有背景的dialog</title>
+<title>金頭腦</title>
 
 
-<!-- <link rel='stylesheet' href='../webjars/bootstrap/3.3.7-1/css/bootstrap.min.css'> -->
-<!-- <script type='text/javascript' src='../webjars/jquery/3.2.1/dist/jquery.min.js'></script> -->
-<!-- <script type='text/javascript' src='../webjars/bootstrap/3.3.7-1/js/bootstrap.min.js'></script> -->
-<!-- <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script> -->
-<!-- <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />  -->
-
-<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
-<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
-<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
-
-
-<%-- <link rel="stylesheet" href="<c:url value='/dialogJar/jquery-ui.css'/>"> --%>
-<%-- <script src="<c:url value='/js/jquery-1.12.4.js'/>"></script> --%>
-<%-- <script src="<c:url value='/dialogJar/jquery-ui.js'/>"></script> --%>
-
-
-<!-- <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.css"> -->
 <link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
 <link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
 <script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
@@ -33,8 +16,91 @@
 <script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
 <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
 
+
+<!--  <link rel="stylesheet" href="styles/main.css"/> -->
+
+<!-- <link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css"> -->
+<!-- <link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css"> -->
+<!-- <script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script> -->
+<!-- <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script> -->
+<!-- <script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script> -->
+<!-- <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script> -->
+
 <!-- CSS -->
 <style>
+/*以下三個class貼在main裡不能跑會衝突*/
+ .ThisWeek { 
+  color:white;
+  font-size:16px;
+  /*line-height:45px;*/
+  margin-right:10px;
+  float:left;
+  margin-top:10px;
+}
+.ThisWeek:hover {
+   color:lightgray;
+   text-decoration:none;
+  
+}
+.icon-success {  /*本週頭條 星星 改變bootstrap icon的顏色*/
+ color: #FFB90F;
+   float:left;
+}
+
+ /*設定登入後的大頭貼*/
+
+.myPicture {
+    width:45px;height:45px; /*正圓形，所以寬與高都設一樣*/
+    border-radius:99em;
+    margin-left:1020px;
+    border:2px lightgray solid;
+    text-align:center;
+    margin-top:5px;
+  
+}
+.myPicture img{
+    width:40px;height:40px; /*照片比div外框小一點*/
+    border-radius:99em;
+}
+
+.threeDot{
+    width:38px;height:38px; /*照片比div外框小一點*/
+    border-radius:99em;
+    background-color: #B3B3B3;
+    text-align:center;
+    margin-left:1090px;
+    margin-top:-40px;
+    padding:7px;
+    padding-left:9px;
+    }
+.threeDot span { /*三個垂直白點*/
+    color:white;
+    font-size:20px;
+    }
+/*--------------------------------------*/
+.dropdown-content {
+    display:none;
+    position:absolute;
+    right: 18px;
+    background-color:lightgray;/*#B3B3B3; /*#C1CDCD;*/
+    width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-top:8px;
+    line-height:15px;
+    font-family:微軟正黑體;
+    font-size:16px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/*----------以下是金頭腦部分-------*/
+
 * {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -128,17 +194,21 @@
 .welcome{/*遊戲說明文字部分*/
 /*     width: 500px; */
 /*     height: 300px; */
-    line-height:35px;
-    text-align: right;
+    line-height:45px; 
+    text-align: left;
     font-weight:1200;
-    font-family: 標楷體;
-    color:white;
-    padding-top: 10px;
+    font-family:細明體/*標楷體*/;
+    color:#8B8378/*#8B2323*/;
+    padding-top: 20px;
+    padding-left:50px;
+    font-size:30px;
+    font-weight:600;
     
 }
 
 .welcome:before{/*遊戲說明背景圖部分*/
-    background: url(<c:url value="/images/shopping.jpg"/>);
+/*     background: url(<c:url value="/images/shopping.jpg"/>); */
+    background: url(<c:url value="/images/girl02.jpg"/>);
     background-size: cover;
     width: 810px;
     height: 420px;
@@ -147,8 +217,8 @@
     top: 0;
     left: 0;
     z-index: -1;/*-1 可以当背景    若沒有此屬性文字會跑到圖片後面*/
-/*     -webkit-filter: blur(1px); */
-/*     filter: blur(1px); */
+/*       -webkit-filter: blur(1px);   */
+/*       filter: blur(1px);   */
       
 }
 #showAns{/*說明文字部分*/
@@ -163,14 +233,14 @@
    line-height:30px;
     text-align:left;
     font-weight:700;
-    font-family: 標楷體;
+    font-family: 細明體/*標楷體*/;
     color:black;
     padding-top:80px;
    
 }
 
 #showAns:before{/*說明背景圖部分*/
-    background: url(<c:url value="/images/12345.jpg"/>);
+    background: url(<c:url value="/images/girl03.png"/>);
     background-size: cover;
     width: 804px;
     height: 420px;
@@ -179,8 +249,8 @@
     top: 0;
     left: 0;
     z-index: -1;/*-1 可以当背景    若沒有此屬性文字會跑到圖片後面*/
-     -webkit-filter: blur(1px); 
-     filter: blur(1px); 
+/*      -webkit-filter: blur(1px);  */
+/*      filter: blur(1px);  */
       
 }
 
@@ -257,7 +327,10 @@ function getJSON(){
 	  $('#B'+i).unbind("click").attr("style","background-color:#6495ED");
 	  $('#C'+i).unbind("click").attr("style","background-color:yellow");
 	  $('#D'+i).unbind("click").attr("style","background-color:#66CD00");
-	    }
+
+	 }
+	 
+	 
 	 }
 	}); 
 	
@@ -361,7 +434,7 @@ function seeAnswer(){
 	}
 	
 	if(ansIsTrue==2){// getBonus=0;
-		$('#showAns').html("<h2>答對題數:2<br><br>太可惜了!差一點點!歡迎再來挑戰時尚金頭腦!</h2>");
+		$('#showAns').html("<h2>答對題數:2<br><br>太可惜了!差一點點!</h2>");
 		$('#bonus').val(getBonus);
 	}
 	  	        	    
@@ -397,8 +470,15 @@ function _testBysetInterval(timer) {
     	//$timeSpan.css("color", "black");
     	//$timeSpan.html("<p style='font-size:3px'>時間到</P>");
     	//clearInterval(timer);//需要清除计时器
-    	//
-         $('#buttonGo').click();
+    	
+        
+    	//$('#buttonGo').click();
+        
+    	clearInterval(timer);						 
+		 $('#view'+k).attr("style","display:none");	
+		 $('#view'+(k+1)).attr("style","display:block");	
+         k++;
+      
     	}
     	else {
     	$timeSpan.text(time);
@@ -410,20 +490,31 @@ function _testBysetInterval(timer) {
 </script>
 
 </head>
-<body>
+<body style="background-color:rgb(234,234,234)">
+<jsp:include page="includeTop.jsp"></jsp:include>
 
-
-
-
-	<h1>我要挑戰今日任務</h1>
+<div class="container"  style="">
+    <div class="row">
+        <div class="col-sm-12">
+           <div   style="background-image:url(images/brain.png);background-size:cover;height:650px;margin-bottom: 50px;margin-top: 40px;">
+              <div style="font-family:微軟正黑體;font-size:25px;padding: 70px 60px;line-height: 30px">
+                    <h1>---歡迎挑戰「ALLBUYBACK金頭腦」---</h1><br>你是購物達人嗎？<br><br>永遠掌握最新的購物資訊？<br><br>對品牌/商品是不是夠有SENSE呢？<br><br>玩個遊戲就知道囉!
+              </div>
+              <button id="opener" style="margin-top:-10px;margin-left:60px;font-family:微軟正黑體;font-size:25px;background-color: rgb(42,186,171);border:rgb(42,186,171);border-radius:5px 5px;padding:8px 20px;letter-spacing: 3px;color:white;">我要挑戰</button>
+              
+              
+           </div>
+        </div>
+    </div>
+</div>
 
 	<div id="dialog" title="<時尚金頭腦>" style="padding-top:5px;">
 	
 	   <div id="view0" style="display:block">
-	      <div class="welcome"> <h2>歡迎來到「時尚金頭腦」!</h2>               
-		          <h2>遊戲規則如下:<br>依序回答五個問題，<br>每題作答時間15秒， <br>答對三題可獲得紅利3點，<br>答對四題可獲得紅利5點，<br>答對五題可獲得紅利10點!<br>
+	      <div class="welcome" >            
+		          遊戲規則如下:<br>依序回答五個問題，<br>每題作答時間15秒， <br>答對三題可獲得紅利3點，<br>答對四題可獲得紅利5點，<br>答對五題可獲得紅利10點!<br>
 		          還等什麼？快去挑戰!
-		          </h2>	  </div>
+		  </div>
 	   </div>
 
 
@@ -481,13 +572,12 @@ function _testBysetInterval(timer) {
 	        <div id="showAns"></div>
 	        <form action='<c:url value="/seeMyBonus.do"/>' method="post">	        
 	          <input type="hidden" id="bonus" name="bonus" value="" ><br><br><br>
-	          <input type="submit" value="查看紅利" style="padding:3px 10px;font-family:標楷體;font-size:25px;background-color:#EE9572;border-radius:5px;border:#EE9572">
+	          <input type="submit" value="查看紅利" style="padding:3px 10px;font-family:標楷體;font-size:25px;background-color:#CDB79E/*#EE9572*/;border-radius:5px;border:#EE9572;">
 	        </form>   
         </div>
 
 	</div><!--dialog內容結束-->
 
-	<button id="opener">Open Dialog</button>
 
 	<!-- JavaScript -->
 	<script type="text/javascript">
@@ -575,6 +665,6 @@ function _testBysetInterval(timer) {
 
 
 
-
+<jsp:include page="_Footer.jsp"></jsp:include>
 </body>
 </html>
