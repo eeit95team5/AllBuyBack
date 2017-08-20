@@ -52,6 +52,13 @@
 			$(this).parents('tr').find('.thetolprice').text(newprice)
 // 			console.log($(this).parents('form').find('input:eq(1)').val());
 // 			console.log($(this).parents('tr').find('.thetolprice').text());
+			
+				var all = 0;
+				$('.thetolprice').each(function(e){
+					all = all + Number($(this).text());
+				})
+				$('#allPrice').text(all);
+		
 		});
 		$('#pay_id').change(function(){
 			$('.pay_id').val($('#pay_id').val());
@@ -149,6 +156,8 @@
 				}
 			}
 		});
+		
+		
 	});
 
 </script>
@@ -180,6 +189,7 @@
 </table>
 <table class="table">
 	<c:set var="count" value="0" />
+	<c:set var="allPrice" value="0" />
 	<c:forEach var="orderlist" items="${orderlist}" varStatus="vs">
 	<c:set var="this_s_id" value="${orderlist.s_id}"/>
 		<!-- 設定s_id分項-->
@@ -213,7 +223,7 @@
 		<c:set var="s_id_group" value="${orderlist.s_id}"/>
 		<tr class="success">
 			<td>賣場</td>
-			<td colspan="5"><c:out value="${s_id_group}"></c:out></td>
+			<td colspan="5"><a href="shop.html?s_id=${s_id_group}">${shopName[s_id_group]}</a></td>
 		</tr>
 		<tr>
 			<td>商品名稱</td>
@@ -224,6 +234,7 @@
 			<td class="memo">備註</td>
 		</tr>
 		<c:set var="o_tolPrice" value="0" />
+		
 	</c:if>
 
 	<tr>
@@ -232,6 +243,7 @@
 		<td>${orderlist.ol_quantity}</td>
 		<td>${orderlist.i_price*orderlist.ol_quantity}</td>
 			<c:set var="o_tolPrice" value="${o_tolPrice + orderlist.i_price*orderlist.ol_quantity}" />
+			<c:set var="allPrice" value="${allPrice + o_tolPrice}" />
 		<td class="i_arrivedDate">${orderlist.i_arrivedDate}</td>
 		<td class="memo" rowspan="1"><textarea name="o_memo" cols="30" rows="1" style="resize:none;" readonly>${orderlist.ol_memo}</textarea></td>
 	</tr>
@@ -258,7 +270,11 @@
 	</c:if>
 </c:forEach>
 <tr>
-	<td colspan="6" align="right">
+	<td></td>
+	<td></td>
+	<td style="font-size:24px;">全部金額</td>
+	<td><b id="allPrice" style="font-size:24px;">${allPrice}</b></td>
+	<td colspan="2" align="right">
 		<button type="button" id="submit" class="btn btn-primary">成立訂單</button>
 		<span id="theMsg"></span>
 	</td>
