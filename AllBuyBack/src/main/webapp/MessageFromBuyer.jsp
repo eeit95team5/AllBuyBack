@@ -18,7 +18,7 @@
 <script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
 <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
 </head>
-<body>
+<body style="background:rgb(204, 255, 255)">
 
 
 <table border='1' bordercolor='#CCCCFF' width='800' class="table">
@@ -41,7 +41,7 @@
 	</tr>
 	<c:forEach var="ChatVO" items="${list2}">	
 		<tr align='center' valign='middle'>
-		    <td>${SellerOK.m_id}</td>
+		    <td>${LoginOK.m_id}</td>
 			<td>${ChatVO.m_id}</td>
 			<td>${ChatVO.m_account}</td>
 <%-- 			<td>${ChatVO.chat_content}</td> --%>

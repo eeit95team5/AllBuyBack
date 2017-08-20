@@ -19,26 +19,6 @@
 <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
  
 <style>
-     /*設定熱門代購搜尋Bar，只有"首頁"和"導覽列進入找國家之後"用得到*/
-    .hotSearch {
-        font-family:微軟正黑體;
-        line-height:60px;
-        font-size:20px;
-        font-weight:600;
-        color:white;
-        margin-left:10px;
-    }
-    .hotSearch a {
-        color:white; 
-       font-size:18px;
-       font-weight:500;
-    }
-    .hotSearch a:link{
-      text-decoration:none;
-    }
-    .hotSearch a:hover{
-      color:lightgray;
-    }
 
  /*以下三個class貼在main裡不能跑會衝突*/
  .ThisWeek { 
@@ -111,6 +91,10 @@
     display: block;
 }
 
+#dropdown a:hover{
+  color:#8B7D6B;
+}
+
 /* Add a dark gray background color to the modal header and center text */
 .modal-header, h4, .close {
     background-color: #ffe6e6;
@@ -147,13 +131,6 @@
             i = 0;
         }
     }
-</script>
-</c:if>
-<c:if test="${empty LoginOK}">
-<script>
-	function login(){
-		window.location = "login.jsp";
-	}
 </script>
 </c:if>
 
@@ -385,7 +362,7 @@
             <a href="ShoppingCart.go?action=select">我的購物車</a>
            <c:if test="${LoginOK.m_authority==2}"><a href="shop.html?s_id=${LoginOK.m_id}">我的賣場</a></c:if>
            <c:if test="${LoginOK.m_authority==1}"><a href="#">申請賣場</a></c:if>
-            <a href="checkGB.do">挑戰時尚金頭腦</a>
+            <a href="checkGB.do">ALLBUYBACK金頭腦</a>
             <a href="#">聯絡管理員</a>
             <a href="LogoutServlet" >登出</a>
          </div>

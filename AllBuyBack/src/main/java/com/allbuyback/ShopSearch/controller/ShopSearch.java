@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONValue;
 
+import com.allbuyback.ItemSearch.model.ItemSearchDAO;
 import com.allbuyback.ItemSearch.model.ItemVO;
 import com.allbuyback.ShopSearch.model.ShopSearchDAO;
 import com.allbuyback.ShopSearch.model.ShopVO;
@@ -35,7 +36,14 @@ public class ShopSearch extends HttpServlet {
 		
 		int country_id = Integer.parseInt(request.getParameter("countryCl"));
 		shoplist = ss.shopfindByCountry(country_id);
-		request.setAttribute("shoplist", shoplist);
+		
+		//由賣家找出其商店的第一件商品的i_id
+		ItemSearchDAO iDAO = new ItemSearchDAO();
+		for(int i=0; i<shoplist.size(); i++){
+			int i_id = iDAO.selectByS_Id(shoplist.get(i).getS_id()).get(0).getI_id();
+			shoplist.get(i).setI_id(i_id);
+		}
+		request.setAttribute("shoplist", shoplist);		
 		
 		switch(country_id){
 		case 1000001:

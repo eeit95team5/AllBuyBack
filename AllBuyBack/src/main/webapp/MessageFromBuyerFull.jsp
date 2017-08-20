@@ -17,9 +17,16 @@
 <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 <script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
 <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
+<style>
+.container{
+	margin-top: 100px;
+}
+</style>
 </head>
-<body>
-<div style="width: 800px; height: 500px; overflow: auto">
+<body style="background:rgb(204, 255, 255)">
+<div class="container">
+	<div class="row">
+<div class="col-md-offset-2" style="width: 800px; height: 500px; overflow: auto ;margin-bottom: 100px;">
 <!-- <table border='1' bordercolor='#CCCCFF' width='800'> -->
 <table class="table">
 <!-- 	<tr> -->
@@ -81,6 +88,9 @@
 		</td>
 	</table>
 	</div>
+	</div>
+	<div class="row">
+	<div class="col-md-offset-2">
 <%-- 	<form method="post" action="<c:url value="/ChatController"/>"> --%>
 <!-- 			    <input type="submit" value="回覆訊息"> -->
 <%-- 			     <input type="hidden" name="id" value="${MemVO.m_id}"> --%>
@@ -115,11 +125,14 @@
          <input type="hidden" name="s_id" value="${LoginOK.m_id}"> 
 			<input type="hidden" name="account" value="${LoginOK.m_account}">
       </div>
-      <br/>
+     
 </form>
 <%-- <a href="ChatController?action=MessageFromBuyer&id=${SellerOK.m_id}">回上一頁</a> --%>
 <a href="ChatController?action=MessageFromBuyer&id=${LoginOK.m_id}">回上一頁</a>
 <a href="HomeIndex.jsp">回首頁</a>
+		</div>
+	</div>
+</div>
 
 </body>
 </html>

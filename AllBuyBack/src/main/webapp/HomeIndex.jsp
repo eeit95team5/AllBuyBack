@@ -17,7 +17,10 @@
 <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 <script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
 <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
-<!-- <script src="js/ReceiveChat.js"></script> -->
+
+<c:if test="${! empty LoginOK}">
+	<script src="js/ReceiveChat.js"></script>
+</c:if>
 
 <script type="text/javascript">
 // 	<!-- 聊天室開始(發訊者) -->
@@ -28,9 +31,6 @@
 	})
 // 	<!-- 聊天室結束(發訊者) -->
 </script>
-
-
-
 
 <style>
 
@@ -105,6 +105,9 @@
     display: block;
 }
 
+#dropdown a:hover{
+  color:#8B7D6B;
+}
 
 /* Add a dark gray background color to the modal header and center text */
 .modal-header, h4, .close {
@@ -124,6 +127,7 @@
 	color:#000;
 }
 </style>
+
 <c:if test="${! empty LoginOK}">
 <script type="text/javascript">
     var i = 0;
@@ -144,7 +148,7 @@
 </c:if>
 </head>
 <body>
-
+<div id="asdf" style="display:none;"></div>
 	<nav class="navbar navbar-inverse  navbar-fixed-top" style="border-bottom:1px #F5F5F5 solid;">
 	<div class="container-fluid" style="background-color: #F5F5F5;">
 
@@ -157,7 +161,7 @@
 					</div>
 
 					<ul class="drop-down-menu  nav navbar-nav" style="text-align: left">
-						<li><a href="HomeIndex.jsp">首頁</a></li>
+						<li id="liid"><a href="HomeIndex.jsp">首頁</a></li>
 
 						<li><a href="#">找商品<span class="glyphicon glyphicon-menu-down"></span></a>
 							<ul>
@@ -369,7 +373,7 @@
             <a href="ShoppingCart.go?action=select">我的購物車</a>
            <c:if test="${LoginOK.m_authority==2}"><a href="shop.html?s_id=${LoginOK.m_id}">我的賣場</a></c:if>
            <c:if test="${LoginOK.m_authority==1}"><a href="MallInsert.jsp">申請賣場</a></c:if>
-            <a href="checkGB.do">挑戰時尚金頭腦</a>
+            <a href="checkGB.do">ALLBUYBACK金頭腦</a>
             <a href="#">聯絡管理員</a>
             <a href="LogoutServlet" >登出</a>
          </div>

@@ -1,88 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <link rel="stylesheet" href="styles/main.css"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>查詢與修改</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AllBuyBack代購網</title>
 
-<!-- 共同頁首 -->
 <link rel="stylesheet" href="styles/main.css" />
 <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
 <link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
 <link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
-<link rel="stylesheet" href="styles/ad.css"/>
 <script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
 <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 <script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
 <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
-<!-- 我的頁面 -->
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-
-  <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
-<link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
-<link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
-<script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
-<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
-<script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
-<script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
-
-
-<script>
-	var loadFile = function(event) {
-		var output = document.getElementById('output');
-		output.src = URL.createObjectURL(event.target.files[0]);
-	};
-</script>
-
+ 
 <style>
-     /*設定熱門代購搜尋Bar，只有"首頁"和"導覽列進入找國家之後"用得到*/
-    .hotSearch {
-        font-family:微軟正黑體;
-        line-height:60px;
-        font-size:20px;
-        font-weight:600;
-        color:white;
-        margin-left:10px;
-    }
-    .hotSearch a {
-        color:white; 
-       font-size:18px;
-       font-weight:500;
-    }
-    .hotSearch a:link{
-      text-decoration:none;
-    }
-    .hotSearch a:hover{
-      color:lightgray;
-    }
-/*以下三個class貼在main裡不能跑會衝突*/
-.ThisWeek {
-	color: white;
-	font-size: 16px;
-	/*line-height:45px;*/
-	margin-right: 10px;
-	float: left;
-	margin-top: 10px;
-}
 
+ /*以下三個class貼在main裡不能跑會衝突*/
+ .ThisWeek { 
+  color:white;
+  font-size:16px;
+  /*line-height:45px;*/
+  margin-right:10px;
+  float:left;
+  margin-top:10px;
+}
 .ThisWeek:hover {
-	color: lightgray;
-	text-decoration: none;
+   color:lightgray;
+   text-decoration:none;
+  
+}
+.icon-success {  /*本週頭條 星星 改變bootstrap icon的顏色*/
+ color: #FFB90F;
+   float:left;
 }
 
-.icon-success { /*改變bootstrap icon的顏色*/
-	color: #FFB90F;
-	float: left;
-}
  /*設定登入後的大頭貼*/
 
 .myPicture {
@@ -135,82 +91,11 @@
     display: block;
 }
 
+#dropdown a:hover{
+  color:#8B7D6B;
+}
 
-/*我的頁面*/
-  .w3-tangerine {
-    font-family: "Tangerine", serif;
-}
- 
-  .w3-container{
-  }
-  .person {
-      border: 10px solid transparent;
-      margin-bottom: 25px;
-      width: 80%;
-      height: 80%;
-      opacity: 0.7;
-  }
-  .person:hover {
-      border-color: #f1f1f1;
-  }
-  .nav-tabs li a {
-    color: #777;
-    font-family:微軟正黑體;
-    font-size: 20px;
-}
-.navbar {
-      font-family: Montserrat, sans-serif;
-      margin-bottom: 0;
-      background-color: #2d2d30;
-      border: 0;
-      font-size: 11px !important;
-      letter-spacing: 4px;
-      opacity: 0.9;
-  }
-  .navbar li a, .navbar .navbar-brand { 
-      color: #294057 !important;
-  }
-  .navbar-nav li a:hover {
-      color: #fff !important;
-  }
-  .navbar-nav li.active a {
-      color: #fff !important;
-      background-color: #29292c !important;
-  }
-  .navbar-default .navbar-toggle {
-      border-color: transparent;
-  }
-  .w3-myfont {
-  font-family: "Comic Sans MS", cursive, sans-serif;
-}
-label,input{
-	font-family:微軟正黑體;
-    font-size: 20px;
-}
-  .btn {
-      padding: 10px 20px;
-      margin:10px;
-      background-color: #333;
-      color: #f1f1f1;
-      border-radius: 8px;
-      transition: .2s;
-  }
-  .btn:hover, .btn:focus {
-      border: 1px solid #333;
-      background-color: #fff;
-      color: #000;
-  }
-  h1{color:#fff;font-weight: 400;}
-  h2{text-align:center; }
-  /*深藍*/
- .w3-theme  {color:#fff !important; background-color:#294057 !important}
- .w3-theme-l3 {color:#000 !important; background-color:#97b3ce !important}
- .w3-theme-l5 {color:#000 !important; background-color:#eff4f8 !important}
- 
-.color {
-	background: linear-gradient(to bottom, #eff4f8 0%, #294057 100%);
-	}
-	
+
 /* Add a dark gray background color to the modal header and center text */
 .modal-header, h4, .close {
     background-color: #ffe6e6;
@@ -228,49 +113,9 @@ label,input{
 	background-color: #fff;
 	color:#000;
 }
-	
+
 </style>
-  
- <script type="text/javascript">
 
-$(function(){	
-	$('#menu3').click(function(){		
-		$.get("<c:url value='/MemController'/>",{"action":"MemberListAll"},
-				function(data){
-			$('#show').html(data)		
-		});	
-	});	
-
-
-$(function(){
-	
-	$('#submit').click(function() {
-
-		$.get("<c:url value='/ChatController'/>", {
-			"action" : "MessageFromSeller","id" : ${LoginOK.m_id}
-		}, function(data) {
-			$('#show').html(data)
-
-		});
-
-	});
-	
-	$('#submit1').click(function() {
-
-		$.get("<c:url value='/RepController'/>", {
-			"action" : "GetReply","id" : ${LoginOK.m_id}
-		}, function(data) {
-			$('#show1').html(data)
-
-		});
-
-	});
-});
-
-
-
-
-</script>
 <c:if test="${! empty LoginOK}">
 <script type="text/javascript">
     var i = 0;
@@ -289,7 +134,9 @@ $(function(){
     }
 </script>
 </c:if>
-<!-- 88888 -->
+
+<!-- <body style="background-color:rgb(234,234,234)"> -->
+
 <nav class="navbar navbar-inverse  navbar-fixed-top " style="border-bottom:1px #F5F5F5 solid;"  >
   <div  class="container-fluid" style="background-color:#F5F5F5;"  >
 
@@ -490,7 +337,7 @@ $(function(){
     
     </ul>
 
-<!--  
+
      <form class="navbar-form navbar-left" action="KeyWordItemSearch" method="POST">
       <div class="input-group" style="width:160px;margin-left:30px;margin-right:30px">
         <input type="text" class="form-control" name="keyword" placeholder="您想代購什麼？"/>
@@ -500,11 +347,11 @@ $(function(){
           </button>
         </div>
       </div>
-    </form>-->
+    </form>
 <!------------------->
 <c:if test="${! empty LoginOK}">
          <div class="myPicture">
-             <img src="<c:url value='/UpdateDataServlet?status=selectPic&id=${LoginOK.m_id}' />" />
+             <img src=""/>
          </div>
 
       <div class="threeDot" id="threeDot">
@@ -516,18 +363,18 @@ $(function(){
             <a href="ShoppingCart.go?action=select">我的購物車</a>
            <c:if test="${LoginOK.m_authority==2}"><a href="shop.html?s_id=${LoginOK.m_id}">我的賣場</a></c:if>
            <c:if test="${LoginOK.m_authority==1}"><a href="#">申請賣場</a></c:if>
-            <a href="checkGB.do">挑戰時尚金頭腦</a>
+            <a href="checkGB.do">ALLBUYBACK金頭腦</a>
             <a href="#">聯絡管理員</a>
             <a href="LogoutServlet" >登出</a>
          </div>
 </c:if>
-<!--<c:if test="${empty LoginOK}">
+<c:if test="${empty LoginOK}">
          <button  class="btn btn-danger navbar-btn" 
          style="font-family:微軟正黑體;background-color:rgb(185,127,109);border:rgb(185,127,109);margin-right:10px" >註冊</button>
     <button  class="btn btn-danger navbar-btn" data-toggle="modal" data-target="#myModal"
          style="font-family:微軟正黑體;background-color:rgb(185,127,109);border:rgb(185,127,109)" >登入</button>
    
-</c:if>-->
+</c:if>
 <!-------------------->
    
               </div><!--col-sm-12--> 
@@ -536,180 +383,42 @@ $(function(){
       </div><!--container-fluid-->
 </nav>
 
-<!--只留下本週頭條及新手上路-->
-<div class="container-fluid" style="margin-top:60px; background-color:rgb(41,64,87);height:75px;margin-bottom:20px;">
-    <div class="container">
-       <div class="row">
-           <div class="col-sm-12">
-               <h3 style="color:white;margin-top:26px;float:left;font-family:微軟正黑體;margin-right:25px">本週頭條&nbsp&nbsp</h3> 
-                <div style="margin-top:20px">
-                  <h3 style="float:left;margin-top:6px;margin-right:10px;"><span class="glyphicon glyphicon-star-empty icon-success"></span></h3>             
-                  <a href="" class="ThisWeek">巴黎世家搶手帆布包</a>
-                  <h3 style="float:left;margin-top:6px;margin-right:10px;"><span class="glyphicon glyphicon-star-empty icon-success"></span></h3>             
-                  <a href="" class="ThisWeek">FURLA緊急折扣全面7折</a>
-                  <h3 style="float:left;margin-top:6px;margin-right:10px;"><span class="glyphicon glyphicon-star-empty icon-success"></span></h3>                
-                  <a href="" class="ThisWeek">Rebecca Minkoff季末出清</a>
-                  <h3 style="float:left;margin-top:6px;margin-right:10px;"><span class="glyphicon glyphicon-star-empty icon-success"></span></h3>             
-                  <a href="" class="ThisWeek">NIKE ROSHE TWO特價</a> 				            		                                           
-               </div> 
-  
-   <!--            <button  class="btn btn-danger navbar-btn" style="font-family:微軟正黑體;
-                background-color:#EE3B3B;border:#EE3B3B;color:white;margin-left:70px;" >新手上路</button>-->
-       </div>
-    </div><!--row結束-->
-</div><!--container結束-->  
-</div><!--container-fluid結束-->
 
-<!--只留下本週頭條及新手上路-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 style="font-family:Comic Sans MS;color:#ff944d"><span class="glyphicon glyphicon-leaf"></span>LogIn</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form" action="LoginServlet" method="post">
+          <div class="form-group">
+          	<input type="hidden" name="status" value="login">
+           	<label for="psw" style="font-family:Comic Sans MS;color:#ff944d;font-size:25px"  ><span class="glyphicon glyphicon-tree-deciduous"></span>Account</label>
+            <input type="text" class="form-control" id="psw" name="userId" placeholder="請輸入註冊帳號">
+          </div>
+          <div class="form-group">
+            <label for="usrname" style="font-family:Comic Sans MS;color:#ff944d;font-size:25px"><span class="glyphicon glyphicon-grain"></span>Password</label>
+            <input type="text" class="form-control" id="usrname" name="password" >
+          </div>
+          <button type="submit" class="btn btn-block" style="font-family:Comic Sans MS;color:#ff944d;font-size:25px">Commit 
+            <span class="glyphicon glyphicon-ok"></span>
+          </button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
+          <span class="glyphicon glyphicon-remove"></span> Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 </head>
-
-<body>
-<!-- 我的 -->
-<div id="contact" class="container">
-<div class="w3-container w3-center w3-animate-zoom w3-tangerine color ">
- 
-	<h1 class="w3-jumbo ">Hi!${LoginOK.m_account }!Welcome to AllBuyBack!
-  			<p>We love shopping!</p>
-  	</h1>
-</div>
-	<ul class="nav nav-tabs">
-  		<li class="active"><a data-toggle="tab" href="#home">查詢會員資料</a></li>
-  		<li><a data-toggle="tab" href="#menu1">修改會員資料</a></li>
-  		<li><a data-toggle="tab" href="#menu2">我的收藏</a></li>		
-  		<li><a data-toggle="tab" href="#menu3">變漂亮專區</a></li>		
-  		<li><a data-toggle="tab" href="#menu4">管理員通知</a></li>
-	</ul>
-
-	<div class="tab-content ">
-  		<div id="home" class="tab-pane fade in active ">
-    		
-				
-		<!--  		<input type="submit" value="送出" onclick="firstLoad">	-->
-			<div class="row">
-              <div class="col-sm-8">
-				
-				<div class="w3-panel w3-card-4 w3-theme">
-  					<h2 class="w3-tangerine w3-xxxlarge w3-theme ">Your Member List</h2>
-  					<div class="w3-container w3-theme-l3">
-    				<p>
-    				<ul class="w3-ul w3-card-4 #eff4f8 w3-theme-l5" style="width:100%">
-      					<li class="w3-tangerine w3-xxlarge" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Id&nbsp;&nbsp;&nbsp;&nbsp;:${LoginOK.m_id }</li>
-      					<li class="w3-tangerine w3-xxlarge">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Account&nbsp;&nbsp;&nbsp;&nbsp;:${LoginOK.m_account }</li>
-      					<li class="w3-tangerine w3-xxlarge">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;:<font size="4">${LoginOK.m_name }</font></li>
-      					<li class="w3-tangerine w3-xxlarge">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Phone&nbsp;&nbsp;&nbsp;&nbsp;:${LoginOK.m_phone }</li>
-      					<li class="w3-tangerine w3-xxlarge">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Address&nbsp;&nbsp;&nbsp;&nbsp;:<font size="4">${LoginOK.m_address }</font></li>
-      					<li class="w3-tangerine w3-xxlarge">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Identity&nbsp;&nbsp;&nbsp;&nbsp;:${LoginOK.m_identity }</li>
-      					<li class="w3-tangerine w3-xxlarge">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email&nbsp;&nbsp;&nbsp;&nbsp;:${LoginOK.m_email }</li>
-      					<li class="w3-tangerine w3-xxlarge"><font size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;總評價&nbsp;&nbsp;&nbsp;&nbsp;</font>:${LoginOK.m_scoreCount }</li>
-      					<li class="w3-tangerine w3-xxlarge"><font size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均分&nbsp;&nbsp;&nbsp;&nbsp;</font>:${LoginOK.m_avgScore }</li>
-      					<li class="w3-tangerine w3-xxlarge"><font size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最後上線時間&nbsp;&nbsp;&nbsp;&nbsp;</font>:${LoginOK.m_lastUsed }</li>
-      					<li class="w3-tangerine w3-xxlarge"><font size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;紅利&nbsp;&nbsp;&nbsp;&nbsp;</font>:${LoginOK.m_point }</li>
-      					<li class="w3-tangerine w3-xxlarge"><font size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今日金頭腦次數&nbsp;&nbsp;&nbsp;&nbsp;</font>:${LoginOK.m_times_gb }</li>
-    				</ul>
-    				</p>
-  					</div>		
-  					<p></p>
-			
-  		</div>
-  	</div>
-  	</div>
-  	</div>
-  	
-<!-- 小心	<div class="col-sm-4"> -->
-  		<div id="menu1" class="tab-pane fade">
-  			<div class="col-sm-4"> 
-  		
-  				<div class="w3-display-container w3-hover-opacity">
-       				<a href="#demo2" data-toggle="collapse" onclick="document.getElementById('demo2').style.display='block'">
-       					<img src="images/onepage_restaurant.jpg" > 
-       				</a>
-       			</div>	
-       			<div class="w3-display-middle w3-display-hover">
-       			<button class="w3-button w3-black w3-tangerine w3-xlarge">Press me!</button>
-  				</div>
-			</div>
-		</div>
-     		<div id="demo2" class="w3-modal">
-  				<div class="w3-modal-content w3-animate-zoom">
-    				<div class="w3-container w3-black">
-      				 <span onclick="document.getElementById('demo2').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
-      				<h1>Contact</h1>
-    				</div>
-    				<div class="w3-container">
-        			<form  action="<c:url value="UpdateDataServlet" />" method="post" >
-					<input type="hidden" name="status" value="update"> 
-					<input type="hidden" name="account" value="${LoginOK.m_account }">
-					<input type="hidden" name="id" value="${LoginOK.m_id }"> 
-					
-					<label for="password" class="w3-tangerine w3-xxlarge  w3-padding-5" >Password:</label><span>${wrong.password }</span>
-					<input class="w3-input w3-animate-input" type="text" style="width:60%" id="password" type="text" name="password" value="${temp.m_password }">
-			    	<label for="phone" class="w3-tangerine w3-xxlarge  w3-padding-5">Phone:</label><span>${wrong.phone}</span> 
-			    	<input  class="w3-input w3-animate-input" type="text" style="width:60%" id="phone" type="text" name="phone" value="${temp.m_phone }">
-			    	<label for="address" class="w3-tangerine w3-xxlarge  w3-padding-5">Address:</label><span>${wrong.address }</span> 
-			    	<input class="w3-input w3-animate-input" type="text" style="width:60%" id="address" type="text" name="address" value="${temp.m_address }">
-			    	<label for="email" class="w3-tangerine w3-xxlarge  w3-padding-5">Email:</label><span>${wrong.email }</span> 
-			    	<input class="w3-input w3-animate-input" type="text" style="width:60%" id="email" type="text" name="email" value="${temp.m_email }">
-			     	<button class="btn w3-tangerine w3-xlarge" type="submit">Send</button>
-					</form>
-					
-					</div>
-      			</div>
-      		</div>
-  		
-  	    <div id="menu2" class="tab-pane fade" >
-  	    	<form action="<c:url value='/FavoriteServlet' />">
-  	    	<input type="hidden" name="id" value="${LoginOK.m_id }">
-  	    	<button class="btn w3-tangerine w3-xlarge" type="submit">Send</button>
-  	    	</form>
-  	    	<c:forEach items="${favorite.shop}" var="favShop"> 
-	 			<hr> 
-	 			shopName: <c:out value="${favShop.m_account}" /> 
-	 			<br> 
-	 			</c:forEach>
-	 			<c:forEach items="${favorite.item}" var="favItem"> 
-	 			<hr> 
-	 			itemName: <c:out value="${favItem.i_name}" /> 
-	 			<br> 
-	 			</c:forEach>
-  		</div>
-  		<div id="menu3" class="tab-pane fade">
-    		<form action="<c:url value="/UpdatePhotoServlet" />" enctype="multipart/form-data" method="post">
-			<input type="hidden" name="status" value="updatePic"> 
-			<input type="hidden" name="account" value="${LoginOK.m_account }"> 
-			<input type="hidden" name="id" value="${LoginOK.m_id }"> 
-			<input type="hidden" name="password" value="${temp.m_password }">
-			<input type="hidden" name="phone" value="${temp.m_phone }"> 
-			<input type="hidden" name="address" value="${temp.m_address }">
-			<input type="hidden" name="email" value="${temp.m_email }">
-			<input type="hidden" name="point" value="${temp.m_point }"> 
-			<input type="file" name="photo" size="40" accept="image/*" onchange="loadFile(event)" /> 
-				<div style="height: 150px; width: 150px; border: 1px solid;">
-				<img id="output" src="<c:url value='/UpdateDataServlet?status=selectPic&id=${LoginOK.m_id}' />" style="width: 150px; height: 150px" />
-				</div>
-			<button class="btn w3-tangerine w3-xlarge" type="submit">Send</button>			
-			</form>
-
-<!--     		<input type="submit" value="送出"> -->
-    		<input id="submit" type="button" value="所有對話紀錄">
-    		
-    		<div id="show"></div>
-
-  		</div>
-
-  		
-  		<div id="menu4" class="tab-pane fade">	
-
-  		<div id="menu4" class="tab-pane fade">
-<!--     		<input type="submit" value="送出"> -->
-    		<input id="submit1" type="button" value="所有檢舉紀錄">
-    		
-    		<div id="show1"></div>
-
-  		</div>
-   	</div>
-
-</div>
-
-
-</body>
 </html>

@@ -532,5 +532,30 @@ public class MemberDAO {
 		}
 		
 	}
+	public void updatePoint(MemberVO memberVO) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement("UPDATE MEMBER SET m_point=? WHERE m_id=?");
+			pstmt.setInt(1, memberVO.getM_point());
+			pstmt.setInt(2, memberVO.getM_id());
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally{
+			if(conn != null){
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+	}
 	
 }
