@@ -18,7 +18,7 @@
 <script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
 <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
 </head>
-<body>
+<body style="background:rgb(204, 255, 255)">
 <div style="width: 800px; height: 500px; overflow: auto">
 <!-- <table border='1' bordercolor='#CCCCFF' width='800'> -->
 <table class="table">

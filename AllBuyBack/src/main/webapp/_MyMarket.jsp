@@ -493,17 +493,25 @@
 <script type="text/javascript">
 
 $(function() {
-	
-	 $('#seller').click(function(){
-			var id = $('#m_id').val();
-// 			var s_id = $('#s_id').val();
+	 
+// 		$('#seller').click(function() {
+
+// 			$.get("<c:url value='/ChatController'/>", {
+// 				"action" : "MessageFromBuyer","id" : ${LoginOK.m_id}
+// 			}, function(data) {
+// 				$('#show').html(data)
+
+// 			});
+
+// 		});
+		
+   	 $('#seller').click(function(){
+			var m_id = $('#m_id').val();
+			//var s_id = $('#s_id').val();
 			
 //	 		console.log(i_id);
-				window.open('ChatController?action=MessageFromSeller&id='+id,'購買AllBuyBack廣告',
+				window.open('ChatController?action=MessageFromBuyer&m_id='+m_id,'購買AllBuyBack廣告',
 						'height=650,width=650,scrollbars=0,resizable=0,location=0');
-				
-				
-				
 		});
 });
 

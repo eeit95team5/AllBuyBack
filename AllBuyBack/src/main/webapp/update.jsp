@@ -12,6 +12,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
+  <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
+<link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
+<link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
+<script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+<script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
 
 <script>
 	var loadFile = function(event) {
@@ -88,16 +95,30 @@
 
 $(function(){
 	
-	$('#menu3').click(function(){
-		
-		$.get("<c:url value='/MemController'/>",{"action":"MemberListAll"},
-				function(data){
+	$('#submit').click(function() {
+
+		$.get("<c:url value='/ChatController'/>", {
+			"action" : "MessageFromSeller","id" : ${LoginOK.m_id}
+		}, function(data) {
 			$('#show').html(data)
-			
-		});	
+
+		});
+
+	});
+	
+	$('#submit1').click(function() {
+
+		$.get("<c:url value='/RepController'/>", {
+			"action" : "GetReply","id" : ${LoginOK.m_id}
+		}, function(data) {
+			$('#show1').html(data)
+
+		});
+
 	});
 	
 });
+
 
 </script>
 </head>
@@ -174,10 +195,16 @@ $(function(){
     		<p>I mean, sometimes I enjoy the show, but other times I enjoy other things.</p>
   		</div>
   		<div id="menu3" class="tab-pane fade">
-    		<input type="submit" value="送出">
+<!--     		<input type="submit" value="送出"> -->
+    		<input id="submit" type="button" value="所有對話紀錄">
+    		
+    		<div id="show"></div>
   		</div>
   		<div id="menu4" class="tab-pane fade">
-    		<input type="submit" value="送出">
+<!--     		<input type="submit" value="送出"> -->
+    		<input id="submit1" type="button" value="所有檢舉紀錄">
+    		
+    		<div id="show1"></div>
   		</div>
    	</div>
 

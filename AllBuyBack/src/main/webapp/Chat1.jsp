@@ -64,6 +64,11 @@
 			}
 		}
 	}
+	$(function(){
+		$('#closebtn').click(function(){
+			window.close();
+		});
+	})
 </script>
 
 <style>
@@ -94,7 +99,7 @@
 			    </td>
 			</tr>
 			<tr>
-				<td><input id="sendbtn" type="button" value="送出"></td>
+				<td><input id="sendbtn" type="button" value="送出"><input id="closebtn" type="button" value="關閉聊天室"></td>
 			</tr>
 		</tbody>
 	</table>
