@@ -250,6 +250,35 @@ public class AdServlet extends HttpServlet {
 			
 			request.getRequestDispatcher("/allAd.jsp").forward(request, response);
 		}
+		//管理者顯示所有廣告1
+		if("selectAd1".equals(action)){
+			List<AdVO> list = new ArrayList<AdVO>();
+			AdService adS = new AdService();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			list = adS.selectAd1();
+			//處理日期
+			List<String[]> timeList =new ArrayList<String[]>();
+			for(int i=0; i<list.size();i++){
+				Date std = list.get(i).getAd_startDate();
+				Date ed = list.get(i).getAd_endDate();
+				String[] st = {sdf.format(std),sdf.format(ed)};
+				timeList.add(st);
+			}
+			//商品名稱
+			ItemService itemService = new ItemService();
+			List<String> itemList =new ArrayList<String>();
+			for(int i=0; i<list.size();i++){
+				int i_id = list.get(i).getI_id();
+				String i_name = itemService.select(i_id).getI_name();
+				itemList.add(i_name);
+			}
+			//送出資料
+			request.setAttribute("timeList", timeList);
+			request.setAttribute("adList", list);
+			request.setAttribute("nameList", itemList);
+			
+			request.getRequestDispatcher("/allAd.jsp").forward(request, response);
+		}
 		//未實做
 		if("deleteAd".equals(action)){
 			int ad_id = Integer.parseInt(request.getParameter("ad_id"));

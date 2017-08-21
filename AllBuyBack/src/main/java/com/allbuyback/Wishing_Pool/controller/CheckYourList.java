@@ -31,7 +31,7 @@ public class CheckYourList extends HttpServlet {
 		if(mvo == null){  //判斷有無login
 			String target = request.getServletPath();
 			request.getSession().setAttribute("target", target);
-			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/HomeIndex.jsp");
 			rd.forward(request, response);
 			return;
 		}

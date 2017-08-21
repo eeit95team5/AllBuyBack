@@ -16,9 +16,6 @@
 </head>
 <body>
 <div>
-<c:if test="${empty adList}">
-<h3>尚無廣告</h3>
-</c:if>
 	<c:if test="${! empty adList}">
 		<table class="table">
 			<tr class="info">

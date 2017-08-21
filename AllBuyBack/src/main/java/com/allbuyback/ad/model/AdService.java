@@ -32,4 +32,8 @@ public class AdService {
 		List<AdVO> list = dao.selectAll();
 		return list;
 	}
+	public List<AdVO> selectAd1(){
+		List<AdVO> list = dao.selectAd1();
+		return list;
+	}
 }

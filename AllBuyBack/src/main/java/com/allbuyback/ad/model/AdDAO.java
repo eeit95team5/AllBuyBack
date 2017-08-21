@@ -38,6 +38,8 @@ public class AdDAO implements AdDAOI {
 			"SELECT * FROM [AD] where s_id = ? ORDER BY ad_id desc";
 	private static final String GET_ALL =
 			"SELECT * FROM [AD] ORDER BY ad_id desc";
+	private static final String GET_AD_1 =
+			"SELECT * FROM [AD] WHERE ad_type=1 and ad_endDate>getDate() ORDER BY ad_id desc";
 	
 	@Override
 	public void insert(AdVO adVO) {
@@ -254,6 +256,46 @@ public class AdDAO implements AdDAOI {
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				AdVO adVO = new AdVO();
+				adVO.setAd_id(rs.getInt("ad_id"));
+				adVO.setS_id(rs.getInt("s_id"));
+				adVO.setI_id(rs.getInt("i_id"));
+				adVO.setAd_picture(rs.getBytes("ad_picture"));
+				adVO.setAd_startDate(rs.getTimestamp("ad_startDate"));
+				adVO.setAd_endDate(rs.getTimestamp("ad_endDate"));
+				adVO.setAd_price(rs.getInt("ad_price"));
+				adVO.setAd_link(rs.getString("ad_link"));
+				adVO.setAd_type(rs.getInt("ad_type"));
+				list.add(adVO);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public List<AdVO> selectAd1() {
+		List<AdVO> list = new ArrayList<AdVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;		
+		ResultSet rs = null;
+		AdVO adVO = null;
+		try {
+			con = ds.getConnection();
+			
+			pstmt = con.prepareStatement(GET_AD_1);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				adVO = new AdVO();
 				adVO.setAd_id(rs.getInt("ad_id"));
 				adVO.setS_id(rs.getInt("s_id"));
 				adVO.setI_id(rs.getInt("i_id"));
