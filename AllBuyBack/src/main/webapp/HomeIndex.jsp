@@ -34,35 +34,26 @@
 			var addiv = $('#AdId');
 			addiv.empty();
 			$.each(JSON.parse(data),function(Adkey, Advalue){
-				console.log(Advalue.i_id);
-				console.log(Advalue.i_name);
-				var cell1 = $('<div></div>').addClass("col-sm-3");
-				var cell2 = $('<div></div>').addClass("adOuter");
-				cell1.append(cell2);
-				var celllink = $('<a></a>').attr("href", "item.html?i_id=" + Advalue.i_id);
 				var cell3 = $('<img>').addClass("imgsrc");
 				cell3.attr("src", "ReadPictureForItem?i_id="+Advalue.i_id);
 				cell3.css("height", "270");
-				cell3.css("width", "255");
+				cell3.css("width", "235");
+				var celllink = $('<a></a>').attr("href", "item.html?i_id=" + Advalue.i_id);
 				celllink.append(cell3);
-				var cell4 = $('<div></div>').text(Advalue.i_name);
-				cell4.addClass("adContent");
+				var cell4 = $('<div></div>').addClass("adContent").text(Advalue.i_name);
 				var cell5 = $('<span></span').addClass("glyphicon glyphicon-map-marker marker");
 				var cell6 = $('<div></div>').addClass("countryFrom").text(Advalue.country_name);
-				var cell7 = $('<div></div>').addClass("sellerWho").text("暢銷指數: " + Advalue.i_popular + " 訂閱數： " + Advalue.i_click);
+				cell6.css("margin", "10px");
+				var cell7 = $('<div></div>').addClass("sellerWho").text("暢銷指數: " + Advalue.i_popular + " 點擊數： " + Advalue.i_click);
+				cell7.css("margin", "10px");
+				var cell2 = $('<div></div>').addClass("adOuter");
+				cell2.css("margin", "10px");
 				cell2.append([celllink, cell4, cell5, cell6, cell7]);
+				var cell1 = $('<div></div>').addClass("col-sm-3");
+				cell1.append(cell2);
 				addiv.append(cell1);
 			});
 		});
-// 		<div class="col-sm-3">
-// 	        <div class="adOuter" >
-// 	           <img id="imgid" class="imgsrc" src="images/cho_05.jpg" >
-// 	           <div  class="adContent">來自日本的草莓巧克力，可以吃到一整顆完整的草莓喔!超級幸福~</div>
-// 	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-// 	           <div id="country" class="countryFrom">美國</div>
-// 	           <div class="sellerWho" >LOVE ShaSha 樂芙夏夏</div>
-// 	        </div>
-//      </div>
 	})
 </script>
 
@@ -530,42 +521,30 @@
 <div class="container">
  <div class="row">
 	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent">國家圖片先跳過 樣式還要改</div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
+	        <div style="background-color:#D6D6AD;height:280px;margin:10px 5px; padding:15px; border-radius:20px">
+	           <a href="CountryItemSearch?countryCl=1000011"><img height="220" width="220" src="images/country01.jpg" ></a>
+	           <span class="glyphicon glyphicon-map-marker marker" >美國</span> 
 	        </div>
 	      </div>
 	     
 	       <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
+	        <div style="background-color:#D6D6AD;height:280px;margin:10px 5px; padding:15px; border-radius:20px">
+	           <a href="CountryItemSearch?countryCl=1000006"><img height="220" width="220" src="images/country02.jpg" ></a>
+	           <span class="glyphicon glyphicon-map-marker marker" >英國</span> 
 	        </div>
 	      </div>
 	      
 	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
+	        <div style="background-color:#D6D6AD;height:280px;margin:10px 5px; padding:15px; border-radius:20px">
+	           <a href="CountryItemSearch?countryCl=1000007"><img height="220" width="220" src="images/country03.jpg" ></a>
+	           <span class="glyphicon glyphicon-map-marker marker" >法國</span> 
 	        </div>
 	      </div>
 	      
 	      <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
+	        <div style="background-color:#D6D6AD;height:280px;margin:10px 5px; padding:15px; border-radius:20px">
+	           <a href="CountryItemSearch?countryCl=1000003"><img height="220" width="220" src="images/country04.jpg" ></a>
+	           <span class="glyphicon glyphicon-map-marker marker" >香港</span> 
 	        </div>
 	      </div>
 	     
@@ -576,42 +555,30 @@
 
 <div class="row">
 	       <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent">國家圖片先跳過</div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
+	        <div style="background-color:#D6D6AD;height:280px;margin:10px 5px; padding:15px; border-radius:20px">
+	           <a href="CountryItemSearch?countryCl=1000001"><img height="220" width="220" src="images/country05.jpg" ></a>
+	           <span class="glyphicon glyphicon-map-marker marker" >日本</span> 
 	        </div>
 	      </div>
 	     
 	       <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
+	        <div style="background-color:#D6D6AD;height:280px;margin:10px 5px; padding:15px; border-radius:20px">
+	           <a href="CountryItemSearch?countryCl=1000002"><img height="220" width="220" src="images/country06.jpg" ></a>
+	           <span class="glyphicon glyphicon-map-marker marker" >韓國</span> 
 	        </div>
 	      </div>
 	      
 	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
+	        <div style="background-color:#D6D6AD;height:280px;margin:10px 5px; padding:15px; border-radius:20px">
+	           <a href="CountryItemSearch?countryCl=1000009"><img height="220" width="220" src="images/country07.jpg" ></a>
+	           <span class="glyphicon glyphicon-map-marker marker" >西班牙</span> 
 	        </div>
 	      </div>
 	      
 	      <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
+	        <div style="background-color:#D6D6AD;height:280px;margin:10px 5px; padding:15px; border-radius:20px">
+	           <a href="CountryItemSearch?countryCl=1000005"><img height="220" width="220" src="images/country08.jpg" ></a>
+	           <span class="glyphicon glyphicon-map-marker marker" >泰國</span> 
 	        </div>
 	      </div>
 	     
@@ -630,15 +597,7 @@
 </div>
 
   <div id="AdId" class="row">
-<!-- 	     <div class="col-sm-3"> -->
-<!-- 	        <div class="adOuter" > -->
-<!-- 	           <img id="imgid" class="imgsrc" src="images/cho_05.jpg" > -->
-<!-- 	           <div  class="adContent">來自日本的草莓巧克力，可以吃到一整顆完整的草莓喔!超級幸福~</div> -->
-<!-- 	           <span class="glyphicon glyphicon-map-marker marker" ></span>  -->
-<!-- 	             <div id="country" class="countryFrom">美國</div> -->
-<!-- 	             <div class="sellerWho" >LOVE ShaSha 樂芙夏夏</div> -->
-<!-- 	        </div> -->
-<!-- 	      </div> -->
+		<!--  這裡有用Ajax把廣告商品塞進來   -->
   </div>
 <br />
 <br />
@@ -653,42 +612,31 @@
 
     <div class="row">
 	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="images/cho_05.jpg" >
-	           <div  class="adContent">來自日本的草莓巧克力，可以吃到一整顆完整的草莓喔!超級幸福~</div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom">美國</div>
-	             <div class="sellerWho" >LOVE ShaSha 樂芙夏夏</div>
+	        <div style="border:3px solid #d0d0d0" >
+	           <img class="imgsrc" src="images/Kenzo_04.gif" >
+	           <div  class="adContent">『Kenzo代購 』夏日5折起特價 ！！正式開搶！！</div>
+<!-- 	           <span class="glyphicon glyphicon-map-marker marker" ></span>  -->
 	        </div>
 	      </div>
 	     
 	       <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
+	        <div style="border:3px solid #d0d0d0" >
+	           <img class="imgsrc" src="images/AIGLE_01.png" >
+	           <div  class="adContent">【Aigle】折扣季後－季末折扣區</div>
 	        </div>
 	      </div>
 	      
 	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
+	        <div style="border:3px solid #d0d0d0" >
+	           <img class="imgsrc" src="images/Timberland_07.png" >
+	           <div  class="adContent">【年末大特價】休閒風尚TIMBERLAND</div>
 	        </div>
 	      </div>
 	      
 	      <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
+	        <div style="border:3px solid #d0d0d0" >
+	           <img class="imgsrc" src="images/Timberland_06.png" >
+	           <div  class="adContent">Timberland 冬季清倉再八折</div>
 	        </div>
 	      </div>
 	     
@@ -699,42 +647,30 @@
 
     <div class="row">
 	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="images/cho_05.jpg" >
-	           <div  class="adContent">來自日本的草莓巧克力，可以吃到一整顆完整的草莓喔!超級幸福~</div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom">美國</div>
-	             <div class="sellerWho" >LOVE ShaSha 樂芙夏夏</div>
+	        <div style="border:3px solid #d0d0d0" >
+	           <img class="imgsrc" src="images/Roots_02.jpg" >
+	           <div  class="adContent">「輕鬆、自然、活力 」Roots</div>
 	        </div>
 	      </div>
 	     
-	       <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
+	      <div class="col-sm-3">
+	        <div style="border:3px solid #d0d0d0" >
+	           <img class="imgsrc" src="images/GAP_04.png" >
+	           <div  class="adContent">【秋冬款上市+天天折扣優惠】自然率性的美國流行服飾GAP</div>
 	        </div>
 	      </div>
 	      
 	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
+	        <div style="border:3px solid #d0d0d0" >
+	           <img class="imgsrc" src="images/GAP_03.jpg" >
+	           <div  class="adContent">英國約克夏代購 - 美國GAP流行服飾 新品上架 女裝 男裝 童裝</div>
 	        </div>
 	      </div>
 	      
 	      <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
+	        <div style="border:3px solid #d0d0d0" >
+	           <img class="imgsrc" src="images/CK_06.jpg" >
+	           <div  class="adContent">UO x Calvin Klein 聯名款服飾 代購 / 當現代極簡遇上舒適休閒 ♥</div>
 	        </div>
 	      </div>
 	     
@@ -753,195 +689,39 @@
 
     <div class="row">
 	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="images/cho_05.jpg" >
-	           <div  class="adContent">來自日本的草莓巧克力，可以吃到一整顆完整的草莓喔!超級幸福~</div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom">美國</div>
-	             <div class="sellerWho" >LOVE ShaSha 樂芙夏夏</div>
+	        <div style="border:3px solid #d0d0d0" >
+	           <img class="imgsrc" src="images/Kenzo_02.jpg" >
+	           <div  class="adContent">法國日本設計師品牌，時尚流行的超夯寵兒／比利時代購＆代收</div>
 	        </div>
 	      </div>
 	     
-	       <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
+	      <div class="col-sm-3">
+	        <div style="border:3px solid #d0d0d0" >
+	           <img class="imgsrc" src="images/GOGOSING_02.jpg" >
+	           <div  class="adContent">韓國網站代購**GOGOSING** 平價青春休閒服飾 全商品代購</div>
 	        </div>
 	      </div>
 	      
 	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
+	        <div style="border:3px solid #d0d0d0" >
+	           <img class="imgsrc" src="images/GOGOSING_01.gif" >
+	           <div  class="adContent">韓國女裝★gogosing★平價甜美/氣質/學生風服飾-韓國網站正品代購</div>
 	        </div>
 	      </div>
 	      
 	      <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
+	        <div style="border:3px solid #d0d0d0" >
+	           <img class="imgsrc" src="images/AderError_04.jpg" >
+	           <div  class="adContent">★ 首爾媽 ★ 韓國 暖男 明星 朴寶劍、炫雅..愛用品牌《ADER error》代購</div>
 	        </div>
 	      </div>
 	     
 	     
 	    
 	 </div>
+
+      
 <br />
-
-      <div class="row">
-	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="images/cho_05.jpg" >
-	           <div  class="adContent">來自日本的草莓巧克力，可以吃到一整顆完整的草莓喔!超級幸福~</div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom">美國</div>
-	             <div class="sellerWho" >LOVE ShaSha 樂芙夏夏</div>
-	        </div>
-	      </div>
-	     
-	       <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
-	        </div>
-	      </div>
-	      
-	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
-	        </div>
-	      </div>
-	      
-	      <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
-	        </div>
-	      </div>
-	     
-	     
-	    
-	 </div>
-<br />
-
-
-<div class="row">
-    <div class="col-sm-offset-5 col-sm-2">
-        <div style="border-bottom:6px solid rgb(255,112,102);margin-bottom:25px">
-            <h1 style="text-align:center;font-weight:700">最後倒數</h1>
-        </div>
-    </div>
-</div>
-
-   <div class="row">
-	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="images/cho_05.jpg" >
-	           <div  class="adContent">來自日本的草莓巧克力，可以吃到一整顆完整的草莓喔!超級幸福~</div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom">美國</div>
-	             <div class="sellerWho" >LOVE ShaSha 樂芙夏夏</div>
-	        </div>
-	      </div>
-	     
-	       <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
-	        </div>
-	      </div>
-	      
-	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
-	        </div>
-	      </div>
-	      
-	      <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
-	        </div>
-	      </div>
-	     
-	     
-	    
-	 </div>
-<br />
-
-    <div class="row">
-	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="images/cho_05.jpg" >
-	           <div  class="adContent">來自日本的草莓巧克力，可以吃到一整顆完整的草莓喔!超級幸福~</div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom">美國</div>
-	             <div class="sellerWho" >LOVE ShaSha 樂芙夏夏</div>
-	        </div>
-	      </div>
-	     
-	       <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
-	        </div>
-	      </div>
-	      
-	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
-	        </div>
-	      </div>
-	      
-	      <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
-	        </div>
-	      </div>
-	     
-	     
-	    
-	 </div>
 <br />
  
 <br /></div><!--兩邊空白結束-->
