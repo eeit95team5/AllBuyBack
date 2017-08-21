@@ -107,7 +107,7 @@
 					<div><a href="item.html?i_id=${itemsVO.i_id}"><img height="160" width="160" style="margin:5px 35px" src="ReadPictureForItem?i_id=${itemsVO.i_id}"></a></div>
 					<div>品名: ${itemsVO.i_name}</div>
 					<div>價格: ${itemsVO.i_price} 數量: ${itemsVO.i_quantity}</div>
-					<div>暢銷指數: ${itemsVO.i_popular} 訂閱數: ${itemsVO.i_click}</div>
+					<div>暢銷指數: ${itemsVO.i_popular} 點擊數: ${itemsVO.i_click}</div>
 					<div>國家: ${itemsVO.country_name}</div>
 				</div>
 			</div>
