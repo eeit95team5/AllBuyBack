@@ -21,9 +21,11 @@
 <script type="text/javascript">
 $(function() {
 	
-	 $('#submit2').click(function(){
-			var m_id = $('#m_id').val();
-			var s_id = $('#s_id').val();
+	 $('.submit3').click(function(){
+			var m_id = $(this).parents("td").find("input:eq(1)").val();
+			console.log(m_id)
+			var s_id = $(this).parents("td").find("input:eq(2)").val();
+			console.log(s_id)
 			
 //	 		console.log(i_id);
 				window.open('ChatController?action=show_both_message_seller&m_id='+m_id+'&s_id='+s_id,'購買AllBuyBack廣告',
@@ -75,10 +77,10 @@ $(function() {
 
 			<td><form id="chatform" method="get" action="<c:url value="/ChatController"/>">
 <!-- 			    <input type="submit"  value="訊息內容"> -->
-			    <input type="button" id="submit2" value="訊息內容">
+			    <input type="button" class="submit3" id="submit2" value="訊息內容">
 <%-- 			     <input type="hidden" name="id" value="${MemVO.m_id}"> --%>
-			    <input type="hidden" id="m_id" name="m_id" value="${ChatVO.m_id}">
-			    <input type="hidden" id="s_id" name="s_id" value="${ChatVO.s_id}">				
+			    <input type="hidden" class="m_id" name="m_id" value="${ChatVO.m_id}">
+			    <input type="hidden" class="s_id" name="s_id" value="${ChatVO.s_id}">				
 			    <input type="hidden" name="chat_content" value="${ChatVO.chat_content}">			
 			    <input type="hidden" name="chat_date" value="${ChatVO.chat_date}">
 			    <input type="hidden" name="m_id" value="${LoginOK.m_id}">			    			
