@@ -14,6 +14,12 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import hibernate.util.HibernateUtil;
+
+
 public class MemDAO implements MemDAOI {
 
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
@@ -29,15 +35,21 @@ public class MemDAO implements MemDAOI {
 
 	private static final String INSERT_STMT = "INSERT INTO MEMBER (m_account,m_password,m_name,m_phone,m_address,m_identity,m_email,m_lastUsed) VALUES (?, ?, ?, ?, ?, ?, ?, getdate())";
 	private static final String GET_ALL_STMT = "SELECT m_id,m_account,m_password,m_name,m_phone,m_address,m_identity,m_email,m_authority,m_photo,m_background,m_scoreCount,m_avgScore,m_lastUsed,m_point,m_times_gb FROM MEMBER order by m_id";
+//	private static final String GET_ALL_STMT = "FROM MemVO order by m_id";
 	private static final String GET_ONE_STMT = "SELECT m_id,m_account,m_password,m_name,m_phone,m_address,m_identity,m_email,m_authority,m_photo,m_background,m_scoreCount,m_avgScore,m_lastUsed,m_point,m_times_gb FROM MEMBER where m_id = ?";
 	private static final String DELETE = "DELETE FROM MEMBER where m_id = ?";
 	private static final String UPDATE = "UPDATE MEMBER set m_account=?,m_password=?,m_name=?,m_phone=?,m_address=?,m_identity=?,m_email=?,m_authority=? where m_id = ?";
 	private static final String UPDATE2 = "UPDATE MEMBER set m_password=?,m_authority=? where m_id = ?";
 	private static final String GET_BLACKLIST = "SELECT m_id,m_account,m_name FROM MEMBER where m_authority = 0";
+//	private static final String GET_BLACKLIST = "FROM MemVO where m_authority = 0";
 	private static final String GET_MALL_LIST = "SELECT m_id,m_account,m_name FROM MEMBER where m_authority = 2";
+//	private static final String GET_MALL_LIST = "FROM MemVO where m_authority = 2";
 	private static final String UPDATE_BLACKLIST = "UPDATE MEMBER set m_authority=0 where m_id = ?";
+//	private static final String UPDATE_BLACKLIST = "UPDATE MemVO set m_authority=0 where m_id = ?";
 	private static final String UPDATE_NORMAL = "UPDATE MEMBER set m_authority=1 where m_id = ?";
+//	private static final String UPDATE_NORMAL = "UPDATE MemVO set m_authority=1 where m_id = ?";
 	private static final String UPDATE_MALL = "UPDATE MEMBER set m_authority=2 where m_id = ?";
+//	private static final String UPDATE_MALL = "UPDATE MemVO set m_authority=2 where m_id = ?";
 
 	@Override
 	public void insert(MemVO memVO) {
@@ -310,6 +322,23 @@ public class MemDAO implements MemDAOI {
 		}
 		return list;
 	}
+	
+//	@Override
+//	public List<MemVO> getAll() {
+//		List<MemVO> list = null;
+//
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		try {
+//			session.beginTransaction();
+//			Query query = session.createQuery(GET_ALL_STMT);
+//			list = query.list();
+//			session.getTransaction().commit();
+//		} catch (RuntimeException ex) {
+//			session.getTransaction().rollback();
+//			throw ex;
+//		}
+//		return list;
+//	}
 
 	@Override
 	public void update2(MemVO memVO) {
@@ -402,6 +431,23 @@ public class MemDAO implements MemDAOI {
 		}
 		return list;
 	}
+	
+//	@Override
+//	public List<MemVO> getBlackList() {
+//		List<MemVO> list = null;
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		try {
+//			session.beginTransaction();
+//			Query query = session.createQuery(GET_BLACKLIST);
+//			list = query.list();
+//			session.getTransaction().commit();
+//		} catch (RuntimeException ex) {
+//			session.getTransaction().rollback();
+//			throw ex;
+//		}
+//		return list;
+//	}
+	
 
 	@Override
 	public void updateNormal(MemVO memVO) {
@@ -439,6 +485,23 @@ public class MemDAO implements MemDAOI {
 		}
 
 	}
+	
+//	@Override
+//	public void updateNormal(MemVO memVO) {
+//		
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		try {
+//			session.beginTransaction();
+//			Query query = session.createQuery(UPDATE_NORMAL);
+//			query.setParameter(0, memVO.getM_id());
+//			query.executeUpdate();
+//			session.getTransaction().commit();
+//		} catch (RuntimeException ex) {
+//			session.getTransaction().rollback();
+//			throw ex;
+//		}
+//	}
+
 
 	@Override
 	public void updateBlackList(MemVO memVO) {
@@ -475,54 +538,50 @@ public class MemDAO implements MemDAOI {
 		}
 
 	}
-
+	
 //	@Override
-//	public void updateMall(MemShopVO memVO) {
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//
+//	public void updateBlackList(MemVO memVO) {
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 //		try {
-//
-//			con = ds.getConnection();
-//			pstmt = con.prepareStatement(UPDATE_MALL);
-//
-//			pstmt.setInt(1, memVO.getM_id());
-//			pstmt.executeUpdate();
-//
-//			// Handle any SQL errors
-//		} catch (SQLException se) {
-//			throw new RuntimeException("A database error occured. " + se.getMessage());
-//			// Clean up JDBC resources
-//		} finally {
-//			if (pstmt != null) {
-//				try {
-//					pstmt.close();
-//				} catch (SQLException se) {
-//					se.printStackTrace(System.err);
-//				}
-//			}
-//			if (con != null) {
-//				try {
-//					con.close();
-//				} catch (Exception e) {
-//					e.printStackTrace(System.err);
-//				}
-//			}
+//			session.beginTransaction();
+//			Query query = session.createQuery(UPDATE_BLACKLIST);
+//			query.setParameter(0, memVO.getM_id());
+//			query.executeUpdate();
+//			session.getTransaction().commit();
+//		} catch (RuntimeException ex) {
+//			session.getTransaction().rollback();
+//			throw ex;
 //		}
 //	}
+//	
+//	@Override
+//	public void updateBlackList(MemVO memVO) {
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		try {
+//			session.beginTransaction();
+//			memVO = session.get(MemVO.class,memVO.getM_id());
+//			memVO.setM_authority(0);
+//			session.saveOrUpdate(memVO);
+//			session.getTransaction().commit();
+//		} catch (RuntimeException ex) {
+//			session.getTransaction().rollback();
+//			throw ex;
+//		}
+//	}
+
 	@Override
 	public void updateMall(MemVO memVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
+
 		try {
-			
+
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE_MALL);
-			
+
 			pstmt.setInt(1, memVO.getM_id());
 			pstmt.executeUpdate();
-			
+
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -544,6 +603,22 @@ public class MemDAO implements MemDAOI {
 			}
 		}
 	}
+
+	
+//	@Override
+//	public void updateMall(MemVO memVO) {
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		try {
+//			session.beginTransaction();
+//			Query query = session.createQuery(UPDATE_MALL);
+//			query.setParameter(0, memVO.getM_id());
+//			query.executeUpdate();
+//			session.getTransaction().commit();
+//		} catch (RuntimeException ex) {
+//			session.getTransaction().rollback();
+//			throw ex;
+//		}
+//	}
 	
 	@Override
 	public List<MemVO> getMallList() {
@@ -599,30 +674,21 @@ public class MemDAO implements MemDAOI {
 		}
 		return list;
 	}
-}
-
-// public static void main(String[] args) {
-//
-// MemDAO2 dao = new MemDAO2();
-//
-// MemVO memVO = new MemVO();
-// memVO.setM_account("member04");
-// memVO.setM_password("666777888999");
-// memVO.setM_name("超人");
-// memVO.setM_phone("0919003556");
-// memVO.setM_address("大都會星球報");
-// memVO.setM_identity("B145578966");
-// memVO.setM_email("superman@gmail.com");
-// memVO.setM_authority(1);
-// memVO.setM_lastUsed(new Timestamp(System.currentTimeMillis()));
-// dao.insert(memVO);
-
-// MemVO memVO = new MemVO();
-// memVO.setEmpno(1000003);
-// memVO.setEname("吳永志2");
-// memVO.setJob("MANAGER2");
-// memVO.setHiredate(java.util.Date);
-// memVO.setSal(new Double(20000));
-// memVO.setComm(new Double(200));
-// memVO.setDeptno(20);
-// dao.update(memVO2);
+	}
+	
+//	@Override
+//	public List<MemVO> getMallList() {
+//		List<MemVO> list = null;
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		try {
+//			session.beginTransaction();
+//			Query query = session.createQuery(GET_MALL_LIST);
+//			list = query.list();
+//			session.getTransaction().commit();
+//		} catch (RuntimeException ex) {
+//			session.getTransaction().rollback();
+//			throw ex;
+//		}
+//		return list;
+//	}
+//}
