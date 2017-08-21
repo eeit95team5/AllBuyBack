@@ -100,8 +100,8 @@ public class MemberDAO {
 		ResultSet rs = null;
 		MemberVO bean = null;
 		try {
-			conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
-//			conn = ds.getConnection();
+//			conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
+			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(SELECT);
 			pstmt.setString(1, account);
 			rs = pstmt.executeQuery();

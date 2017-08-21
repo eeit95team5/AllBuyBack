@@ -20,7 +20,7 @@ public class LogoutServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-	//	System.out.println("LogoutServlet");
+		System.out.println("LogoutServlet");
 		session.removeAttribute("LoginOK");
 		session.removeAttribute("AdminOK");
 		session.removeAttribute("SellerOK");
