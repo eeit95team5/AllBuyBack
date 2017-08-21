@@ -10,4 +10,5 @@ public interface AdDAOI {
 	public abstract List<AdVO> selectPay(int i_id);
 	public abstract List<AdVO> selectByS_id(int s_id);
 	public abstract List<AdVO> selectAll();
+	public abstract List<AdVO> selectAd1();
 }
