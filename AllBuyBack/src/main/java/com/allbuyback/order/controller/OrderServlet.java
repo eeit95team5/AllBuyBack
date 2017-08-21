@@ -2,8 +2,10 @@ package com.allbuyback.order.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -243,6 +245,7 @@ public class OrderServlet extends HttpServlet {
 			}
 			//以s_id分成個別訂單
 			List<ShoppingCartVO> orderlist = cart.listCart();
+			Map<Integer,String> shopName = new HashMap<Integer,String>();
 			//以s_id查詢SHOP_SHIPWAY之sw_id
 			List<Integer> s_id_list = new ArrayList<Integer>();
 //			ShopShipwayService shopShipwayService = new ShopShipwayService();
@@ -259,6 +262,9 @@ public class OrderServlet extends HttpServlet {
 				}
 				if(check==0){
 					s_id_list.add(s_id);
+					MemberDAO memberDAO = new MemberDAO();
+					String aShopName= memberDAO.selectById(s_id).getM_name();
+					shopName.put(s_id, aShopName);
 					System.out.println(s_id);
 					//取得sw_id資料，使用EL
 //					List<ShopShipwayVO> shopShipwayList = (shopShipwayService.select(s_id));
@@ -279,6 +285,7 @@ public class OrderServlet extends HttpServlet {
 //				System.out.println(alist.get(0).getSw_name());
 			}
 			request.setAttribute("orderlist", orderlist);
+			request.setAttribute("shopName", shopName);
 //			request.setAttribute("shopShipwayList", shopShipwayList);
 			request.getRequestDispatcher("/createOrder.jsp").forward(request, response);
 		}
@@ -475,6 +482,8 @@ public class OrderServlet extends HttpServlet {
 			}
 			//更新資料
 			if(m_id==id){
+
+			//訂單資料
 			orderVO.setO_point(o_point);
 			orderVO.setSw_id(sw_id);
 			orderVO.setPay_id(pay_id);
@@ -575,6 +584,15 @@ public class OrderServlet extends HttpServlet {
 					System.out.println("2");
 					o_procss = 2;
 					orderVO.setO_procss(o_procss);
+				//扣除使用點數
+				MemberDAO memberDAO = new MemberDAO();
+				MemberVO memberVO = new MemberVO();
+				int o_point = orderVO.getO_point();
+				int hasPoint = memberDAO.selectById(m_id).getM_point();
+				memberVO.setM_id(m_id);
+				int m_point = hasPoint - o_point;
+				memberVO.setM_point(m_point);
+				memberDAO.updatePoint(memberVO);
 				//更新並取得更新後資料
 				OrderVO newOrderVO = orderService.updateForNextStep(orderVO);
 				request.setAttribute("OrderVO", newOrderVO);
@@ -803,6 +821,16 @@ public class OrderServlet extends HttpServlet {
 			int s_id = orderVO.getS_id();
 			int o_procss = 0;
 			System.out.println("okde");
+			//補回點數
+			MemberDAO memberDAO = new MemberDAO();
+			int o_point = orderVO.getO_point();
+			int hasPoint = memberDAO.selectById(m_id).getM_point();
+			MemberVO memberVO = new MemberVO();
+			memberVO.setM_id(m_id);
+			int m_point = hasPoint + o_point;
+			memberVO.setM_point(m_point);
+			memberDAO.updatePoint(memberVO);
+			//更新資料
 			if(id == m_id){
 				o_procss = 0;
 				//更新並取得更新後資料

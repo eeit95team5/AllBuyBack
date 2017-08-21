@@ -34,30 +34,31 @@ public class UpdateDataServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("call UpdateDataServlet");
 		MemberVO beforeUpdateBean = null;
 		MemberVO afterUpdateBean = null;
 		MemberService memService = null;
-		request.setAttribute("temp", beforeUpdateBean);
+		HttpSession session = request.getSession();	
+//		session.setAttribute("tempForMember", beforeUpdateBean);
 		
 		RegisterService regService = new RegisterService();
-		HttpSession session = request.getSession();	
+		Map<Object, Object> errorMsg = null;
 		request.setCharacterEncoding("UTF-8");
-		
+		String contextPath = getServletContext().getContextPath();
 		String status = request.getParameter("status");
-		System.out.println(status);
-		System.out.println(status);
+		System.out.println("status = " + status);
 		if (status.equals("query")) {
 			System.out.println("query");
 			String account = request.getParameter("account");
 			memService = new MemberService();
 			MemberVO bean = memService.queryMember(account);
 			//System.out.println("query bean = " + bean);
-			request.removeAttribute("temp");
-			request.setAttribute("temp", bean);
+			//session.removeAttribute("tempForMember");
+			session.setAttribute("tempForMember", bean);
 			request.getRequestDispatcher("/update.jsp").forward(request, response);
 		} else if (status.equals("update")) {
 			System.out.println("update");
-			Map<Object, Object> errorMsg = new HashMap<>();
+			errorMsg = new HashMap<>();
 			beforeUpdateBean = new MemberVO();
 			beforeUpdateBean.setM_id(Integer.valueOf(request.getParameter("id").trim()));
 			beforeUpdateBean.setM_account(request.getParameter("account").trim());
@@ -85,7 +86,9 @@ public class UpdateDataServlet extends HttpServlet {
 			if (beforeUpdateBean.getM_email().length() == 0 || beforeUpdateBean.getM_email() == null) {
 				errorMsg.put("email", "email不能空白");
 			}
-
+			
+			System.out.println(errorMsg);
+			
 			if (errorMsg.isEmpty()) {
 				memService = new MemberService();
 				//System.out.println("beforeBean = " + beforeUpdateBean);
@@ -95,17 +98,22 @@ public class UpdateDataServlet extends HttpServlet {
 				afterUpdateBean = logService.checkAccount(beforeUpdateBean.getM_account(),
 						beforeUpdateBean.getM_password());
 				//System.out.println("afterBean = " + afterUpdateBean);
-				session.removeAttribute("LoginOK");
+				//session.removeAttribute("LoginOK");
 				session.setAttribute("LoginOK", afterUpdateBean);
 				request.setAttribute("memberUpdateSuccess", result);
-				request.removeAttribute("temp");
-				request.setAttribute("temp", afterUpdateBean);
+				//session.removeAttribute("tempForMember");
+				session.setAttribute("tempForMember", afterUpdateBean);
 				request.getRequestDispatcher("/update.jsp").forward(request, response);
 				} else{
+					System.out.println("result = 0");
 					request.getRequestDispatcher("/update.jsp").forward(request, response);
 				}
 			} else {
-				request.setAttribute("wrong", errorMsg);
+				request.setAttribute("wrongMemberFormat", errorMsg);
+//				System.out.println("return errorMsg");
+//				System.out.println("reset tempForMember");
+//				System.out.println(beforeUpdateBean);
+				
 				request.getRequestDispatcher("/update.jsp").forward(request, response);
 			}
 		}else if(status.equals("selectPic")){

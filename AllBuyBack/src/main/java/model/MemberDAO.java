@@ -1,5 +1,6 @@
 package model;
 
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,6 +17,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -25,7 +28,7 @@ import javax.sql.DataSource;
 
 
 public class MemberDAO {
-	public static final String DB_URL = "jdbc:sqlserver://127.0.0.1:1433;database=AllBuyBack";
+	public static final String DB_URL = "jdbc:sqlserver://192.168.100.152:1433;database=AllBuyBack";
 	public static final String DB_USER = "sa";
 	public static final String DB_PASSWORD = "P@ssw0rd";
 	public static final String JNDI = "java:comp/env/jdbc/ABB";
@@ -61,7 +64,7 @@ public class MemberDAO {
 //		bean.setM_email("ucc@gmail.com");
 //		new MemberDAO().insert(bean);
 		
-		String pathname = "c:/temp/3.jpg";
+//		String pathname = "c:/temp/3.jpg";
 //		Path path = Paths.get(pathname);
 //		InputStream input = MemberDAO.class.getResourceAsStream("3.jpg");
 //		URL u = MemberDAO.class.getResource("3.jpg");
@@ -69,12 +72,14 @@ public class MemberDAO {
 		
 		//bean = new MemberDAO().select("testInsert");
 //		byte[] data = Files.readAllBytes(path);
-		File f = new File(pathname);
-		InputStream is = new FileInputStream(f);
+//		File f = new File(pathname);
+//		InputStream is = new FileInputStream(f);
 //		
 //		bean.setM_photo(data);
 		MemberDAO dao = new MemberDAO();
-		dao.updatePhoto(1000010,f.length(),is);
+		List<String> l = new ArrayList<String>();
+		l = dao.selectFavoriteShop(1000002);
+		System.out.println(l);
 		//bean = dao.select("test123");
 		
 		
@@ -333,7 +338,7 @@ public class MemberDAO {
 //			conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(UPDATELOGOUT);
-			java.sql.Date sqlDate = new java.sql.Date(new java.util.Date("2017/08/07").getTime());
+			java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
 			pstmt.setDate(1, sqlDate);
 			pstmt.setInt(2, bean.getM_id());
 			result = pstmt.executeUpdate();
@@ -360,25 +365,22 @@ public class MemberDAO {
 		return result;
 	}
 	
-	String joinselect = "select m_account,m_name,KEEP_SHOP.m_id from MEMBER join  KEEP_SHOP on KEEP_SHOP.m_id=MEMBER.m_id";
-	public MemberVO selectFavorite(String account){
+	String joinselectshop = "select m_account from MEMBER join  KEEP_SHOP on KEEP_SHOP.s_id=MEMBER.m_id and KEEP_SHOP.m_id=?;";
+	public List<String> selectFavoriteShop(int id){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		List<String> favShopList = new ArrayList<String>();;
 
 		ResultSet rs = null;
-		MemberVO bean = null;
 		try {
 //			conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
 			conn = ds.getConnection();
-			pstmt = conn.prepareStatement(joinselect);
-//			pstmt.setString(1, account);
+			pstmt = conn.prepareStatement(joinselectshop);
+			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
 
-			if (rs.next()) {
-				bean = new MemberVO();
-				bean.setM_account(rs.getString("m_account"));
-				bean.setM_name(rs.getString("m_name"));
-				bean.setM_id(rs.getInt("m_id"));
+			while (rs.next()) {
+				favShopList.add(rs.getString("m_account"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -407,7 +409,54 @@ public class MemberDAO {
 
 		}
 
-		return bean;
+		return favShopList;
+	}
+	
+	String joinselectitem = "select i_id from MEMBER join  KEEP_ITEM on KEEP_ITEM.m_id=MEMBER.m_id and KEEP_ITEM.m_id=?;";
+	public List<Integer> selectFavoriteItem(int id){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		List<Integer> favItemList = new ArrayList<Integer>();;
+
+		ResultSet rs = null;
+		try {
+//			conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(joinselectitem);
+			pstmt.setInt(1, id);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				favItemList.add(rs.getInt("i_id"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+
+		return favItemList;
 	}
 	
 	private String UPDATEAVG = "update member set m_scoreCount = ? where m_avgScore = ? ";

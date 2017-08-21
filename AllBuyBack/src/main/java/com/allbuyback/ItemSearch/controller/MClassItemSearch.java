@@ -36,10 +36,48 @@ public class MClassItemSearch extends HttpServlet {
 		List<ItemVO> list = new ArrayList<ItemVO>();
 //		String jsonString = "";
 		
+		int i_class1 = Integer.parseInt(request.getParameter("BClass"));
 		int i_class2 = Integer.parseInt(request.getParameter("MClass"));
 		list = is.getAll_SecondLayer(i_class2);
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/HomeIndex.jsp").forward(request, response);
+		request.setAttribute("AllClass", "依類別");
+		switch(i_class1){
+		 case 1000001:
+			 request.setAttribute("BClass", "/ 流行服飾");
+			 request.setAttribute("BClassNo", i_class1);
+			 break;
+		 case 1000002:
+			 request.setAttribute("BClass", "/ 異國美食");
+			 request.setAttribute("BClassNo", i_class1);
+			 break;
+		}
+		switch(i_class2){
+		 case 1000001:
+			 request.setAttribute("MClass", "/ 日系");
+			 request.setAttribute("MClassNo", i_class2);
+			 break;
+		 case 1000002:
+			 request.setAttribute("MClass", "/ 韓系");
+			 request.setAttribute("MClassNo", i_class2);
+			 break;
+		 case 1000003:
+			 request.setAttribute("MClass", "/ 美國");
+			 request.setAttribute("MClassNo", i_class2);
+			 break;
+		 case 1000004:
+			 request.setAttribute("MClass", "/ 歐洲");
+			 request.setAttribute("MClassNo", i_class2);
+			 break;
+		 case 1000005:
+			 request.setAttribute("MClass", "/ 零食");
+			 request.setAttribute("MClassNo", i_class2);
+			 break;
+		 case 1000006:
+			 request.setAttribute("MClass", "/ 飲品");
+			 request.setAttribute("MClassNo", i_class2);
+			 break;
+		}
+		request.getRequestDispatcher("/_SearchForItem.jsp").forward(request, response);
 //		jsonString = JSONValue.toJSONString(is.getAll_SecondLayer(i_class2));
 //		out.println(jsonString);
 	}

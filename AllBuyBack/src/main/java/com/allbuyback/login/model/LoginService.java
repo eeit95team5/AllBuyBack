@@ -20,12 +20,13 @@ public class LoginService {
 		return null;
 	}
 	
-	public int logout(MemberVO bean){
-		bean.setM_id(1000003);
-		bean.setM_lastUsed(new Date(new Date().getTime()));
-		MemberDAO dao = new MemberDAO();
-		int result = dao.updateLogout(bean);
-		return result;
-	}
+//	public int logout(MemberVO bean){
+//		bean.setM_id(1000003);
+//		bean.setM_lastUsed(new Date(new Date().getTime()));
+//		MemberDAO dao = new MemberDAO();
+//		int result = dao.updateLogout(bean);
+//		return result;
+//	}
+
 
 }

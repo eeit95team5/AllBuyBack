@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,13 +28,14 @@ public class FavoriteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String status = request.getParameter("status");
-		if (status.equals("query")) {
-			String account = request.getParameter("account");
-			FavoriteService service = new FavoriteService();
-			MemberVO bean = service.queryFavorite(account);
-			request.setAttribute("favorite", bean);
-			request.getRequestDispatcher("/favorite.jsp").forward(request, response);
-		}
+		
+		String id = request.getParameter("id");
+		System.out.println(id);
+		
+		FavoriteService service = new FavoriteService();
+		Map<Object,Object> favorite = service.queryFavorite(Integer.valueOf(id));
+		request.setAttribute("favorite", favorite);
+		request.getRequestDispatcher("/update.jsp").forward(request, response);
+
 	}
 }

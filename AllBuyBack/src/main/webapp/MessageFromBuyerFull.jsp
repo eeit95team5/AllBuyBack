@@ -18,7 +18,7 @@
 <script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
 <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
 </head>
-<body>
+<body style="background:rgb(204, 255, 255)">
 <div style="width: 800px; height: 500px; overflow: auto">
 <!-- <table border='1' bordercolor='#CCCCFF' width='800'> -->
 <table class="table">
@@ -95,7 +95,7 @@
 <!-- 			</form> -->
 
 <%--   <form ENCTYPE="multipart/form-data" method="post" action=" <c:url value="/ChatController"/>"  id="/ItemController" > --%>
-  <form method="post" action=" <c:url value="/ChatController"/>"  id="/ItemController" >
+  <form method="get" action=" <c:url value="/ChatController"/>"  id="/ItemController" >
       <label class="fontSize" >買家編號：</label>
       <input type="text" name="m_id" value="${BuyerVO.m_id}" class="fieldWidth" style="width: 180px;">
       <font size="-1" color="#FF0000">${MsgMap.errorIDEmpty}${MsgMap.errorIDDup}</font>
@@ -110,12 +110,15 @@
          <input type="submit" name="submit" id="submit" value="送出"/>
          <input type="reset" name="cancel" id="cancel" value="重填">
          <input type="hidden" name="action" id="cancel" value="seller_send">
-         <input type="hidden" name="s_id" value="${SellerOK.m_id}">
-         <input type="hidden" name="account" value="${SellerOK.m_account}">
+<%--          <input type="hidden" name="s_id" value="${SellerOK.m_id}"> --%>
+<%--          <input type="hidden" name="account" value="${SellerOK.m_account}"> --%>
+         <input type="hidden" name="s_id" value="${LoginOK.m_id}"> 
+			<input type="hidden" name="account" value="${LoginOK.m_account}">
       </div>
       <br/>
 </form>
-<a href="ChatController?action=MessageFromBuyer&id=${SellerOK.m_id}">回上一頁</a>
+<%-- <a href="ChatController?action=MessageFromBuyer&id=${SellerOK.m_id}">回上一頁</a> --%>
+<a href="ChatController?action=MessageFromBuyer&id=${LoginOK.m_id}">回上一頁</a>
 <a href="HomeIndex.jsp">回首頁</a>
 
 </body>

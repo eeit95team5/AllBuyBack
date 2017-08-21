@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONValue;
 
+import com.allbuyback.ItemSearch.model.ItemSearchDAO;
 import com.allbuyback.ItemSearch.model.ItemVO;
 import com.allbuyback.ShopSearch.model.ShopSearchDAO;
 import com.allbuyback.ShopSearch.model.ShopVO;
@@ -35,8 +36,66 @@ public class ShopSearch extends HttpServlet {
 		
 		int country_id = Integer.parseInt(request.getParameter("countryCl"));
 		shoplist = ss.shopfindByCountry(country_id);
-		request.setAttribute("shoplist", shoplist);
-		request.getRequestDispatcher("/HomeIndex.jsp").forward(request, response);
+		
+		//由賣家找出其商店的第一件商品的i_id
+		ItemSearchDAO iDAO = new ItemSearchDAO();
+		for(int i=0; i<shoplist.size(); i++){
+			int i_id = iDAO.selectByS_Id(shoplist.get(i).getS_id()).get(0).getI_id();
+			shoplist.get(i).setI_id(i_id);
+		}
+		request.setAttribute("shoplist", shoplist);		
+		
+		switch(country_id){
+		case 1000001:
+			 request.setAttribute("countryCl", "亞洲   / 日本");
+			 request.setAttribute("countryNo", country_id);
+			 break;
+		 case 1000002:
+			 request.setAttribute("countryCl", "亞洲   / 韓國");
+			 request.setAttribute("countryNo", country_id);
+			 break;
+		 case 1000003:
+			 request.setAttribute("countryCl", "亞洲   / 香港");
+			 request.setAttribute("countryNo", country_id);
+			 break;
+		 case 1000004:
+			 request.setAttribute("countryCl", "亞洲   / 新加坡");
+			 request.setAttribute("countryNo", country_id);
+			 break;
+		 case 1000005:
+			 request.setAttribute("countryCl", "亞洲   / 泰國");
+			 request.setAttribute("countryNo", country_id);
+			 break;
+		 case 1000006:
+			 request.setAttribute("countryCl", "歐洲   / 英國");
+			 request.setAttribute("countryNo", country_id);
+			 break;
+		 case 1000007:
+			 request.setAttribute("countryCl", "歐洲   / 法國");
+			 request.setAttribute("countryNo", country_id);
+			 break;
+		 case 1000008:
+			 request.setAttribute("countryCl", "歐洲   / 德國");
+			 request.setAttribute("countryNo", country_id);
+			 break;
+		 case 1000009:
+			 request.setAttribute("countryCl", "歐洲   / 西班牙");
+			 request.setAttribute("countryNo", country_id);
+			 break;
+		 case 1000010:
+			 request.setAttribute("countryCl", "歐洲   / 義大利");
+			 request.setAttribute("countryNo", country_id);
+			 break;
+		 case 1000011:
+			 request.setAttribute("countryCl", "美洲   / 美國");
+			 request.setAttribute("countryNo", country_id);
+			 break;
+		 case 1000012:
+			 request.setAttribute("countryCl", "美洲   / 加拿大");
+			 request.setAttribute("countryNo", country_id);
+			 break;
+		}
+		request.getRequestDispatcher("/_SearchForShop.jsp").forward(request, response);
 		
 //		if(request.getParameter("countryCl") != null){
 //			int country_id = Integer.parseInt(request.getParameter("countryCl"));

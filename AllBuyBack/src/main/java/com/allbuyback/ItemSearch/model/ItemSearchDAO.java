@@ -156,6 +156,8 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 				itemVO.setI_picture1(rs.getBytes("i_picture5"));
 				itemVO.setI_price(rs.getInt("i_price"));
 				itemVO.setI_quantity(rs.getInt("i_quantity"));
+				itemVO.setI_popular(rs.getInt("i_popular"));
+				itemVO.setI_click(rs.getInt("i_click"));
 				itemVO.setCountry_id(rs.getInt("country_id"));
 				itemVO.setCountry_name(rs.getString("country_name"));
 				list.add(itemVO);
@@ -232,6 +234,8 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 				itemVO.setI_picture1(rs.getBytes("i_picture5"));
 				itemVO.setI_price(rs.getInt("i_price"));
 				itemVO.setI_quantity(rs.getInt("i_quantity"));
+				itemVO.setI_popular(rs.getInt("i_popular"));
+				itemVO.setI_click(rs.getInt("i_click"));
 				itemVO.setCountry_id(rs.getInt("country_id"));
 				itemVO.setCountry_name(rs.getString("country_name"));
 				list.add(itemVO);
@@ -308,6 +312,8 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 				itemVO.setI_picture1(rs.getBytes("i_picture5"));
 				itemVO.setI_price(rs.getInt("i_price"));
 				itemVO.setI_quantity(rs.getInt("i_quantity"));
+				itemVO.setI_popular(rs.getInt("i_popular"));
+				itemVO.setI_click(rs.getInt("i_click"));
 				itemVO.setCountry_id(rs.getInt("country_id"));
 				itemVO.setCountry_name(rs.getString("country_name"));
 				list.add(itemVO);
@@ -384,6 +390,8 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 				itemVO.setI_picture1(rs.getBytes("i_picture5"));
 				itemVO.setI_price(rs.getInt("i_price"));
 				itemVO.setI_quantity(rs.getInt("i_quantity"));
+				itemVO.setI_popular(rs.getInt("i_popular"));
+				itemVO.setI_click(rs.getInt("i_click"));
 				itemVO.setCountry_id(rs.getInt("country_id"));
 				itemVO.setCountry_name(rs.getString("country_name"));
 				list.add(itemVO);
@@ -460,6 +468,8 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 				itemVO.setI_picture1(rs.getBytes("i_picture5"));
 				itemVO.setI_price(rs.getInt("i_price"));
 				itemVO.setI_quantity(rs.getInt("i_quantity"));
+				itemVO.setI_popular(rs.getInt("i_popular"));
+				itemVO.setI_click(rs.getInt("i_click"));
 				itemVO.setCountry_id(rs.getInt("country_id"));
 				itemVO.setCountry_name(rs.getString("country_name"));
 				list.add(itemVO);
@@ -651,6 +661,76 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 				}
 			}
 			return itemVO;
+	}
+
+	@Override
+	public Map selectByI_IdForAd_Ajax(int i_id) {
+		List list = new ArrayList<ItemVO>();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ItemVO itemVO = null;
+		ResultSet rs = null;
+		Map m5 = null;
+		try{
+				conn = ds.getConnection();
+				stmt = conn.prepareStatement(SELECT_BY_IID);
+				
+				stmt.setInt(1, i_id);
+				rs = stmt.executeQuery();
+				
+				while(rs.next()){
+					if(rs.getInt(16)==1){
+						m5 = new HashMap();
+						m5.put("i_id", rs.getInt(1));
+						m5.put("i_name", rs.getString(3));
+						//m5.put("i_picture1", rs.getBinaryStream(5));
+						m5.put("i_price", rs.getDouble(10));
+						m5.put("i_quantity", rs.getInt(11));
+						m5.put("i_popular", rs.getString(20));
+						m5.put("i_click", rs.getString(21));
+						m5.put("country_name", rs.getString(25));
+//						list.add(m5);
+					}
+				}
+				
+//				while(rs.next()) {
+//					itemVO = new ItemVO();
+//					itemVO.setI_id(rs.getInt("i_id"));
+//					itemVO.setS_id(rs.getInt("s_id"));					
+//					itemVO.setI_name(rs.getString("i_name"));
+//					itemVO.setI_describe(rs.getString("i_describe"));
+//					itemVO.setI_picture1(rs.getBytes("i_picture1"));
+//					itemVO.setI_picture2(rs.getBytes("i_picture2"));
+//					itemVO.setI_picture3(rs.getBytes("i_picture3"));
+//					itemVO.setI_picture4(rs.getBytes("i_picture4"));
+//					itemVO.setI_picture5(rs.getBytes("i_picture5"));
+//					itemVO.setI_price(rs.getInt("i_price"));
+//					itemVO.setI_quantity(rs.getInt("i_quantity"));
+//					itemVO.setCountry_id(rs.getInt("country_id"));
+//					itemVO.setI_arrivedDate(rs.getTimestamp("i_arrivedDate"));
+//					itemVO.setI_onSellDate(rs.getTimestamp("i_onSellDate"));
+//					itemVO.setI_soldQuantity(rs.getInt("i_soldQuantity"));
+//					itemVO.setI_status(rs.getInt("i_status"));
+//					itemVO.setI_class1(rs.getInt("i_class1"));
+//					itemVO.setI_class2(rs.getInt("i_class2"));
+//					itemVO.setI_class3(rs.getInt("i_class3"));
+//					itemVO.setI_popular(rs.getInt("i_popular"));
+//					itemVO.setI_click(rs.getInt("i_click"));
+//					itemVO.setCountry_name(rs.getString("country_name"));
+//					
+//				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (Exception e) {
+						e.printStackTrace(System.err);
+					}
+				}
+			}
+			return m5;
 	}
 
 }

@@ -146,7 +146,7 @@
 		$('.g8').click(function() {
 
 			$.get("<c:url value='/Ad.go'/>", {
-				"action" : "updateAd"
+				"action" : "selectAll"
 			}, function(data) {
 				$('#show').html(data)
 

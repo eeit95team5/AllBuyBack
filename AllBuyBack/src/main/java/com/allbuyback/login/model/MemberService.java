@@ -33,4 +33,9 @@ public class MemberService {
 		int result = dao.updateAvg(scoreCount, avgScore);
 		return result;
 	}
+	public int updateLogout(int m_id){
+		MemberDAO dao = new MemberDAO();
+		int result = dao.updateLogout(m_id);
+		return result;
+	}
 }

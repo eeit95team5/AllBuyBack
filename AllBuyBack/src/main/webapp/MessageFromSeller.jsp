@@ -17,8 +17,29 @@
 <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 <script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
 <script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+$(function() {
+	
+	 $('#submit2').click(function(){
+			var m_id = $('#m_id').val();
+			var s_id = $('#s_id').val();
+			
+//	 		console.log(i_id);
+				window.open('ChatController?action=show_both_message_seller&m_id='+m_id+'&s_id='+s_id,'購買AllBuyBack廣告',
+						'height=650,width=650,scrollbars=0,resizable=0,location=0');
+		});
+	 
+	 $("#chatform").get("<c:url value="/ChatController"/>",{},function(list){
+		 window.open(list)
+	 })
+	 
+});
+
+
+</script>
 </head>
-<body>
+<body style="background:rgb(204, 255, 255)">
 
 <table border='1' bordercolor='#CCCCFF' width='800' class="table">
 	<tr>
@@ -52,11 +73,12 @@
 <%-- 			<td>${ReportVO.rep_result}</td> --%>
 <%-- 			<td>${ReportVO.rep_procssDate}</td> --%>
 
-			<td><form method="get" action="<c:url value="/ChatController"/>">
-			    <input type="submit" value="訊息內容">
+			<td><form id="chatform" method="get" action="<c:url value="/ChatController"/>">
+<!-- 			    <input type="submit"  value="訊息內容"> -->
+			    <input type="button" id="submit2" value="訊息內容">
 <%-- 			     <input type="hidden" name="id" value="${MemVO.m_id}"> --%>
-			    <input type="hidden" name="m_id" value="${ChatVO.m_id}">
-			    <input type="hidden" name="s_id" value="${ChatVO.s_id}">				
+			    <input type="hidden" id="m_id" name="m_id" value="${ChatVO.m_id}">
+			    <input type="hidden" id="s_id" name="s_id" value="${ChatVO.s_id}">				
 			    <input type="hidden" name="chat_content" value="${ChatVO.chat_content}">			
 			    <input type="hidden" name="chat_date" value="${ChatVO.chat_date}">
 			    <input type="hidden" name="m_id" value="${LoginOK.m_id}">			    			
