@@ -39,7 +39,7 @@ public class AdDAO implements AdDAOI {
 	private static final String GET_ALL =
 			"SELECT * FROM [AD] ORDER BY ad_id desc";
 	private static final String GET_AD_1 =
-			"SELECT * FROM [AD] WHERE ad_type=1 ORDER BY ad_id desc";
+			"SELECT * FROM [AD] WHERE ad_type=1 and ad_endDate>getDate() ORDER BY ad_id desc";
 	
 	@Override
 	public void insert(AdVO adVO) {
