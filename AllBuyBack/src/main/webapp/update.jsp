@@ -249,6 +249,26 @@ $(function(){
         }
     }
 </script>
+<!-- 管理員 -->
+<script type="text/javascript">
+$(function(){
+	$('#submit').click(function() {
+		$.get("<c:url value='/ChatController'/>", {
+			"action" : "MessageFromSeller","id" : ${LoginOK.m_id}
+		}, function(data) {
+			$('#show').html(data)
+		});
+	});
+	
+	$('#submit1').click(function() {
+		$.get("<c:url value='/RepController'/>", {
+			"action" : "GetReply","id" : ${LoginOK.m_id}
+		}, function(data) {
+			$('#show1').html(data)
+		});
+	});
+});
+</script>
 </c:if>
 <!-- 88888 -->
 <nav class="navbar navbar-inverse  navbar-fixed-top " style="border-bottom:1px #F5F5F5 solid;"  >
@@ -652,10 +672,13 @@ $(function(){
   		</div>
   		
   		<div id="menu4" class="tab-pane fade">	
-  			<button class="btn w3-tangerine w3-xlarge" type="submit">檢舉訊息</button>
-  			<br>
-  			<button class="btn w3-tangerine w3-xlarge" type="submit">賣家通知</button>
-  		</div>
+  			<button id="submit" class="btn w3-tangerine w3-xlarge" type="submit">檢舉訊息</button>
+  			<div id="show"></div>
+			<br>
+  			<button id="submit1" class="btn w3-tangerine w3-xlarge" type="submit">賣家通知</button>
+			<div id="show1"></div>
+		</div>
+  		
    	</div>
 
 </div>

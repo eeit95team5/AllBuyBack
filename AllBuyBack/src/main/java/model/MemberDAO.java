@@ -338,7 +338,7 @@ public class MemberDAO {
 //			conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(UPDATELOGOUT);
-			java.sql.Date sqlDate = new java.sql.Date(new java.util.Date("2017/08/07").getTime());
+			java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
 			pstmt.setDate(1, sqlDate);
 			pstmt.setInt(2, bean.getM_id());
 			result = pstmt.executeUpdate();
