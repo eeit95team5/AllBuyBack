@@ -33,6 +33,7 @@ public class LogoutServlet extends HttpServlet {
 		session.removeAttribute("LoginOK");
 		session.removeAttribute("AdminOK");
 		session.removeAttribute("SellerOK");
+		session.removeAttribute("ShoppingCart");
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/HomeIndex.jsp");
 		rd.forward(request, response);	

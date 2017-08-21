@@ -14,12 +14,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-
-
-
-
 public class MemDAO implements MemDAOI {
 
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
