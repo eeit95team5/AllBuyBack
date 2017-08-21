@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.engine.transaction.jta.platform.internal.SynchronizationRegistryBasedSynchronizationStrategy;
 import org.hibernate.mapping.Array;
 import org.json.simple.JSONValue;
 
@@ -113,10 +114,10 @@ public class ChatController extends HttpServlet {
 			List<ChatVO> list2 = new ArrayList<ChatVO>();
 
 			for (ChatVO chatLIst : list) {
-				int s_id = chatLIst.getM_id();
+				int s_id = chatLIst.getS_id();
 				int check = 0;
 				for (ChatVO chatList2 : list2) {
-					int s_id2 = chatList2.getM_id();
+					int s_id2 = chatList2.getS_id();
 					if (s_id == s_id2) {
 						check = 1;
 					}
@@ -125,12 +126,13 @@ public class ChatController extends HttpServlet {
 				if (check == 0) {
 
 					list2.add(chatLIst);
-
+//                   System.out.println("test"+s_id);
 				}
 
 			}
-
+//             System.out.println("aaa");
 			request.setAttribute("list2", list2);
+//			 System.out.println("bbb");
 			request.getRequestDispatcher("/MessageFromSeller.jsp").forward(request, response);
 
 		}

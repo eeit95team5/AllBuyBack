@@ -63,8 +63,8 @@
 <c:if test="${ !empty LoginOK}">
 <a href="ChatController?action=MessageFromSeller&id=${LoginOK.m_id}">來自賣家的訊息</a>
 </c:if>
-<c:if test="${ !empty SellerOK}">
-<a href="ChatController?action=MessageFromBuyer&id=${SellerOK.m_id}">來自買家的訊息</a>
+<c:if test="${ !empty LoginOK}">
+<a href="ChatController?action=MessageFromBuyer&id=${LoginOK.m_id}">來自買家的訊息</a>
 </c:if>
 <c:if test="${ !empty AdminOK}">
 <a href="Admin.jsp">管理頁面</a>

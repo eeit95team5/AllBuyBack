@@ -156,6 +156,8 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 				itemVO.setI_picture1(rs.getBytes("i_picture5"));
 				itemVO.setI_price(rs.getInt("i_price"));
 				itemVO.setI_quantity(rs.getInt("i_quantity"));
+				itemVO.setI_popular(rs.getInt("i_popular"));
+				itemVO.setI_click(rs.getInt("i_click"));
 				itemVO.setCountry_id(rs.getInt("country_id"));
 				itemVO.setCountry_name(rs.getString("country_name"));
 				list.add(itemVO);
@@ -232,6 +234,8 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 				itemVO.setI_picture1(rs.getBytes("i_picture5"));
 				itemVO.setI_price(rs.getInt("i_price"));
 				itemVO.setI_quantity(rs.getInt("i_quantity"));
+				itemVO.setI_popular(rs.getInt("i_popular"));
+				itemVO.setI_click(rs.getInt("i_click"));
 				itemVO.setCountry_id(rs.getInt("country_id"));
 				itemVO.setCountry_name(rs.getString("country_name"));
 				list.add(itemVO);
@@ -308,6 +312,8 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 				itemVO.setI_picture1(rs.getBytes("i_picture5"));
 				itemVO.setI_price(rs.getInt("i_price"));
 				itemVO.setI_quantity(rs.getInt("i_quantity"));
+				itemVO.setI_popular(rs.getInt("i_popular"));
+				itemVO.setI_click(rs.getInt("i_click"));
 				itemVO.setCountry_id(rs.getInt("country_id"));
 				itemVO.setCountry_name(rs.getString("country_name"));
 				list.add(itemVO);
@@ -384,6 +390,8 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 				itemVO.setI_picture1(rs.getBytes("i_picture5"));
 				itemVO.setI_price(rs.getInt("i_price"));
 				itemVO.setI_quantity(rs.getInt("i_quantity"));
+				itemVO.setI_popular(rs.getInt("i_popular"));
+				itemVO.setI_click(rs.getInt("i_click"));
 				itemVO.setCountry_id(rs.getInt("country_id"));
 				itemVO.setCountry_name(rs.getString("country_name"));
 				list.add(itemVO);
@@ -460,6 +468,8 @@ public class ItemSearchDAO implements ItemSearchDAOI{
 				itemVO.setI_picture1(rs.getBytes("i_picture5"));
 				itemVO.setI_price(rs.getInt("i_price"));
 				itemVO.setI_quantity(rs.getInt("i_quantity"));
+				itemVO.setI_popular(rs.getInt("i_popular"));
+				itemVO.setI_click(rs.getInt("i_click"));
 				itemVO.setCountry_id(rs.getInt("country_id"));
 				itemVO.setCountry_name(rs.getString("country_name"));
 				list.add(itemVO);

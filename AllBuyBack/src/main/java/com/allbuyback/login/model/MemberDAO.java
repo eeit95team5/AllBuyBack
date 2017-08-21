@@ -117,6 +117,7 @@ public class MemberDAO {
 				bean.setM_photo(rs.getBytes("m_photo"));
 				bean.setM_point(rs.getInt("m_point"));
 				bean.setM_scoreCount(rs.getInt("m_scoreCount"));
+				bean.setM_avgScore(rs.getInt("m_avgScore"));
 				bean.setM_times_gb(rs.getInt("m_times_gb"));
 			}
 		} catch (SQLException e) {

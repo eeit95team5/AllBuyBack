@@ -20,5 +20,8 @@
 		<mapping class="com.allbuyback.AllBuyBack.model.Keep_ItemBean" />			
 		<mapping class="com.allbuyback.AllBuyBack.model.Shop_Class1Bean" />			
 		<mapping class="com.allbuyback.AllBuyBack.model.Shop_Class2Bean" />			
+		<mapping class="com.allbuyback.AllBuyBack.model.BooksPerPageBean" />			
+		<mapping class="com.allbuyback.AllBuyBack.model.Shop_CountryBean" />			
+
     </session-factory>
 </hibernate-configuration>
