@@ -145,11 +145,11 @@ $(function() {
 // 		});
 		
    	 $('#seller').click(function(){
-			var m_id = $('#m_id').val();
+			var id = $('#m_id').val();
 			//var s_id = $('#s_id').val();
 			
 //	 		console.log(i_id);
-				window.open('ChatController?action=MessageFromBuyer&m_id='+m_id,'購買AllBuyBack廣告',
+				window.open('ChatController?action=MessageFromBuyer&id='+id,'購買AllBuyBack廣告',
 						'height=650,width=650,scrollbars=0,resizable=0,location=0');
 		});
 });
