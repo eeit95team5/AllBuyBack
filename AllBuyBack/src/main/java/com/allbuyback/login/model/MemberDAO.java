@@ -322,9 +322,9 @@ public class MemberDAO {
 
 		return result;
 	}
-	private String UPDATELOGOUT = "update member set " + "m_lastUsed = ? "+ "where m_id = ? ";
+	private String UPDATELOGOUT = "update member set m_lastUsed = getDate() where m_id = ? ";
 	
-	public int updateLogout(MemberVO bean){
+	public int updateLogout(int m_id){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -332,9 +332,7 @@ public class MemberDAO {
 //			conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(UPDATELOGOUT);
-			java.sql.Date sqlDate = new java.sql.Date(new java.util.Date("2017/08/07").getTime());
-			pstmt.setDate(1, sqlDate);
-			pstmt.setInt(2, bean.getM_id());
+			pstmt.setInt(1, m_id);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
