@@ -255,7 +255,7 @@ public class AdServlet extends HttpServlet {
 			List<AdVO> list = new ArrayList<AdVO>();
 			AdService adS = new AdService();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			list = adS.selectAll();
+			list = adS.selectAd1();
 			//處理日期
 			List<String[]> timeList =new ArrayList<String[]>();
 			for(int i=0; i<list.size();i++){
@@ -300,11 +300,12 @@ public class AdServlet extends HttpServlet {
 			adVO.setAd_type(ad_type);
 			adService.update(adVO);
 			if(AdminOK!=null){
-				request.getRequestDispatcher("/Ad.go?action=selectAll").forward(request, response);
-			}else{
-//				int i_id = Integer.parseInt(request.getParameter("i_id"));
 				request.setAttribute("Admin", "完成");
 				request.getRequestDispatcher("/_system.jsp").forward(request, response);
+			}else{
+				int i_id = Integer.parseInt(request.getParameter("i_id"));
+				request.setAttribute("msg", "完成");
+				request.getRequestDispatcher("/BuyAd.jsp").forward(request, response);
 			}
 		}
 	}

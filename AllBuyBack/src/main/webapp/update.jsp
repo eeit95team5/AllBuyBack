@@ -23,17 +23,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
-
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-
-  <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
-<link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
-<link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
-<script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
-<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
-<script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
-<script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
 
 
 <script>
@@ -232,7 +223,6 @@ label,input{
 </style>
   
  <script type="text/javascript">
-
 $(function(){	
 	$('#menu3').click(function(){		
 		$.get("<c:url value='/MemController'/>",{"action":"MemberListAll"},
@@ -240,36 +230,7 @@ $(function(){
 			$('#show').html(data)		
 		});	
 	});	
-
-
-$(function(){
-	
-	$('#submit').click(function() {
-
-		$.get("<c:url value='/ChatController'/>", {
-			"action" : "MessageFromSeller","id" : ${LoginOK.m_id}
-		}, function(data) {
-			$('#show').html(data)
-
-		});
-
-	});
-	
-	$('#submit1').click(function() {
-
-		$.get("<c:url value='/RepController'/>", {
-			"action" : "GetReply","id" : ${LoginOK.m_id}
-		}, function(data) {
-			$('#show1').html(data)
-
-		});
-
-	});
 });
-
-
-
-
 </script>
 <c:if test="${! empty LoginOK}">
 <script type="text/javascript">
@@ -287,6 +248,26 @@ $(function(){
             i = 0;
         }
     }
+</script>
+<!-- 管理員 -->
+<script type="text/javascript">
+$(function(){
+	$('#submit').click(function() {
+		$.get("<c:url value='/ChatController'/>", {
+			"action" : "MessageFromSeller","id" : ${LoginOK.m_id}
+		}, function(data) {
+			$('#show').html(data)
+		});
+	});
+	
+	$('#submit1').click(function() {
+		$.get("<c:url value='/RepController'/>", {
+			"action" : "GetReply","id" : ${LoginOK.m_id}
+		}, function(data) {
+			$('#show1').html(data)
+		});
+	});
+});
 </script>
 </c:if>
 <!-- 88888 -->
@@ -625,7 +606,7 @@ $(function(){
        				</a>
        			</div>	
        			<div class="w3-display-middle w3-display-hover">
-       			<button class="w3-button w3-black w3-tangerine w3-xlarge">Press me!</button>
+       			<button class="w3-button w3-black w3-tangerine w3-xxxlarge">Press me!</button>
   				</div>
 			</div>
 		</div>
@@ -641,14 +622,14 @@ $(function(){
 					<input type="hidden" name="account" value="${LoginOK.m_account }">
 					<input type="hidden" name="id" value="${LoginOK.m_id }"> 
 					
-					<label for="password" class="w3-tangerine w3-xxlarge  w3-padding-5" >Password:</label><span>${wrong.password }</span>
-					<input class="w3-input w3-animate-input" type="text" style="width:60%" id="password" type="text" name="password" value="${temp.m_password }">
-			    	<label for="phone" class="w3-tangerine w3-xxlarge  w3-padding-5">Phone:</label><span>${wrong.phone}</span> 
-			    	<input  class="w3-input w3-animate-input" type="text" style="width:60%" id="phone" type="text" name="phone" value="${temp.m_phone }">
-			    	<label for="address" class="w3-tangerine w3-xxlarge  w3-padding-5">Address:</label><span>${wrong.address }</span> 
-			    	<input class="w3-input w3-animate-input" type="text" style="width:60%" id="address" type="text" name="address" value="${temp.m_address }">
-			    	<label for="email" class="w3-tangerine w3-xxlarge  w3-padding-5">Email:</label><span>${wrong.email }</span> 
-			    	<input class="w3-input w3-animate-input" type="text" style="width:60%" id="email" type="text" name="email" value="${temp.m_email }">
+					<label for="password" class="w3-tangerine w3-xxlarge  w3-padding-5" >Password:</label><span>${wrongMemberFormat.password }</span>
+					<input class="w3-input w3-animate-input" type="text" style="width:60%" id="password" type="text" name="password" value="${tempForMember.m_password }">
+			    	<label for="phone" class="w3-tangerine w3-xxlarge  w3-padding-5">Phone:</label><span>${wrongMemberFormat.phone}</span> 
+			    	<input  class="w3-input w3-animate-input" type="text" style="width:60%" id="phone" type="text" name="phone" value="${tempForMember.m_phone }">
+			    	<label for="address" class="w3-tangerine w3-xxlarge  w3-padding-5">Address:</label><span>${wrongMemberFormat.address }</span> 
+			    	<input class="w3-input w3-animate-input" type="text" style="width:60%" id="address" type="text" name="address" value="${tempForMember.m_address }">
+			    	<label for="email" class="w3-tangerine w3-xxlarge  w3-padding-5">Email:</label><span>${wrongMemberFormat.email }</span> 
+			    	<input class="w3-input w3-animate-input" type="text" style="width:60%" id="email" type="text" name="email" value="${tempForMember.m_email }">
 			     	<button class="btn w3-tangerine w3-xlarge" type="submit">Send</button>
 					</form>
 					
@@ -677,39 +658,30 @@ $(function(){
 			<input type="hidden" name="status" value="updatePic"> 
 			<input type="hidden" name="account" value="${LoginOK.m_account }"> 
 			<input type="hidden" name="id" value="${LoginOK.m_id }"> 
-			<input type="hidden" name="password" value="${temp.m_password }">
-			<input type="hidden" name="phone" value="${temp.m_phone }"> 
-			<input type="hidden" name="address" value="${temp.m_address }">
-			<input type="hidden" name="email" value="${temp.m_email }">
-			<input type="hidden" name="point" value="${temp.m_point }"> 
+			<input type="hidden" name="password" value="${tempForMember.m_password }">
+			<input type="hidden" name="phone" value="${tempForMember.m_phone }"> 
+			<input type="hidden" name="address" value="${tempForMember.m_address }">
+			<input type="hidden" name="email" value="${tempForMember.m_email }">
+			<input type="hidden" name="point" value="${tempForMember.m_point }"> 
 			<input type="file" name="photo" size="40" accept="image/*" onchange="loadFile(event)" /> 
 				<div style="height: 150px; width: 150px; border: 1px solid;">
 				<img id="output" src="<c:url value='/UpdateDataServlet?status=selectPic&id=${LoginOK.m_id}' />" style="width: 150px; height: 150px" />
 				</div>
 			<button class="btn w3-tangerine w3-xlarge" type="submit">Send</button>			
 			</form>
-
-<!--     		<input type="submit" value="送出"> -->
-    		<input id="submit" type="button" value="所有對話紀錄">
-    		
-    		<div id="show"></div>
-
   		</div>
-
   		
   		<div id="menu4" class="tab-pane fade">	
-
-  		<div id="menu4" class="tab-pane fade">
-<!--     		<input type="submit" value="送出"> -->
-    		<input id="submit1" type="button" value="所有檢舉紀錄">
-    		
-    		<div id="show1"></div>
-
-  		</div>
+  			<button id="submit" class="btn w3-tangerine w3-xlarge" type="submit">檢舉訊息</button>
+  			<div id="show"></div>
+			<br>
+  			<button id="submit1" class="btn w3-tangerine w3-xlarge" type="submit">賣家通知</button>
+			<div id="show1"></div>
+		</div>
+  		
    	</div>
 
 </div>
-
 
 </body>
 </html>
