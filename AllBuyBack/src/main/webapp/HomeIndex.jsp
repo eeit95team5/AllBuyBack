@@ -441,7 +441,7 @@
 						<h3 style="float: left; margin-top: 6px; margin-right: 10px;">
 							<span class="glyphicon glyphicon-star-empty icon-success"></span>
 						</h3>
-						<a href="" class="ThisWeek">巴黎世家搶手帆布包</a>
+						<a href="item.html?i_id=1000042" class="ThisWeek">Timberland聖誕假期促銷</a>
 						<h3 style="float: left; margin-top: 6px; margin-right: 10px;">
 							<span class="glyphicon glyphicon-star-empty icon-success"></span>
 						</h3>
@@ -453,7 +453,7 @@
 						<h3 style="float: left; margin-top: 6px; margin-right: 10px;">
 							<span class="glyphicon glyphicon-star-empty icon-success"></span>
 						</h3>
-						<a href="" class="ThisWeek">NIKE ROSHE TWO特價</a>
+						<a href="" class="ThisWeek">巴黎世家搶手帆布包</a>
 					</div>
 
 					<button class="btn btn-danger navbar-btn" style="font-family: 微軟正黑體; background-color: #EE3B3B; border: #EE3B3B; color: white; margin-left: 70px;">新手上路</button>
@@ -492,7 +492,7 @@
 							</div>
 
 							<div class="item">
-								<img src="images/unboxwall.jpg" alt="" style="width: 100%;">
+								<a href="register.jsp"><img src="images/unboxwall.jpg" alt="加入會員" style="width: 100%;"></a>
 								<div class="carousel-caption"></div>
 							</div>
 
