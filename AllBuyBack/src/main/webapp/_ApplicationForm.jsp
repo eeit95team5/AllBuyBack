@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -175,49 +176,56 @@
                  <div style="color:gray;font-family: 微軟正黑體;font-size: 15px;margin:10px 15px;letter-spacing:1px;padding-bottom:20px;border-bottom:2px dotted lightgray;line-height: 30px">請填寫下面申請表格讓我們認識您，自介與資訊提供的詳盡程度，將會影響申請審核的結果。(* 為必填欄位) <br>
                                                    審核過程約需7個工作天，若通過審核，AllBuyBack將會寄發通知信到您留下的聯絡信箱。(未通過審核，將不再另行通知，如需確認可來信至客服信箱) </div>
                  
+                 
+<form action="<c:url value="/application.do"/>" method="post">  
+
+<!--                    <div class="st1"> -->
+<%--                     <label for="memberId" class="labelClass">*您的會員編號 :</label><input type="text" id="memberId" name="memberId"  value="${LoginOK.m_id}" autofocus autocomplete="off"  disabled size="40"  /> --%>
+<!--                   </div>                -->
+                 
                   <div class="st1">
-                    <label for="shopName" class="labelClass">*您的商店名稱 :</label><input type="text" id="shopName" name="shopName" autofocus autocomplete="off" required placeholder="中英文皆可，限20個字以內" size="40"  />
+                    <label for="shopName" class="labelClass">*您的商店名稱 :</label><input type="text" id="shopName" name="shopName"  value="${param.shopName}" autofocus autocomplete="off" required placeholder="中英文皆可，限20個字以內" size="40"  />
                   </div>
                   <div class="st1">
-                    <label for="sellerName" class="labelClass">*您的名字 :</label><input type="text" id="sellerName" name="sellerName"  autocomplete="off" required placeholder="該如何稱呼您呢?" size="40"  />
+                    <label for="sellerName" class="labelClass">*您的名字 :</label><input type="text" id="sellerName" name="sellerName" value="${LoginOK.m_name}" autocomplete="off" disabled  size="40"  />
                   </div>
                    <div class="st1">
-                    <label for="mail" class="labelClass">*Email信箱 :</label><input type="text" id="mail" name="mail"  autocomplete="off" required placeholder="請務必填寫正確E-mail" size="60"  />
+                    <label for="mail" class="labelClass">*Email信箱 :</label><input type="text" id="mail" name="mail" value="${LoginOK.m_email }"   disabled autocomplete="off"   size="60"  />
                   </div>
                  
                   <div class="st1">
 	                <label class="labelClass">*代購國家(可複選):</label>
 	              
-	                <input type="checkbox" name="country" value="Japan" id="Japan" /><label for="Japan" class="whichCountry">日本</label>
-	                <input type="checkbox" name="country" value="Korea" id="Korea" /><label for="Korea" class="whichCountry">韓國</label>
-	                <input type="checkbox" name="country" value="HK" id="HK" /><label for="HK" class="whichCountry">香港</label>
-	                <input type="checkbox" name="country" value="Singapore" id="Singapore" /><label for="Singapore" class="whichCountry">新加坡</label>
-	                <input type="checkbox" name="country" value="Thai" id="Thai" /><label for="Thai" class="whichCountry">泰國</label><br>
+	                <input type="checkbox" name="country" value="日本" id="Japan" /><label for="Japan" class="whichCountry">日本</label>
+	                <input type="checkbox" name="country" value="韓國" id="Korea" /><label for="Korea" class="whichCountry">韓國</label>
+	                <input type="checkbox" name="country" value="香港" id="HK" /><label for="HK" class="whichCountry">香港</label>
+	                <input type="checkbox" name="country" value="新加坡" id="Singapore" /><label for="Singapore" class="whichCountry">新加坡</label>
+	                <input type="checkbox" name="country" value="泰國" id="Thai" /><label for="Thai" class="whichCountry">泰國</label><br>
 	                <label class="labelClass"></label>
-	                <input type="checkbox" name="country" value="England" id="England" /><label for="England" class="whichCountry">英國</label>
-	                <input type="checkbox" name="country" value="France" id="France" /><label for="France" class="whichCountry">法國</label>
-	                <input type="checkbox" name="country" value="Germany" id="Germany" /><label for="Germany" class="whichCountry">德國</label>
-	                <input type="checkbox" name="country" value="Spain" id="Spain" /><label for="Spain" class="whichCountry">西班牙</label>
-	                <input type="checkbox" name="country" value="Italy" id="Italy" /><label for="Italy" class="whichCountry">義大利</label><br>
+	                <input type="checkbox" name="country" value="英國" id="England" /><label for="England" class="whichCountry">英國</label>
+	                <input type="checkbox" name="country" value="法國" id="France" /><label for="France" class="whichCountry">法國</label>
+	                <input type="checkbox" name="country" value="德國" id="Germany" /><label for="Germany" class="whichCountry">德國</label>
+	                <input type="checkbox" name="country" value="西班牙" id="Spain" /><label for="Spain" class="whichCountry">西班牙</label>
+	                <input type="checkbox" name="country" value="義大利" id="Italy" /><label for="Italy" class="whichCountry">義大利</label><br>
 	                <label class="labelClass"></label>
-	                <input type="checkbox" name="country" value="America" id="America" /><label for="America" class="whichCountry">美國</label>
-	                <input type="checkbox" name="country" value="Canada" id="Canada" /><label for="Canada" class="whichCountry">加拿大</label>
-                     <input type="checkbox" name="country" value="countryOthers" id="countryOthers" /><label for="countryOthers" class="whichCountry">其他:</label><input type="text" size="12">
+	                <input type="checkbox" name="country" value="美國" id="America" /><label for="America" class="whichCountry">美國</label>
+	                <input type="checkbox" name="country" value="加拿大" id="Canada" /><label for="Canada" class="whichCountry">加拿大</label>
+                     <input type="checkbox" name="country" value="其他" id="countryOthers" /><label for="countryOthers" class="whichCountry">其他:</label><input type="text" size="12">
                  </div>
                  
                  <div class="st1">
 	                <label class="labelClass">*代購商品類型(可複選):</label>
 	              
-	                <input type="checkbox" name="country" value="cloths" id="cloths" /><label for="cloths" class="whichItem">流行服飾</label>
-	                <input type="checkbox" name="country" value="food" id="food" /><label for="food" class="whichItem">異國美食</label>
-	                <input type="checkbox" name="country" value="3c" id="3c" /><label for="3c" class="whichItem">數位3C</label>
-	                <input type="checkbox" name="country" value="beauty" id="beauty" /><label for="beauty" class="whichItem">美妝美體</label>
-	                <input type="checkbox" name="country" value="sport" id="sport" /><label for="sport" class="whichItem">運動用品</label><br>
+	                <input type="checkbox" name="items" value="流行服飾" id="cloths" /><label for="cloths" class="whichItem">流行服飾</label>
+	                <input type="checkbox" name="items" value="異國美食" id="food" /><label for="food" class="whichItem">異國美食</label>
+	                <input type="checkbox" name="items" value="數位3C" id="3c" /><label for="3c" class="whichItem">數位3C</label>
+	                <input type="checkbox" name="items" value="美妝美體" id="beauty" /><label for="beauty" class="whichItem">美妝美體</label>
+	                <input type="checkbox" name="items" value="運動用品" id="sport" /><label for="sport" class="whichItem">運動用品</label><br>
 	                <label class="labelClass"></label>
-	                <input type="checkbox" name="country" value="home" id="home" /><label for="home" class="whichItem">居家用品</label>
-	                <input type="checkbox" name="country" value="baby" id="baby" /><label for="baby" class="whichItem">媽咪寶貝</label>
-	                <input type="checkbox" name="country" value="stationery" id="stationery" /><label for="stationery" class="whichItem">文具雜貨</label>
-	                <input type="checkbox" name="country" value="others" id="others" /><label for="others" class="whichItem">其他:</label><input type="text" size="10">
+	                <input type="checkbox" name="items" value="居家用品" id="home" /><label for="home" class="whichItem">居家用品</label>
+	                <input type="checkbox" name="items" value="媽咪寶貝" id="baby" /><label for="baby" class="whichItem">媽咪寶貝</label>
+	                <input type="checkbox" name="items" value="文具雜貨" id="stationery" /><label for="stationery" class="whichItem">文具雜貨</label>
+	                <input type="checkbox" name="items" value="其他" id="others" /><label for="others" class="whichItem">其他:</label><input type="text" size="10">
                  </div>
                  
                   <div class="st1">
@@ -225,8 +233,14 @@
 	              </div>
                  
                   <div style="text-align: center;">
-                     <button id="formSummit" style="margin-top:60px;font-family:微軟正黑體;font-size:25px;background-color: rgb(42,186,171);border:rgb(42,186,171);border-radius:5px 5px;padding:8px 20px;letter-spacing: 3px;"><a class="formButton" style="color:white;" href="">送出申請表</a></button> 
+<!--                      <button id="formSummit" style="margin-top:60px;font-family:微軟正黑體;font-size:25px;background-color: rgb(42,186,171);border:rgb(42,186,171);border-radius:5px 5px;padding:8px 20px;letter-spacing: 3px;"><a class="formButton" style="color:white;" href="">送出申請表</a></button>  -->
+                     <input type="submit" value="送出申請表" style="margin-top:60px;font-family:微軟正黑體;font-size:25px;background-color: rgb(42,186,171);border:rgb(42,186,171);border-radius:5px 5px;padding:8px 20px;letter-spacing: 3px;color:white;">
+                  
                   </div>
+                  
+         </form>
+         
+         
             </div>
        </div>
    </div>
