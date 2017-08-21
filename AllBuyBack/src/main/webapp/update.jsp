@@ -267,6 +267,16 @@ $(function(){
 			$('#show1').html(data)
 		});
 	});
+	
+	 $('#submit2').click(function(){
+			var m_id = $('#m_id').val();
+			var s_id = $('#s_id').val();
+			
+//	 		console.log(i_id);
+				window.open('ChatController?action=show_both_message_seller&m_id='+m_id+'&s_id='+s_id,'購買AllBuyBack廣告',
+						'height=650,width=650,scrollbars=0,resizable=0,location=0');
+		});
+	 
 });
 </script>
 </c:if>
@@ -672,11 +682,11 @@ $(function(){
   		</div>
   		
   		<div id="menu4" class="tab-pane fade">	
-  			<button id="submit" class="btn w3-tangerine w3-xlarge" type="submit">檢舉訊息</button>
-  			<div id="show"></div>
+  			<button id="submit1" class="btn w3-tangerine w3-xlarge" type="submit">檢舉訊息</button>
+  			<div id="show1"></div>
 			<br>
-  			<button id="submit1" class="btn w3-tangerine w3-xlarge" type="submit">賣家通知</button>
-			<div id="show1"></div>
+  			<button id="submit" class="btn w3-tangerine w3-xlarge" type="submit">賣家通知</button>
+			<div id="show"></div>
 		</div>
   		
    	</div>

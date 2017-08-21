@@ -21,7 +21,7 @@
 <script type="text/javascript">
 $(function() {
 	
-	 $('#submit').click(function(){
+	 $('#submit2').click(function(){
 			var m_id = $('#m_id').val();
 			var s_id = $('#s_id').val();
 			
@@ -74,8 +74,8 @@ $(function() {
 <%-- 			<td>${ReportVO.rep_procssDate}</td> --%>
 
 			<td><form id="chatform" method="get" action="<c:url value="/ChatController"/>">
-			    <input type="submit"  value="訊息內容">
-<!-- 			    <input type="button" id="submit" value="訊息內容"> -->
+<!-- 			    <input type="submit"  value="訊息內容"> -->
+			    <input type="button" id="submit2" value="訊息內容">
 <%-- 			     <input type="hidden" name="id" value="${MemVO.m_id}"> --%>
 			    <input type="hidden" id="m_id" name="m_id" value="${ChatVO.m_id}">
 			    <input type="hidden" id="s_id" name="s_id" value="${ChatVO.s_id}">				
