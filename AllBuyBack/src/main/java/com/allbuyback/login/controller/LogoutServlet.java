@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.allbuyback.login.model.MemberService;
-import com.allbuyback.login.model.MemberVO;
+//import com.allbuyback.login.model.MemberService;
+//import com.allbuyback.login.model.MemberVO;
 
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
@@ -23,11 +23,11 @@ public class LogoutServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if(session.getAttribute("LoginOK")!=null){
-		MemberVO mv = (MemberVO)session.getAttribute("LoginOK");
-		MemberService ms = new MemberService();
-		ms.updateLogout(mv.getM_id());
-		}
+//		if(session.getAttribute("LoginOK")!=null){
+//		MemberVO mv = (MemberVO)session.getAttribute("LoginOK");
+//		MemberService ms = new MemberService();
+//		ms.updateLogout(mv.getM_id());
+//		}
 	//	System.out.println("LogoutServlet");
 		System.out.println("LogoutServlet");
 		session.removeAttribute("LoginOK");
