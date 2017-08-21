@@ -529,7 +529,7 @@ public class MemberDAO {
 			}
 		}
 		
-	}
+	}	
 	public void updatePoint(MemberVO memberVO) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

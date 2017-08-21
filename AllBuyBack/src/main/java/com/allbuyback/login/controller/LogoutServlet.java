@@ -29,6 +29,7 @@ public class LogoutServlet extends HttpServlet {
 		ms.updateLogout(mv.getM_id());
 		}
 	//	System.out.println("LogoutServlet");
+		System.out.println("LogoutServlet");
 		session.removeAttribute("LoginOK");
 		session.removeAttribute("AdminOK");
 		session.removeAttribute("SellerOK");
