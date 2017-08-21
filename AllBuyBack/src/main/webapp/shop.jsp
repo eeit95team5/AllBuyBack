@@ -15,17 +15,21 @@ $(function(){
 		
 	
 	$('#keep_shop').click(function(){
-		if(<c:out value="${empty LoginOK}">true</c:out>){
-			$('#spanmsg2').text("請先登入");
-		}else{
-			$('#spanmsg2').text("test");		
-			$.post("<c:url value='/keep_shop.SPRINGcontroller'/>",{"action":"Insert","m_id":<c:out value="${LoginOK.m_id}">0</c:out>,
-				"s_id":<c:out value="${shop.s_id}">0</c:out>},function(){
-					$('#spanmsg2').text("已將商店加入收藏");
-				})			
-		}
+		keep_shop();
 	})
 })
+
+function keep_shop(){
+	if(<c:out value="${empty LoginOK}">true</c:out>){
+		$('#spanmsg2').text("請先登入");
+	}else{
+		$('#spanmsg2').text("test");		
+		$.post("<c:url value='/keep_shop.SPRINGcontroller'/>",{"action":"Insert","m_id":<c:out value="${LoginOK.m_id}">0</c:out>,
+			"s_id":<c:out value="${shop.s_id}">0</c:out>},function(){
+				$('#spanmsg2').text("已將商店加入收藏");
+			})			
+	}
+}
 
 function getMessageJSON(){
 	$.getJSON("<c:url value='/shop_messagejson.SPRINGcontroller'/>",{"s_id":$('#hidden').val(),"action":"Query"},function(data){
