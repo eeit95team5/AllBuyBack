@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-import hibernate.util.HibernateUtil;
+
 
 
 public class MemDAO implements MemDAOI {
