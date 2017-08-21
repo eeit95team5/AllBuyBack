@@ -255,7 +255,7 @@ public class AdServlet extends HttpServlet {
 			List<AdVO> list = new ArrayList<AdVO>();
 			AdService adS = new AdService();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			list = adS.selectAll();
+			list = adS.selectAd1();
 			//處理日期
 			List<String[]> timeList =new ArrayList<String[]>();
 			for(int i=0; i<list.size();i++){
