@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import model.LoginService;
 import model.MemberVO;
 
-@WebServlet("/LoginServlet1")
+@WebServlet("/LoginServlet11")
 public class LoginServlet extends HttpServlet {
 
 	public LoginServlet() {

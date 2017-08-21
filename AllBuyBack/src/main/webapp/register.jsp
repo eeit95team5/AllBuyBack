@@ -15,12 +15,17 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    
+<!-- w3 -->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">	
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+   
 <style>
 
 #button {
   border-radius: 4px;
-  background-color: #f4511e;
+  background-color: #294057;
   border: none;
   color: #FFFFFF;
   text-align: center;
@@ -208,7 +213,7 @@ fieldset{
 	background-color:#ffffff;
 	border:1px solid #ffe6e6;
 	border-radius: 15px;
-	width:750px;
+	width:700px;
 	padding-left: 20px;
 }
 /*目前沒在用*/
@@ -231,10 +236,13 @@ fieldset{
 	font-size:12px;
 	color:#B99867;
 }
+body {
+    background: linear-gradient(to right, #ffffff 0%, #294057 100%);
+}
 
 </style>
 </head>
-<body style="background-color:#F5F5F5">
+<body>
 
 <nav class="navbar navbar-inverse  navbar-fixed-top " style="border-bottom:1px #F5F5F5 solid;"  >
   <div  class="container-fluid" style="background-color:#F5F5F5;"  >
@@ -594,38 +602,37 @@ fieldset{
 <fieldset>
  <form action="<c:url value="/RegisterServlet" />" method="post">
   <div>
-  <label for="account" style="font-family:Comic Sans MS;color:#ff944d"><Font color='#ff9999'>*</Font>Account<Font color='#bfbfbf' size="2px">(必填)</Font></label>
-  <br><input class="myinput" type="text" id="account" name="account" value="${temp.m_account }"><span class="myspan">${wrong.account }</span><span class="glyphicon glyphicon-ok-sign"></span>
-  </div>
+  <label for="account"><Font color='#ff9999'>*</Font>帳號<Font color='#bfbfbf' size="2px">(必填)</Font></label>
+  <br><input class="w3-input w3-animate-input" type="text" style="width:60%" id="account" name="account" value="${temp.m_account }"><span class="myspan">${wrong.account }</span>
   
   <div>
   <label for="password"><Font color='#ff9999'>*</Font>密碼<Font color='#bfbfbf' size="2px">(至少3字元且包含英文與數字)</Font></label>
-  <br><input class="myinput" type="text" id="password" name="password" value="${temp.m_password }"><span class="myspan">${wrong.password }</span>
+  <br><input class="w3-input w3-animate-input" type="text" style="width:60%" id="password"  name="password"  value="${temp.m_password }"><span class="myspan">${wrong.password }</span>
   </div>
   
   <div>
   <label for="name"><Font color='#ff9999'>*</Font>姓名<Font color='#bfbfbf' size="2px">(必填)</Font></label>
-  <br><input class="myinput" type="text" id="name" name="name" value="${temp.m_name }"><span class="myspan">${wrong.name }</span>
+  <br><input class="w3-input w3-animate-input" type="text" style="width:60%" name="name" value="${temp.m_name }"><span class="myspan">${wrong.name }</span>
   </div>
   
   <div>
   <label for="phone"><Font color='#ff9999'>*</Font>電話<Font color='#bfbfbf' size="2px">(必填)</Font></label>
-  <br><input class="myinput" type="text" id="phone" name="phone" value="${temp.m_phone }"><span class="myspan">${wrong.phone }</span>
+  <br><input class="w3-input w3-animate-input" type="text" style="width:60%" id="phone" name="phone" value="${temp.m_phone }"><span class="myspan">${wrong.phone }</span>
   </div>
   
   <div>
   <label for="address"><Font color='#ff9999'>*</Font>住址<Font color='#bfbfbf' size="2px">(必填)</Font></label>
-  <br><input class="myinput" type="text" id="address" name="address" value="${temp.m_address }"><span class="myspan">${wrong.address }</span>
+  <br><input class="w3-input w3-animate-input" type="text" style="width:60%" id="address" name="address" value="${temp.m_address }"><span class="myspan">${wrong.address }</span>
   </div>
   
   <div>
   <label for="identity"><Font color='#ff9999'>*</Font>身分證<Font color='#bfbfbf' size="2px">(必填)</Font></label>
-  <br><input class="myinput" type="text" id="identity" name="identity" value="${temp.m_identity }"><span class="myspan">${wrong.identity }</span>
+  <br><input class="w3-input w3-animate-input" type="text" style="width:60%" id="identity" name="identity" value="${temp.m_identity }"><span class="myspan">${wrong.identity }</span>
   </div>
   
   <div>
   <label for="email"><Font color='#ff9999'>*</Font>Email<Font color='#bfbfbf' size="2px">(ex:jane@gmail.com)</Font></label>
-  <br><input class="myinput" type="text" id="email" name="email" value="${temp.m_email }"><span class="myspan">${wrong.email }</span>
+  <br><input class="w3-input w3-animate-input" type="text" style="width:60%" id="email" name="email" value="${temp.m_email }"><span class="myspan">${wrong.email }</span>
   </div>
   
 	<button id="button" type="submit"><span>送出</span></button> 

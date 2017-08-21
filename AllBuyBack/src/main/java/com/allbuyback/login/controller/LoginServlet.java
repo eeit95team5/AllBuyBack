@@ -71,13 +71,13 @@ public class LoginServlet extends HttpServlet {
 					}
 					
 				} else {
-					errorMsg.put("LoginError", "帳號不存在或密碼錯誤");
+					errorMsg.put("LoginError", "帳號有誤/密碼錯誤/已被停權");
 					request.setAttribute("errorMsg", errorMsg);
 					RequestDispatcher rd = request.getRequestDispatcher("/HomeIndex.jsp");
 					rd.forward(request, response);
 				}
 			} else {
-				errorMsg.put("LoginError", "帳號不存在或密碼錯誤");
+				errorMsg.put("LoginError", "帳號有誤/密碼錯誤/已被停權");
 				request.setAttribute("errorMsg", errorMsg);
 				RequestDispatcher rd = request.getRequestDispatcher("/HomeIndex.jsp");
 				rd.forward(request, response);

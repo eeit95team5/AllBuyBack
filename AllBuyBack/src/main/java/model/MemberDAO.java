@@ -206,7 +206,7 @@ public class MemberDAO {
 	
 	
 	String INSERT = "insert into member " + "(m_account, m_password, m_name, m_phone, m_address, m_identity, "
-			+ "m_email, m_photo ) " + "values (?,?,?,?,?,?,?,?);";
+			+ "m_email, m_photo, m_point ) " + "values (?,?,?,?,?,?,?,?,?);";
 	public int insert(MemberVO bean){
 		InputStream input = MemberDAO.class.getResourceAsStream("cat.jpg");
 		Connection conn = null;
@@ -226,6 +226,7 @@ public class MemberDAO {
 			pstmt.setString(6, bean.getM_identity());
 			pstmt.setString(7, bean.getM_email());
 			pstmt.setBinaryStream(8, input);
+			pstmt.setInt(9, 500);
 		//	pstmt.setbina;
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

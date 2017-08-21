@@ -33,9 +33,9 @@ public class MemberService {
 		int result = dao.updateAvg(scoreCount, avgScore);
 		return result;
 	}
-	public int updateLogout(int m_id){
+	public int updateLogout(MemberVO bean){
 		MemberDAO dao = new MemberDAO();
-		int result = dao.updateLogout(m_id);
+		int result = dao.updateLogout(bean);
 		return result;
 	}
 }

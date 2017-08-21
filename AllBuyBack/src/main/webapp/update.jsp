@@ -600,9 +600,9 @@ $(function(){
   		<div id="menu1" class="tab-pane fade">
   			<div class="col-sm-4"> 
   		
-  				<div class="w3-display-container w3-hover-opacity">
+  				<div class="w3-display-container w3-hover-opacity col-sm-2">
        				<a href="#demo2" data-toggle="collapse" onclick="document.getElementById('demo2').style.display='block'">
-       					<img src="images/onepage_restaurant.jpg" > 
+       					<img src="images/onepage_restaurant.jpg" class="w3-circle" alt="Norway" > 
        				</a>
        			</div>	
        			<div class="w3-display-middle w3-display-hover">
@@ -614,7 +614,7 @@ $(function(){
   				<div class="w3-modal-content w3-animate-zoom">
     				<div class="w3-container w3-black">
       				 <span onclick="document.getElementById('demo2').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
-      				<h1>Contact</h1>
+      				<h2 class="w3-tangerine w3-xxxlarge">Edit</h2>
     				</div>
     				<div class="w3-container">
         			<form  action="<c:url value="UpdateDataServlet" />" method="post" >
@@ -640,18 +640,24 @@ $(function(){
   	    <div id="menu2" class="tab-pane fade" >
   	    	<form action="<c:url value='/FavoriteServlet' />">
   	    	<input type="hidden" name="id" value="${LoginOK.m_id }">
-  	    	<button class="btn w3-tangerine w3-xlarge" type="submit">Send</button>
+  	    	<button id="shop" class="btn w3-tangerine w3-xlarge" type="submit" onclick="document.getElementById('shopDiv').style.display='block'">FindShop</button>
+  	    	<button id="item" class="btn w3-tangerine w3-xlarge" type="submit" onclick="document.getElementById('itemDiv').style.display='block'">FindProduct</button>
   	    	</form>
+  	    	<div id="shopDiv" style="display:none" >
   	    	<c:forEach items="${favorite.shop}" var="favShop"> 
 	 			<hr> 
-	 			shopName: <c:out value="${favShop.m_account}" /> 
+	 			商店名稱:<c:out value="${favShop.m_account}" /> 
 	 			<br> 
 	 			</c:forEach>
+	 		</div>
+	 		<div id="itemDiv" style="display:none">
 	 			<c:forEach items="${favorite.item}" var="favItem"> 
 	 			<hr> 
-	 			itemName: <c:out value="${favItem.i_name}" /> 
+	 			商品名稱:<a href="<c:url value='/item.html?i_id=${favItem.i_id}' />">${favItem.i_name}</a>
 	 			<br> 
 	 			</c:forEach>
+	 		</div>
+	 	
   		</div>
   		<div id="menu3" class="tab-pane fade">
     		<form action="<c:url value="/UpdatePhotoServlet" />" enctype="multipart/form-data" method="post">
@@ -670,6 +676,7 @@ $(function(){
 			<button class="btn w3-tangerine w3-xlarge" type="submit">Send</button>			
 			</form>
   		</div>
+  		
   		
   		<div id="menu4" class="tab-pane fade">	
   			<button id="submit" class="btn w3-tangerine w3-xlarge" type="submit">檢舉訊息</button>

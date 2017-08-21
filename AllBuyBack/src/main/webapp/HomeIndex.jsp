@@ -1003,17 +1003,18 @@
           </div>
           <div class="form-group">
             <label for="usrname" style="font-family:Comic Sans MS;color:#ff944d;font-size:25px"><span class="glyphicon glyphicon-grain"></span>Password</label>
-            <input type="text" class="form-control" id="usrname" name="password" >
+     <!--         <input type="text" class="form-control" id="usrname" name="password" >-->
+            <input type="password" class="form-control" id="usrname" name="password" >
           </div>
           <button type="submit" class="btn btn-block" style="font-family:Comic Sans MS;color:#ff944d;font-size:25px">Commit 
             <span class="glyphicon glyphicon-ok"></span>
           </button>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
-          <span class="glyphicon glyphicon-remove"></span> Cancel
-        </button>
+      <div class="modal-footer" id="wrong">
+      <c:if test="${empty LoginOK}">
+        <span>${errorMsg.LoginError}</span>
+       </c:if>
       </div>
     </div>
   </div>
