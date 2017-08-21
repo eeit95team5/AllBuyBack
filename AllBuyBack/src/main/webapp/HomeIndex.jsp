@@ -23,13 +23,47 @@
 </c:if>
 
 <script type="text/javascript">
-// 	<!-- 聊天室開始(發訊者) -->
 	$(function(){
+		// 	<!-- 聊天室開始(發訊者) -->
 		$('#liid').click(function(){
 			window.open("BeginToTalk?s_id=1000002","","toolbar=no,location=no,directories=no,width=300,height=350");
-		});		
+		});
+		// 	<!-- 聊天室結束(發訊者) -->
+		
+		$.get("ShowAdOnHomeIndex",{},function(data){
+			var addiv = $('#AdId');
+			addiv.empty();
+			$.each(JSON.parse(data),function(Adkey, Advalue){
+				console.log(Advalue.i_id);
+				console.log(Advalue.i_name);
+				var cell1 = $('<div></div>').addClass("col-sm-3");
+				var cell2 = $('<div></div>').addClass("adOuter");
+				cell1.append(cell2);
+				var celllink = $('<a></a>').attr("href", "item.html?i_id=" + Advalue.i_id);
+				var cell3 = $('<img>').addClass("imgsrc");
+				cell3.attr("src", "ReadPictureForItem?i_id="+Advalue.i_id);
+				cell3.css("height", "270");
+				cell3.css("width", "255");
+				celllink.append(cell3);
+				var cell4 = $('<div></div>').text(Advalue.i_name);
+				cell4.addClass("adContent");
+				var cell5 = $('<span></span').addClass("glyphicon glyphicon-map-marker marker");
+				var cell6 = $('<div></div>').addClass("countryFrom").text(Advalue.country_name);
+				var cell7 = $('<div></div>').addClass("sellerWho").text("暢銷指數: " + Advalue.i_popular + " 訂閱數： " + Advalue.i_click);
+				cell2.append([celllink, cell4, cell5, cell6, cell7]);
+				addiv.append(cell1);
+			});
+		});
+// 		<div class="col-sm-3">
+// 	        <div class="adOuter" >
+// 	           <img id="imgid" class="imgsrc" src="images/cho_05.jpg" >
+// 	           <div  class="adContent">來自日本的草莓巧克力，可以吃到一整顆完整的草莓喔!超級幸福~</div>
+// 	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
+// 	           <div id="country" class="countryFrom">美國</div>
+// 	           <div class="sellerWho" >LOVE ShaSha 樂芙夏夏</div>
+// 	        </div>
+//      </div>
 	})
-// 	<!-- 聊天室結束(發訊者) -->
 </script>
 
 <style>
@@ -161,7 +195,7 @@
 					</div>
 
 					<ul class="drop-down-menu  nav navbar-nav" style="text-align: left">
-						<li id="liid"><a href="HomeIndex.jsp">首頁</a></li>
+						<li><a href="HomeIndex.jsp">首頁</a></li>
 
 						<li><a href="#">找商品<span class="glyphicon glyphicon-menu-down"></span></a>
 							<ul>
@@ -595,96 +629,18 @@
     </div>
 </div>
 
-  <div class="row">
-	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="images/cho_05.jpg" >
-	           <div  class="adContent">來自日本的草莓巧克力，可以吃到一整顆完整的草莓喔!超級幸福~</div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom">美國</div>
-	             <div class="sellerWho" >LOVE ShaSha 樂芙夏夏</div>
-	        </div>
-	      </div>
-	     
-	       <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
-	        </div>
-	      </div>
-	      
-	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
-	        </div>
-	      </div>
-	      
-	      <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
-	        </div>
-	      </div>
-	     
-	     
-	    
-	 </div>
+  <div id="AdId" class="row">
+<!-- 	     <div class="col-sm-3"> -->
+<!-- 	        <div class="adOuter" > -->
+<!-- 	           <img id="imgid" class="imgsrc" src="images/cho_05.jpg" > -->
+<!-- 	           <div  class="adContent">來自日本的草莓巧克力，可以吃到一整顆完整的草莓喔!超級幸福~</div> -->
+<!-- 	           <span class="glyphicon glyphicon-map-marker marker" ></span>  -->
+<!-- 	             <div id="country" class="countryFrom">美國</div> -->
+<!-- 	             <div class="sellerWho" >LOVE ShaSha 樂芙夏夏</div> -->
+<!-- 	        </div> -->
+<!-- 	      </div> -->
+  </div>
 <br />
-
-  <div class="row">
-	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="images/cho_05.jpg" >
-	           <div  class="adContent">來自日本的草莓巧克力，可以吃到一整顆完整的草莓喔!超級幸福~</div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom">美國</div>
-	             <div class="sellerWho" >LOVE ShaSha 樂芙夏夏</div>
-	        </div>
-	      </div>
-	     
-	       <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
-	        </div>
-	      </div>
-	      
-	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
-	        </div>
-	      </div>
-	      
-	      <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <img class="imgsrc" src="" >
-	           <div  class="adContent"></div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom"></div>
-	             <div class="sellerWho" ></div>
-	        </div>
-	      </div>
-	     
-	     
-	    
-	 </div>
 <br />
 
 <div class="row">

@@ -1,6 +1,7 @@
 package com.allbuyback.ItemSearch.model;
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface ItemSearchDAOI {
@@ -13,4 +14,5 @@ public interface ItemSearchDAOI {
 	public abstract ItemVO select(Integer i_id);
 	public List<ItemVO> selectByS_Id(int s_id);
 	public ItemVO selectByI_Id(int i_id);
+	public Map selectByI_IdForAd_Ajax(int i_id);
 }
