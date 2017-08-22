@@ -81,9 +81,10 @@
   top:1px;/*a 的距離設定比較特殊*/
   left:60px;
   letter-spacing: 2px;
-  color:red;
+  color:#EE6A50;
   width:600px;
-  background-color: yellow;
+/*   border-bottom: 1px solid #EE6A50;  */
+/*   background-color: yellow; */
 
 }
 
@@ -150,7 +151,7 @@ $(function() {
 			
 //	 		console.log(i_id);
 				window.open('ChatController?action=MessageFromBuyer&id='+id,'購買AllBuyBack廣告',
-						'height=650,width=650,scrollbars=0,resizable=0,location=0');
+						'height=500,width=800,scrollbars=0,resizable=0,location=0');
 		});
 });
 
@@ -164,18 +165,21 @@ $(function() {
 <div class="container" style="margin-top: 40px;margin-bottom: 30px;">
    <div class="row">
       <div class="col-sm-12">
-          <div style="background-color: white;height:300px;"><img src="images/shop3.jpg" style="background-color: gray;width:1140px;height:280px;z-index:1;position: absolute;"></div>
+          <div style="background-color: white;height:300px;"><img src="images/back.png" style="background-color: gray;width:1140px;height:280px;z-index:1;position: absolute;"></div>
            <div style="background-color: white;height:100px;position: relative;">
 	             <img src="<c:url value='/UpdateDataServlet?status=selectPic&id=${shop.s_id }' />"  style="width:120px;height:120px;border-radius:99em;border:2px white solid;margin-top:-70px;margin-left:30px;z-index:2;position: absolute;">
 	             <span class="glyphicon glyphicon-plane" style="color:#FFB90F;font-size:25px;margin-top: 60px;margin-left: 25px"></span><span class="glyphicon glyphicon-plane" style="color:#FFB90F;font-size:25px;"></span><span class="glyphicon glyphicon-plane" style="color:#FFB90F;font-size:25px;"></span><span class="glyphicon glyphicon-plane" style="color:#FFB90F;font-size:25px;"></span><span class="glyphicon glyphicon-plane" style="color:#FFB90F;font-size:25px;"></span>
 	             <div id="sellerName" style="padding-top:10px;margin-top:-90px;margin-left:200px;font-family:微軟正黑體;font-size:22px;font-weight:600;letter-spacing:3px;">${member.m_name}</div>
-                  <span class="glyphicon glyphicon-map-marker" style="position:absolute;top:70px;left:200px;font-size: 18px;"></span><div id="livingIn" style="position:absolute;top:67px;left:230px;font-family:微軟正黑體;font-size:18px;font-weight:500;letter-spacing:3px;">住在:台中</div>
-                  <span class="glyphicon glyphicon-shopping-cart" style="position:absolute;top:70px;left:350px;font-size: 18px;"></span> <div id="livingIn" style="position:absolute;top:67px;left:380px;font-family:微軟正黑體;font-size:18px;font-weight:500;letter-spacing:3px;">代購區域:<c:if test="${not empty countrys}"><c:forEach items="${countrys}" var="country" varStatus="i">${country }<c:if test="${not i.last}" >、</c:if></c:forEach></c:if></div>
+<!--                   <span class="glyphicon glyphicon-map-marker" style="position:absolute;top:70px;left:200px;font-size: 18px;"></span><div id="livingIn" style="position:absolute;top:67px;left:230px;font-family:微軟正黑體;font-size:18px;font-weight:500;letter-spacing:3px;">住在:台中</div> -->
+                  <span class="glyphicon glyphicon-shopping-cart" style="position:absolute;top:70px;left:200px;font-size: 18px;"></span> <div id="livingIn" style="position:absolute;top:67px;left:230px;font-family:微軟正黑體;font-size:18px;font-weight:500;letter-spacing:3px;">代購區域:<c:if test="${not empty countrys}"><c:forEach items="${countrys}" var="country" varStatus="i">${country }<c:if test="${not i.last}" >、</c:if></c:forEach></c:if></div>
                   <span id="2spanmsg" style="position:absolute;top:40px;left:850px;font-size: 18px;"></span>
                   <c:choose>
                   <c:when test="${LoginOK.m_id == shop.s_id }">
-                  <form action="<c:url value='/insertitem.html'/>" method="post"><button type="submit" name="s_id" value="${shop.s_id}" id="insertitem" style="position:absolute;top:1px;left:830px;color:white;font-family:微軟正黑體;font-size:18px;background-color: gray;border:gray;border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-eye-open" style="margin-right:6px;"></span>新增商品</button></form>
-                  <button style="position:absolute;top:1px;left:960px;color:white;font-family:微軟正黑體;font-size:18px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-plane" style="margin-right:6px;"></span>修改商店資訊</button>
+                  
+                 
+                  <form action="<c:url value='/insertitem.html'/>" method="post"><button type="submit" name="s_id" value="${shop.s_id}" id="insertitem" style="position:absolute;top:1px;left:650px;color:white;font-family:微軟正黑體;font-size:18px;background-color: gray;border:gray;border-radius:15px 15px;padding:5px 15px;"><span class="glyphicon glyphicon-plus" style="margin-right:6px;"></span>新增商品</button></form>
+                  <button style="position:absolute;top:1px;left:800px;color:white;font-family:微軟正黑體;font-size:18px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-wrench" style="margin-right:6px;"></span>修改商店資訊</button>
+                  <button id="seller"  style="position:absolute;top:1px;left:990px;color:white;font-family:微軟正黑體;font-size:18px;background-color: #EE9572;border:#EE9572;border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-bullhorn" style="margin-right:6px;"></span>買家訊息</button>
                   </c:when>
                   <c:otherwise>
                   <button id="keep_shop" style="position:absolute;top:1px;left:850px;color:white;font-family:微軟正黑體;font-size:18px;background-color: gray;border:gray;border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-eye-open" style="margin-right:6px;"></span>訂閱我</button>
@@ -183,13 +187,13 @@ $(function() {
                   </c:otherwise>
                   </c:choose>
                   
-                  <button id="seller"><span class="glyphicon glyphicon-plane" style="margin-right:6px;"></span>買家訊息</button>
+                  
 			      <input type="hidden" name="m_id" id="m_id" value="${LoginOK.m_id}"> 
 <%-- 			<input type="hidden" name="m_account" value="${LoginOK.m_account}"> --%>
 <%-- 			<input type="hidden" name="s_id" id="s_id" value="${OrderVO.s_id}">  --%>
                  
            </div>
-           <div style="height:150px;background-color:rgb(235,179,179);color:white;font-family:微軟正黑體;font-size:16px;font-weight:500;letter-spacing:3px;text-align: center;padding:30px  150px;">${shop.s_aboutMe}</div>
+           <div style="height:120px;background-color:rgb(235,179,179);color:white;font-family:微軟正黑體;font-size:16px;font-weight:500;letter-spacing:3px;text-align: center;padding:30px  150px;">${shop.s_aboutMe}</div>
       </div>
    </div>
 </div><!-- 上半部賣家個人介紹結束 -->
@@ -200,7 +204,7 @@ $(function() {
 	<div class="container">  
 	   <div class="row">
 	     <div class="col-sm-12">
-	          <div style="text-align: center;margin-top:30px;font-size:30px;font-weight: 600;letter-spacing: 5px;margin-bottom: 25px;">本館商品</div>     
+	          <div style="text-align: center;margin-top:30px;font-size:30px;font-weight: 600;letter-spacing: 5px;margin-bottom: 28px;">本館商品</div>     
 	     </div>  
 	  </div>
 	  
@@ -325,7 +329,7 @@ $(function() {
 	    	<c:if test="${(booksperpagebean.pageNo + 1 >= 1) && (booksperpagebean.pageNo + 1 <= booksperpagebean.totalPages)}"><a href="<c:url value="shop.html?s_id=${shop.s_id}&pageNO=${booksperpagebean.pageNo + 1}"/>">${booksperpagebean.pageNo + 1}</a></c:if>
 	    	<c:if test="${(booksperpagebean.pageNo + 2 >= 1) && (booksperpagebean.pageNo + 2 <= booksperpagebean.totalPages)}"><a href="<c:url value="shop.html?s_id=${shop.s_id}&pageNO=${booksperpagebean.pageNo + 2}"/>">${booksperpagebean.pageNo + 2}</a></c:if>
 		    <a href="<c:url value="shop.html?s_id=${shop.s_id}&pageNO=${booksperpagebean.totalPages }"/>">&raquo;</a>
-		    <input type="number" id="pageNo" name="pageNo" min="1" max="${booksperpagebean.totalPages}"/><button type="button">前往</button><span>共${booksperpagebean.totalPages }頁</span>
+		    <input type="number" id="pageNo" name="pageNo" min="1" max="${booksperpagebean.totalPages}"  style="height:42px;margin-left: 5px"/><button type="button" style="height:42px;margin-right: 10px">前往</button><span>共${booksperpagebean.totalPages }頁</span>
 		  </div>
 		</div>
 	 
@@ -372,12 +376,17 @@ $(function() {
     </div><!-- 評價留言結束 -->
     
     <div id="menu2" class="tab-pane fade">
+    
+      <div style="margin-left:20px;margin-top:20px;font-family:微軟正黑體;font-size:18px;letter-spacing:4px;font-weight:600">|留言板</div>
+<!--         <textarea rows="6" cols="140"  style="margin-left: 20px;margin-top: 10px;"></textarea> -->
+<!--   <button  style="position:absolute;top:280px;left:480px;color:white;font-family:微軟正黑體;font-size:18px;background-color: black;border:black;border-radius:5px 5px;padding:5px 15px">送出留言</button> -->
+    
     	<div id="shop_message"></div>
     	<form>
 		<input type="hidden" name="s_id" id="hidden" value="${shop.s_id }" />
 		<input type="hidden" name="action" value="Insert" />
-		<textarea name="sm_content" id="sm_content" ></textarea>
-		<button type="button" id="submit">送出</button><span id="showerror">${errors.login }${errors.noempty }</span>
+		<textarea name="sm_content" id="sm_content" rows="6" cols="120"  style="margin-left: 20px;margin-top: 10px;"></textarea>
+		<button type="button" id="submit"  style="position:absolute;top:280px;left:380px;color:white;font-family:微軟正黑體;font-size:18px;background-color: black;border:black;border-radius:5px 5px;padding:5px 15px">送出留言</button><span id="showerror">${errors.login }${errors.noempty }</span>
 	</form>
       
     </div>

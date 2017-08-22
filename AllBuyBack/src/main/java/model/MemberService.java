@@ -1,6 +1,7 @@
 package model;
 
 import java.io.InputStream;
+import com.allbuyback.login.model.*;
 
 public class MemberService {
 	

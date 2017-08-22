@@ -37,13 +37,14 @@ public class SeeMyBonusServlet extends HttpServlet {
 	   
 	   GoldenBrainService gbService=new GoldenBrainService();
 	   int bonus=gbService.getOldBonus(m_account);
+	   loginOK.setM_point(bonus);
 	   request.setAttribute("bonus", bonus);   
+	   session.setAttribute("LoginOK", loginOK);
 	   
+	   RequestDispatcher dispatcher = request.getRequestDispatcher("/UpdateDataServlet?status=query&account="+loginOK.getM_account());
+       dispatcher.include(request, response);
 	   
-	  // RequestDispatcher dispatcher = request.getRequestDispatcher("/saveBonus.controller");
-       //dispatcher.include(request, response);
-	   
-	   request.getRequestDispatcher("/bonus.jsp").forward(request, response);	   
+//	   request.getRequestDispatcher("<c:url value='/UpdateDataServlet?status=query&account=${LoginOK.m_account} ' />").forward(request, response);	   
 	   return;
 	   
 
