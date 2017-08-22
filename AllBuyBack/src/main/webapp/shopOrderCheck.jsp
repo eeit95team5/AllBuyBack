@@ -282,8 +282,15 @@
 					<input type="button" id="goComment" value="進行評價" class="btn btn-primary"/>
 					<div id="dialog" title="請給予買家評價" style='display:none'>
 					<form action="Order.do" method="post">
-						<label>評分：</label><input type="text" name="m_score" value="5" />(1~5分)<br>
-						<label>評價：</label><textarea name="m_comment"></textarea>
+						<label>評分：</label>
+							<select name="s_score">
+								<option value="5">5分(非常滿意)</option>
+								<option value="4">4分(滿意)</option>
+								<option value="3">3分(普通)</option>
+								<option value="2">2分(稍差)</option>
+								<option value="1">1分(非常糟糕)</option>
+							</select><br>
+						<label>評價：</label><textarea name="m_comment" style="resize:none"></textarea>
 						<input type="submit" value="送出評價" class="btn btn-primary"/>
 						<input type="hidden" name="action" value="commentFromS"/>
 						<input type="hidden" name="o_id" value="${OrderVO.o_id}"/>
