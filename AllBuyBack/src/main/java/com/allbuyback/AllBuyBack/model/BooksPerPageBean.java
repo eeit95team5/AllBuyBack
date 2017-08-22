@@ -6,7 +6,7 @@ public class BooksPerPageBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;	
 	private int pageNo = 0;
-	private int recordsPerPage = 6; // 每頁六筆
+	private int recordsPerPage = 8; // 每頁八筆
 	private int totalPages;
 		
 	public int getPageNo() {

@@ -60,10 +60,6 @@ public class Shop_Class1Controller {
 		
 		if("Insert".equals(action)){
 			shop_Class1Bean.setS_discount(((double)shop_Class1Bean.getS_discount())/(double)(100));
-			System.out.println(shop_Class1Bean.getS_class1Name());
-			System.out.println(shop_Class1Bean.getS_discount());
-			System.out.println(shop_Class1Bean.getS_id());
-			System.out.println(shop_Class1Bean.getS_class1());
 			shop_Class1Service.insert(shop_Class1Bean);
 			System.out.println("test5");
 			this.getJSON(request, response , shop_Class1Bean);			
@@ -87,7 +83,6 @@ public class Shop_Class1Controller {
 			e.printStackTrace();
 		}
 		List<Shop_Class1Bean> shop_Class1 = null;
-		System.out.println(shop_Class1Bean.getS_id());
 		shop_Class1 = shop_Class1Service.select(shop_Class1Bean.getS_id());
 		List l1 = new LinkedList();
 		for(int i=0;i < shop_Class1.size();i++){
