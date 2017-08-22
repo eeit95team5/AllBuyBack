@@ -229,7 +229,7 @@ $(function(){
 			"action" : "MessageFromSeller","id" : ${LoginOK.m_id}
 		}, function(data) {
 			$('#show').html(data)
-		});
+		}); 
 	});
 	
 	$('#submit1').click(function() {
