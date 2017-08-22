@@ -221,10 +221,40 @@ label,input{
 }
 	
 </style>
+<!-- 管理員 -->
+<script type="text/javascript">
+//$(function(){
+//	$('#submit').click(function() {
+//		$.get("<c:url value='/ChatController'/>", {
+//			"action" : "MessageFromSeller","id" : ${LoginOK.m_id}
+//		}, function(data) {
+//			$('#show').html(data)
+//		});
+//	});
+	
+//	$('#submit1').click(function() {
+//		$.get("<c:url value='/RepController'/>", {
+//			"action" : "GetReply","id" : ${LoginOK.m_id}
+//		}, function(data) {
+//			$('#show1').html(data)
+//		});
+//	});
+	
+//	 $('#submit2').click(function(){
+//			var m_id = $('#m_id').val();
+//			var s_id = $('#s_id').val();
+			
+//	 		console.log(i_id);
+///				window.open('ChatController?action=show_both_message_seller&m_id='+m_id+'&s_id='+s_id,'購買AllBuyBack廣告',
+//						'height=650,width=650,scrollbars=0,resizable=0,location=0');
+//		});
+	 
+//});
+</script>
   
  <script type="text/javascript">
 $(function(){	
-	$('#menu3').click(function(){		
+	$('#a').click(function(){		
 		$.get("<c:url value='/MemController'/>",{"action":"MemberListAll"},
 				function(data){
 			$('#show').html(data)		
@@ -248,36 +278,6 @@ $(function(){
             i = 0;
         }
     }
-</script>
-<!-- 管理員 -->
-<script type="text/javascript">
-$(function(){
-	$('#submit').click(function() {
-		$.get("<c:url value='/ChatController'/>", {
-			"action" : "MessageFromSeller","id" : ${LoginOK.m_id}
-		}, function(data) {
-			$('#show').html(data)
-		});
-	});
-	
-	$('#submit1').click(function() {
-		$.get("<c:url value='/RepController'/>", {
-			"action" : "GetReply","id" : ${LoginOK.m_id}
-		}, function(data) {
-			$('#show1').html(data)
-		});
-	});
-	
-	 $('#submit2').click(function(){
-			var m_id = $('#m_id').val();
-			var s_id = $('#s_id').val();
-			
-//	 		console.log(i_id);
-				window.open('ChatController?action=show_both_message_seller&m_id='+m_id+'&s_id='+s_id,'購買AllBuyBack廣告',
-						'height=650,width=650,scrollbars=0,resizable=0,location=0');
-		});
-	 
-});
 </script>
 </c:if>
 <!-- 88888 -->
@@ -535,17 +535,17 @@ $(function(){
                <h3 style="color:white;margin-top:26px;float:left;font-family:微軟正黑體;margin-right:25px">本週頭條&nbsp&nbsp</h3> 
                 <div style="margin-top:20px">
                   <h3 style="float:left;margin-top:6px;margin-right:10px;"><span class="glyphicon glyphicon-star-empty icon-success"></span></h3>             
-                  <a href="" class="ThisWeek">巴黎世家搶手帆布包</a>
+                  <a href="item.html?i_id=1000042" class="ThisWeek">Timberland聖誕假期促銷</a>
                   <h3 style="float:left;margin-top:6px;margin-right:10px;"><span class="glyphicon glyphicon-star-empty icon-success"></span></h3>             
                   <a href="" class="ThisWeek">FURLA緊急折扣全面7折</a>
                   <h3 style="float:left;margin-top:6px;margin-right:10px;"><span class="glyphicon glyphicon-star-empty icon-success"></span></h3>                
                   <a href="" class="ThisWeek">Rebecca Minkoff季末出清</a>
                   <h3 style="float:left;margin-top:6px;margin-right:10px;"><span class="glyphicon glyphicon-star-empty icon-success"></span></h3>             
-                  <a href="" class="ThisWeek">NIKE ROSHE TWO特價</a> 				            		                                           
-               </div> 
-  
-   <!--            <button  class="btn btn-danger navbar-btn" style="font-family:微軟正黑體;
-                background-color:#EE3B3B;border:#EE3B3B;color:white;margin-left:70px;" >新手上路</button>-->
+                  <a href="" class="ThisWeek">巴黎世家搶手帆布包</a>				            		                                           
+               </div>
+          
+            <button  class="btn btn-danger navbar-btn" style="font-family:微軟正黑體;
+             background-color:#EE3B3B;border:#EE3B3B;color:white;margin-left:10px;" >新手上路</button>
        </div>
     </div><!--row結束-->
 </div><!--container結束-->  
@@ -568,7 +568,7 @@ $(function(){
   		<li><a data-toggle="tab" href="#menu1">修改會員資料</a></li>
   		<li><a data-toggle="tab" href="#menu2">我的收藏</a></li>		
   		<li><a data-toggle="tab" href="#menu3">變漂亮專區</a></li>		
-  		<li><a data-toggle="tab" href="#menu4">管理員通知</a></li>
+  		<li><a data-toggle="tab" href="#menu4">檢舉與賣家通知</a></li>
 	</ul>
 
 	<div class="tab-content ">
@@ -650,17 +650,17 @@ $(function(){
   	    <div id="menu2" class="tab-pane fade" >
   	    	<form action="<c:url value='/FavoriteServlet' />">
   	    	<input type="hidden" name="id" value="${LoginOK.m_id }">
-  	    	<button id="shop" class="btn w3-tangerine w3-xlarge" type="submit" onclick="document.getElementById('shopDiv').style.display='block'">FindShop</button>
-  	    	<button id="item" class="btn w3-tangerine w3-xlarge" type="submit" onclick="document.getElementById('itemDiv').style.display='block'">FindProduct</button>
+  	    	<button id="shop" class="btn w3-tangerine w3-xlarge" type="submit" onclick="document.getElementById('shopDiv').style.display='block'">FindShop&Product</button>
   	    	</form>
-  	    	<div id="shopDiv" style="display:none" >
+  	    	
+  	    	<div id="shopDiv" style="display:block" >
   	    	<c:forEach items="${favorite.shop}" var="favShop"> 
 	 			<hr> 
-	 			商店名稱:<c:out value="${favShop.m_account}" /> 
+	 			商店名稱:<a href="<c:url value='/shop.html?s_id=${favShop.m_id}' />">${favShop.m_name}</a> 
 	 			<br> 
 	 			</c:forEach>
 	 		</div>
-	 		<div id="itemDiv" style="display:none">
+	 		<div id="itemDiv" style="display:block">
 	 			<c:forEach items="${favorite.item}" var="favItem"> 
 	 			<hr> 
 	 			商品名稱:<a href="<c:url value='/item.html?i_id=${favItem.i_id}' />">${favItem.i_name}</a>
@@ -687,18 +687,18 @@ $(function(){
 			</form>
   		</div>
   		
+  		<div id="menu4" class="tab-pane fade">
   		
-  		<div id="menu4" class="tab-pane fade">	
-  			<button id="submit1" class="btn w3-tangerine w3-xlarge" type="submit">檢舉訊息</button>
-  			<div id="show1"></div>
-			<br>
-  			<button id="submit" class="btn w3-tangerine w3-xlarge" type="submit">賣家通知</button>
-			<div id="show"></div>
-		</div>
-  		
+  			<button id="a" class="btn w3-tangerine w3-xlarge" type="submit">Send</button>
+  		<div id="show">
+  		</div>
+  		</div>
    	</div>
 
 </div>
 
+<script>
+	
+</script>
 </body>
 </html>

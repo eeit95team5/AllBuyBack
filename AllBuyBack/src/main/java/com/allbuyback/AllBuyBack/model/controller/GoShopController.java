@@ -25,6 +25,8 @@ import com.allbuyback.AllBuyBack.model.CountryService;
 import com.allbuyback.AllBuyBack.model.ItemService;
 import com.allbuyback.AllBuyBack.model.ShopBean;
 import com.allbuyback.AllBuyBack.model.ShopService;
+import com.allbuyback.AllBuyBack.model.Shop_Class1Service;
+import com.allbuyback.AllBuyBack.model.Shop_Class2Service;
 import com.allbuyback.AllBuyBack.model.Shop_CountryBean;
 import com.allbuyback.AllBuyBack.model.Shop_CountryService;
 import com.allbuyback.AllBuyBack.model.Shop_MessageService;
@@ -47,6 +49,10 @@ public class GoShopController {
 	Shop_CountryService shop_CountryService;  
 	@Autowired
 	CountryService countryService;
+	@Autowired
+	Shop_Class1Service shop_Class1Service;
+	@Autowired
+	Shop_Class2Service shop_Class2Service;
 	
 	MemService memService = new MemService();
 	
@@ -80,9 +86,6 @@ public class GoShopController {
 			pageNO = 1;			
 		}
 		BooksPerPageBean booksPerPageBean = booksPerPageService.getBean(shopBean.getS_id(), pageNO);
-		System.out.println(booksPerPageBean.getPageNo());
-		System.out.println(booksPerPageBean.getRecordsPerPage());
-		System.out.println(booksPerPageBean.getTotalPages());
 		List<Object[]> PageItems = booksPerPageService.getPageItems(shopBean.getS_id(), pageNO);		
 		
 		List<Shop_CountryBean> countrys = shop_CountryService.selectByS_Id(shopBean.getS_id());
@@ -90,12 +93,21 @@ public class GoShopController {
 		for(int i=0;i<countrys.size();i++){
 			l1.add(countryService.select(countrys.get(i).getCountry_id()).getCountry_name());
 		}
+		
+		ShopBean shopbean2 = shopService.select(shopBean.getS_id());
+		shopbean2.setS_click(shopbean2.getS_click()+1);
+		shopService.update(shopbean2);
+		
+		
+		
 		model.addAttribute("items",PageItems);
-		model.addAttribute("shop", shopService.select(shopBean.getS_id()));		
+		model.addAttribute("shop", shopbean2);		
 		model.addAttribute("shop_messages", shop_MessageService.selectByS_Id(shopBean.getS_id()));
 		model.addAttribute("member", memService.getOneMem(shopBean.getS_id()));
 		model.addAttribute("countrys",l1);
 		model.addAttribute("booksperpagebean",booksPerPageBean);
+		model.addAttribute("shop_Class1",shop_Class1Service.select(shopbean2.getS_id()));
+		model.addAttribute("shop_Class2",shop_Class2Service.select(shopbean2.getS_id()));
 		
 		
 		return "shop";

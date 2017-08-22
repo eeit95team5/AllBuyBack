@@ -25,8 +25,17 @@ public class BooksPerPageDAOHibernate implements BooksPerPageDAOI{
 	}
 	
 	@Override
+	public BooksPerPageBean getBean(int s_id,int pageNO) {
+		BooksPerPageBean booksPerPageBean = new BooksPerPageBean();		
+		booksPerPageBean.setPageNo(pageNO);
+		booksPerPageBean.setTotalPages(this.getTotalPages(s_id, pageNO));
+		return booksPerPageBean;
+	}
+	
+	@Override
 	public int getTotalPages(int s_id,int pageNO) {
-		int a = (int)(Math.ceil(itemService.selectCountByS_Id(s_id)/(double) 6));		
+		BooksPerPageBean bean = new BooksPerPageBean();	
+		int a = (int)(Math.ceil(itemService.selectCountByS_Id(s_id)/(double) bean.getRecordsPerPage()));		
 		return a;
 	}
 
@@ -35,19 +44,13 @@ public class BooksPerPageDAOHibernate implements BooksPerPageDAOI{
 		return (int) itemService.selectCountByS_Id(s_id);
 	}
 	
-	@Override
-	public BooksPerPageBean getBean(int s_id,int pageNO) {
-		BooksPerPageBean booksPerPageBean = new BooksPerPageBean();		
-		booksPerPageBean.setPageNo(pageNO);
-		booksPerPageBean.setTotalPages(this.getTotalPages(s_id, pageNO));
-		return booksPerPageBean;
-	}
+	
 
 	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Override     
 	public List<Object[]> getPageItems(int s_id,int pageNO) {
 		BooksPerPageBean bean = this.getBean(s_id,pageNO);
-		Query<Object[]> query = this.getSession().createSQLQuery("SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY i_id) AS RowNum ,i.i_id,i.s_id,i.i_name,i.i_describe,i.i_price,i.i_quantity,i.i_arrivedDate,i.i_onSellDate,i.i_soldQuantity,i.i_status,i.i_class1,i.i_class2,i.i_class3,i.i_popular,i.i_click,i.s_class1,i.s_class2,c.country_name FROM Item i JOIN Country c ON  i.country_id = c.country_id WHERE s_id = ? ) AS NewTable WHERE RowNum >= ? AND RowNum <= ?");
+		Query<Object[]> query = this.getSession().createSQLQuery("SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY i_id) AS RowNum ,i.i_id,i.s_id,i.i_name,i.i_describe,i.i_price,i.i_quantity,i.i_arrivedDate,i.i_onSellDate,i.i_soldQuantity,i.i_status,i.i_class1,i.i_class2,i.i_class3,i.i_popular,i.i_click,i.s_class1,i.s_class2,c.country_name FROM Item i JOIN Country c ON  i.country_id = c.country_id WHERE s_id = ? and i_status = 1) AS NewTable WHERE RowNum >= ? AND RowNum <= ?");
 		int startRecordNo = (bean.getPageNo() - 1) * bean.getRecordsPerPage() + 1;
 		int endRecordNo = (bean.getPageNo()) * bean.getRecordsPerPage();
 		
