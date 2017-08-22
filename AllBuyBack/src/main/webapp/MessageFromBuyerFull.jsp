@@ -96,10 +96,11 @@
 
 <%--   <form ENCTYPE="multipart/form-data" method="post" action=" <c:url value="/ChatController"/>"  id="/ItemController" > --%>
   <form method="get" action=" <c:url value="/ChatController"/>"  id="/ItemController" >
-      <label class="fontSize" >買家編號：</label>
-      <input type="text" name="m_id" value="${BuyerVO.m_id}" class="fieldWidth" style="width: 180px;">
-      <font size="-1" color="#FF0000">${MsgMap.errorIDEmpty}${MsgMap.errorIDDup}</font>
-      <br/>
+<!--       <label class="fontSize" >買家編號：</label> -->
+<%--       <input type="text" name="m_id" value="${BuyerVO.m_id}" class="fieldWidth" style="width: 180px;"> --%>
+<%--       <font size="-1" color="#FF0000">${MsgMap.errorIDEmpty}${MsgMap.errorIDDup}</font> --%>
+<!--       <br/> -->
+      <input type="hidden" name="m_id" value="${BuyerVO.m_id}">
       
       <label class="fontSize" >回覆：</label>
       <textarea rows="5" cols="50" name="reply" class="fieldWidth" style="width: 200px"></textarea> 
