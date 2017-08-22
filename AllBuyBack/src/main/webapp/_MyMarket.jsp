@@ -290,7 +290,7 @@ $(function() {
 		</div>
 	 
   </div>
-</div>"src/main/webapp/_MyMarket.jsp"
+</div>
 
 <!-- 下半部 賣家的商品、評價留言、關於我 -->
 <div class="container"><!--商品下半部-->
@@ -341,7 +341,6 @@ $(function() {
 	</form>
       
     </div>
->>>>>>> branch 'master' of https://github.com/eeit95team5/AllBuyBackRespository.git
     
   
  </div>
