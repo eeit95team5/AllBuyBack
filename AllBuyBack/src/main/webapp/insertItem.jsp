@@ -200,7 +200,7 @@ function showS_Class2JSON(data){
 	<h3>新增商品</h3>
 	<div id="test"></div>
 
-	<form action="<c:url value="/item.SPRINGcontroller"/>" method="get">
+	<form action="<c:url value="/item.SPRINGcontroller"/>" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<input type="hidden" name="i_id"  value="" readonly="readonly"/>
@@ -281,24 +281,12 @@ function showS_Class2JSON(data){
 				<td><select id="i_class3" name="i_class3"></select></td>
 				<td>${errors.i_class3}</td>
 			</tr>
-<!-- 			<tr> -->
-<!-- 				<td>商店分類一：</td> -->
-<!-- 				<td><select id="s_class1" name="s_class1"></select></td> -->
-<!-- 				<td>新增商店分類一：</td> -->
-<!-- 				<td><input type="text" id="2_s_class1name"/></td> -->
-<!-- 				<td><input type="number" id="s_discount1" min="0" max="100"/> -->
-<!-- 					<button type="button" id="adds_class1">新增</button></td> -->
-<%-- 				<td>${errors.s_class1}</td> --%>
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 				<td>商店分類二：</td> -->
-<!-- 				<td><select id="s_class2" name="s_class2"></select></td> -->
-<!-- 				<td>新增商店分類二：</td> -->
-<!-- 				<td><input type="text" id="2_s_class2name"/></td> -->
-<!-- 				<td><input type="number" id="s_discount2" min="0" max="100"/> -->
-<!-- 					<button type="button" id="adds_class2">新增</button></td> -->
-<%-- 				<td>${errors.s_class2}</td> --%>
-<!-- 			</tr> -->
+			<tr><td>圖片一：</td><td><input type="file" id="picture1" name="picture1"/></td><td></td></tr>
+			<tr><td>圖片二：</td><td><input type="file" id="picture2" name="picture2"/></td><td></td></tr>
+			<tr><td>圖片三：</td><td><input type="file" id="picture3" name="picture3"/></td><td></td></tr>
+			<tr><td>圖片四：</td><td><input type="file" id="picture4" name="picture4"/></td><td></td></tr>
+			<tr><td>圖片五：</td><td><input type="file" id="picture5" name="picture5"/></td><td></td></tr>
+
 			<tr>
 				<td><button type="submit" name="prodaction" value="Insert">新增商品</button></td>
 			</tr>
