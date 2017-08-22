@@ -151,7 +151,7 @@ function showS_Class2JSON(data){
 </script>
 </head>
 <body>
-	<h3>Welcome ${user.email}</h3>
+
 	<h3>新增商品</h3>
 	<div id="test"></div>
 

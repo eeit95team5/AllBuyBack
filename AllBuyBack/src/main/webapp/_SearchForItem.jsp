@@ -103,12 +103,13 @@
  <div class="row">
 	     <c:forEach var="itemsVO" items="${list}">
 			<div class="col-sm-3">
-				<div style="background-color:#C1CDCD;height:300px;margin:10px 5px; padding:15px; border-radius:20px">
-					<div><a href="item.html?i_id=${itemsVO.i_id}"><img height="160" width="160" style="margin:5px 35px" src="ReadPictureForItem?i_id=${itemsVO.i_id}"></a></div>
-					<div>品名: ${itemsVO.i_name}</div>
-					<div>價格: ${itemsVO.i_price} 數量: ${itemsVO.i_quantity}</div>
-					<div>暢銷指數: ${itemsVO.i_popular} 點擊數: ${itemsVO.i_click}</div>
-					<div>國家: ${itemsVO.country_name}</div>
+				<div class="adOuter">
+					<div><a href="item.html?i_id=${itemsVO.i_id}"><img height="265" width="255" src="ReadPictureForItem?i_id=${itemsVO.i_id}"></a></div>
+					<div class="adContent" style="font-size:12px">${itemsVO.i_name}<br>
+					價格: ${itemsVO.i_price} 數量: ${itemsVO.i_quantity}</div>
+					<span class="glyphicon glyphicon-map-marker marker" ></span>
+					<div id="country" class="countryFrom">${itemsVO.country_name}</div>
+					<div class="sellerWho">暢銷指數: ${itemsVO.i_popular} 點擊數: ${itemsVO.i_click}</div>
 				</div>
 			</div>
 			</c:forEach>

@@ -45,12 +45,18 @@ public class ShopController {
 		}
 		
 		if("Update".equals(prodaction)){
-			System.out.println("4");
 			 ShopBean shopBean = shopService.update(bean);
 			 model.addAttribute("shopbean", shopBean);
-			 System.out.println("5");
 			 return "updateshop";
 		}
+		
+		if("click".equals(prodaction)){
+			ShopBean shopbean = shopService.select(bean.getS_id());
+			shopbean.setS_click(shopbean.getS_click()+1);
+			shopService.update(shopbean);
+			return "";
+		}
+		
 		
 		return "";
 		

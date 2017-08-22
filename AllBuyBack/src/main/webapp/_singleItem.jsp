@@ -37,8 +37,14 @@
 }
 
 /*------------------------*/
-.myActive  {
-    border-top:pink 5px solid;
+/* .myActive  { */
+/*     border-top:pink 5px solid; */
+/* } */
+
+
+.marketName:hover {
+  text-decoration: none;
+/*   color:gray; */
 }
 
 </style>
@@ -80,10 +86,41 @@ $(function() {
  	});
 
  	
-    /*----------------------------------------------------*/
+   
 
     	
  	$("#addToCart").click(function() {
+ 		if(${empty LoginOK}){
+ 			$('#ab123').dialog('open');
+ 		}else{
+ 		var i_id = $('#i_id').val();
+ 		var s_id = $('#s_id').val();
+ 		console.log("ok");
+ 		var ol_quantity = $('#ol_quantity').val();
+ 		$.post("ShoppingCart.go",{'action':"addToCart",'i_id':i_id,'s_id':s_id,'ol_quantity':ol_quantity},
+ 			function(data){
+ 			var json = JSON.parse(data);
+ 			var str = json.a;
+ 			var theType = "success";
+ 			var theText = "再多看看別的商品吧!"
+ 			if(str=="加入購物車失敗，不能新增數量0以下" || str=="加入購物車失敗，剩餘數量不足"){
+				theType = "error";
+				theText = "請確定數量再加入購物車"
+ 			}
+ 			if(str=="這是您自己的商品唷!"){
+ 				theType = "error";
+				theText = "去看看其他人的賣場吧!!"
+ 			}
+				swal({
+					title: str,
+ 					text: theText,
+ 					type: theType
+				});
+			})
+ 		}
+ 	});
+    
+ 	$(".addToCart").click(function() {
  		if(${empty LoginOK}){
  			$('#ab123').dialog('open');
  		}else{
@@ -212,10 +249,10 @@ $(function() {
                      <img src='ReadPictureForItem?i_id=${itemVO.i_id}&i_pictureX=3' width="90" />
                    </div>
 
-                <div class="price">商品售價:</div> <div style="position: absolute;top:100px;left:700px;  height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px;">${itemVO.i_price }</div> 
-                <div class="brand">商品數量:</div> <div style="position: absolute;top:170px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">${itemVO.i_quantity }</div> 
-                <div class="country">代購國家:</div>  <div style="position: absolute;top:240px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">${country.country_name }</div> 
-                <div class="waitDay">到貨時間:</div> <div style="position: absolute;top:310px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">${i_arrivedDate }</div> 
+                <div class="price">商品售價:</div><span style="position: absolute;top:115px;left:680px;color:rgb(42,186,171);font-size:25px;font-weight:600;">NT$</span> <div style="position: absolute;top:99px;left:750px; height:65px;width:550px;font-family:微軟正黑體;color:rgb(42,186,171);font-size:25px;font-weight:600; line-height:65px;">${itemVO.i_price }</div> 
+                <div class="brand">商品數量:</div> <div style="position: absolute;top:170px;left:680px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">${itemVO.i_quantity }</div> 
+                <div class="country">代購國家:</div>  <div style="position: absolute;top:240px;left:680px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">${country.country_name }</div> 
+                <div class="waitDay">到貨時間:</div> <div style="position: absolute;top:310px;left:680px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">${i_arrivedDate }</div> 
                 
                 <div class="count">購買數量:
                  
@@ -228,8 +265,8 @@ $(function() {
 				<input type="hidden" id="m_id" name="m_id" value="${LoginOK.m_id}" />
                 <button class="shoppingButton" id="addToCart">加入購物車</button> 
                 <button class="wantBuy">聯絡賣家</button> 
-                <div class="pay">付款方式:</div>  <div style="position: absolute;top:520px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">超商付款,匯款,信用卡,貨到付款</div> 
-                <div class="deliver">寄送方式:</div>  <div style="position: absolute;top:590px;left:700px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">
+                <div class="pay">付款方式:</div>  <div style="position: absolute;top:520px;left:680px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">超商付款,匯款,信用卡,貨到付款</div> 
+                <div class="deliver">寄送方式:</div>  <div style="position: absolute;top:590px;left:680px;height:65px;width:550px;font-family:微軟正黑體;font-size:20px; line-height:65px; ">
                 <c:if test="${not empty shipway }">
 	                <c:forEach items="${shipway.shipway }" var="sway" varStatus="vars">
 	                	<c:choose>
@@ -277,6 +314,7 @@ $(function() {
     <div id="menu3" class="tab-pane fade">
       <h3>問與答</h3>
       <span id="itemmsg"></span>
+      
 <form>
 	<input type="hidden" name="i_id" id="hidden" value="${itemVO.i_id }" />
 	<input type="hidden" name="action" value="Insert" />
@@ -294,7 +332,7 @@ border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑�
     
     <span class="glyphicon glyphicon-plane" style="color:white;font-size:28px;letter-spacing: 5px"></span>
     欲購買或發問點請選<br /><br /><br />
-<button id="wantBuy" style="border-radius:5px 5px;border:#8B7D6B;background-color:#8B7D6B;color:white;padding:10px 30px;font-size:20px;margin-top:10px;font-weight:500;margin-right:20px;">加入購物車</button>    
+<button class="addToCart" style="border-radius:5px 5px;border:#8B7D6B;background-color:#8B7D6B;color:white;padding:10px 30px;font-size:20px;margin-top:10px;font-weight:500;margin-right:20px;">加入購物車</button>    
 <button id="wantBuy" style="border-radius:5px 5px;border:rgb(42,186,171);background-color:rgb(42,186,171);color:white;padding:10px 30px;font-size:20px;margin-top:10px;font-weight:500;">聯絡賣家</button>
 
 </div>
@@ -304,14 +342,14 @@ border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑�
         <div class="col-sm-offset-1 col-sm-3">
             <div class="seller" >
                 <div style="margin-top:20px;text-align:center;">ABOUT SELLER</div>
-                <div style="width:120px;height:120px; border-radius:99em;  /*border:2px lightgray solid*/margin-left:70px;margin-top:10px;"><a href="<c:url value='/shop.html?s_id=${shop.s_id }'/>"><img src="<c:url value='/UpdateDataServlet?status=selectPic&id=${shop.s_id }' />" /></a></div>
-                <div><h4 style="font-family:微軟正黑體;text-align:center;padding-top:10px;"><a href="<c:url value='/shop.html?s_id=${shop.s_id }'/>">${member.m_name }的賣場</a></h4></div>
+                <div style="margin-left:70px;margin-top:10px;"><a href="<c:url value='/shop.html?s_id=${shop.s_id }'/>"><img style="width:120px;height:120px; border-radius:99em; " src="<c:url value='/UpdateDataServlet?status=selectPic&id=${shop.s_id }' />" /></a></div>
+                <div><p  style="font-family:微軟正黑體;text-align:center;padding-top:10px;font-size:20px;"><a class="marketName" style="color:black" href="<c:url value='/shop.html?s_id=${shop.s_id }'/>">${member.m_name }的賣場</a></p></div>
                 
                 <div style="text-align:center;margin-top:20px;">
                 <span class="glyphicon glyphicon-plane" style="color:#EEB4B4;font-size:25px;"></span><span class="glyphicon glyphicon-plane" style="color:#EEB4B4;font-size:25px;"></span><span class="glyphicon glyphicon-plane" style="color:#EEB4B4;font-size:25px;"></span><span class="glyphicon glyphicon-plane" style="color:#EEB4B4;font-size:25px;"></span><span class="glyphicon glyphicon-plane" style="color:#EEB4B4;font-size:25px;"></span>
                 </div>
                     
-                <div style="color:gray;font-family:微軟正黑體;font-size:12px;text-align:center;margin-top:20px;">評價 | 關於我 | 代購商品</div>
+                <div style="color:gray;font-family:微軟正黑體;font-size:12px;text-align:center;margin-top:20px;font-family:微軟正黑體;">評價 | 關於我 | 代購商品</div>
 
                  <div style="text-align:center;margin-top:20px;"><button id="keep_shop" value="${shop.s_id }" style="border-radius:5px 5px;border:black;background-color:black;color:white;width:250px;padding:7px 10px;"> <span class="glyphicon glyphicon-eye-open"><span style="margin-left:10px;font-size:20px;font-family:微軟正黑體;">&nbsp訂閱我</span></button></div>
                  <span id="spanmsg2">　</span>
@@ -334,44 +372,7 @@ border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑�
 </div><!--container-->
 
 <!----------footer開始-------------->
-<footer>
- <div class="container-fluid" style="background-color:rgb(185,152,103);height:160px;padding-left:30px;padding-top:30px" >
- 
-    	<div class="row">
-        	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><!--複製go1buy1-->
-            	<ul class="footer_menu">
-                	<li><a href="">新手上路</a></li>
-                	<li><a href="">常見問題</a></li>  
-                	<li><a class="">客服中心</a></li>                          
-                </ul>
-            </div>
-        	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-            	<ul class="footer_menu">
-                	<li><a href="">許願池</a></li>
-                	<li><a href="">最新代購消息</a></li>
-                	<li><a href="">代購賣家進駐申請</a></li>					            		                            
-                </ul>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-            	<ul class="footer_menu">
-            		<li><a href="">FB粉絲團</a></li>
-                    <li><a href="">聯絡ALLBUYBACK</a></li>
-                    <li><a href="">服務條款與隱私權政策</a></li>
-                 </ul>
-            </div>                    
-        </div>
-    </div>
-</footer>
-
-
-<div class="container-fluid" style="background-color:rgb(41,64,87);height:45px;color:white;text-align:center;padding-top:15px;" >
-    Copyright ©2017 - ALLBUYBACK 股份有限公司
-</div>
-<!----------footer結束-------------->
-
-
-
-
+<jsp:include page="_Footer.jsp"></jsp:include>
 
 </body>
 <script>
