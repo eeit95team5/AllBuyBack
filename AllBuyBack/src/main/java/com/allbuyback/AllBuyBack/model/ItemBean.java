@@ -1,6 +1,5 @@
 package com.allbuyback.AllBuyBack.model;
 
-import java.sql.Blob;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -31,11 +30,13 @@ public class ItemBean {
 	private int i_click;
 	private Integer s_class1;
 	private Integer s_class2;
-	private Blob i_picture1;
-	
-	public ItemBean(){
-		
-	}
+	private byte[] i_picture1;
+	private byte[] i_picture2;
+	private byte[] i_picture3;
+	private byte[] i_picture4;
+	private byte[] i_picture5;		
+
+	public ItemBean(){}
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -139,10 +140,10 @@ public class ItemBean {
 	public void setI_click(int i_click) {
 		this.i_click = i_click;
 	}
-	public Blob getI_picture1() {
+	public byte[] getI_picture1() {
 		return i_picture1;
 	}
-	public void setI_picture1(Blob i_picture1) {
+	public void setI_picture1(byte[] i_picture1) {
 		this.i_picture1 = i_picture1;
 	}
 
@@ -162,6 +163,37 @@ public class ItemBean {
 		this.s_class2 = s_class2;
 	}
 	
+	public byte[] getI_picture2() {
+		return i_picture2;
+	}
+
+	public void setI_picture2(byte[] i_picture2) {
+		this.i_picture2 = i_picture2;
+	}
+
+	public byte[] getI_picture3() {
+		return i_picture3;
+	}
+
+	public void setI_picture3(byte[] i_picture3) {
+		this.i_picture3 = i_picture3;
+	}
+
+	public byte[] getI_picture4() {
+		return i_picture4;
+	}
+
+	public void setI_picture4(byte[] i_picture4) {
+		this.i_picture4 = i_picture4;
+	}
+
+	public byte[] getI_picture5() {
+		return i_picture5;
+	}
+
+	public void setI_picture5(byte[] i_picture5) {
+		this.i_picture5 = i_picture5;
+	}
 	
 	
 }
