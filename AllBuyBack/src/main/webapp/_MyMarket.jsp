@@ -254,24 +254,7 @@ $(function() {
 	        </div>
 	        </c:if>
 	      </div>
-	      
-<!-- 	      <div class="col-sm-3">	       -->
-<!-- 	        <div style="height:365px;background-color: #CDCDC1" > -->
-<!-- 	            <div style="color:gray;padding:10px  20px;font-family: 微軟正黑體;font-size:15px">分類:</div> -->
-<!-- 	              <div style="color:black;font-family: 微軟正黑體;font-size:15px;">賣家自定義分類   -->
-<%-- 	                   <a href="<c:url value="shop.html?s_id=${shop.s_id}"/>">全部</a> <br/> --%>
-<%-- 	                   <c:forEach items="${shop_Class1 }" var="shopclass1" varStatus="i"> --%>
-<%-- 	                   &nbsp;&nbsp;&nbsp;<a href="">${shopclass1.s_class1Name}<c:out value=" -- 折扣 ${shopclass1.s_discount }"></c:out></a><br/> --%>
-<%-- 	                   <c:forEach items="${shop_Class2 }" var="shopclass2"> --%>
-<%-- 	                   <c:if test="${shopclass1.s_class1 == shopclass2.s_class1}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">${shopclass2.s_class2Name}<c:out value=" -- 折扣 ${shopclass2.s_discount }"></c:out> </a><br/></c:if> --%>
-<%-- 	                   </c:forEach> --%>
-<%-- 	                   </c:forEach> --%>
-<!-- 	              </div> -->
-<!-- 	        </div> -->
-<!-- 	      </div> -->
-	     
-	     
-	    
+    
 	 </div>
 	 
 	 <br>
