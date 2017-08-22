@@ -81,9 +81,10 @@
   top:1px;/*a 的距離設定比較特殊*/
   left:60px;
   letter-spacing: 2px;
-  color:red;
+  color:#EE6A50;
   width:600px;
-  background-color: yellow;
+/*   border-bottom: 1px solid #EE6A50;  */
+/*   background-color: yellow; */
 
 }
 
@@ -328,7 +329,7 @@ $(function() {
 	    	<c:if test="${(booksperpagebean.pageNo + 1 >= 1) && (booksperpagebean.pageNo + 1 <= booksperpagebean.totalPages)}"><a href="<c:url value="shop.html?s_id=${shop.s_id}&pageNO=${booksperpagebean.pageNo + 1}"/>">${booksperpagebean.pageNo + 1}</a></c:if>
 	    	<c:if test="${(booksperpagebean.pageNo + 2 >= 1) && (booksperpagebean.pageNo + 2 <= booksperpagebean.totalPages)}"><a href="<c:url value="shop.html?s_id=${shop.s_id}&pageNO=${booksperpagebean.pageNo + 2}"/>">${booksperpagebean.pageNo + 2}</a></c:if>
 		    <a href="<c:url value="shop.html?s_id=${shop.s_id}&pageNO=${booksperpagebean.totalPages }"/>">&raquo;</a>
-		    <input type="number" id="pageNo" name="pageNo" min="1" max="${booksperpagebean.totalPages}"/><button type="button">前往</button><span>共${booksperpagebean.totalPages }頁</span>
+		    <input type="number" id="pageNo" name="pageNo" min="1" max="${booksperpagebean.totalPages}"  style="height:42px;margin-left: 5px"/><button type="button" style="height:42px;margin-right: 10px">前往</button><span>共${booksperpagebean.totalPages }頁</span>
 		  </div>
 		</div>
 	 
@@ -375,12 +376,17 @@ $(function() {
     </div><!-- 評價留言結束 -->
     
     <div id="menu2" class="tab-pane fade">
+    
+      <div style="margin-left:20px;margin-top:20px;font-family:微軟正黑體;font-size:18px;letter-spacing:4px;font-weight:600">|留言板</div>
+<!--         <textarea rows="6" cols="140"  style="margin-left: 20px;margin-top: 10px;"></textarea> -->
+<!--   <button  style="position:absolute;top:280px;left:480px;color:white;font-family:微軟正黑體;font-size:18px;background-color: black;border:black;border-radius:5px 5px;padding:5px 15px">送出留言</button> -->
+    
     	<div id="shop_message"></div>
     	<form>
 		<input type="hidden" name="s_id" id="hidden" value="${shop.s_id }" />
 		<input type="hidden" name="action" value="Insert" />
-		<textarea name="sm_content" id="sm_content" ></textarea>
-		<button type="button" id="submit">送出</button><span id="showerror">${errors.login }${errors.noempty }</span>
+		<textarea name="sm_content" id="sm_content" rows="6" cols="120"  style="margin-left: 20px;margin-top: 10px;"></textarea>
+		<button type="button" id="submit"  style="position:absolute;top:280px;left:380px;color:white;font-family:微軟正黑體;font-size:18px;background-color: black;border:black;border-radius:5px 5px;padding:5px 15px">送出留言</button><span id="showerror">${errors.login }${errors.noempty }</span>
 	</form>
       
     </div>
