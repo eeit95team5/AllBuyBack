@@ -169,12 +169,21 @@ $(function() {
 	             <img src="<c:url value='/UpdateDataServlet?status=selectPic&id=${shop.s_id }' />"  style="width:120px;height:120px;border-radius:99em;border:2px white solid;margin-top:-70px;margin-left:30px;z-index:2;position: absolute;">
 	             <span class="glyphicon glyphicon-plane" style="color:#FFB90F;font-size:25px;margin-top: 60px;margin-left: 25px"></span><span class="glyphicon glyphicon-plane" style="color:#FFB90F;font-size:25px;"></span><span class="glyphicon glyphicon-plane" style="color:#FFB90F;font-size:25px;"></span><span class="glyphicon glyphicon-plane" style="color:#FFB90F;font-size:25px;"></span><span class="glyphicon glyphicon-plane" style="color:#FFB90F;font-size:25px;"></span>
 	             <div id="sellerName" style="padding-top:10px;margin-top:-90px;margin-left:200px;font-family:微軟正黑體;font-size:22px;font-weight:600;letter-spacing:3px;">${member.m_name}</div>
-<!--                   <span class="glyphicon glyphicon-map-marker" style="position:absolute;top:70px;left:200px;font-size: 18px;"></span><div id="livingIn" style="position:absolute;top:67px;left:230px;font-family:微軟正黑體;font-size:18px;font-weight:500;letter-spacing:3px;">住在:台中</div> -->
-                  <span class="glyphicon glyphicon-shopping-cart" style="position:absolute;top:70px;left:200px;font-size: 18px;"></span> <div id="livingIn" style="position:absolute;top:67px;left:230px;font-family:微軟正黑體;font-size:18px;font-weight:500;letter-spacing:3px;">代購區域:<c:if test="${not empty countrys}"><c:forEach items="${countrys}" var="country" varStatus="i">${country }<c:if test="${not i.last}" >、</c:if></c:forEach></c:if></div>
-                  <span id="spanmsg2" style="position:absolute;top:40px;left:850px;font-size: 18px;"></span>
+                  <span class="glyphicon glyphicon-map-marker" style="position:absolute;top:70px;left:200px;font-size: 18px;"></span><div id="livingIn" style="position:absolute;top:67px;left:230px;font-family:微軟正黑體;font-size:18px;font-weight:500;letter-spacing:3px;">住在:台中</div>
+                  <span class="glyphicon glyphicon-shopping-cart" style="position:absolute;top:70px;left:350px;font-size: 18px;"></span> <div id="livingIn" style="position:absolute;top:67px;left:380px;font-family:微軟正黑體;font-size:18px;font-weight:500;letter-spacing:3px;">代購區域:<c:if test="${not empty countrys}"><c:forEach items="${countrys}" var="country" varStatus="i">${country }<c:if test="${not i.last}" >、</c:if></c:forEach></c:if></div>
+                  <span id="2spanmsg" style="position:absolute;top:40px;left:850px;font-size: 18px;"></span>
+                  <c:choose>
+                  <c:when test="${LoginOK.m_id == shop.s_id }">
+                  <button id="keep_shop" style="position:absolute;top:1px;left:830px;color:white;font-family:微軟正黑體;font-size:18px;background-color: gray;border:gray;border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-eye-open" style="margin-right:6px;"></span>新增商品</button>
+                  <button style="position:absolute;top:1px;left:960px;color:white;font-family:微軟正黑體;font-size:18px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-plane" style="margin-right:6px;"></span>修改商店資訊</button>
+                  </c:when>
+                  <c:otherwise>
                   <button id="keep_shop" style="position:absolute;top:1px;left:850px;color:white;font-family:微軟正黑體;font-size:18px;background-color: gray;border:gray;border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-eye-open" style="margin-right:6px;"></span>訂閱我</button>
-                  <button style="position:absolute;top:1px;left:980px;color:white;font-family:微軟正黑體;font-size:18px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-plane" style="margin-right:6px;"></span>找我報價</button>
-                <c:if test="${LoginOK.m_authority==2 }"><button id="seller"><span class="glyphicon glyphicon-plane" style="margin-right:6px;"></span>買家訊息</button></c:if> 
+                  <button style="position:absolute;top:1px;left:980px;color:white;font-family:微軟正黑體;font-size:18px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-plane" style="margin-right:6px;"></span>找我報價</button>                  
+                  </c:otherwise>
+                  </c:choose>
+                  
+                  <button id="seller"><span class="glyphicon glyphicon-plane" style="margin-right:6px;"></span>買家訊息</button>
 			      <input type="hidden" name="m_id" id="m_id" value="${LoginOK.m_id}"> 
 <%-- 			<input type="hidden" name="m_account" value="${LoginOK.m_account}"> --%>
 <%-- 			<input type="hidden" name="s_id" id="s_id" value="${OrderVO.s_id}">  --%>
@@ -197,6 +206,8 @@ $(function() {
 	  
 	<div class="row">
 	     <div class="col-sm-3">
+	     	<c:if test="${ not empty items[0][1]}">
+	     		         <c:if test="${LoginOK.m_id == shop.s_id }"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></c:if>
 	        <div class="adOuter" >
 	           <a href="<c:url value="item.html?i_id=${items[0][1]}"/>"><img class="imgsrc" src='ReadPictureForItem?i_id=${items[0][1]}&i_pictureX=1' ></a>
 	           <div  class="adContent">${items[0][3] }</div>
@@ -204,9 +215,11 @@ $(function() {
 	             <div id="country" class="countryFrom">${items[0][18] }</div>
 	             <div class="sellerWho" >${member.m_name}的賣場</div>
 	        </div>
+	        </c:if>
 	      </div>
-	     
 	       <div class="col-sm-3">
+	     <c:if test="${ not empty items[1][1]}">
+	     	       <c:if test="${LoginOK.m_id == shop.s_id }"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></c:if>
 	        <div class="adOuter" >
 	           <a href="<c:url value="item.html?i_id=${items[1][1]}"/>"><img class="imgsrc" src="ReadPictureForItem?i_id=${items[1][1]}&i_pictureX=1" ></a>
 	           <div  class="adContent">${items[1][3] }</div>
@@ -214,9 +227,11 @@ $(function() {
 	             <div id="country" class="countryFrom">${items[1][18] }</div>
 	             <div class="sellerWho" >${member.m_name}的賣場</div>
 	        </div>
+	      </c:if>
 	      </div>
-	      
 	     <div class="col-sm-3">
+	     <c:if test="${ not empty items[2][1]}">
+	     	         <c:if test="${LoginOK.m_id == shop.s_id }"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></c:if>
 	        <div class="adOuter" >
 	           <a href="<c:url value="item.html?i_id=${items[2][1]}"/>"><img class="imgsrc" src="ReadPictureForItem?i_id=${items[2][1]}&i_pictureX=1" ></a>
 	           <div  class="adContent">${items[2][3] }</div>
@@ -224,16 +239,36 @@ $(function() {
 	             <div id="country" class="countryFrom">${items[2][18] }</div>
 	             <div class="sellerWho" >${member.m_name}的賣場</div>
 	        </div>
+	        </c:if>
 	      </div>
 	      
 	      <div class="col-sm-3">
-	        <div style="height:365px;background-color: #CDCDC1" >
-	            <div style="color:gray;padding:10px  20px;font-family: 微軟正黑體;font-size:15px">分類:</div>
-	              <div style="color:black;font-family: 微軟正黑體;font-size:15px;"><!-- 賣家自定義分類 -->  
-	                   <a>全部</a>
-	              </div>
+	     <c:if test="${ not empty items[3][1]}">
+	     	         <c:if test="${LoginOK.m_id == shop.s_id }"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></c:if>
+	        <div class="adOuter" >
+	           <a href="<c:url value="item.html?i_id=${items[3][1]}"/>"><img class="imgsrc" src="ReadPictureForItem?i_id=${items[3][1]}&i_pictureX=1" ></a>
+	           <div  class="adContent">${items[3][3] }</div>
+	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
+	             <div id="country" class="countryFrom">${items[3][18] }</div>
+	             <div class="sellerWho" >${member.m_name}的賣場</div>
 	        </div>
+	        </c:if>
 	      </div>
+	      
+<!-- 	      <div class="col-sm-3">	       -->
+<!-- 	        <div style="height:365px;background-color: #CDCDC1" > -->
+<!-- 	            <div style="color:gray;padding:10px  20px;font-family: 微軟正黑體;font-size:15px">分類:</div> -->
+<!-- 	              <div style="color:black;font-family: 微軟正黑體;font-size:15px;">賣家自定義分類   -->
+<%-- 	                   <a href="<c:url value="shop.html?s_id=${shop.s_id}"/>">全部</a> <br/> --%>
+<%-- 	                   <c:forEach items="${shop_Class1 }" var="shopclass1" varStatus="i"> --%>
+<%-- 	                   &nbsp;&nbsp;&nbsp;<a href="">${shopclass1.s_class1Name}<c:out value=" -- 折扣 ${shopclass1.s_discount }"></c:out></a><br/> --%>
+<%-- 	                   <c:forEach items="${shop_Class2 }" var="shopclass2"> --%>
+<%-- 	                   <c:if test="${shopclass1.s_class1 == shopclass2.s_class1}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">${shopclass2.s_class2Name}<c:out value=" -- 折扣 ${shopclass2.s_discount }"></c:out> </a><br/></c:if> --%>
+<%-- 	                   </c:forEach> --%>
+<%-- 	                   </c:forEach> --%>
+<!-- 	              </div> -->
+<!-- 	        </div> -->
+<!-- 	      </div> -->
 	     
 	     
 	    
@@ -242,16 +277,8 @@ $(function() {
 	 <br>
 	 <div class="row">
 	     <div class="col-sm-3">
-	        <div class="adOuter" >
-	           <a href="<c:url value="item.html?i_id=${items[3][1]}"/>"><img class="imgsrc" src="ReadPictureForItem?i_id=${items[3][1]}&i_pictureX=1" ></a>
-	           <div  class="adContent">${items[3][3] }</div>
-	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
-	             <div id="country" class="countryFrom">${items[3][18] }</div>
-	             <div class="sellerWho" >${member.m_name}的賣場</div>
-	        </div>
-	      </div>
-	     
-	       <div class="col-sm-3">
+	      <c:if test="${ not empty items[4][1]}">
+	      	         <c:if test="${LoginOK.m_id == shop.s_id }"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></c:if>
 	        <div class="adOuter" >
 	           <a href="<c:url value="item.html?i_id=${items[4][1]}"/>"><img class="imgsrc" src="ReadPictureForItem?i_id=${items[4][1]}&i_pictureX=1" ></a>
 	           <div  class="adContent">${items[4][3] }</div>
@@ -259,9 +286,12 @@ $(function() {
 	             <div id="country" class="countryFrom">${items[4][18] }</div>
 	             <div class="sellerWho" >${member.m_name}的賣場</div>
 	        </div>
+	        </c:if>
 	      </div>
-	      
-	     <div class="col-sm-3">
+	     
+	       <div class="col-sm-3">
+	        <c:if test="${ not empty items[5][1]}">
+	        	         <c:if test="${LoginOK.m_id == shop.s_id }"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></c:if>
 	        <div class="adOuter" >
 	           <a href="<c:url value="item.html?i_id=${items[5][1]}"/>"><img class="imgsrc" src="ReadPictureForItem?i_id=${items[5][1]}&i_pictureX=1" ></a>
 	           <div  class="adContent">${items[5][3] }</div>
@@ -269,6 +299,33 @@ $(function() {
 	             <div id="country" class="countryFrom">${items[5][18] }</div>
 	             <div class="sellerWho" >${member.m_name}的賣場</div>
 	        </div>
+	        </c:if>
+	      </div>
+	      
+	     <div class="col-sm-3">
+	      <c:if test="${ not empty items[6][1]}">
+	      	         <c:if test="${LoginOK.m_id == shop.s_id }"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></c:if>
+	        <div class="adOuter" >
+	           <a href="<c:url value="item.html?i_id=${items[6][1]}"/>"><img class="imgsrc" src="ReadPictureForItem?i_id=${items[6][1]}&i_pictureX=1" ></a>
+	           <div  class="adContent">${items[6][3] }</div>
+	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
+	             <div id="country" class="countryFrom">${items[6][18] }</div>
+	             <div class="sellerWho" >${member.m_name}的賣場</div>
+	        </div>
+	        </c:if>
+	      </div>
+	      
+	      <div class="col-sm-3">
+	     <c:if test="${ not empty items[7][1]}">
+	     	         <c:if test="${LoginOK.m_id == shop.s_id }"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></c:if>
+	        <div class="adOuter" >
+	           <a href="<c:url value="item.html?i_id=${items[7][1]}"/>"><img class="imgsrc" src="ReadPictureForItem?i_id=${items[7][1]}&i_pictureX=1" ></a>
+	           <div  class="adContent">${items[7][3] }</div>
+	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
+	             <div id="country" class="countryFrom">${items[7][18] }</div>
+	             <div class="sellerWho" >${member.m_name}的賣場</div>
+	        </div>
+	        </c:if>
 	      </div>
 	     
 	    
@@ -364,6 +421,7 @@ $(function(){
 	$('#keep_shop').click(function(){
 		keep_shop();
 	})
+	
 })
 
 function insertItemMessage(){
@@ -478,12 +536,12 @@ function showJSON(data2){
 
 function keep_shop(){
 	if(<c:out value="${empty LoginOK}">true</c:out>){
-		$('#spanmsg2').text("請先登入");
+		$('#2spanmsg').text("請先登入");
 	}else{
-		$('#spanmsg2').text("test");		
+		$('#2spanmsg').text("test");		
 		$.post("<c:url value='/keep_shop.SPRINGcontroller'/>",{"action":"Insert","m_id":<c:out value="${LoginOK.m_id}">0</c:out>,
 			"s_id":<c:out value="${shop.s_id}">0</c:out>},function(){
-				$('#spanmsg2').text("已將商店加入收藏");
+				$('#2spanmsg').text("已將商店加入收藏");
 			})			
 	}
 }
