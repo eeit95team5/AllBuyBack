@@ -48,6 +48,14 @@
 /*   color:gray; */
 }
 
+
+.tdclass{
+  font-family: 微軟正黑體;
+  font-size: 25px;
+  width:150px;
+  height:60px;
+}
+
 </style>
 
 <script type="text/javascript"
@@ -197,7 +205,13 @@ function showS_Class2JSON(data){
 
 <jsp:include page="includeTop.jsp"></jsp:include>
 
-	<h3>新增商品</h3>
+	
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12"  style="background-color: #BCD2EE;height:800px;padding-left:50px;position: relative;margin-bottom: 50px;margin-top: 50px">
+        
+	
+	<h2  style="text-align: center;margin-top: 30px;font-family: 微軟正黑體;margin-bottom: 20px;">新增商品</h2>
 	<div id="test"></div>
 
 	<form action="<c:url value="/item.SPRINGcontroller"/>" method="get">
@@ -230,55 +244,55 @@ function showS_Class2JSON(data){
 						</c:choose> />
 			</tr>
 			<tr>
-				<td>商品名稱：</td>
-				<td><input type="text" name="i_name" value="${result.i_name}"></td>
+				<td  class="tdclass">商品名稱：</td>
+				<td><input type="text" name="i_name" value="${result.i_name}"  size="40"  style="height:30px"></td>
 				<td>${errors.i_name}</td>
 			</tr>
 			<tr>
-				<td>商品簡介：</td>
+				<td class="tdclass">商品簡介：</td>
 				<td><input type="text" name="i_describe"
-					value="${result.i_describe}"></td>
+					value="${result.i_describe}"   size="40"  style="height:30px"></td>
 				<td>${errors.i_describe}</td>
 			</tr>
 			<tr>
-				<td>商品價格：</td>
-				<td><input type="text" name="i_price" value="${result.i_price}"></td>
+				<td class="tdclass">商品價格：</td>
+				<td><input type="text" name="i_price" value="${result.i_price}"   size="20"  style="height:30px"></td>
 				<td>${errors.i_price}</td>
 			</tr>
 			<tr>
-				<td>商品數量：</td>
-				<td><input type="text" name="i_quantity" value="${result.i_quantity}"></td>
+				<td class="tdclass">商品數量：</td>
+				<td><input type="text" name="i_quantity" value="${result.i_quantity}"  size="20"  style="height:30px"></td>
 				<td>${errors.i_quantity}</td>
 			</tr>
 			<tr>
-				<td>所在國家：</td>
-				<td><select id="country_id" name="country_id" >
+				<td class="tdclass">所在國家：</td>
+				<td  style="height:30px"><select id="country_id" name="country_id" style="height:30px;font-size:18px">
 						<c:if test="${not empty country }">
 							<c:forEach var="cBean" items="${country}">
-								<option value="${cBean.country_id }">${cBean.country_name }</option>
+								<option value="${cBean.country_id }"  style="font-size:18px">${cBean.country_name }</option>
 							</c:forEach>
 						</c:if>
 				</select></td>
 				<td>${errors.country_id}</td>
 			</tr>
 			<tr>
-				<td>到貨時間：</td>
-				<td><input type="date" name="i_arrivedDate" id="i_arrivedDate"></td>
+				<td class="tdclass">到貨時間：</td>
+				<td><input type="date" name="i_arrivedDate" id="i_arrivedDate"  style="height:30px;font-size:18px"></td>
 				<td>${errors.i_arrivedDate}</td>
 			</tr>			
 			<tr>
-				<td>商品分類一：</td>
-				<td><select id="i_class1" name="i_class1"></select></td>
+				<td class="tdclass">商品分類一：</td>
+				<td><select id="i_class1" name="i_class1"  style="height:30px;font-size:18px"></select></td>
 				<td>${errors.country_id}</td>
 			</tr>
 			<tr>
-				<td>商品分類二：</td>
-				<td><select id="i_class2" name="i_class2"></select></td>
+				<td class="tdclass">商品分類二：</td>
+				<td><select id="i_class2" name="i_class2" style="height:30px;font-size:18px"></select></td>
 				<td>${errors.i_class2}</td>
 			</tr>
 			<tr>
-				<td>商品分類三：</td>
-				<td><select id="i_class3" name="i_class3"></select></td>
+				<td class="tdclass">商品分類三：</td>
+				<td><select id="i_class3" name="i_class3" style="height:30px;font-size:18px"></select></td>
 				<td>${errors.i_class3}</td>
 			</tr>
 <!-- 			<tr> -->
@@ -300,15 +314,15 @@ function showS_Class2JSON(data){
 <%-- 				<td>${errors.s_class2}</td> --%>
 <!-- 			</tr> -->
 			<tr>
-				<td><button type="submit" name="prodaction" value="Insert">新增商品</button></td>
+				<td><button type="submit" name="prodaction" value="Insert"  style="position:absolute;top:680px;left:330px;color:white;font-family:微軟正黑體;font-size:25px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px">新增商品</button></td>
 			</tr>
 		</table>
 	</form>
 	<form action="<c:url value='/shop.html'/>" method="get">
 		<table>
 			<tr>
-				<td><a href="<c:url value='/HomeIndex.jsp'/>"> <input type="button" value="回首頁" ></a></td>				
-				<td><button type="submit" name="s_id" value="${shop.s_id}${result.s_id}">回到商店</button></td>
+				<td><a href="<c:url value='/HomeIndex.jsp'/>"> <input type="button" value="回首頁" style="position:absolute;top:680px;left:720px;color:white;font-family:微軟正黑體;font-size:25px;background-color:#EEA2AD;border:#EEA2AD;border-radius:15px 15px;padding:5px 15px"></a></td>				
+				<td><button type="submit" name="s_id" value="${shop.s_id}${result.s_id}"  style="position:absolute;top:680px;left:520px;color:white;font-family:微軟正黑體;font-size:25px;background-color:gray;border:gray;border-radius:15px 15px;padding:5px 15px">回到商店</button></td>
 			</tr>
 		</table>
 	</form>
@@ -318,6 +332,14 @@ function showS_Class2JSON(data){
 	<c:if test="${not empty insertsuccess}">
 		<h3>新增商品成功!</h3>
 	</c:if>
+	
+	
+</div>
+</div>
+</div>	
+	
+	
+	
 <%-- 	<c:if test="${not empty insertsuccess}"> --%>
 <!-- 		<table border="1"> -->
 <!-- 			<thead> -->
