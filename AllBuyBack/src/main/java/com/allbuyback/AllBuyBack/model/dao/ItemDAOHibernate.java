@@ -40,13 +40,20 @@ public class ItemDAOHibernate implements ItemDAOI {
 		query.setParameter(0, s_id);
 		return query.getResultList();
 	}
-	
 	public long selectCountByS_Id(int s_id){
+		Query<?> query = this.getSession().createQuery("select count(*) as count from ItemBean where s_id=? and i_status =1");
+		query.setParameter(0, s_id);
+		long a = (long) query.list().get(0);
+		return a;
+	}
+	
+	public long selectAllCountByS_Id(int s_id){
 		Query<?> query = this.getSession().createQuery("select count(*) as count from ItemBean where s_id=?");
 		query.setParameter(0, s_id);
 		long a = (long) query.list().get(0);
 		return a;
 	}
+	
 	
 	
 	@Override

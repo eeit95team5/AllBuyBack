@@ -223,44 +223,44 @@ label,input{
 </style>
 <!-- 管理員 -->
 <script type="text/javascript">
-//$(function(){
-//	$('#submit').click(function() {
-//		$.get("<c:url value='/ChatController'/>", {
-//			"action" : "MessageFromSeller","id" : ${LoginOK.m_id}
-//		}, function(data) {
-//			$('#show').html(data)
-//		});
-//	});
+$(function(){
+	$('#submit').click(function() {
+		$.get("<c:url value='/ChatController'/>", {
+			"action" : "MessageFromSeller","id" : ${LoginOK.m_id}
+		}, function(data) {
+			$('#show').html(data)
+		}); 
+	});
 	
-//	$('#submit1').click(function() {
-//		$.get("<c:url value='/RepController'/>", {
-//			"action" : "GetReply","id" : ${LoginOK.m_id}
-//		}, function(data) {
-//			$('#show1').html(data)
-//		});
-//	});
+	$('#submit1').click(function() {
+		$.get("<c:url value='/RepController'/>", {
+			"action" : "GetReply","id" : ${LoginOK.m_id}
+		}, function(data) {
+			$('#show1').html(data)
+		});
+	});
 	
-//	 $('#submit2').click(function(){
-//			var m_id = $('#m_id').val();
-//			var s_id = $('#s_id').val();
+	 $('#submit2').click(function(){
+			var m_id = $('#m_id').val();
+			var s_id = $('#s_id').val();
 			
-//	 		console.log(i_id);
-///				window.open('ChatController?action=show_both_message_seller&m_id='+m_id+'&s_id='+s_id,'購買AllBuyBack廣告',
-//						'height=650,width=650,scrollbars=0,resizable=0,location=0');
-//		});
+	 		console.log(i_id);
+				window.open('ChatController?action=show_both_message_seller&m_id='+m_id+'&s_id='+s_id,'購買AllBuyBack廣告',
+						'height=650,width=650,scrollbars=0,resizable=0,location=0');
+		});
 	 
-//});
+});
 </script>
   
  <script type="text/javascript">
 $(function(){	
-	$('#a').click(function(){		
-		$.get("<c:url value='/MemController'/>",{"action":"MemberListAll"},
-				function(data){
-			$('#show').html(data)		
-		});	
-	});	
-});
+//	$('#a').click(function(){		
+//		$.get("<c:url value='/MemController'/>",{"action":"MemberListAll"},
+//				function(data){
+//			$('#show').html(data)		
+//		});	
+//	});	
+//});
 </script>
 <c:if test="${! empty LoginOK}">
 <script type="text/javascript">
@@ -503,7 +503,7 @@ $(function(){
       </div>
 
          <div class="dropdown-content" id="dropdown">
-            <a href="update.jsp">修改基本資料</a>
+            <a href="<c:url value='/UpdateDataServlet?status=query&account=${LoginOK.m_account} ' />">修改基本資料</a>
             <a href="ShoppingCart.go?action=select">我的購物車</a>
            <c:if test="${LoginOK.m_authority==2}"><a href="shop.html?s_id=${LoginOK.m_id}">我的賣場</a></c:if>
            <c:if test="${LoginOK.m_authority==1}"><a href="#">申請賣場</a></c:if>
@@ -688,10 +688,17 @@ $(function(){
   		</div>
   		
   		<div id="menu4" class="tab-pane fade">
+<!--     		<input type="submit" value="送出"> -->
+    		<input id="submit" type="button" value="所有對話紀錄">
+    		
+    		<div id="show"></div>
   		
-  			<button id="a" class="btn w3-tangerine w3-xlarge" type="submit">Send</button>
-  		<div id="show">
-  		</div>
+  		
+<!--     		<input type="submit" value="送出"> -->
+    		<input id="submit1" type="button" value="所有檢舉紀錄">
+    		
+    		<div id="show1"></div>
+  
   		</div>
    	</div>
 

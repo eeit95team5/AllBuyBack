@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Arrays;
+import com.allbuyback.login.model.*;
 
 public class RegisterService {
 

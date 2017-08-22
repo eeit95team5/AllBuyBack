@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import model.*;
+import com.allbuyback.login.model.*;
+import model.RegisterService;
 
 /**
  * Servlet implementation class UpdateDataServlet

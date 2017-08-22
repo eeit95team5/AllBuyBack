@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import com.allbuyback.login.model.*;
 
 public class LoginService {
 	
@@ -18,7 +19,7 @@ public class LoginService {
 		bean = dao.select(account);
 		//System.out.println(bean);
 		if(bean != null){
-			if(password.equals(bean.m_password) && (bean.m_authority != 0)){
+			if(password.equals(bean.getM_password()) && (bean.getM_authority() != 0)){
 				return bean;
 			}else
 				return null;
