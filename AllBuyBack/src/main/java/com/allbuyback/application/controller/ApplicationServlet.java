@@ -39,57 +39,57 @@ public class ApplicationServlet extends HttpServlet {
 				
 				
 				int m_id= loginOK.getM_id();
-				String name=loginOK.getM_name();
-				String mail=loginOK.getM_email();
-				String shopName = request.getParameter("shopName");			
-				String aboutYou=request.getParameter("aboutYou");
+//				String name=loginOK.getM_name();
+//				String mail=loginOK.getM_email();
+//				String shopName = request.getParameter("shopName");			
+//				String aboutYou=request.getParameter("aboutYou");
 				
 			
-				String dataCountry= null;
-				String country[]=request.getParameterValues("country");
-                if(country!=null){
-                	int size=java.lang.reflect.Array.getLength(country);
-                	for(int i=0;i<size;i++){
-                		
-                		dataCountry = dataCountry + "," + country[i];
-                	}
-                }
-                
-                
-                String countryInfo = dataCountry.substring(dataCountry.indexOf(",") + 1);   
-		        System.out.println(countryInfo);
-                
-                
-                String dataItem = null;
-                String items[]=request.getParameterValues("items");
-                if(items!=null){
-                	int size=java.lang.reflect.Array.getLength(items);
-                	for(int i=0;i<size;i++){   		
-                		dataItem = dataItem + "," + items[i];
-                	}
-                }
-                
-                String itemInfo = dataItem.substring(dataItem.indexOf(",") + 1);	        
+//				String dataCountry= null;
+//				String country[]=request.getParameterValues("country");
+//                if(country!=null){
+//                	int size=java.lang.reflect.Array.getLength(country);
+//                	for(int i=0;i<size;i++){
+//                		
+//                		dataCountry = dataCountry + "," + country[i];
+//                	}
+//                }
+//                
+//                
+//                String countryInfo = dataCountry.substring(dataCountry.indexOf(",") + 1);   
+//		        System.out.println(countryInfo);
+//                
+//                
+//                String dataItem = null;
+//                String items[]=request.getParameterValues("items");
+//                if(items!=null){
+//                	int size=java.lang.reflect.Array.getLength(items);
+//                	for(int i=0;i<size;i++){   		
+//                		dataItem = dataItem + "," + items[i];
+//                	}
+//                }
+//                
+//                String itemInfo = dataItem.substring(dataItem.indexOf(",") + 1);	        
 		        //System.out.println(itemInfo);
                 
         //呼叫Model
                 
-                applicationBean bean = new applicationBean();
-        		bean.setId(m_id);
-        		bean.setName(name);
-        		bean.setMail(mail);
-        		bean.setShopName(shopName);
-        		bean.setCountry(countryInfo);
-        		bean.setItems(itemInfo);
-        		bean.setAboutYou(aboutYou);
+//                applicationBean bean = new applicationBean();
+//        		bean.setId(m_id);
+//        		bean.setName(name);
+//        		bean.setMail(mail);
+//        		bean.setShopName(shopName);
+//        		bean.setCountry(countryInfo);
+//        		bean.setItems(itemInfo);
+//        		bean.setAboutYou(aboutYou);
 				
-                applicationDAOjdbc app=new applicationDAOjdbc();
-                int a=app.insertTOApplication(bean);
-		        System.out.println("成功更新:"+a);
-		        
-		        
+//                applicationDAOjdbc app=new applicationDAOjdbc();
+//                int a=app.insertTOApplication(bean);
+//		        System.out.println("成功更新:"+a);
+				applicationDAOjdbc app=new applicationDAOjdbc();
 		        app.updateApply(m_id);
 		        
+		        request.getRequestDispatcher("/_Success.jsp").forward(request, response);
 		        
 		        
 	}
