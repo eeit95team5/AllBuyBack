@@ -211,7 +211,7 @@ public class MemberDAO {
 	String INSERT = "insert into member " + "(m_account, m_password, m_name, m_phone, m_address, m_identity, "
 			+ "m_email, m_photo, m_point ) " + "values (?,?,?,?,?,?,?,?,?);";
 	public int insert(MemberVO bean){
-		InputStream input = MemberDAO.class.getResourceAsStream("cat.jpg");
+		InputStream input = MemberDAO.class.getResourceAsStream("../webapp/images/cat.jpg");
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;

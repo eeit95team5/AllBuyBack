@@ -575,6 +575,7 @@ $(function(){
   		<li><a data-toggle="tab" href="#menu2">我的收藏</a></li>		
   		<li><a data-toggle="tab" href="#menu3">變漂亮專區</a></li>		
   		<li><a data-toggle="tab" href="#menu4">檢舉與賣家通知</a></li>
+  		<li><a data-toggle="tab" href="#menu5">查看訂單</a></li>
 	</ul>
 
 	<div class="tab-content ">
@@ -705,6 +706,11 @@ $(function(){
     		
     		<div id="show1"></div>
   
+  		</div>
+  		<div id="menu5" class="tab-pane fade">
+
+    		<h2><a href="Order.do?action=cGetAll">我的購買訂單</a></h2>
+
   		</div>
    	</div>
 
