@@ -26,24 +26,25 @@ public class SeeMyBonusServlet extends HttpServlet {
 	   System.out.println("成功查看紅利點數-doGet");
 	   
 	   
-//	   response.setHeader("Access-Control-Allow-Origin", "*");
-//	   response.setHeader("content-type", "text/html;charset=UTF-8");
-//	   response.setCharacterEncoding("UTF-8");
-//	   
-//	   HttpSession session=request.getSession();
-//	   
-//	   MemberVO loginOK =(MemberVO) session.getAttribute("LoginOK");
-//	   String m_account= loginOK.getM_account();
-//	   
-//	   GoldenBrainService gbService=new GoldenBrainService();
-//	   int bonus=gbService.getOldBonus(m_account);
-//	   request.setAttribute("bonus", bonus);   
+	   response.setHeader("Access-Control-Allow-Origin", "*");
+	   response.setHeader("content-type", "text/html;charset=UTF-8");
+	   response.setCharacterEncoding("UTF-8");
 	   
+	   HttpSession session=request.getSession();
 	   
-	  // RequestDispatcher dispatcher = request.getRequestDispatcher("/saveBonus.controller");
-       //dispatcher.include(request, response);
+	   MemberVO loginOK =(MemberVO) session.getAttribute("LoginOK");
+	   String m_account= loginOK.getM_account();
 	   
-	   request.getRequestDispatcher("<c:url value='/UpdateDataServlet?status=query&account=${LoginOK.m_account} ' />").forward(request, response);	   
+	   GoldenBrainService gbService=new GoldenBrainService();
+	   int bonus=gbService.getOldBonus(m_account);
+	   loginOK.setM_point(bonus);
+	   request.setAttribute("bonus", bonus);   
+	   session.setAttribute("LoginOK", loginOK);
+	   
+	   RequestDispatcher dispatcher = request.getRequestDispatcher("/UpdateDataServlet?status=query&account="+loginOK.getM_account());
+       dispatcher.include(request, response);
+	   
+//	   request.getRequestDispatcher("<c:url value='/UpdateDataServlet?status=query&account=${LoginOK.m_account} ' />").forward(request, response);	   
 	   return;
 	   
 
