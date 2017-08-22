@@ -20,10 +20,14 @@ import org.hibernate.engine.transaction.jta.platform.internal.SynchronizationReg
 import org.hibernate.mapping.Array;
 import org.json.simple.JSONValue;
 
+import com.allbuyback.AllBuyBack.model.ShopService;
 import com.allbuyback.chat.model.ChatService;
 import com.allbuyback.chat.model.ChatVO;
+import com.allbuyback.member.model.MemService;
+import com.allbuyback.member.model.MemVO;
 import com.allbuyback.report.model.ReportService;
 import com.allbuyback.report.model.ReportVO;
+import com.allbuyback.shop.model.ShopVO;
 
 @WebServlet("/ChatController")
 public class ChatController extends HttpServlet {
@@ -149,7 +153,12 @@ public class ChatController extends HttpServlet {
 			ChatService chatSvc = new ChatService();
 			List<ChatVO> list = chatSvc.showBothMessage(Integer.parseInt(m_id), Integer.parseInt(s_id));
 			request.setAttribute("list", list);
-
+			
+			com.allbuyback.shop.model.ShopService shopSvc = new com.allbuyback.shop.model.ShopService();
+			ShopVO shopVO = shopSvc.getIntro(Integer.parseInt(s_id));
+			
+			request.setAttribute("ShopVO", shopVO);
+			
 			request.setAttribute("SellerVO", chatVO);
 			request.getRequestDispatcher("/MessageFromSellerFull.jsp").forward(request, response);
 
@@ -202,6 +211,10 @@ public class ChatController extends HttpServlet {
 			List<ChatVO> list = chatSvc.showBothMessage(m_id, s_id);
 			request.setAttribute("list", list);
 			request.setAttribute("BuyerVO", chatVO);
+			
+			MemService memSvc = new MemService();
+			MemVO memVO = memSvc.getOneMem(m_id);
+			request.setAttribute("MemVO", memVO);
 			request.getRequestDispatcher("/MessageFromBuyerFull.jsp").forward(request, response);
 		}
 

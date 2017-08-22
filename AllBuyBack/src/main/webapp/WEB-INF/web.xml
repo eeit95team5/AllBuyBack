@@ -32,19 +32,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>mvc</servlet-name>
-    <url-pattern>/shopmanager.html</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>mvc</servlet-name>
-    <url-pattern>/updateItem.html</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>mvc</servlet-name>
-    <url-pattern>/shop.html</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>mvc</servlet-name>
-    <url-pattern>/item.html</url-pattern>
+    <url-pattern>*.html</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>country</servlet-name>

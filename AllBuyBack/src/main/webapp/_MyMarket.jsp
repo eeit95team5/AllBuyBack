@@ -174,7 +174,7 @@ $(function() {
                   <span id="2spanmsg" style="position:absolute;top:40px;left:850px;font-size: 18px;"></span>
                   <c:choose>
                   <c:when test="${LoginOK.m_id == shop.s_id }">
-                  <button id="keep_shop" style="position:absolute;top:1px;left:830px;color:white;font-family:微軟正黑體;font-size:18px;background-color: gray;border:gray;border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-eye-open" style="margin-right:6px;"></span>新增商品</button>
+                  <form action="<c:url value='/insertitem.html'/>" method="post"><button type="submit" name="s_id" value="${shop.s_id}" id="insertitem" style="position:absolute;top:1px;left:830px;color:white;font-family:微軟正黑體;font-size:18px;background-color: gray;border:gray;border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-eye-open" style="margin-right:6px;"></span>新增商品</button></form>
                   <button style="position:absolute;top:1px;left:960px;color:white;font-family:微軟正黑體;font-size:18px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-plane" style="margin-right:6px;"></span>修改商店資訊</button>
                   </c:when>
                   <c:otherwise>
@@ -207,7 +207,7 @@ $(function() {
 	<div class="row">
 	     <div class="col-sm-3">
 	     	<c:if test="${ not empty items[0][1]}">
-	     		         <c:if test="${LoginOK.m_id == shop.s_id }"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></c:if>
+	     		         <c:if test="${LoginOK.m_id == shop.s_id }"><a href="<c:url value="updateItem.html?i_id=${items[0][1]}"/>"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></a></c:if>
 	        <div class="adOuter" >
 	           <a href="<c:url value="item.html?i_id=${items[0][1]}"/>"><img class="imgsrc" src='ReadPictureForItem?i_id=${items[0][1]}&i_pictureX=1' ></a>
 	           <div  class="adContent">${items[0][3] }</div>
@@ -219,7 +219,7 @@ $(function() {
 	      </div>
 	       <div class="col-sm-3">
 	     <c:if test="${ not empty items[1][1]}">
-	     	       <c:if test="${LoginOK.m_id == shop.s_id }"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></c:if>
+	     	       <c:if test="${LoginOK.m_id == shop.s_id }"><a href="<c:url value="updateItem.html?i_id=${items[1][1]}"/>"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></a></c:if>
 	        <div class="adOuter" >
 	           <a href="<c:url value="item.html?i_id=${items[1][1]}"/>"><img class="imgsrc" src="ReadPictureForItem?i_id=${items[1][1]}&i_pictureX=1" ></a>
 	           <div  class="adContent">${items[1][3] }</div>
@@ -231,7 +231,7 @@ $(function() {
 	      </div>
 	     <div class="col-sm-3">
 	     <c:if test="${ not empty items[2][1]}">
-	     	         <c:if test="${LoginOK.m_id == shop.s_id }"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></c:if>
+	     	         <c:if test="${LoginOK.m_id == shop.s_id }"><a href="<c:url value="updateItem.html?i_id=${items[2][1]}"/>"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></a></c:if>
 	        <div class="adOuter" >
 	           <a href="<c:url value="item.html?i_id=${items[2][1]}"/>"><img class="imgsrc" src="ReadPictureForItem?i_id=${items[2][1]}&i_pictureX=1" ></a>
 	           <div  class="adContent">${items[2][3] }</div>
@@ -244,7 +244,7 @@ $(function() {
 	      
 	      <div class="col-sm-3">
 	     <c:if test="${ not empty items[3][1]}">
-	     	         <c:if test="${LoginOK.m_id == shop.s_id }"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></c:if>
+	     	         <c:if test="${LoginOK.m_id == shop.s_id }"><a href="<c:url value="updateItem.html?i_id=${items[3][1]}"/>"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></a></c:if>
 	        <div class="adOuter" >
 	           <a href="<c:url value="item.html?i_id=${items[3][1]}"/>"><img class="imgsrc" src="ReadPictureForItem?i_id=${items[3][1]}&i_pictureX=1" ></a>
 	           <div  class="adContent">${items[3][3] }</div>
@@ -278,7 +278,7 @@ $(function() {
 	 <div class="row">
 	     <div class="col-sm-3">
 	      <c:if test="${ not empty items[4][1]}">
-	      	         <c:if test="${LoginOK.m_id == shop.s_id }"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></c:if>
+	      	         <c:if test="${LoginOK.m_id == shop.s_id }"><a href="<c:url value="updateItem.html?i_id=${items[4][1]}"/>"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></a></c:if>
 	        <div class="adOuter" >
 	           <a href="<c:url value="item.html?i_id=${items[4][1]}"/>"><img class="imgsrc" src="ReadPictureForItem?i_id=${items[4][1]}&i_pictureX=1" ></a>
 	           <div  class="adContent">${items[4][3] }</div>
@@ -291,7 +291,7 @@ $(function() {
 	     
 	       <div class="col-sm-3">
 	        <c:if test="${ not empty items[5][1]}">
-	        	         <c:if test="${LoginOK.m_id == shop.s_id }"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></c:if>
+	        	         <c:if test="${LoginOK.m_id == shop.s_id }"><a href="<c:url value="updateItem.html?i_id=${items[5][1]}"/>"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></a></c:if>
 	        <div class="adOuter" >
 	           <a href="<c:url value="item.html?i_id=${items[5][1]}"/>"><img class="imgsrc" src="ReadPictureForItem?i_id=${items[5][1]}&i_pictureX=1" ></a>
 	           <div  class="adContent">${items[5][3] }</div>
@@ -304,7 +304,7 @@ $(function() {
 	      
 	     <div class="col-sm-3">
 	      <c:if test="${ not empty items[6][1]}">
-	      	         <c:if test="${LoginOK.m_id == shop.s_id }"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></c:if>
+	      	         <c:if test="${LoginOK.m_id == shop.s_id }"><a href="<c:url value="updateItem.html?i_id=${items[6][1]}"/>"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></a></c:if>
 	        <div class="adOuter" >
 	           <a href="<c:url value="item.html?i_id=${items[6][1]}"/>"><img class="imgsrc" src="ReadPictureForItem?i_id=${items[6][1]}&i_pictureX=1" ></a>
 	           <div  class="adContent">${items[6][3] }</div>
@@ -317,7 +317,7 @@ $(function() {
 	      
 	      <div class="col-sm-3">
 	     <c:if test="${ not empty items[7][1]}">
-	     	         <c:if test="${LoginOK.m_id == shop.s_id }"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></c:if>
+	     	         <c:if test="${LoginOK.m_id == shop.s_id }"><a href="<c:url value="updateItem.html?i_id=${items[7][1]}"/>"><span class="glyphicon glyphicon-pencil" style="font-size:15px;margin-left:245px;margin-top: -25px"></span></a></c:if>
 	        <div class="adOuter" >
 	           <a href="<c:url value="item.html?i_id=${items[7][1]}"/>"><img class="imgsrc" src="ReadPictureForItem?i_id=${items[7][1]}&i_pictureX=1" ></a>
 	           <div  class="adContent">${items[7][3] }</div>
@@ -421,7 +421,6 @@ $(function(){
 	$('#keep_shop').click(function(){
 		keep_shop();
 	})
-	
 })
 
 function insertItemMessage(){

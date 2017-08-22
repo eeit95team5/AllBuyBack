@@ -75,9 +75,9 @@
 
 <br/>
 <span id="shop_message"></span>
-<form action="<c:url value='/insertitem.SPRINGcontroller'/>" method="get">
+<form action="<c:url value='/insertitem.html'/>" method="post">
 <input type="hidden" name="s_id" value="${shop.s_id }"/>
-<button type="submit" name="prodaction" value="Insert">新增商品</button>
+<button type="submit">新增商品</button>
 </form>
 <a href="index.jsp"><input type="button" value="回首頁"/></a>
 </body>
