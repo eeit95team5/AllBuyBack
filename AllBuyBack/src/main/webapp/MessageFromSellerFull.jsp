@@ -87,7 +87,7 @@
 <body style="background:rgb(204, 255, 255)">
 <h3 style="text-align: center;">${ShopVO.s_aboutMe}</h3>
 	<div id="msgContent"
-		style="width: 800px; height: 500px; overflow: auto">
+		style="width: 800px; height: 350px; overflow: auto">
 		<!-- <table border='1' bordercolor='#CCCCFF' width='800'> -->
 		<table class="table">
 			<!-- 	<tr> -->
@@ -186,6 +186,6 @@
 
 	<a href="ChatController?action=MessageFromSeller&id=${LoginOK.m_id}">回上一頁</a>
 	<a href="HomeIndex.jsp">回首頁</a>
-	<a href="update.jsp">回會員管理頁面</a>
+<!-- 	<a href="update.jsp">回會員管理頁面</a> -->
 </body>
 </html>

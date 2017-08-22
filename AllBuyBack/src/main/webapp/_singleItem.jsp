@@ -531,7 +531,7 @@ $('.wantBuy').click(function(){
 	
 	console.log(i_id);
 		window.open('ChatController?action=show_both_message_seller&m_id='+m_id+'&s_id='+s_id,'購買AllBuyBack廣告',
-				'height=650,width=650,scrollbars=0,resizable=0,location=0');
+				'height=500,width=800,scrollbars=0,resizable=0,location=0');
 });
 
 $('#wantBuy').click(function(){
@@ -540,7 +540,7 @@ $('#wantBuy').click(function(){
 	
 	console.log(i_id);
 		window.open('ChatController?action=show_both_message_seller&m_id='+m_id+'&s_id='+s_id,'購買AllBuyBack廣告',
-				'height=650,width=650,scrollbars=0,resizable=0,location=0');
+				'height=500,width=800,scrollbars=0,resizable=0,location=0');
 });
 
 

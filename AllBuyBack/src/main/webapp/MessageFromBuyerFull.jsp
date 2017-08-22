@@ -20,7 +20,7 @@
 </head>
 <body style="background:rgb(204, 255, 255)">
 <h3 style="text-align: center;">買家:${MemVO.m_account}</h3>
-<div style="width: 800px; height: 500px; overflow: auto">
+<div style="width: 800px; height: 350px; overflow: auto">
 <!-- <table border='1' bordercolor='#CCCCFF' width='800'> -->
 <table class="table">
 <!-- 	<tr> -->
