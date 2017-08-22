@@ -85,6 +85,7 @@
 </script>
 </head>
 <body style="background:rgb(204, 255, 255)">
+<h3 style="text-align: center;">${ShopVO.s_aboutMe}</h3>
 	<div id="msgContent"
 		style="width: 800px; height: 500px; overflow: auto">
 		<!-- <table border='1' bordercolor='#CCCCFF' width='800'> -->

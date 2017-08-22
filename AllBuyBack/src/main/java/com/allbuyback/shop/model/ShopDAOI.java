@@ -10,6 +10,7 @@ public interface ShopDAOI {
 	public void updateApply(MemVO memVO);
 	 //public List<MemShopVO> getMallApply();
 	 public List<MemVO> getMallApply(); 
+	 public ShopVO getIntro(int s_id);
 	
 	
 

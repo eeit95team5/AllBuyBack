@@ -26,5 +26,10 @@ public List<MemVO> getMallApply() {
 	
 	return dao.getMallApply();
 }
+
+public ShopVO getIntro(int s_id) {
+	
+	return dao.getIntro(s_id);
+}
 	
 }
