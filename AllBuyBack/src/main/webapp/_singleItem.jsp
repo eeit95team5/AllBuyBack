@@ -167,9 +167,7 @@ $(function() {
 <nav id="hidden" class="navbar navbar-inverse  navbar-fixed-top " style="margin-top:70px;display:none"  >
 <div  class="container-fluid"  style="background-color: yellow;height:90px; "></div>
 </nav>
-<!-- ============位置未定!============ -->
-<button type="button" id="keepitem">加入收藏</button><span id="KeepItemMsg"></span>
-<!-- ============位置未定!============ -->
+
 <div class="container"><!--商品上半部-->
     <div class="row">
         <div class="col-sm-12">
@@ -241,6 +239,10 @@ $(function() {
 	                </c:forEach>
                 </c:if>
                 </div> 
+                
+                <!-- ============位置已定!============ -->
+				<button type="button" id="keepitem"  class="favorite">加入收藏</button><span id="KeepItemMsg"></span>
+				<!-- ============位置已定!============ -->
 
             </div><!--productArea1區域-->
         </div>
@@ -290,8 +292,9 @@ $(function() {
 <div style="height:250px;background-color:#B0C4DE;margin-top:20px;padding-top:50px;margin-bottom:50px;
 border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑體;letter-spacing:3px;">
     
-    <span class="glyphicon glyphicon-plane" style="color:white;font-size:25px;"></span>
+    <span class="glyphicon glyphicon-plane" style="color:white;font-size:28px;letter-spacing: 5px"></span>
     欲購買或發問點請選<br /><br /><br />
+<button id="wantBuy" style="border-radius:5px 5px;border:#8B7D6B;background-color:#8B7D6B;color:white;padding:10px 30px;font-size:20px;margin-top:10px;font-weight:500;margin-right:20px;">加入購物車</button>    
 <button id="wantBuy" style="border-radius:5px 5px;border:rgb(42,186,171);background-color:rgb(42,186,171);color:white;padding:10px 30px;font-size:20px;margin-top:10px;font-weight:500;">聯絡賣家</button>
 
 </div>

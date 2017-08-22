@@ -169,12 +169,12 @@ $(function() {
 	             <img src="<c:url value='/UpdateDataServlet?status=selectPic&id=${shop.s_id }' />"  style="width:120px;height:120px;border-radius:99em;border:2px white solid;margin-top:-70px;margin-left:30px;z-index:2;position: absolute;">
 	             <span class="glyphicon glyphicon-plane" style="color:#FFB90F;font-size:25px;margin-top: 60px;margin-left: 25px"></span><span class="glyphicon glyphicon-plane" style="color:#FFB90F;font-size:25px;"></span><span class="glyphicon glyphicon-plane" style="color:#FFB90F;font-size:25px;"></span><span class="glyphicon glyphicon-plane" style="color:#FFB90F;font-size:25px;"></span><span class="glyphicon glyphicon-plane" style="color:#FFB90F;font-size:25px;"></span>
 	             <div id="sellerName" style="padding-top:10px;margin-top:-90px;margin-left:200px;font-family:微軟正黑體;font-size:22px;font-weight:600;letter-spacing:3px;">${member.m_name}</div>
-                  <span class="glyphicon glyphicon-map-marker" style="position:absolute;top:70px;left:200px;font-size: 18px;"></span><div id="livingIn" style="position:absolute;top:67px;left:230px;font-family:微軟正黑體;font-size:18px;font-weight:500;letter-spacing:3px;">住在:台中</div>
-                  <span class="glyphicon glyphicon-shopping-cart" style="position:absolute;top:70px;left:350px;font-size: 18px;"></span> <div id="livingIn" style="position:absolute;top:67px;left:380px;font-family:微軟正黑體;font-size:18px;font-weight:500;letter-spacing:3px;">代購區域:<c:if test="${not empty countrys}"><c:forEach items="${countrys}" var="country" varStatus="i">${country }<c:if test="${not i.last}" >、</c:if></c:forEach></c:if></div>
+<!--                   <span class="glyphicon glyphicon-map-marker" style="position:absolute;top:70px;left:200px;font-size: 18px;"></span><div id="livingIn" style="position:absolute;top:67px;left:230px;font-family:微軟正黑體;font-size:18px;font-weight:500;letter-spacing:3px;">住在:台中</div> -->
+                  <span class="glyphicon glyphicon-shopping-cart" style="position:absolute;top:70px;left:200px;font-size: 18px;"></span> <div id="livingIn" style="position:absolute;top:67px;left:230px;font-family:微軟正黑體;font-size:18px;font-weight:500;letter-spacing:3px;">代購區域:<c:if test="${not empty countrys}"><c:forEach items="${countrys}" var="country" varStatus="i">${country }<c:if test="${not i.last}" >、</c:if></c:forEach></c:if></div>
                   <span id="spanmsg2" style="position:absolute;top:40px;left:850px;font-size: 18px;"></span>
                   <button id="keep_shop" style="position:absolute;top:1px;left:850px;color:white;font-family:微軟正黑體;font-size:18px;background-color: gray;border:gray;border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-eye-open" style="margin-right:6px;"></span>訂閱我</button>
                   <button style="position:absolute;top:1px;left:980px;color:white;font-family:微軟正黑體;font-size:18px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-plane" style="margin-right:6px;"></span>找我報價</button>
-                  <button id="seller"><span class="glyphicon glyphicon-plane" style="margin-right:6px;"></span>買家訊息</button>
+                <c:if test="${LoginOK.m_authority==2 }"><button id="seller"><span class="glyphicon glyphicon-plane" style="margin-right:6px;"></span>買家訊息</button></c:if> 
 			      <input type="hidden" name="m_id" id="m_id" value="${LoginOK.m_id}"> 
 <%-- 			<input type="hidden" name="m_account" value="${LoginOK.m_account}"> --%>
 <%-- 			<input type="hidden" name="s_id" id="s_id" value="${OrderVO.s_id}">  --%>
@@ -187,7 +187,7 @@ $(function() {
 
 <!-- 中間賣場本館商品 -->
 
-<div class="container-fluid" style="background-color: wheat;height:1000px;">
+<div class="container-fluid" style="background-color: white;height:1000px;">
 	<div class="container">  
 	   <div class="row">
 	     <div class="col-sm-12">
@@ -296,7 +296,7 @@ $(function() {
 <div class="container"><!--商品下半部-->
     <div class="row">
         <div class="col-sm-12">
-            <div style=" margin-top:30px; height:700px;background-color:rgb(255,255,255);letter-spacing:10px;">
+            <div style=" margin-top:30px; height:700px;background-color:rgb(255,255,255);letter-spacing:10px;margin-bottom: 60px;">
            
   <ul class="nav nav-tabs">
     <li class="active myActive" style="font-family:微軟正黑體;font-size:18px;letter-spacing:4px;font-weight:600"><a data-toggle="tab" href="#menu1">我的評價留言</a></li>
@@ -342,7 +342,6 @@ $(function() {
       
     </div>
     
-  
  </div>
 
 </div><!--第四層div結束-->
