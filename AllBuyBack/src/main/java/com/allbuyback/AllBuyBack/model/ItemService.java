@@ -40,6 +40,9 @@ public class ItemService {
 	public long selectCountByS_Id(int s_id){
 		return itemDao.selectCountByS_Id(s_id);
 	}
+	public long selectAllCountByS_Id(int s_id){
+		return itemDao.selectAllCountByS_Id(s_id);
+	}
 	
 	public ItemBean insert(ItemBean bean) {
 		ItemBean result = null;

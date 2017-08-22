@@ -7,6 +7,49 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>修改商品資訊</title>
+
+<link rel="stylesheet" href="styles/main.css"/>
+<link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
+<link rel="stylesheet" href="webjars/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
+<link rel="stylesheet" href="webjars/sweetalert/1.1.3/dist/sweetalert.css">
+<script src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<script src="webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+<script src="webjars/sweetalert/1.1.3/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="styles/singleItem.css"/>
+
+<style>
+.ThisWeek {  /*關於本週頭條  以下三個class貼在main裡不能跑會衝突*/
+  color:white;
+  font-size:16px;
+  /*line-height:45px;*/
+  margin-right:10px;
+  float:left;
+  margin-top:10px;
+}
+.ThisWeek:hover {
+   color:lightgray;
+   text-decoration:none;
+  
+}
+.icon-success {  /*改變bootstrap icon的顏色*/
+ color: #FFB90F;
+   float:left;
+}
+
+/*------------------------*/
+/* .myActive  { */
+/*     border-top:pink 5px solid; */
+/* } */
+
+
+.marketName:hover {
+  text-decoration: none;
+/*   color:gray; */
+}
+
+</style>
+
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
@@ -184,19 +227,26 @@ function showS_Class2JSON(data){
 }
 </script>
 </head>
-<body>
+<body style="background-color:rgb(234,234,234)">
+
+<jsp:include page="includeTop.jsp"></jsp:include>
+
 <form action="<c:url value='/item.SPRINGcontroller'/>" method="get">
 	<table>
-		<tr><td>商品編號：</td><td><input type="text" name="i_id" id="i_id"  value="${itembean.i_id}" readonly="readonly"/></td><td>${errors.i_id}</td></tr>
-		<tr><td>賣場編號：</td><td><input type="text" name="s_id" id="s_id"  value="${itembean.s_id}" readonly="readonly"/></td><td>${errors.s_id}</td></tr>
+		<tr>
+			<input type="hidden" name="i_id" id="i_id"  value="${itembean.i_id}" readonly="readonly"/>
+			<input type="hidden" name="s_id" id="s_id"  value="${itembean.s_id}" readonly="readonly"/>
+			<input type="hidden" name="i_onSellDate" id="i_onSellDate"  value="${i_onSellDate}" readonly="readonly"/>
+			<input type="hidden" name="i_soldQuantity"  id="i_soldQuantity" value="${itembean.i_soldQuantity}" readonly="readonly"/>
+			<input type="hidden" name="i_popular" id="i_popular"  value="${itembean.i_popular}" readonly="readonly"/>
+			<input type="hidden" name="i_click" id="i_click"  value="${itembean.i_click}" readonly="readonly"/>
+		</tr>
 		<tr><td>商品名稱：</td><td><input type="text" name="i_name" id="i_name" value="${itembean.i_name}"/></td><td></td></tr>
 		<tr><td>商品簡介：</td><td><input type="text" name="i_describe" id="i_describe" value="${itembean.i_describe}" /></td><td></td></tr>
 		<tr><td>商品價格：</td><td><input type="text" name="i_price" id="i_price" value="${itembean.i_price}" /></td><td>${errors.i_price}</td></tr>
 		<tr><td>商品數量：</td><td><input type="text" name="i_quantity" id="i_quantity" value="${itembean.i_quantity}" /></td><td>${errors.i_quantity}</td></tr>
 		<tr><td>所在國家：</td><td><select id="country_id" name="country_id"></select></td></tr>
-		<tr><td>到貨時間：</td><td><input type="date" name="i_arrivedDate" id="i_arrivedDate" value="${i_arrivedDate}" /></td><td>${errors.i_arrivedDate}</td></tr>
-		<tr><td>上架時間：</td><td><input type="date" name="i_onSellDate" id="i_onSellDate"  value="${i_onSellDate}" readonly="readonly"/></td><td></td></tr>
-		<tr><td>已銷數量：</td><td><input type="text" name="i_soldQuantity"  id="i_soldQuantity" value="${itembean.i_soldQuantity}" readonly="readonly"/></td><td>${errors.i_soldQuantity}</td></tr>
+		<tr><td>到貨時間：</td><td><input type="date" name="i_arrivedDate" id="i_arrivedDate" value="${i_arrivedDate}" /></td><td>${errors.i_arrivedDate}</td></tr>		
 		<tr><td>上架狀態：</td><td><select id="i_status" name="i_status" <c:if test="${itembean.i_status == 3}">disabled="disabled"</c:if>>
 									<option value="1" <c:if test="${itembean.i_status == 1}">selected="selected"</c:if>>上架</option>
 									<option value="2" <c:if test="${itembean.i_status == 2}">selected="selected"</c:if>>下架</option>
@@ -205,10 +255,8 @@ function showS_Class2JSON(data){
 		<tr><td>商品分類一：</td><td><select id="i_class1" name="i_class1"></select></td><td></td></tr>
 		<tr><td>商品分類二：</td><td><select id="i_class2" name="i_class2"></select></td><td></td></tr>
 		<tr><td>商品分類三：</td><td><select id="i_class3" name="i_class3"></select></td><td></td></tr>
-<%-- 		<tr><td>搜尋次數：</td><td><input type="text" name="i_popular" id="i_popular"  value="${itembean.i_popular}" readonly="readonly"/></td><td></td></tr> --%>
-		<tr><td>點閱次數：</td><td><input type="text" name="i_click" id="i_click"  value="${itembean.i_click}" readonly="readonly"/></td><td></td><td>分類名稱</td><td>折扣(100等於原價)</td></tr>
-		<tr><td>商店分類一：</td><td><select id="s_class1" name="s_class1"></select></td><td>新增商店分類一：</td><td><input type="text" id="2_s_class1name"/></td><td><input type="number" id="s_discount1" min="0" max="100"/><button type="button" id="adds_class1">新增</button></td></tr>
-		<tr><td>商店分類二：</td><td><select id="s_class2" name="s_class2"></select></td><td>新增商店分類二：</td><td><input type="text" id="2_s_class2name"/></td><td><input type="number" id="s_discount2" min="0" max="100"/><button type="button" id="adds_class2">新增</button></td></tr>
+<!-- 		<tr><td>商店分類一：</td><td><select id="s_class1" name="s_class1"></select></td><td>新增商店分類一：</td><td><input type="text" id="2_s_class1name"/></td><td><input type="number" id="s_discount1" min="0" max="1" step="0.01"/><button type="button" id="adds_class1">新增</button></td></tr> -->
+<!-- 		<tr><td>商店分類二：</td><td><select id="s_class2" name="s_class2"></select></td><td>新增商店分類二：</td><td><input type="text" id="2_s_class2name"/></td><td><input type="number" id="s_discount2" min="0" max="1" step="0.01"/><button type="button" id="adds_class2">新增</button></td></tr> -->
 	</table>
 		<button type="submit" name="prodaction" value="Update" <c:if test="${itembean.i_status == 3}">disabled="disabled"</c:if>>送出修改</button><c:if test="${itembean.i_status == 3}">此商品已被管理員下架，請<a href="">點此</a>與管理員聯絡</c:if>
 	
@@ -217,6 +265,6 @@ function showS_Class2JSON(data){
 			<button type="submit" name="s_id" value="${itembean.s_id }">回到商店</button>
 </form>
 <div><c:if test="${not empty update }">修改商品成功</c:if></div>
-		
+<jsp:include page="_Footer.jsp"></jsp:include>		
 </body>
 </html>

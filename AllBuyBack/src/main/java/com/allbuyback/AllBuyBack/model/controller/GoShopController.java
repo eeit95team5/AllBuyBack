@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,7 @@ import com.allbuyback.AllBuyBack.model.Shop_CountryBean;
 import com.allbuyback.AllBuyBack.model.Shop_CountryService;
 import com.allbuyback.AllBuyBack.model.Shop_MessageService;
 import com.allbuyback.AllBuyBack.model.misc.PrimitiveNumberEditor;
+import com.allbuyback.login.model.MemberVO;
 import com.allbuyback.member.model.MemService;
 
 @Controller
@@ -66,7 +69,7 @@ public class GoShopController {
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(method={RequestMethod.GET, RequestMethod.POST})
-	public String doGet(Integer pageNO,ShopBean shopBean,BindingResult bindingResult, Model model){
+	public String doGet(ShopBean shopBean,BindingResult bindingResult, Model model,Integer pageNO,HttpServletRequest request){
 		System.out.println("==GoShopController==");
 		System.out.println("shop s_id = "+shopBean.getS_id());
 		System.out.println("====================");
@@ -79,14 +82,26 @@ public class GoShopController {
 		if(shopService.select(shopBean.getS_id())==null){
 			return "HomeIndex";
 		}
-
-		System.out.println("PageNo = "+pageNO);
 		
 		if(pageNO==null){
 			pageNO = 1;			
 		}
-		BooksPerPageBean booksPerPageBean = booksPerPageService.getBean(shopBean.getS_id(), pageNO);
-		List<Object[]> PageItems = booksPerPageService.getPageItems(shopBean.getS_id(), pageNO);		
+		BooksPerPageBean booksPerPageBean = null; 				
+		List<Object[]> PageItems = null;
+		if(request.getSession().getAttribute("LoginOK")!=null){
+			 MemberVO mVO = (MemberVO)request.getSession().getAttribute("LoginOK");
+			 if(mVO.getM_id()==shopBean.getS_id()){
+				 PageItems = booksPerPageService.getAllPageItems(shopBean.getS_id(), pageNO);
+				 booksPerPageBean = booksPerPageService.getAllBean(shopBean.getS_id(), pageNO);
+			 }else{
+				 PageItems = booksPerPageService.getPageItems(shopBean.getS_id(), pageNO);
+				 booksPerPageBean = booksPerPageService.getBean(shopBean.getS_id(), pageNO);
+			 }
+		}else{
+			PageItems = booksPerPageService.getPageItems(shopBean.getS_id(), pageNO);
+			booksPerPageBean = booksPerPageService.getBean(shopBean.getS_id(), pageNO);
+		}
+				
 		
 		List<Shop_CountryBean> countrys = shop_CountryService.selectByS_Id(shopBean.getS_id());
 		List<String> l1 = new LinkedList();
@@ -97,8 +112,7 @@ public class GoShopController {
 		ShopBean shopbean2 = shopService.select(shopBean.getS_id());
 		shopbean2.setS_click(shopbean2.getS_click()+1);
 		shopService.update(shopbean2);
-		
-		
+				
 		
 		model.addAttribute("items",PageItems);
 		model.addAttribute("shop", shopbean2);		
