@@ -39,11 +39,11 @@
 }
 .mainPhoto {/*淡灰色背景*/
     position:absolute;
-    top:100px;
+    top:120px;
     left:30px;
     /*border:solid black 1px;*/
     width:500px;
-    height:470px;
+    height:450px;
     background-color:rgb(244,244,244);
     line-height:420px;/*讓圖片置中*/
     text-align:center;/*讓圖片置中*/
@@ -233,7 +233,7 @@
 
 .seller { /*賣家相關資訊 訂閱我*/
      margin-top:30px;
-     height:610px;
+     height:620px;
      background-color:rgb(255,255,255);
      border-top:4px black solid;
      border-bottom:4px black solid;
