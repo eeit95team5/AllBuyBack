@@ -97,13 +97,12 @@
  <div class="row">
 		<c:forEach var="shopVO" items="${shoplist}">
 		<div class="col-sm-3">
-			<div style="background-color:#C1CDCD;height:300px;margin:10px 5px; padding:15px; border-radius:20px">
-				<a href="shop.html?s_id=${shopVO.s_id}"><img height="160" width="160" style="margin:5px 35px" src="ReadPictureForItem?i_id=${shopVO.i_id}"></a>
-				<div>關於我: ${shopVO.s_aboutMe}</div>
-				<div>平均評價: ${shopVO.s_avgScore}</div>
-				<div>被收藏數: ${shopVO.s_popular} 被點擊數: ${shopVO.s_click}</div>
-				<div>點數: ${shopVO.s_point}</div>
-				<div>國家: ${shopVO.country_name}</div>
+			<div class="adOuter" style="margin: 10px">
+				<a href="shop.html?s_id=${shopVO.s_id}"><img height="265" width="235" src="ReadPictureForItem?i_id=${shopVO.i_id}"></a>
+				<div class="adContent" style="font-size:18px">平均評價: ${shopVO.s_avgScore}</div>
+				<span class="glyphicon glyphicon-map-marker marker" ></span>
+				<div id="country" class="countryFrom" style="margin:10px">${shopVO.country_name}</div>
+				<div class="sellerWho" style="margin:10px">被收藏數: ${shopVO.s_popular} 被點擊數: ${shopVO.s_click}</div>
 			</div>
 		</div>
 		</c:forEach>

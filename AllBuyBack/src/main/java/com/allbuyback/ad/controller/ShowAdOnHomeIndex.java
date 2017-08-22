@@ -46,14 +46,12 @@ public class ShowAdOnHomeIndex extends HttpServlet {
 		
 		listAd = aDAO.selectAd1();
 		for(int i=0; i<listAd.size(); i++){
-			System.out.println(listAd.get(i).getI_id());
 			map = iDAO.selectByI_IdForAd_Ajax(listAd.get(i).getI_id());
 			if(map!=null){
 			listItem.add(map);
 			}
 		}
 		jsonString = JSONValue.toJSONString(listItem);
-		System.out.println(jsonString);
 		out.println(jsonString);
 	}
 
