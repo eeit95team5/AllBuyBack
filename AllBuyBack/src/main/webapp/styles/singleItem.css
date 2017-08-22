@@ -1,8 +1,8 @@
 ﻿ .productArea1{
      position:relative;
      margin-top:10px;
-     height:700px;
-     background-color:rgb(255,255,255);
+     height:760px;
+     background-color:wheat;/*rgb(255,255,255)*/
  }
  
 .productTitle {
@@ -52,7 +52,7 @@
 
 .smallPhoto1 {/*淡灰色背景*/
     position:absolute;
-    bottom:20px;
+    bottom:40px;
     left:30px;
     /*border:solid black 1px;*/
     width:100px;
@@ -63,7 +63,7 @@
 }
 .smallPhoto2 {/*淡灰色背景*/
     position:absolute;
-    bottom:20px;
+    bottom:40px;
     left:150px;  /*與前張距離30px*/
     /*border:solid black 1px;*/
     width:100px;
@@ -74,7 +74,7 @@
 }
 .smallPhoto3 {/*淡灰色背景*/
     position:absolute;
-    bottom:20px;
+    bottom:40px;
     left:270px;
     /*border:solid black 1px;*/
     width:100px;
@@ -150,9 +150,9 @@
 
 .shoppingButton {/*加入購物車按鈕*/
      position:absolute;
-     right:340px;
+     right:330px;
      top:455px;
-     width:250px;
+     width:260px;
      height:50px;
      background-color:#8B7D6B;/*#CDB79E;/*rgb(42,186,171);*/
      color:white;
@@ -168,7 +168,7 @@
      position:absolute;
      right:35px;
      top:455px;
-     width:280px;
+     width:270px;
      height:50px;
      background-color:rgb(42,186,171);
      color:white;
@@ -205,6 +205,22 @@
     line-height:65px;
     letter-spacing:5px;
 
+}
+
+.favorite{/*加入收藏*/
+	 position:absolute;
+     right:35px;
+     top:680px;
+     width:270px;
+     height:50px;
+     background-color:#FFAEB9;/*#CDB79E;/*rgb(42,186,171);*/
+     color:white;
+     font-size:22px;
+     font-family:微軟正黑體;
+     border-radius:5px 5px;
+     border:#FFAEB9;
+	
+	
 }
 /*---------------------*/
 .productArea2{
