@@ -196,7 +196,7 @@ $(function() {
 
 <!-- 中間賣場本館商品 -->
 
-<div class="container-fluid" style="background-color: wheat;height:1000px;">
+<div class="container-fluid" style="background-color: white;height:1000px;">
 	<div class="container">  
 	   <div class="row">
 	     <div class="col-sm-12">
@@ -353,7 +353,7 @@ $(function() {
 <div class="container"><!--商品下半部-->
     <div class="row">
         <div class="col-sm-12">
-            <div style=" margin-top:30px; height:700px;background-color:rgb(255,255,255);letter-spacing:10px;">
+            <div style=" margin-top:30px; height:700px;background-color:rgb(255,255,255);letter-spacing:10px;margin-bottom: 60px;">
            
   <ul class="nav nav-tabs">
     <li class="active myActive" style="font-family:微軟正黑體;font-size:18px;letter-spacing:4px;font-weight:600"><a data-toggle="tab" href="#menu1">我的評價留言</a></li>
@@ -399,7 +399,6 @@ $(function() {
       
     </div>
     
-  
  </div>
 
 </div><!--第四層div結束-->
