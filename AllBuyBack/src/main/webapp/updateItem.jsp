@@ -205,7 +205,7 @@ function showS_Class2JSON(data){
 		<tr><td>商品分類一：</td><td><select id="i_class1" name="i_class1"></select></td><td></td></tr>
 		<tr><td>商品分類二：</td><td><select id="i_class2" name="i_class2"></select></td><td></td></tr>
 		<tr><td>商品分類三：</td><td><select id="i_class3" name="i_class3"></select></td><td></td></tr>
-		<tr><td>搜尋次數：</td><td><input type="text" name="i_popular" id="i_popular"  value="${itembean.i_popular}" readonly="readonly"/></td><td></td></tr>
+<%-- 		<tr><td>搜尋次數：</td><td><input type="text" name="i_popular" id="i_popular"  value="${itembean.i_popular}" readonly="readonly"/></td><td></td></tr> --%>
 		<tr><td>點閱次數：</td><td><input type="text" name="i_click" id="i_click"  value="${itembean.i_click}" readonly="readonly"/></td><td></td><td>分類名稱</td><td>折扣(100等於原價)</td></tr>
 		<tr><td>商店分類一：</td><td><select id="s_class1" name="s_class1"></select></td><td>新增商店分類一：</td><td><input type="text" id="2_s_class1name"/></td><td><input type="number" id="s_discount1" min="0" max="100"/><button type="button" id="adds_class1">新增</button></td></tr>
 		<tr><td>商店分類二：</td><td><select id="s_class2" name="s_class2"></select></td><td>新增商店分類二：</td><td><input type="text" id="2_s_class2name"/></td><td><input type="number" id="s_discount2" min="0" max="100"/><button type="button" id="adds_class2">新增</button></td></tr>
@@ -213,7 +213,7 @@ function showS_Class2JSON(data){
 		<button type="submit" name="prodaction" value="Update" <c:if test="${itembean.i_status == 3}">disabled="disabled"</c:if>>送出修改</button><c:if test="${itembean.i_status == 3}">此商品已被管理員下架，請<a href="">點此</a>與管理員聯絡</c:if>
 	
 </form>
-<form action="<c:url value='/shopmanager.html'/>" method="get">
+<form action="<c:url value='/shop.html'/>" method="get">
 			<button type="submit" name="s_id" value="${itembean.s_id }">回到商店</button>
 </form>
 <div><c:if test="${not empty update }">修改商品成功</c:if></div>
