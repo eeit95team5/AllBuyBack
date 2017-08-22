@@ -328,10 +328,13 @@ function getJSON(){
 	  $('#C'+i).unbind("click").attr("style","background-color:yellow");
 	  $('#D'+i).unbind("click").attr("style","background-color:#66CD00");
 
+
 	 }
 	 
 	 
 	 }
+	 go();
+	    
 	}); 
 	
 	         $("#B"+(i+1)).click(function(){
@@ -350,6 +353,7 @@ function getJSON(){
 	  $('#D'+i).unbind("click").attr("style","background-color:#66CD00");   
 	    }
 	 }
+	 go();
 	}); 
 	
 	         $("#C"+(i+1)).click(function(){
@@ -369,6 +373,7 @@ function getJSON(){
 	   
 	    }
 	 }
+	 go();
 	}); 
 	         
 	         
@@ -389,6 +394,7 @@ function getJSON(){
 	   
 	    }
 	 }
+	 go();
 	}); 
 	
 	     }<!--最外層for迴圈結束-->
@@ -465,19 +471,14 @@ function _testBysetInterval(timer) {
     	var $timeSpan = $("#timeSpan"+i);
     	time = parseInt($timeSpan.text());
     	time--;
-    	if(time<10 && time>-1){time="0"+time}
+//     	if(time<10 && time>-1){time="0"+time}
     	if (time <= -1) {
     	//$timeSpan.css("color", "black");
     	//$timeSpan.html("<p style='font-size:3px'>時間到</P>");
     	//clearInterval(timer);//需要清除计时器
     	
         
-    	//$('#buttonGo').click();
-        
-    	clearInterval(timer);						 
-		 $('#view'+k).attr("style","display:none");	
-		 $('#view'+(k+1)).attr("style","display:block");	
-         k++;
+    	go();
       
     	}
     	else {
@@ -487,6 +488,30 @@ function _testBysetInterval(timer) {
     }
 	}
 };
+	
+
+function go(){
+	  clearInterval(timer);	
+
+   var A=setTimeout(function () {                                	
+   	if(k!=0){
+			$('#view'+k).attr("style","display:none");	
+		    $('#view'+(k+1)).attr("style","display:block");	 
+		    k++;}},1000)
+
+       timer = setInterval(function () {
+	        	_testBysetInterval(timer)
+	        	}, 1000);	
+   
+      if(k==5){ //到第五題的時候，點下GO進入顯示答題結果及紅利發送
+	   seeAnswer();
+	   updateBonus();
+      }	
+ 
+	
+};
+
+
 </script>
 
 </head>
@@ -529,7 +554,7 @@ function _testBysetInterval(timer) {
  		</div> 
  		
  		<div id="view2" style="display:none"> 
- 		    <div class="countDown">	<span id="timeSpan2" >15</span></div>
+ 		    <div class="countDown">	<span id="timeSpan2" >16</span></div>
 		 	<div class="question" id="question2"></div>
 		    <div class="opt1" id="A2"></div>
 			<div class="opt2" id="B2"></div>
@@ -539,7 +564,7 @@ function _testBysetInterval(timer) {
  		</div> 
 		
 		<div id="view3" style="display:none"> 
-		    <div class="countDown">	<span id="timeSpan3" >15</span></div>
+		    <div class="countDown">	<span id="timeSpan3" >16</span></div>
 			<div class="question" id="question3"></div>
 			<div class="opt1" id="A3"></div>
 			<div class="opt2" id="B3"></div>
@@ -549,7 +574,7 @@ function _testBysetInterval(timer) {
  		</div> 
  		
  		<div id="view4" style="display:none"> 
- 		    <div class="countDown">	<span id="timeSpan4" >15</span></div>
+ 		    <div class="countDown">	<span id="timeSpan4" >16</span></div>
 			<div class="question" id="question4"></div>
 			<div class="opt1" id="A4"></div>
 			<div class="opt2" id="B4"></div>
@@ -559,7 +584,7 @@ function _testBysetInterval(timer) {
  		</div> 
  		
  		<div id="view5" style="display:none"> 
- 		    <div class="countDown"><span id="timeSpan5" >15</span></div>
+ 		    <div class="countDown"><span id="timeSpan5" >16</span></div>
 			<div class="question" id="question5"></div>
 			<div class="opt1" id="A5"></div>
 			<div class="opt2" id="B5"></div>
@@ -592,11 +617,11 @@ function _testBysetInterval(timer) {
 				modal:true,
 			    show: {
 			        effect: 'fade',
-			        duration: 300
+			        duration: 500
 			      },
 		        hide: {
 			        effect: 'fade',
-			        duration: 300
+			        duration: 500
 			      },
 				open : getJSON,
 				buttons : {
@@ -626,22 +651,37 @@ function _testBysetInterval(timer) {
 				          id: "buttonGo",
 				          click: function(){					          
 					           
-				        	  clearInterval(timer);						 
-								 $('#view'+k).attr("style","display:none");	
-								 $('#view'+(k+1)).attr("style","display:block");	
-					             k++;						
+// 				        	     clearInterval(timer);	
+				        	     
+				        	   
+ 								 $('#view'+k).attr("style","display:none");	
+ 								 $('#view'+(k+1)).attr("style","display:block");	
+ 					             k++;
+ 					             
+ 					             
 					             timer = setInterval(function () {
-					   	        	_testBysetInterval(timer)
-					   	        	}, 1000);			            
-					            if(k==5){ //到第五題的時候，點下GO進入顯示答題結果及紅利發送
-				            	   seeAnswer();
-				            	   updateBonus();
-					            }	
-					            if(k==6){
-					            	//$(".ui-dialog-buttonpane button:contains('MyButton')").attr("disabled", true);
-					            	$('#buttonGo').attr("disabled", true);
-					            	k=0;
-					            }
+						   	        	_testBysetInterval(timer)
+						   	        	}, 1000);	
+ 					             
+ 					            $('#buttonGo').attr("disabled", true);
+				        	     
+
+//                                 var A=setTimeout(function () {                                	
+//                                 	if(k!=0){
+// 									$('#view'+k).attr("style","display:none");	
+// 								    $('#view'+(k+1)).attr("style","display:block");	 
+// 								    k++;}},1000)
+
+		            
+// 					            if(k==5){ //到第五題的時候，點下GO進入顯示答題結果及紅利發送
+// 				            	   seeAnswer();
+// 				            	   updateBonus();
+// 					            }	
+// 					            if(k==6){
+// 					            	//$(".ui-dialog-buttonpane button:contains('MyButton')").attr("disabled", true);
+// 					            	$('#buttonGo').attr("disabled", true);
+// 					            	k=0;
+// 					            }
  
 				          }   
 				       } ,
@@ -661,6 +701,9 @@ function _testBysetInterval(timer) {
 				$("#dialog").dialog("open");
 			});
 	});
+		
+		
+		
 </script>
 
 

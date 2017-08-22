@@ -29,6 +29,7 @@ public class ShopDAO implements ShopDAOI {
 	private static final String UPDATE_APPLY = "UPDATE MEMBER set m_authority=3 where m_id = ?";
 	//private static final String GET_SHOP_APPLY = "SELECT s_id,m_account,m_name FROM MEMBER join SHOP on s_id = m_id where m_authority = 3";
 	private static final String GET_SHOP_APPLY = "SELECT m_id,m_account,m_name FROM MEMBER where m_authority = 3";
+	private static final String GET_SHOP_INTRO = "SELECT s_aboutMe FROM SHOP where s_id = ?";
 
 	@Override
 	public void insert(ShopVO shopVO, MemVO memVO) {
@@ -217,5 +218,58 @@ public class ShopDAO implements ShopDAOI {
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public ShopVO getIntro(int s_id) {
+		ShopVO shopVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_SHOP_INTRO);
+
+			pstmt.setInt(1, s_id);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// memVO 也稱為 Domain objects
+				shopVO = new ShopVO();
+				shopVO.setS_aboutMe(rs.getString("s_aboutMe"));
+				
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return shopVO;
 	}
 }

@@ -553,10 +553,10 @@ body {
 
 
      <form class="navbar-form navbar-left">
-      <div class="input-group" style="width:180px;margin-left:30px;margin-right:30px">
+      <div class="input-group" style="width:160px;margin-left:30px;margin-right:30px">
         <input type="text" class="form-control" placeholder="您想代購什麼？"/>
         <div class="input-group-btn">
-          <button class="btn btn-default" type="submit" >
+          <button class="btn btn-default" type="submit" style="height:34px">
             <i class="glyphicon glyphicon-search" ></i>
           </button>
         </div>

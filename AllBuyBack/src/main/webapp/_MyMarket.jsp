@@ -174,7 +174,7 @@ $(function() {
                   <span id="2spanmsg" style="position:absolute;top:40px;left:850px;font-size: 18px;"></span>
                   <c:choose>
                   <c:when test="${LoginOK.m_id == shop.s_id }">
-                  <button id="keep_shop" style="position:absolute;top:1px;left:830px;color:white;font-family:微軟正黑體;font-size:18px;background-color: gray;border:gray;border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-eye-open" style="margin-right:6px;"></span>新增商品</button>
+                  <form action="<c:url value='/insertitem.html'/>" method="post"><button type="submit" name="s_id" value="${shop.s_id}" id="insertitem" style="position:absolute;top:1px;left:830px;color:white;font-family:微軟正黑體;font-size:18px;background-color: gray;border:gray;border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-eye-open" style="margin-right:6px;"></span>新增商品</button></form>
                   <button style="position:absolute;top:1px;left:960px;color:white;font-family:微軟正黑體;font-size:18px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-plane" style="margin-right:6px;"></span>修改商店資訊</button>
                   </c:when>
                   <c:otherwise>
@@ -421,7 +421,6 @@ $(function(){
 	$('#keep_shop').click(function(){
 		keep_shop();
 	})
-	
 })
 
 function insertItemMessage(){
