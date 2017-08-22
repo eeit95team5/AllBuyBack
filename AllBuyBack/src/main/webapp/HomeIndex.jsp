@@ -134,6 +134,11 @@
   color:#8B7D6B;
 }
 
+
+#dropdown a{
+  text-decoration: none;
+}
+
 /* Add a dark gray background color to the modal header and center text */
 .modal-header, h4, .close {
     background-color: #ffe6e6;
