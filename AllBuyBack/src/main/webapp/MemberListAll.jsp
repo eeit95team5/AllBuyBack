@@ -53,7 +53,13 @@
 			<td>${MemVO.m_address}</td>
 <%-- 			<td>${MemVO.m_identity}</td> --%>
 			<td>${MemVO.m_email}</td>
-			<td>${MemVO.m_authority}</td>
+			<td>
+			<c:if test="${MemVO.m_authority==0}">黑名單</c:if>
+			<c:if test="${MemVO.m_authority==1}">一般會員</c:if>
+			<c:if test="${MemVO.m_authority==2}">賣家</c:if>
+			<c:if test="${MemVO.m_authority==3}">申請賣家</c:if>
+			<c:if test="${MemVO.m_authority==9}">管理員</c:if>
+			</td>
 			<td>${MemVO.m_photo}</td>
 			<td>${MemVO.m_background}</td>
 			<td>${MemVO.m_scoreCount}</td>

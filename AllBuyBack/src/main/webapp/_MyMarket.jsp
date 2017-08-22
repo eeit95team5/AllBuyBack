@@ -174,7 +174,7 @@ $(function() {
                   <span id="spanmsg2" style="position:absolute;top:40px;left:850px;font-size: 18px;"></span>
                   <button id="keep_shop" style="position:absolute;top:1px;left:850px;color:white;font-family:微軟正黑體;font-size:18px;background-color: gray;border:gray;border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-eye-open" style="margin-right:6px;"></span>訂閱我</button>
                   <button style="position:absolute;top:1px;left:980px;color:white;font-family:微軟正黑體;font-size:18px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-plane" style="margin-right:6px;"></span>找我報價</button>
-                  <button id="seller"><span class="glyphicon glyphicon-plane" style="margin-right:6px;"></span>買家訊息</button>
+                <c:if test="${LoginOK.m_authority==2 }"><button id="seller"><span class="glyphicon glyphicon-plane" style="margin-right:6px;"></span>買家訊息</button></c:if> 
 			      <input type="hidden" name="m_id" id="m_id" value="${LoginOK.m_id}"> 
 <%-- 			<input type="hidden" name="m_account" value="${LoginOK.m_account}"> --%>
 <%-- 			<input type="hidden" name="s_id" id="s_id" value="${OrderVO.s_id}">  --%>
@@ -341,9 +341,7 @@ $(function() {
 	</form>
       
     </div>
->>>>>>> branch 'master' of https://github.com/eeit95team5/AllBuyBackRespository.git
-    
-  
+ 
  </div>
 
 </div><!--第四層div結束-->
