@@ -110,7 +110,7 @@
 					<span class="glyphicon glyphicon-map-marker marker" ></span>
 					<div id="country" class="countryFrom">${itemsVO.country_name}</div>
 					<div class="sellerWho">暢銷指數: ${itemsVO.i_popular} 點擊數: ${itemsVO.i_click}</div>
-				</div>
+				</div><br />
 			</div>
 			</c:forEach>
   </div>
