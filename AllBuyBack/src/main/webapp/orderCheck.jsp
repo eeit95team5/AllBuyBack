@@ -17,6 +17,7 @@
 	#mainBody{
 		width:1024px;
 		margin:auto;
+		
 	}
 	#middleDiv, #footerDiv, #endDiv{
 		width:1024px;
@@ -165,7 +166,7 @@ $('#show').dialog({
      });
 </script>
 </head>
-<body style="background:rgb(234,234,234)">
+<body>
 <!-- 加入頁首 -->
 <%-- <jsp:include page="includeTop.jsp"></jsp:include> --%>
 <%@ include file="includeTop.jsp" %>
