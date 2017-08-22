@@ -793,7 +793,7 @@
       </div>
       <div class="modal-footer" id="wrong">
       <c:if test="${empty LoginOK}">
-        <span>${errorMsg.LoginError}</span>
+        <span style="font-family:微軟正黑體;color:pink;font-size:15px"><mark>${errorMsg.LoginError}</mark></span>
        </c:if>
       </div>
     </div>
