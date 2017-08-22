@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.FavoriteService;
-import model.MemberVO;
+import com.allbuyback.login.model.*;
 import model.MemberService;
 
 @WebServlet("/FavoriteServlet")

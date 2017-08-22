@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import model.*;
+import com.allbuyback.login.model.*;
 
 /**
  * Servlet implementation class UpdateDataServlet

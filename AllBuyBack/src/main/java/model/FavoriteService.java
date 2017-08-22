@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.allbuyback.item.model.ItemDAO;
 import com.allbuyback.item.model.ItemVO;
+import com.allbuyback.login.model.*;
 
 public class FavoriteService {
 

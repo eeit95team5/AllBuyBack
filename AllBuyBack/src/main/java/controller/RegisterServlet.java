@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.LoginService;
-import model.MemberVO;
+import com.allbuyback.login.model.*;
 import model.RegisterService;
 
 @WebServlet("/RegisterServlet")

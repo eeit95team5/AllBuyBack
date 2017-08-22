@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.LoginService;
-import model.MemberVO;
+import com.allbuyback.login.model.*;;
 
 @WebServlet("/LoginServlet11")
 public class LoginServlet extends HttpServlet {
