@@ -432,7 +432,7 @@
 						<h3 style="float: left; margin-top: 6px; margin-right: 10px;">
 							<span class="glyphicon glyphicon-star-empty icon-success"></span>
 						</h3>
-						<a href="item.html?i_id=1000042" class="ThisWeek">Timberland聖誕假期促銷</a>
+						<a href="item.html?i_id=1000042" class="ThisWeek">Timberland海灘派對促銷</a>
 						<h3 style="float: left; margin-top: 6px; margin-right: 10px;">
 							<span class="glyphicon glyphicon-star-empty icon-success"></span>
 						</h3>
@@ -623,8 +623,8 @@
 	     
 	       <div class="col-sm-3">
 	        <div style="border:3px solid #d0d0d0" >
-	           <img class="imgsrc" src="images/AIGLE_01.png" >
-	           <div  class="adContent">【Aigle】折扣季後－季末折扣區</div>
+	           <a href="item.html?i_id=1000049"><img class="imgsrc" src="images/AIGLE_01.png" ></a>
+	           <div  class="adContent">【Aigle】雨靴季後折扣</div>
 	           <span class="glyphicon glyphicon-map-marker marker" ></span> 
 	             <div id="country" class="countryFrom">法國</div>
 	             <div class="sellerWho" >暢銷指數: 89   點擊數： 675</div>

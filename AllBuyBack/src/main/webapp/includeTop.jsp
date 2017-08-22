@@ -391,7 +391,7 @@
                <h3 style="color:white;margin-top:26px;float:left;font-family:微軟正黑體;margin-right:25px">本週頭條&nbsp&nbsp</h3> 
                 <div style="margin-top:20px">
                   <h3 style="float:left;margin-top:6px;margin-right:10px;"><span class="glyphicon glyphicon-star-empty icon-success"></span></h3>             
-                  <a href="item.html?i_id=1000042" class="ThisWeek">Timberland聖誕假期促銷</a>
+                  <a href="item.html?i_id=1000042" class="ThisWeek">Timberland海灘派對促銷</a>
                   <h3 style="float:left;margin-top:6px;margin-right:10px;"><span class="glyphicon glyphicon-star-empty icon-success"></span></h3>             
                   <a href="" class="ThisWeek">FURLA緊急折扣全面7折</a>
                   <h3 style="float:left;margin-top:6px;margin-right:10px;"><span class="glyphicon glyphicon-star-empty icon-success"></span></h3>                
