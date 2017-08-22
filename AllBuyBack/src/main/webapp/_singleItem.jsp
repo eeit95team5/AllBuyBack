@@ -114,6 +114,37 @@ $(function() {
  		}
  	});
     
+ 	$(".addToCart").click(function() {
+ 		if(${empty LoginOK}){
+ 			$('#ab123').dialog('open');
+ 		}else{
+ 		var i_id = $('#i_id').val();
+ 		var s_id = $('#s_id').val();
+ 		console.log("ok");
+ 		var ol_quantity = $('#ol_quantity').val();
+ 		$.post("ShoppingCart.go",{'action':"addToCart",'i_id':i_id,'s_id':s_id,'ol_quantity':ol_quantity},
+ 			function(data){
+ 			var json = JSON.parse(data);
+ 			var str = json.a;
+ 			var theType = "success";
+ 			var theText = "再多看看別的商品吧!"
+ 			if(str=="加入購物車失敗，不能新增數量0以下" || str=="加入購物車失敗，剩餘數量不足"){
+				theType = "error";
+				theText = "請確定數量再加入購物車"
+ 			}
+ 			if(str=="這是您自己的商品唷!"){
+ 				theType = "error";
+				theText = "去看看其他人的賣場吧!!"
+ 			}
+				swal({
+					title: str,
+ 					text: theText,
+ 					type: theType
+				});
+			})
+ 		}
+ 	});
+    
  	/*----------------------------------------------------*/
     
     	$("#buyAdTag").mouseover(function() {
@@ -294,7 +325,7 @@ border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑�
     
     <span class="glyphicon glyphicon-plane" style="color:white;font-size:28px;letter-spacing: 5px"></span>
     欲購買或發問點請選<br /><br /><br />
-<button id="wantBuy" style="border-radius:5px 5px;border:#8B7D6B;background-color:#8B7D6B;color:white;padding:10px 30px;font-size:20px;margin-top:10px;font-weight:500;margin-right:20px;">加入購物車</button>    
+<button class="addToCart" style="border-radius:5px 5px;border:#8B7D6B;background-color:#8B7D6B;color:white;padding:10px 30px;font-size:20px;margin-top:10px;font-weight:500;margin-right:20px;">加入購物車</button>    
 <button id="wantBuy" style="border-radius:5px 5px;border:rgb(42,186,171);background-color:rgb(42,186,171);color:white;padding:10px 30px;font-size:20px;margin-top:10px;font-weight:500;">聯絡賣家</button>
 
 </div>
@@ -334,44 +365,7 @@ border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑�
 </div><!--container-->
 
 <!----------footer開始-------------->
-<footer>
- <div class="container-fluid" style="background-color:rgb(185,152,103);height:160px;padding-left:30px;padding-top:30px" >
- 
-    	<div class="row">
-        	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><!--複製go1buy1-->
-            	<ul class="footer_menu">
-                	<li><a href="">新手上路</a></li>
-                	<li><a href="">常見問題</a></li>  
-                	<li><a class="">客服中心</a></li>                          
-                </ul>
-            </div>
-        	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-            	<ul class="footer_menu">
-                	<li><a href="">許願池</a></li>
-                	<li><a href="">最新代購消息</a></li>
-                	<li><a href="">代購賣家進駐申請</a></li>					            		                            
-                </ul>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-            	<ul class="footer_menu">
-            		<li><a href="">FB粉絲團</a></li>
-                    <li><a href="">聯絡ALLBUYBACK</a></li>
-                    <li><a href="">服務條款與隱私權政策</a></li>
-                 </ul>
-            </div>                    
-        </div>
-    </div>
-</footer>
-
-
-<div class="container-fluid" style="background-color:rgb(41,64,87);height:45px;color:white;text-align:center;padding-top:15px;" >
-    Copyright ©2017 - ALLBUYBACK 股份有限公司
-</div>
-<!----------footer結束-------------->
-
-
-
-
+<jsp:include page="_Footer.jsp"></jsp:include>
 
 </body>
 <script>

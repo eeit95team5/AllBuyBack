@@ -3,7 +3,9 @@ package com.allbuyback.ad.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,12 +42,18 @@ public class ShowAdOnHomeIndex extends HttpServlet {
 		ItemSearchDAO iDAO = new ItemSearchDAO();
 		ItemVO iVO = new ItemVO();
 		String jsonString = "";
+		Map<?,?> map = new HashMap<String, Object>();
 		
 		listAd = aDAO.selectAd1();
 		for(int i=0; i<listAd.size(); i++){
-			listItem.add(iDAO.selectByI_IdForAd_Ajax(listAd.get(i).getI_id()));
+			System.out.println(listAd.get(i).getI_id());
+			map = iDAO.selectByI_IdForAd_Ajax(listAd.get(i).getI_id());
+			if(map!=null){
+			listItem.add(map);
+			}
 		}
 		jsonString = JSONValue.toJSONString(listItem);
+		System.out.println(jsonString);
 		out.println(jsonString);
 	}
 
