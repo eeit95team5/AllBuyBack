@@ -48,6 +48,15 @@
 /*   color:gray; */
 }
 
+
+.tdclass{
+  font-family: 微軟正黑體;
+  font-size: 25px;
+  width:150px;
+  height:60px;
+}
+
+
 </style>
 
 <script type="text/javascript"
@@ -231,6 +240,12 @@ function showS_Class2JSON(data){
 
 <jsp:include page="includeTop.jsp"></jsp:include>
 
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12"  style="background-color: #BCD2EE;height:1200px;padding-left:50px;position: relative;margin-bottom: 50px;margin-top: 50px">
+
+<h2  style="text-align: center;margin-top: 30px;font-family: 微軟正黑體;margin-bottom: 20px;">修改商品</h2>
+
 <form action="<c:url value='/item.SPRINGcontroller'/>" method="post" enctype="multipart/form-data">
 	<table>
 		<tr><td>
@@ -242,33 +257,40 @@ function showS_Class2JSON(data){
 			<input type="hidden" name="i_click" id="i_click"  value="${itembean.i_click}" />
 			<input type="hidden" name="prodaction" value="Update"/>
 		</td></tr>
-		<tr><td>商品名稱：</td><td><input type="text" name="i_name" id="i_name" value="${itembean.i_name}"/></td><td></td></tr>
-		<tr><td>商品簡介：</td><td><input type="text" name="i_describe" id="i_describe" value="${itembean.i_describe}" /></td><td></td></tr>
-		<tr><td>商品價格：</td><td><input type="text" name="i_price" id="i_price" value="${itembean.i_price}" /></td><td>${errors.i_price}</td></tr>
-		<tr><td>商品數量：</td><td><input type="text" name="i_quantity" id="i_quantity" value="${itembean.i_quantity}" /></td><td>${errors.i_quantity}</td></tr>
-		<tr><td>所在國家：</td><td><select id="country_id" name="country_id"></select></td></tr>
-		<tr><td>到貨時間：</td><td><input type="date" name="i_arrivedDate" id="i_arrivedDate" value="${i_arrivedDate}" /></td><td>${errors.i_arrivedDate}</td></tr>		
-		<tr><td>上架狀態：</td><td><select id="i_status" name="i_status" <c:if test="${itembean.i_status == 3}">disabled="disabled"</c:if>>
-									<option value="1" <c:if test="${itembean.i_status == 1}">selected="selected"</c:if>>上架</option>
-									<option value="2" <c:if test="${itembean.i_status == 2}">selected="selected"</c:if>>下架</option>
+		<tr><td class="tdclass">商品名稱：</td><td><input type="text" name="i_name" id="i_name" value="${itembean.i_name}" size="40"  style="height:30px"/></td><td></td></tr>
+		<tr><td class="tdclass">商品簡介：</td><td><input type="text" name="i_describe" id="i_describe" value="${itembean.i_describe}" size="40"  style="height:30px"/></td><td></td></tr>
+		<tr><td class="tdclass">商品價格：</td><td><input type="text" name="i_price" id="i_price" value="${itembean.i_price}"  size="20"  style="height:30px"/></td><td>${errors.i_price}</td></tr>
+		<tr><td class="tdclass">商品數量：</td><td><input type="text" name="i_quantity" id="i_quantity" value="${itembean.i_quantity}"  size="20"  style="height:30px"/></td><td>${errors.i_quantity}</td></tr>
+		<tr><td class="tdclass">所在國家：</td><td><select id="country_id" name="country_id" style="height:30px;font-size:18px"></select></td></tr>
+		<tr><td class="tdclass">到貨時間：</td><td><input type="date" name="i_arrivedDate" id="i_arrivedDate" value="${i_arrivedDate}" style="height:30px;font-size:18px"/></td><td>${errors.i_arrivedDate}</td></tr>		
+		<tr><td class="tdclass">上架狀態：</td><td><select style="height:30px;font-size:18px" id="i_status" name="i_status" <c:if test="${itembean.i_status == 3}">disabled="disabled"</c:if>>
+									<option style="font-size:18px" value="1" <c:if test="${itembean.i_status == 1}">selected="selected"</c:if>>上架</option>
+									<option style="font-size:18px" value="2" <c:if test="${itembean.i_status == 2}">selected="selected"</c:if>>下架</option>
 									<c:if test="${itembean.i_status == 3}"><option value="3" selected="selected">停權</option></c:if>
 								</select></td><td></td></tr>																
-		<tr><td>商品分類一：</td><td><select id="i_class1" name="i_class1"></select></td><td></td></tr>
-		<tr><td>商品分類二：</td><td><select id="i_class2" name="i_class2"></select></td><td></td></tr>
-		<tr><td>商品分類三：</td><td><select id="i_class3" name="i_class3"></select></td><td></td></tr>
-		<tr><td>圖片一：</td><td><input type="file" id="picture1" name="picture1"/></td><td></td></tr>
-		<tr><td>圖片二：</td><td><input type="file" id="picture2" name="picture2"/></td><td></td></tr>
-		<tr><td>圖片三：</td><td><input type="file" id="picture3" name="picture3"/></td><td></td></tr>
-		<tr><td>圖片四：</td><td><input type="file" id="picture4" name="picture4"/></td><td></td></tr>
-		<tr><td>圖片五：</td><td><input type="file" id="picture5" name="picture5"/></td><td></td></tr>
+		<tr><td class="tdclass">商品分類一：</td><td><select id="i_class1" name="i_class1" style="height:30px;font-size:18px"></select></td><td></td></tr>
+		<tr><td class="tdclass">商品分類二：</td><td><select id="i_class2" name="i_class2" style="height:30px;font-size:18px"></select></td><td></td></tr>
+		<tr><td class="tdclass">商品分類三：</td><td><select id="i_class3" name="i_class3" style="height:30px;font-size:18px"></select></td><td></td></tr>
+		<tr><td class="tdclass">圖片一：</td><td><input type="file" id="picture1" name="picture1" style="height:30px;font-size:18px"/></td><td></td></tr>
+		<tr><td class="tdclass">圖片二：</td><td><input type="file" id="picture2" name="picture2" style="height:30px;font-size:18px"/></td><td></td></tr>
+		<tr><td class="tdclass">圖片三：</td><td><input type="file" id="picture3" name="picture3" style="height:30px;font-size:18px"/></td><td></td></tr>
+		<tr><td class="tdclass">圖片四：</td><td><input type="file" id="picture4" name="picture4" style="height:30px;font-size:18px"/></td><td></td></tr>
+		<tr><td class="tdclass">圖片五：</td><td><input type="file" id="picture5" name="picture5" style="height:30px;font-size:18px"/></td><td></td></tr>
 	</table>
-		<button type="submit" <c:if test="${itembean.i_status == 3}">disabled="disabled"</c:if>>送出</button><c:if test="${itembean.i_status == 3}">此商品已被管理員下架，請<a href="">點此</a>與管理員聯絡</c:if>
+		<button style="position:absolute;top:1080px;left:390px;color:white;font-family:微軟正黑體;font-size:25px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px"  type="submit" <c:if test="${itembean.i_status == 3}">disabled="disabled"</c:if>>送出修改</button><c:if test="${itembean.i_status == 3}">此商品已被管理員下架，請<a href="">點此</a>與管理員聯絡</c:if>
 	
 </form>
 <form action="<c:url value='/shop.html'/>" method="get">
-			<button type="submit" name="s_id" value="${itembean.s_id }">回到商店</button>
+			<button type="submit" name="s_id" value="${itembean.s_id }" style="position:absolute;top:1080px;left:630px;color:white;font-family:微軟正黑體;font-size:25px;background-color:#EEA2AD;border:#EEA2AD;border-radius:15px 15px;padding:5px 15px">回到商店</button>
 </form>
 <div><c:if test="${not empty update }">修改商品成功</c:if></div>
+
+
+</div>
+</div>
+</div>	
+	
+
 <jsp:include page="_Footer.jsp"></jsp:include>		
 </body>
 </html>

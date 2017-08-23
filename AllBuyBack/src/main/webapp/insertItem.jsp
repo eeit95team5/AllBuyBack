@@ -295,11 +295,11 @@ function showS_Class2JSON(data){
 				<td><select id="i_class3" name="i_class3" style="height:30px;font-size:18px"></select></td>
 				<td>${errors.i_class3}</td>
 			</tr>
-			<tr><td class="tdclass">圖片一：</td><td><input type="file" id="picture1" name="picture1"/></td><td></td></tr>
-			<tr><td class="tdclass">圖片二：</td><td><input type="file" id="picture2" name="picture2"/></td><td></td></tr>
-			<tr><td class="tdclass">圖片三：</td><td><input type="file" id="picture3" name="picture3"/></td><td></td></tr>
-			<tr><td class="tdclass">圖片四：</td><td><input type="file" id="picture4" name="picture4"/></td><td></td></tr>
-			<tr><td class="tdclass">圖片五：</td><td><input type="file" id="picture5" name="picture5"/></td><td></td></tr>
+			<tr><td class="tdclass">圖片一：</td><td><input type="file" id="picture1" name="picture1" style="height:30px;font-size:18px"/></td><td></td></tr>
+			<tr><td class="tdclass">圖片二：</td><td><input type="file" id="picture2" name="picture2" style="height:30px;font-size:18px"/></td><td></td></tr>
+			<tr><td class="tdclass">圖片三：</td><td><input type="file" id="picture3" name="picture3" style="height:30px;font-size:18px"/></td><td></td></tr>
+			<tr><td class="tdclass">圖片四：</td><td><input type="file" id="picture4" name="picture4" style="height:30px;font-size:18px"/></td><td></td></tr>
+			<tr><td class="tdclass">圖片五：</td><td><input type="file" id="picture5" name="picture5" style="height:30px;font-size:18px"/></td><td></td></tr>
 
 			<tr>
 				<td><button type="submit" name="prodaction" value="Insert"  style="position:absolute;top:1000px;left:330px;color:white;font-family:微軟正黑體;font-size:25px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px">新增商品</button></td>
