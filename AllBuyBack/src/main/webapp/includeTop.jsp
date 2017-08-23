@@ -431,7 +431,7 @@
           </div>
           <div class="form-group">
             <label for="usrname" style="font-family:Comic Sans MS;color:#ff944d;font-size:25px"><span class="glyphicon glyphicon-grain"></span>Password</label>
-            <input type="text" class="form-control" id="usrname" name="password" >
+            <input type="password" class="form-control" id="usrname" name="password" >
           </div>
           <button type="submit" class="btn btn-block" style="font-family:Comic Sans MS;color:#ff944d;font-size:25px">Commit 
             <span class="glyphicon glyphicon-ok"></span>

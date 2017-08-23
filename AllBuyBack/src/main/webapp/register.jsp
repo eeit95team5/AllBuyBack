@@ -607,7 +607,7 @@ body {
   
   <div>
   <label for="password"><Font color='#ff9999'>*</Font>密碼<Font color='#bfbfbf' size="2px">(至少3字元且包含英文與數字)</Font></label>
-  <br><input class="w3-input w3-animate-input" type="text" style="width:60%" id="password"  name="password"  value="${temp.m_password }"><span class="myspan">${wrong.password }</span>
+  <br><input class="w3-input w3-animate-input" type="password" style="width:60%" id="password"  name="password"  value="${temp.m_password }"><span class="myspan">${wrong.password }</span>
   </div>
   
   <div>
