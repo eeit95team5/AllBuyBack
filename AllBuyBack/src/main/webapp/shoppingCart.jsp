@@ -204,7 +204,6 @@
 				<input type="hidden" name="action" value="createOrder" />
 			</form>
 		</div>
-		<div align="center"><a href="shop.html?s_id=1000002">我要繼續買</a><br></div>
 	</c:if>
 </div>
 <div id="msgBoby" align="center">
@@ -212,7 +211,7 @@
 		<br><br>
 		<p>購物車還是空的喔!快開始購物吧!</p>
 		<br><br>
-		<a href="Order.do?action=cGetAll">查看我的訂單</a><br><br>
+		<a href="Order.do?action=cGetAll">查看我的購物訂單</a><br><br>
 		<a href="HomeIndex.jsp">開始購物</a><br><br><br><br><br><br><br><br>
 	</c:if>
 	<c:if test="${!empty Msg}">

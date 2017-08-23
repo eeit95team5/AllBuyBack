@@ -172,9 +172,9 @@
 <tr class="info"><td colspan="6">收件資料</td></tr>
 <tr>
 	<td><span>*</span>收件人</td>
-	<td><input id="o_recipient" type="text" name="o_recipient" value="什麼人" /></td>
+	<td><input id="o_recipient" type="text" name="o_recipient" value="李阿珮" /></td>
 	<td><span>*</span>收件地址</td>
-	<td><input id="o_address" type="text" name="o_address" value="台灣台北" /></td>
+	<td><input id="o_address" type="text" name="o_address" value="台北市大安區復興南路1號" /></td>
 	<td><span>*</span>付款方式</td>
 	<td><span>*</span>
 		<select id="pay_id" name="pay_id">						
@@ -208,9 +208,9 @@
 					<select name="sw_id" class="createOrder ${s_id_group} sw_id" >
 							<option value="99999">請選擇運送方式<input type="hidden" class="sw_price99999" value="0" /></option>
 					</select>					
-					<input type="hidden" name="pay_id" class="createOrder ${s_id_group} pay_id" value="匯款" />
-					<input type="hidden" name="o_recipient" class="createOrder ${s_id_group} o_recipient" value="什麼人" />
-					<input type="hidden" name="o_address" class="createOrder ${s_id_group} o_address" value="台灣台北" />
+					<input type="hidden" name="pay_id" class="createOrder ${s_id_group} pay_id" value="郵局匯款" />
+					<input type="hidden" name="o_recipient" class="createOrder ${s_id_group} o_recipient" value="李阿珮" />
+					<input type="hidden" name="o_address" class="createOrder ${s_id_group} o_address" value="台北市大安區復興南路1號" />
 					<input type="hidden" name="action" class="createOrder ${s_id_group} action" value="confirm" />
 					<input type="hidden" class="createOrderNumber" value="${s_id_group}" />			
 					<input type="hidden" name="s_id" class="createOrder ${s_id_group} s_id" value="${s_id_group}" />
@@ -258,9 +258,9 @@
 				<select id="swSelect" name="sw_id" class="createOrder ${s_id_group} sw_id" >
 					<option value="99999">請選擇運送方式<input type="hidden" class="sw_price99999" value="0" /></option>
 				</select>
-				<input type="hidden" name="pay_id" class="createOrder ${s_id_group} pay_id" value="匯款" />
-				<input type="hidden" name="o_recipient" class="createOrder ${s_id_group} o_recipient" value="什麼人" />
-				<input type="hidden" name="o_address" class="createOrder ${s_id_group} o_address" value="台灣台北" />
+				<input type="hidden" name="pay_id" class="createOrder ${s_id_group} pay_id" value="郵局匯款" />
+				<input type="hidden" name="o_recipient" class="createOrder ${s_id_group} o_recipient" value="李阿珮" />
+				<input type="hidden" name="o_address" class="createOrder ${s_id_group} o_address" value="台北市大安區復興南路1號" />
 				<input type="hidden" name="action" class="createOrder ${s_id_group} action" value="confirm" />
 				<input type="hidden" class="createOrderNumber" value="${s_id_group}" />			
 				<input type="hidden" name="s_id" class="createOrder ${s_id_group} s_id" value="${s_id_group}" />
