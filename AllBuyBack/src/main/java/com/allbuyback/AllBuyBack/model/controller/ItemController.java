@@ -3,6 +3,7 @@ package com.allbuyback.AllBuyBack.model.controller;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -66,7 +67,15 @@ public class ItemController {
 	
 	@RequestMapping(method={RequestMethod.GET,RequestMethod.POST})
 	public String doGet(ItemBean bean,BindingResult bindingResult,String prodaction, Model model,HttpServletRequest request, @RequestParam(value="picture1",required=false) MultipartFile picture1, @RequestParam(value="picture2",required=false) MultipartFile picture2, @RequestParam(value="picture3",required=false) MultipartFile picture3, @RequestParam(value="picture4",required=false) MultipartFile picture4, @RequestParam(value="picture5",required=false) MultipartFile picture5){		                                                                 
-		
+		try {
+			String i_name = new String(bean.getI_name().getBytes("ISO8859-1"),"UTF-8");
+			String i_describe = new String(bean.getI_describe().getBytes("ISO8859-1"),"UTF-8");
+			bean.setI_name(i_name);
+			bean.setI_describe(i_describe);
+			System.out.println("---------"+i_name+"---------");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
 		if(prodaction==null){						
 			return "product";
 		}
