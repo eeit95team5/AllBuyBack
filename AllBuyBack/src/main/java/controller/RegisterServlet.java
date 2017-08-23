@@ -11,9 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import model.LoginService;
-import com.allbuyback.login.model.*;
+import com.allbuyback.login.model.MemberVO;
 import model.RegisterService;
 
 @WebServlet("/RegisterServlet")

@@ -366,7 +366,7 @@
             <a href="ShoppingCart.go?action=select">我的購物車</a>
             <a href="Order.do?action=cGetAll">我的購買訂單</a>
            <c:if test="${LoginOK.m_authority==2}"><a href="shop.html?s_id=${LoginOK.m_id}">我的賣場</a></c:if>
-           <c:if test="${LoginOK.m_authority==1}"><a href="MallInsert.jsp">申請賣場</a></c:if>
+           <c:if test="${LoginOK.m_authority==1}"><a href="_SellerApplication.jsp">申請賣場</a></c:if>
             <a href="checkGB.do">ALLBUYBACK金頭腦</a>
             <a href="LogoutServlet" >登出</a>
          </div>
@@ -431,7 +431,7 @@
           </div>
           <div class="form-group">
             <label for="usrname" style="font-family:Comic Sans MS;color:#ff944d;font-size:25px"><span class="glyphicon glyphicon-grain"></span>Password</label>
-            <input type="text" class="form-control" id="usrname" name="password" >
+            <input type="password" class="form-control" id="usrname" name="password" >
           </div>
           <button type="submit" class="btn btn-block" style="font-family:Comic Sans MS;color:#ff944d;font-size:25px">Commit 
             <span class="glyphicon glyphicon-ok"></span>
