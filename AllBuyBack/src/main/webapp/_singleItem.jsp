@@ -300,26 +300,27 @@ $(function() {
   </ul>
 
   <div class="tab-content">
-    <div id="menu1" class="tab-pane fade in active">
+    <div id="menu1" class="tab-pane fade in active" style="padding-left: 40px;padding-top:10px;">
       <h3 id="point">商品描述</h3>
       <p>${itemVO.i_describe}</p>
     </div>
-    <div id="menu2" class="tab-pane fade">
+    <div id="menu2" class="tab-pane fade" style="padding-left: 40px;padding-top:10px;">
       <h3>費用與寄送資訊</h3>
       <c:forEach items="${shipway.shipway}" var="sw" varStatus="varS">
       	<p>${sw.sw_name }：${sw.sw_price }元</p>
       </c:forEach>
       
     </div>
-    <div id="menu3" class="tab-pane fade">
+    <div id="menu3" class="tab-pane fade" style="padding-left: 40px;padding-top:10px;">
       <h3>問與答</h3>
+       <div style="margin-left:15px;margin-top:15px;font-family:微軟正黑體;font-size:18px;letter-spacing:4px;font-weight:600">|我想問</div>
       <span id="itemmsg"></span>
       
 <form>
 	<input type="hidden" name="i_id" id="hidden" value="${itemVO.i_id }" />
 	<input type="hidden" name="action" value="Insert" />
-	<textarea name="im_content" id="im_content" ></textarea>
-	<button type="button" id="insertitemmessage">送出</button><span id="showerror">${errors.login }${errors.noempty }</span>
+	<textarea name="im_content" id="im_content" rows="6" cols="60"  style="margin-left: 5px;margin-top: 10px;"></textarea>
+	<button type="button" id="insertitemmessage" style="position:absolute;top:300px;left:220px;color:white;font-family:微軟正黑體;font-size:18px;background-color: black;border:black;border-radius:5px 5px;padding:5px 15px">送出留言</button><span id="showerror">${errors.login }${errors.noempty }</span>
 </form>
     </div>
   </div>

@@ -231,16 +231,17 @@ function showS_Class2JSON(data){
 
 <jsp:include page="includeTop.jsp"></jsp:include>
 
-<form action="<c:url value='/item.SPRINGcontroller'/>" method="get">
+<form action="<c:url value='/item.SPRINGcontroller'/>" method="post" enctype="multipart/form-data">
 	<table>
-		<tr>
-			<input type="hidden" name="i_id" id="i_id"  value="${itembean.i_id}" readonly="readonly"/>
-			<input type="hidden" name="s_id" id="s_id"  value="${itembean.s_id}" readonly="readonly"/>
-			<input type="hidden" name="i_onSellDate" id="i_onSellDate"  value="${i_onSellDate}" readonly="readonly"/>
-			<input type="hidden" name="i_soldQuantity"  id="i_soldQuantity" value="${itembean.i_soldQuantity}" readonly="readonly"/>
-			<input type="hidden" name="i_popular" id="i_popular"  value="${itembean.i_popular}" readonly="readonly"/>
-			<input type="hidden" name="i_click" id="i_click"  value="${itembean.i_click}" readonly="readonly"/>
-		</tr>
+		<tr><td>
+			<input type="hidden" name="i_id" id="i_id"  value="${itembean.i_id}" />
+			<input type="hidden" name="s_id" id="s_id"  value="${itembean.s_id}" />
+			<input type="hidden" name="i_onSellDate" id="i_onSellDate"  value="${i_onSellDate}" />
+			<input type="hidden" name="i_soldQuantity"  id="i_soldQuantity" value="${itembean.i_soldQuantity}" />
+			<input type="hidden" name="i_popular" id="i_popular"  value="${itembean.i_popular}" />
+			<input type="hidden" name="i_click" id="i_click"  value="${itembean.i_click}" />
+			<input type="hidden" name="prodaction" value="Update"/>
+		</td></tr>
 		<tr><td>商品名稱：</td><td><input type="text" name="i_name" id="i_name" value="${itembean.i_name}"/></td><td></td></tr>
 		<tr><td>商品簡介：</td><td><input type="text" name="i_describe" id="i_describe" value="${itembean.i_describe}" /></td><td></td></tr>
 		<tr><td>商品價格：</td><td><input type="text" name="i_price" id="i_price" value="${itembean.i_price}" /></td><td>${errors.i_price}</td></tr>
@@ -255,10 +256,13 @@ function showS_Class2JSON(data){
 		<tr><td>商品分類一：</td><td><select id="i_class1" name="i_class1"></select></td><td></td></tr>
 		<tr><td>商品分類二：</td><td><select id="i_class2" name="i_class2"></select></td><td></td></tr>
 		<tr><td>商品分類三：</td><td><select id="i_class3" name="i_class3"></select></td><td></td></tr>
-<!-- 		<tr><td>商店分類一：</td><td><select id="s_class1" name="s_class1"></select></td><td>新增商店分類一：</td><td><input type="text" id="2_s_class1name"/></td><td><input type="number" id="s_discount1" min="0" max="1" step="0.01"/><button type="button" id="adds_class1">新增</button></td></tr> -->
-<!-- 		<tr><td>商店分類二：</td><td><select id="s_class2" name="s_class2"></select></td><td>新增商店分類二：</td><td><input type="text" id="2_s_class2name"/></td><td><input type="number" id="s_discount2" min="0" max="1" step="0.01"/><button type="button" id="adds_class2">新增</button></td></tr> -->
+		<tr><td>圖片一：</td><td><input type="file" id="picture1" name="picture1"/></td><td></td></tr>
+		<tr><td>圖片二：</td><td><input type="file" id="picture2" name="picture2"/></td><td></td></tr>
+		<tr><td>圖片三：</td><td><input type="file" id="picture3" name="picture3"/></td><td></td></tr>
+		<tr><td>圖片四：</td><td><input type="file" id="picture4" name="picture4"/></td><td></td></tr>
+		<tr><td>圖片五：</td><td><input type="file" id="picture5" name="picture5"/></td><td></td></tr>
 	</table>
-		<button type="submit" name="prodaction" value="Update" <c:if test="${itembean.i_status == 3}">disabled="disabled"</c:if>>送出修改</button><c:if test="${itembean.i_status == 3}">此商品已被管理員下架，請<a href="">點此</a>與管理員聯絡</c:if>
+		<button type="submit" <c:if test="${itembean.i_status == 3}">disabled="disabled"</c:if>>送出</button><c:if test="${itembean.i_status == 3}">此商品已被管理員下架，請<a href="">點此</a>與管理員聯絡</c:if>
 	
 </form>
 <form action="<c:url value='/shop.html'/>" method="get">

@@ -214,7 +214,7 @@ tbody{
 
 
 
-<form name="WishContent" id="WishContent1" action="MakeAWish" method="POST" enctype="multipart/form-data" ">
+<form name="WishContent" id="WishContent1" action="MakeAWish" method="POST" enctype="multipart/form-data" >
 	<fieldset id="borderimg" style="background-color:#9AC0CD;">
 		<table>
 		<tbody>
