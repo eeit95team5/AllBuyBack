@@ -202,7 +202,7 @@ div.tab button.active {
   
 }
 
-label{
+label,p{
 	font-family:微軟正黑體;
 	font-size:22px;
 	color:#B99867;
@@ -214,7 +214,9 @@ fieldset{
 	border:1px solid #ffe6e6;
 	border-radius: 15px;
 	width:700px;
+	padding-top: 20px;
 	padding-left: 20px;
+	padding-bottom: 20px;
 }
 /*目前沒在用*/
  /*#button {
@@ -499,6 +501,7 @@ body {
   <div class="row">
   	<div class="col-sm-5 col-sm-offset-2">
 <fieldset>
+<p style="text-align:center;font-size:30px">會員註冊</p>
  <form action="<c:url value="/RegisterServlet" />" method="post">
   <div>
   <label for="account"><Font color='#ff9999'>*</Font>帳號<Font color='#bfbfbf' size="2px">(必填)</Font></label>

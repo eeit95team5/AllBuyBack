@@ -279,6 +279,7 @@ $(function() {
                 
                 <!-- ============位置已定!============ -->
 				<button type="button" id="keepitem"  class="favorite">加入收藏</button><span id="KeepItemMsg"></span>
+				 <span id="spanmsg2" class="successFavorite">　</span>
 				<!-- ============位置已定!============ -->
 
             </div><!--productArea1區域-->
@@ -304,7 +305,7 @@ $(function() {
       <h3 id="point">商品描述</h3>
       <p><mark>${itemVO.i_describe}</mark></p>
     </div>
-    <div id="menu2" class="tab-pane fade" style="padding-left: 40px;padding-top:10px;">
+    <div id="menu2" class="tab-pane fade" style="padding-right:40px;padding-left: 40px;padding-top:10px;letter-spacing: 2px;font-family: 微軟正黑體;font-size: 20px;line-height: 35px;">
       <h3>費用與寄送資訊</h3>
       <c:forEach items="${shipway.shipway}" var="sw" varStatus="varS">
       	<p>${sw.sw_name }：${sw.sw_price }元</p>
@@ -353,7 +354,7 @@ border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑�
                 <div style="color:gray;font-family:微軟正黑體;font-size:12px;text-align:center;margin-top:20px;font-family:微軟正黑體;">評價 | 關於我 | 代購商品</div>
 
                  <div style="text-align:center;margin-top:20px;"><button id="keep_shop" value="${shop.s_id }" style="border-radius:5px 5px;border:black;background-color:black;color:white;width:250px;padding:7px 10px;"> <span class="glyphicon glyphicon-eye-open"><span style="margin-left:10px;font-size:20px;font-family:微軟正黑體;">&nbsp訂閱我</span></button></div>
-                 <span id="spanmsg2">　</span>
+                
                  <div id="keepshopcount" style="color:gray;font-family:微軟正黑體;font-size:12px;text-align:center;margin-top:20px;">目前共有${keepshopcount}人訂閱</div>
                   
                 <div style="padding:2px 20px;color:#8B7B8B;font-family:微軟正黑體;font-size:15px;text-align:center;margin-top:20px;">喜歡賣家代購的好物？<br />訂閱即可在第一時間收到代購分享的最新代購文章、商品資訊和專欄喔！</div>

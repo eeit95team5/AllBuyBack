@@ -1,7 +1,7 @@
 ﻿ .productArea1{
      position:relative;
      margin-top:10px;
-     height:760px;
+     height:780px;
      background-color:white;/*rgb(255,255,255)*/
  }
  
@@ -219,16 +219,22 @@
      font-family:微軟正黑體;
      border-radius:5px 5px;
      border:#FFAEB9;
-	
+}
+
+.successFavorite{
+	 position:absolute;
+     right:35px;
+     top:700px;
 	
 }
 /*---------------------*/
 .productArea2{
      position:relative;
      margin-top:30px;
-     height:700px;
+/*       height:1000px;  */
      background-color:rgb(255,255,255);
       letter-spacing:10px;
+      padding-bottom:100px;
  }
 
 .seller { /*賣家相關資訊 訂閱我*/
