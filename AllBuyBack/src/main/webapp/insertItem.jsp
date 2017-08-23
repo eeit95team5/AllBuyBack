@@ -208,7 +208,7 @@ function showS_Class2JSON(data){
 	
 <div class="container">
     <div class="row">
-        <div class="col-sm-12"  style="background-color: #BCD2EE;height:800px;padding-left:50px;position: relative;margin-bottom: 50px;margin-top: 50px">
+        <div class="col-sm-12"  style="background-color: #BCD2EE;height:1100px;padding-left:50px;position: relative;margin-bottom: 50px;margin-top: 50px">
         
 	
 	<h2  style="text-align: center;margin-top: 30px;font-family: 微軟正黑體;margin-bottom: 20px;">新增商品</h2>
@@ -295,22 +295,22 @@ function showS_Class2JSON(data){
 				<td><select id="i_class3" name="i_class3" style="height:30px;font-size:18px"></select></td>
 				<td>${errors.i_class3}</td>
 			</tr>
-			<tr><td>圖片一：</td><td><input type="file" id="picture1" name="picture1"/></td><td></td></tr>
-			<tr><td>圖片二：</td><td><input type="file" id="picture2" name="picture2"/></td><td></td></tr>
-			<tr><td>圖片三：</td><td><input type="file" id="picture3" name="picture3"/></td><td></td></tr>
-			<tr><td>圖片四：</td><td><input type="file" id="picture4" name="picture4"/></td><td></td></tr>
-			<tr><td>圖片五：</td><td><input type="file" id="picture5" name="picture5"/></td><td></td></tr>
+			<tr><td class="tdclass">圖片一：</td><td><input type="file" id="picture1" name="picture1"/></td><td></td></tr>
+			<tr><td class="tdclass">圖片二：</td><td><input type="file" id="picture2" name="picture2"/></td><td></td></tr>
+			<tr><td class="tdclass">圖片三：</td><td><input type="file" id="picture3" name="picture3"/></td><td></td></tr>
+			<tr><td class="tdclass">圖片四：</td><td><input type="file" id="picture4" name="picture4"/></td><td></td></tr>
+			<tr><td class="tdclass">圖片五：</td><td><input type="file" id="picture5" name="picture5"/></td><td></td></tr>
 
 			<tr>
-				<td><button type="submit" name="prodaction" value="Insert"  style="position:absolute;top:680px;left:330px;color:white;font-family:微軟正黑體;font-size:25px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px">新增商品</button></td>
+				<td><button type="submit" name="prodaction" value="Insert"  style="position:absolute;top:1000px;left:330px;color:white;font-family:微軟正黑體;font-size:25px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px">新增商品</button></td>
 			</tr>
 		</table>
 	</form>
 	<form action="<c:url value='/shop.html'/>" method="get">
 		<table>
 			<tr>
-				<td><a href="<c:url value='/HomeIndex.jsp'/>"> <input type="button" value="回首頁" style="position:absolute;top:680px;left:720px;color:white;font-family:微軟正黑體;font-size:25px;background-color:#EEA2AD;border:#EEA2AD;border-radius:15px 15px;padding:5px 15px"></a></td>				
-				<td><button type="submit" name="s_id" value="${shop.s_id}${result.s_id}"  style="position:absolute;top:680px;left:520px;color:white;font-family:微軟正黑體;font-size:25px;background-color:gray;border:gray;border-radius:15px 15px;padding:5px 15px">回到商店</button></td>
+				<td><a href="<c:url value='/HomeIndex.jsp'/>"> <input type="button" value="回首頁" style="position:absolute;top:1000px;left:720px;color:white;font-family:微軟正黑體;font-size:25px;background-color:#EEA2AD;border:#EEA2AD;border-radius:15px 15px;padding:5px 15px"></a></td>				
+				<td><button type="submit" name="s_id" value="${shop.s_id}${result.s_id}"  style="position:absolute;top:1000px;left:520px;color:white;font-family:微軟正黑體;font-size:25px;background-color:gray;border:gray;border-radius:15px 15px;padding:5px 15px">回到商店</button></td>
 			</tr>
 		</table>
 	</form>

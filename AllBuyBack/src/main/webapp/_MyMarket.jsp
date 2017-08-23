@@ -177,9 +177,15 @@ $(function() {
                   <c:when test="${LoginOK.m_id == shop.s_id }">
                   
                  
-                  <form action="<c:url value='/insertitem.html'/>" method="post"><button type="submit" name="s_id" value="${shop.s_id}" id="insertitem" style="position:absolute;top:1px;left:650px;color:white;font-family:微軟正黑體;font-size:18px;background-color: gray;border:gray;border-radius:15px 15px;padding:5px 15px;"><span class="glyphicon glyphicon-plus" style="margin-right:6px;"></span>新增商品</button></form>
-                  <button style="position:absolute;top:1px;left:800px;color:white;font-family:微軟正黑體;font-size:18px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-wrench" style="margin-right:6px;"></span>修改商店資訊</button>
-                  <button id="seller"  style="position:absolute;top:1px;left:990px;color:white;font-family:微軟正黑體;font-size:18px;background-color: #EE9572;border:#EE9572;border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-bullhorn" style="margin-right:6px;"></span>買家訊息</button>
+                  <form action="<c:url value='/insertitem.html'/>" method="post"><button type="submit" name="s_id" value="${shop.s_id}" id="insertitem" style="position:absolute;top:1px;left:550px;color:white;font-family:微軟正黑體;font-size:18px;background-color: gray;border:gray;border-radius:15px 15px;padding:5px 15px;"><span class="glyphicon glyphicon-plus" style="margin-right:6px;"></span>新增商品</button></form>
+                  <button style="position:absolute;top:1px;left:700px;color:white;font-family:微軟正黑體;font-size:18px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-wrench" style="margin-right:6px;"></span>修改商店資訊</button>
+                  <button id="seller"  style="position:absolute;top:1px;left:880px;color:white;font-family:微軟正黑體;font-size:18px;background-color: #EE9572;border:#EE9572;border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-bullhorn" style="margin-right:6px;"></span>買家訊息</button>
+				                
+				 <form action="Order.do">
+					<input type="submit" value="查看訂單" style="position:absolute;top:1px;left:1020px;color:white;font-family:微軟正黑體;font-size:18px;background-color: #607B8B;border:#607B8B;border-radius:15px 15px;padding:5px 15px;">
+					<input type="hidden" name="action" value="sGetAll" />
+				 </form>
+                 
                   </c:when>
                   <c:otherwise>
                   <button id="keep_shop" style="position:absolute;top:1px;left:850px;color:white;font-family:微軟正黑體;font-size:18px;background-color: gray;border:gray;border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-eye-open" style="margin-right:6px;"></span>訂閱我</button>
@@ -261,7 +267,7 @@ $(function() {
     
 	 </div>
 	 
-	 <br>
+	 <br><br>
 	 <div class="row">
 	     <div class="col-sm-3">
 	      <c:if test="${ not empty items[4][1]}">
