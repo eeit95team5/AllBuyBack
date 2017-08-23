@@ -42,9 +42,13 @@ public class CheckYourList extends HttpServlet {
 		Wishing_PoolDAO wpDAO = new Wishing_PoolDAO();
 		List<Wishing_PoolVO> list = wpDAO.selectPersonAllWishes(m_id);
 		for(int i=0; i<list.size(); i++){
-			if(list.get(i).getW_content().length()>20){
-			String subcontent = (list.get(i).getW_content().substring(0, 20))+"...";
-			list.get(i).setW_content(subcontent);
+			if(list.get(i).getW_title().length()>8){    //Title長度控制
+				String subtitle = (list.get(i).getW_title().substring(0, 8))+"...";
+				list.get(i).setW_title(subtitle);	
+			}
+			if(list.get(i).getW_content().length()>16){    //內容長度控制
+				String subcontent = (list.get(i).getW_content().substring(0, 16))+"...";
+				list.get(i).setW_content(subcontent);
 			}
 			MemberDAO mDAO = new MemberDAO();
 			int memberId = list.get(i).getM_id();
