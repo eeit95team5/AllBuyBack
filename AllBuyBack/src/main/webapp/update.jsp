@@ -575,7 +575,6 @@ $(function(){
   		<li><a data-toggle="tab" href="#menu2">我的收藏</a></li>		
   		<li><a data-toggle="tab" href="#menu3">變漂亮專區</a></li>		
   		<li><a data-toggle="tab" href="#menu4">檢舉與賣家通知</a></li>
-  		<li><a data-toggle="tab" href="#menu5">查看訂單</a></li>
 	</ul>
 
 	<div class="tab-content ">
@@ -602,7 +601,6 @@ $(function(){
       					<li class="w3-tangerine w3-xxlarge"><font size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均分&nbsp;&nbsp;&nbsp;&nbsp;</font>:${LoginOK.m_avgScore }</li>
       					<li class="w3-tangerine w3-xxlarge"><font size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最後上線時間&nbsp;&nbsp;&nbsp;&nbsp;</font>:${LoginOK.m_lastUsed }</li>
       					<li class="w3-tangerine w3-xxlarge"><font size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;紅利&nbsp;&nbsp;&nbsp;&nbsp;</font>:${LoginOK.m_point }</li>
-      					<li class="w3-tangerine w3-xxlarge"><font size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今日金頭腦次數&nbsp;&nbsp;&nbsp;&nbsp;</font>:${LoginOK.m_times_gb }</li>
     				</ul>
     				</p>
   					</div>		
@@ -706,11 +704,6 @@ $(function(){
     		
     		<div id="show1"></div>
   
-  		</div>
-  		<div id="menu5" class="tab-pane fade">
-
-    		<h2><a href="Order.do?action=cGetAll">我的購買訂單</a></h2>
-
   		</div>
    	</div>
 
