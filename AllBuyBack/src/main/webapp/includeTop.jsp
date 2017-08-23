@@ -366,7 +366,7 @@
             <a href="ShoppingCart.go?action=select">我的購物車</a>
             <a href="Order.do?action=cGetAll">我的購買訂單</a>
            <c:if test="${LoginOK.m_authority==2}"><a href="shop.html?s_id=${LoginOK.m_id}">我的賣場</a></c:if>
-           <c:if test="${LoginOK.m_authority==1}"><a href="MallInsert.jsp">申請賣場</a></c:if>
+           <c:if test="${LoginOK.m_authority==1}"><a href="_SellerApplication.jsp">申請賣場</a></c:if>
             <a href="checkGB.do">ALLBUYBACK金頭腦</a>
             <a href="LogoutServlet" >登出</a>
          </div>
