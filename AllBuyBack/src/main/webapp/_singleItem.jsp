@@ -300,9 +300,9 @@ $(function() {
   </ul>
 
   <div class="tab-content">
-    <div id="menu1" class="tab-pane fade in active" style="padding-left: 40px;padding-top:10px;">
+    <div id="menu1" class="tab-pane fade in active" style="padding-right:40px;padding-left: 40px;padding-top:10px;letter-spacing: 2px;font-family: 微軟正黑體;font-size: 20px;line-height: 35px;">
       <h3 id="point">商品描述</h3>
-      <p>${itemVO.i_describe}</p>
+      <p><mark>${itemVO.i_describe}</mark></p>
     </div>
     <div id="menu2" class="tab-pane fade" style="padding-left: 40px;padding-top:10px;">
       <h3>費用與寄送資訊</h3>
