@@ -21,16 +21,16 @@
 <body>
 
 	<table width='800' class="table">
-		<tr>
+		<tr align='center' valign='middle'>
 			<th>商品編號</th>
 			<th>賣場編號</th>
 			<th>商品名稱</th>
 			<th>商品描述</th>
-			<th>圖片1</th>
-			<th>圖片2</th>
-			<th>圖片3</th>
-			<th>圖片4</th>
-			<th>圖片5</th>
+<!-- 			<th>圖片1</th> -->
+<!-- 			<th>圖片2</th> -->
+<!-- 			<th>圖片3</th> -->
+<!-- 			<th>圖片4</th> -->
+<!-- 			<th>圖片5</th> -->
 			<th>商品價格</th>
 			<th>商品數量</th>
 			<th>國家編號</th>
@@ -49,15 +49,15 @@
 		</tr>
 		<c:forEach var="ItemVO" items="${list}">
 			<tr align='center' valign='middle'>
-				<td>${ItemVO.i_id}</td>
+				<td><a href="#" onclick="window.open('item.html?i_id=${ItemVO.i_id}','處理檢舉','height=350,width=650,scrollbars=1,resizable=0,location=0')">${ItemVO.i_id}</a></td>
 				<td>${ItemVO.s_id}</td>
 				<td>${ItemVO.i_name}</td>
 				<td>${ItemVO.i_describe}</td>
-				<td>${ItemVO.i_picture1}</td>
-				<td>${ItemVO.i_picture2}</td>
-				<td>${ItemVO.i_picture3}</td>
-				<td>${ItemVO.i_picture4}</td>
-				<td>${ItemVO.i_picture5}</td>
+<%-- 				<td>${ItemVO.i_picture1}</td> --%>
+<%-- 				<td>${ItemVO.i_picture2}</td> --%>
+<%-- 				<td>${ItemVO.i_picture3}</td> --%>
+<%-- 				<td>${ItemVO.i_picture4}</td> --%>
+<%-- 				<td>${ItemVO.i_picture5}</td> --%>
 				<td>${ItemVO.i_price}</td>
 				<td>${ItemVO.i_quantity}</td>
 				<td>${ItemVO.country_id}</td>

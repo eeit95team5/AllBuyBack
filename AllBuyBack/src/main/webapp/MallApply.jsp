@@ -17,7 +17,7 @@
 <body>
 
 <table width='800' class="table">
-	<tr>
+	<tr align='center' valign='middle'>
 		<th>賣場編號</th>
 		<th>會員帳號</th>
 		<th>會員名字</th>

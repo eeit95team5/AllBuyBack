@@ -21,7 +21,7 @@
 <body>
 
 <table width='800' class="table">
-	<tr>
+	<tr align='center' valign='middle'>
 		<th>會員編號</th>
 		<th>會員帳號</th>
 <!-- 		<th>會員密碼</th> -->
@@ -31,8 +31,8 @@
 <!-- 		<th>身分證字號</th> -->
 		<th>電子郵件</th>
 		<th>會員權限</th>
-		<th>圖片</th>
-		<th>背景圖片</th>
+<!-- 		<th>圖片</th> -->
+<!-- 		<th>背景圖片</th> -->
 		<th>總評價</th>
 		<th>平均分數</th>
 		<th>註冊時間</th>
@@ -60,8 +60,8 @@
 			<c:if test="${MemVO.m_authority==3}">申請賣家</c:if>
 			<c:if test="${MemVO.m_authority==9}">管理員</c:if>
 			</td>
-			<td>${MemVO.m_photo}</td>
-			<td>${MemVO.m_background}</td>
+<%-- 			<td>${MemVO.m_photo}</td> --%>
+<%-- 			<td>${MemVO.m_background}</td> --%>
 			<td>${MemVO.m_scoreCount}</td>
 			<td>${MemVO.m_avgScore}</td>
 			<td>${MemVO.m_lastUsed}</td>
