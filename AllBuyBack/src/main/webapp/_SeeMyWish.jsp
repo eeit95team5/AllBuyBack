@@ -355,7 +355,7 @@ tbody{
 		    <td width="550" height="100" align="left" >
 		    	<div style="height:100px; overflow:auto">
 		    	<c:forEach var="as" items="${asVO}">
-		    		${as.m_account}實現願望的內容: <a href="SingleItemContent?w_id=${wVO.w_id}&i_id=${iVO.i_id}">${iVO.i_name}</a>
+		    		${as.m_account}: <a href="item.html?i_id=${iVO.i_id}">${iVO.i_name}</a>
 		    	</c:forEach>
 		    	</div>
 		    </td>
