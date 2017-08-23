@@ -267,7 +267,7 @@ $(function() {
     
 	 </div>
 	 
-	 <br>
+	 <br><br>
 	 <div class="row">
 	     <div class="col-sm-3">
 	      <c:if test="${ not empty items[4][1]}">
