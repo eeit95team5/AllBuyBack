@@ -221,10 +221,10 @@
      border:#FFAEB9;
 }
 
-.successFavorite{
+#KeepItemMsg{
 	 position:absolute;
      right:35px;
-     top:700px;
+     top:750px;
 	
 }
 /*---------------------*/
