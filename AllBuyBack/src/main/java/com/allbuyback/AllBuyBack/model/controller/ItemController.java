@@ -1,5 +1,8 @@
 package com.allbuyback.AllBuyBack.model.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -16,14 +21,18 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.allbuyback.AllBuyBack.model.CountryBean;
 import com.allbuyback.AllBuyBack.model.ItemBean;
 import com.allbuyback.AllBuyBack.model.ItemService;
 import com.allbuyback.AllBuyBack.model.dao.CountryDAOHibernate;
 import com.allbuyback.AllBuyBack.model.misc.PrimitiveNumberEditor;
+import com.allbuyback.Wishing_Pool.model.Wishing_PoolDAO;
 
 @Controller
+@MultipartConfig()
 @RequestMapping(path={"/item.SPRINGcontroller"})  
 public class ItemController {
 	
@@ -31,6 +40,8 @@ public class ItemController {
 	private ItemService itemService;
 	@Autowired
 	private CountryDAOHibernate countryDAOHibernate;
+	
+	Wishing_PoolDAO wpDAO = new Wishing_PoolDAO();
 	
 	@InitBinder
 	protected void yyy(WebDataBinder binder){
@@ -54,7 +65,7 @@ public class ItemController {
 	
 	
 	@RequestMapping(method={RequestMethod.GET,RequestMethod.POST})
-	public String doGet(ItemBean bean,BindingResult bindingResult,String prodaction, Model model){
+	public String doGet(ItemBean bean,BindingResult bindingResult,String prodaction, Model model,HttpServletRequest request, @RequestParam(value="picture1",required=false) MultipartFile picture1, @RequestParam(value="picture2",required=false) MultipartFile picture2, @RequestParam(value="picture3",required=false) MultipartFile picture3, @RequestParam(value="picture4",required=false) MultipartFile picture4, @RequestParam(value="picture5",required=false) MultipartFile picture5){		                                                                 
 		
 		if(prodaction==null){						
 			return "product";
@@ -77,16 +88,16 @@ public class ItemController {
 				errors.put("s_id", "id必須為整數");
 			}
     		if(bindingResult.getFieldError("i_price")!=null){
-    			errors.put("i_price", "price必須為整數");
+    			errors.put("i_price", "商品價格必須為整數");
     		}  
     		if(bindingResult.getFieldError("i_arrivedDate")!=null){
-    			errors.put("i_arrivedDate", "i_arrivedDate格式不符");
+    			errors.put("i_arrivedDate", "到貨日期格式不符");
     		}
     		if(bindingResult.getFieldError("i_onSellDate")!=null){
     			errors.put("i_onSellDate", "i_onSellDate格式不符");
     		}  
     		if(bindingResult.getFieldError("i_quantity")!=null){
-    			errors.put("i_quantity", "i_quantity必須為整數");
+    			errors.put("i_quantity", "數量必須為整數");
     		}
     		if(bindingResult.getFieldError("i_status")!=null){
     			errors.put("i_status", "i_status必須為整數");
@@ -121,16 +132,19 @@ public class ItemController {
     		
     		if("Update".equals(prodaction) || "Insert".equals(prodaction)){    			  			
     			if(bean.getI_name().isEmpty()){
-    				errors.put("i_name", "請輸入i_name");
+    				errors.put("i_name", "請輸入商品名稱");
+    			}
+    			if(bean.getI_name().length()>25){
+    				errors.put("i_name", "商品名稱過長，請勿超過25字");
     			}
     			if(bean.getI_describe().isEmpty()){
-    				errors.put("i_describe", "請輸入i_describe");
+    				errors.put("i_describe", "請輸入商品描述");
     			}
     			if(bean.getCountry_id()==0){
-    				errors.put("country_id", "請輸入country_id");
+    				errors.put("country_id", "請輸入國家");
     			}
     			if(bean.getI_arrivedDate()==null){
-    				errors.put("i_arrivedDate", "請輸入i_arrivedDate");
+    				errors.put("i_arrivedDate", "請輸入到貨日期");
     			}
     			if(bean.getI_onSellDate()==null){
 //    				errors.put("i_onSellDate", "請輸入i_onSellDate");
@@ -155,9 +169,6 @@ public class ItemController {
 			model.addAttribute("result", bean);
 			model.addAttribute("insert", bean);
 			model.addAttribute("itembean", bean);
-			System.out.println("=============");
-			System.out.println(bean.getI_id());
-			System.out.println("=============");
 			return this.returnX(prodaction);
 		}
 		
@@ -173,6 +184,26 @@ public class ItemController {
 				bean.setI_status(1);
 				bean.setI_popular(0);
 				bean.setI_click(0);
+				if(picture1!=null){
+					byte[] pic1 = this.getByte(picture1);
+					bean.setI_picture1(pic1);
+				}			
+				if(picture2!=null){
+					byte[] pic2 = this.getByte(picture2);
+					bean.setI_picture2(pic2);
+				}			
+				if(picture3!=null){
+					byte[] pic3 = this.getByte(picture3);
+					bean.setI_picture3(pic3);
+				}			
+				if(picture4!=null){
+					byte[] pic4 = this.getByte(picture4);
+					bean.setI_picture4(pic4);
+				}			
+				if(picture5!=null){
+					byte[] pic5 = this.getByte(picture5);
+					bean.setI_picture5(pic5);
+				}
 				ItemBean result1 = itemService.insert(bean);
 				if(result1==null) {
 					errors.put("action", "Insert fail");
@@ -203,11 +234,35 @@ public class ItemController {
 				if(bean.getI_status()==3){
 					break;
 				}
+				
+				if(picture1!=null){
+					byte[] pic1 = this.getByte(picture1);
+					bean.setI_picture1(pic1);
+				}			
+				if(picture2!=null){
+					byte[] pic2 = this.getByte(picture2);
+					bean.setI_picture2(pic2);
+				}			
+				if(picture3!=null){
+					byte[] pic3 = this.getByte(picture3);
+					bean.setI_picture3(pic3);
+				}			
+				if(picture4!=null){
+					byte[] pic4 = this.getByte(picture4);
+					bean.setI_picture4(pic4);
+				}			
+				if(picture5!=null){
+					byte[] pic5 = this.getByte(picture5);
+					bean.setI_picture5(pic5);
+				}			
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				bean.setI_onSellDate((new Date()));
 				ItemBean result3 = itemService.update(bean);
 				if(result3==null) {
 					errors.put("action", "Update fail");
 				} else {
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					
 					String i_arrivedDate = sdf.format(result3.getI_arrivedDate());
 					String i_onSellDate = sdf.format(result3.getI_onSellDate());
 					model.addAttribute("i_arrivedDate", i_arrivedDate);
@@ -218,5 +273,25 @@ public class ItemController {
 				break;
 		}
 		return this.returnX(prodaction);
+	}
+	
+	public byte[] getByte(MultipartFile picture){
+		try {
+			InputStream is = picture.getInputStream();
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			byte[] buffer = new byte[4096000];
+			int len = -1;
+			while((len = is.read(buffer))!=-1){
+				out.write(buffer, 0, len);
+			}
+			is.read();
+			out.close();			
+			return out.toByteArray();			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+		return null;		
 	}
 }

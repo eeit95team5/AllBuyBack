@@ -21,14 +21,13 @@ public class UpdateItemController {
 	
 	@RequestMapping(method={RequestMethod.GET, RequestMethod.POST})
 	public String doGet(ItemBean itemBean,BindingResult bindingResult, Model model){
-		ItemBean ib = itemService.selectByI_Id(itemBean.getI_id());
-		model.addAttribute("itembean", ib);		
+		ItemBean ib = itemService.selectByI_Id(itemBean.getI_id());				
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String i_arrivedDate = sdf.format(ib.getI_arrivedDate());
 		String i_onSellDate = sdf.format(ib.getI_onSellDate());
 		model.addAttribute("i_arrivedDate", i_arrivedDate);
 		model.addAttribute("i_onSellDate", i_onSellDate);
-		System.out.println("================" + sdf.format(ib.getI_arrivedDate()));
+		model.addAttribute("itembean", ib);		
 		return "updateitem";
 		
 	}
