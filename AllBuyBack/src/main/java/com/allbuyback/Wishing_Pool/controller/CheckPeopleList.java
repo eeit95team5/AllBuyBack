@@ -29,8 +29,8 @@ public class CheckPeopleList extends HttpServlet {
 				String subtitle = (list.get(i).getW_title().substring(0, 8)) + "...";
 				list.get(i).setW_title(subtitle);
 			}
-			if(list.get(i).getW_content().length()>16){    //內容長度控制
-				String subcontent = (list.get(i).getW_content().substring(0, 16))+"...";
+			if(list.get(i).getW_content().length()>14){    //內容長度控制
+				String subcontent = (list.get(i).getW_content().substring(0, 14))+"...";
 				list.get(i).setW_content(subcontent);
 			}
 			MemberDAO mDAO = new MemberDAO();
