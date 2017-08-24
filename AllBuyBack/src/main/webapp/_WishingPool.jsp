@@ -179,7 +179,7 @@
             </div>
 
             <div style="clear:both;padding-bottom:10px;border-bottom:1px solid #E9967A;letter-spacing:7px;font-size:25px;">
-                <div class="wishOwner" style="font-size:20px;font-family:微軟正黑體;font-weight:700;color:#CD8162;margin-top: 15px;">許願人    </div><div class="wish" style="font-size:20px;font-family:微軟正黑體;font-weight:700;color:#CD8162;margin-top: 15px;">願望</div>
+                <div class="wishOwner" style="font-size:20px;font-family:微軟正黑體;font-weight:700;color:#CD8162;margin-top: 15px;">許願人    </div><div class="wish" style="width:195px;font-size:20px;font-family:微軟正黑體;font-weight:700;color:#CD8162;margin-top: 15px;">願望</div>
                 <div class="wishContent" style="text-align:center;font-size:20px;font-family:微軟正黑體;font-weight:700;color:#CD8162;margin-top: 15px;">內容</div>
                   <div class="wishTime" style="text-align:center;font-size:20px;font-family:微軟正黑體;font-weight:700;color:#CD8162;margin-top: 15px;">許願時間</div>  
                 <a href="_MakeAWish.jsp"><button id="makeAWish" style="margin-left:65px;border:#20B2AA 2px solid;font-size:23px;font-weight:600;padding:10px 10px;background-color:white;color:#778899;">我要許願</button></a>
@@ -188,7 +188,7 @@
 
 			<c:forEach var="mVO" items="${VOlist}">
 	            <div style="height:100px;clear:both;padding-bottom:50px;border-bottom:1px solid #E9967A;color:#8B7765;font-family:微軟正黑體;font-weight:700;">
-	                <div class="wishOwner" style="height:80px;line-height:100px;">${mVO.m_account}</div><div class="wish" style="height:80px;line-height:100px;">${mVO.w_title}</div>
+	                <div class="wishOwner" style="height:80px;line-height:100px;">${mVO.m_account}</div><div class="wish" style="width:220px;height:80px;line-height:100px;">${mVO.w_title}</div>
 	                <div class="wishContent" style="text-align:center;height:80px;line-height:100px;">${mVO.w_content}</div>
 	                <div class="wishTime" style="text-align:center;height:80px;line-height:100px;">${mVO.w_date_string}</div>
 	                <a href="PeopleWishContent?w_id=${mVO.w_id}"><button style="margin-top:22px;margin-left:70px;border:#CD8162 2px solid;font-size:20px;padding:10px 10px;background-color:white;color:#E9967A;">看願望</button></a>
