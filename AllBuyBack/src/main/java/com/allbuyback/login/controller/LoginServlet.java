@@ -41,13 +41,18 @@ public class LoginServlet extends HttpServlet {
 					&& (password != null || password.trim().length() != 0)) {
 				LoginService service = new LoginService();
 				MemberVO bean = service.checkAccount(account, password);
-
+				System.out.println("account&pass not null");
 				if (bean != null && (bean.getM_account().equals("admin"))) {
 					session.setAttribute("AdminOK", bean);
 					session.setAttribute("LoginOK", bean);
 					RequestDispatcher rd = request.getRequestDispatcher("/_system.jsp");
 					rd.forward(request, response);
-				} else if (bean != null && (bean.getM_authority() == 2)) {
+				} else if(bean != null && (bean.getM_authority() == 0)){
+					errorMsg.put("LoginError", "已被停權");
+					request.setAttribute("errorMsg", errorMsg);
+					RequestDispatcher rd = request.getRequestDispatcher("/HomeIndex.jsp");
+					rd.forward(request, response);
+				}else if (bean != null && (bean.getM_authority() == 2)) {
 						String target = (String) session.getAttribute("target");
 						if (target != null) {
 							session.removeAttribute("target");
@@ -71,13 +76,14 @@ public class LoginServlet extends HttpServlet {
 					}
 					
 				} else {
-					errorMsg.put("LoginError", "帳號有誤/密碼錯誤/已被停權");
+					errorMsg.put("LoginError", "帳號或密碼有誤");
 					request.setAttribute("errorMsg", errorMsg);
 					RequestDispatcher rd = request.getRequestDispatcher("/HomeIndex.jsp");
 					rd.forward(request, response);
 				}
 			} else {
-				errorMsg.put("LoginError", "帳號有誤/密碼錯誤/已被停權");
+				System.out.println("acc&pass null");
+				errorMsg.put("LoginError", "帳號或密碼有誤");
 				request.setAttribute("errorMsg", errorMsg);
 				RequestDispatcher rd = request.getRequestDispatcher("/HomeIndex.jsp");
 				rd.forward(request, response);

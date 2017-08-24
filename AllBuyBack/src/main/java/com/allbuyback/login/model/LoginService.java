@@ -11,7 +11,7 @@ public class LoginService {
 		bean = dao.select(account);
 		System.out.println(bean);
 		if(bean != null){
-			if(password.equals(bean.m_password) && (bean.m_authority != 0)){
+			if(password.equals(bean.m_password)){
 				return bean;
 			}else
 				return null;
