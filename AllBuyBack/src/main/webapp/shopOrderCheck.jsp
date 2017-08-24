@@ -66,6 +66,7 @@
      $('#o_tolPrice').change(function(){
     	 var newPrice = Number($(this).val());
       	 var shipPrice = Number($('#sw_price').text());
+      	 $('#show_lastprice').text(newPrice+shipPrice);
        	 $('#o_lastPrice').val(newPrice+shipPrice);
      });
      $('#cannelSubmit').click(function (e){
@@ -205,7 +206,7 @@
 			<td><div>${OrderVO.o_point}</div></td>
 			<td style="background:#FFA042">
 				<div>
-					<span>${OrderVO.o_lastPrice}</span>
+					<span id="show_lastprice">${OrderVO.o_lastPrice}</span>
 					<input id="o_lastPrice" type="hidden" value="${OrderVO.o_lastPrice}" name="o_lastPrice" />
 				</div>
 			</td>
@@ -283,7 +284,7 @@
 					<div id="dialog" title="請給予買家評價" style='display:none'>
 					<form action="Order.do" method="post">
 						<label>評分：</label>
-							<select name="s_score">
+							<select name="m_score">
 								<option value="5">5分(非常滿意)</option>
 								<option value="4">4分(滿意)</option>
 								<option value="3">3分(普通)</option>

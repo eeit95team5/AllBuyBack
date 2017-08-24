@@ -19,7 +19,7 @@
     <res-sharing-scope>Shareable</res-sharing-scope>
   </resource-ref>
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>HomeIndex.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
     <servlet-name>mvc</servlet-name>
