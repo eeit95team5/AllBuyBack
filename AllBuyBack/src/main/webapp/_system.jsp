@@ -190,7 +190,7 @@
 
 
 	<div class="container-fluid"
-		style="background-color: #C1CDCD; height: 950px;">
+		style="background-color: white/*#C1CDCD*/; height: 950px;">
 		<div class="row">
 			<div class="col-sm-4">
 				<div
@@ -211,7 +211,7 @@
 			</div>
 			<!------------------------------你的部分------------------------------>
 			<div id="show"
-				style="position: absolute; top: 120px; left: 330px; background-color: lightgray; height: 800px; width: 1550px; overflow: auto">
+				style="position: absolute; top: 120px; left: 330px; background-color: lightgray; height: 800px; width: 1750px; overflow: auto">
 
 				<c:if test="${!empty Admin }">
 					<h1>修改成功</h1>
@@ -227,7 +227,7 @@
 	<!----------footer開始-------------->
 
 	<div class="container-fluid"
-		style="background-color: rgb(41, 64, 87); height: 45px; color: white; text-align: center; padding-top: 15px;">
+		style="background-color: rgb(41, 64, 87); height: 65px; color: white; text-align: center; padding-top: 25px;">
 		Copyright ©2017 - ALLBUYBACK 股份有限公司</div>
 </body>
 </html>
