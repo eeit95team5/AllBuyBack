@@ -177,12 +177,12 @@
                                                    審核過程約需7個工作天，若通過審核，AllBuyBack將會寄發通知信到您留下的聯絡信箱。(未通過審核，將不再另行通知，如需確認可來信至客服信箱) </div>
                  
                  
-<form action="<c:url value="/application.do"/>" method="post">  
+<form action="<c:url value="/ShopController"/>" method="get">  
 
 <!--                    <div class="st1"> -->
 <%--                     <label for="memberId" class="labelClass">*您的會員編號 :</label><input type="text" id="memberId" name="memberId"  value="${LoginOK.m_id}" autofocus autocomplete="off"  disabled size="40"  /> --%>
 <!--                   </div>                -->
-                 
+                
                   <div class="st1">
                     <label for="shopName" class="labelClass">*您的商店名稱 :</label><input type="text" id="shopName" name="shopName"  value="${param.shopName}" autofocus autocomplete="off" required placeholder="中英文皆可，限20個字以內" size="40"  />
                   </div>
@@ -235,6 +235,8 @@
                   <div style="text-align: center;">
 <!--                      <button id="formSummit" style="margin-top:60px;font-family:微軟正黑體;font-size:25px;background-color: rgb(42,186,171);border:rgb(42,186,171);border-radius:5px 5px;padding:8px 20px;letter-spacing: 3px;"><a class="formButton" style="color:white;" href="">送出申請表</a></button>  -->
                      <input type="submit" value="送出申請表" style="margin-top:60px;font-family:微軟正黑體;font-size:25px;background-color: rgb(42,186,171);border:rgb(42,186,171);border-radius:5px 5px;padding:8px 20px;letter-spacing: 3px;color:white;">
+                      <input type="hidden" name = m_id value = ${LoginOK.m_id }>
+                  <input type="hidden" name="action" value="MallInsert">
                   
                   </div>
                   
