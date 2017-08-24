@@ -638,7 +638,7 @@ $(function(){
 					<input type="hidden" name="id" value="${LoginOK.m_id }"> 
 					
 					<label for="password" class="w3-tangerine w3-xxlarge  w3-padding-5" >Password:</label><span>${wrongMemberFormat.password }</span>
-					<input class="w3-input w3-animate-input" type="text" style="width:60%" id="password" type="text" name="password" value="${tempForMember.m_password }">
+					<input class="w3-input w3-animate-input" type="password" style="width:60%" id="password" type="text" name="password" value="${tempForMember.m_password }">
 			    	<label for="phone" class="w3-tangerine w3-xxlarge  w3-padding-5">Phone:</label><span>${wrongMemberFormat.phone}</span> 
 			    	<input  class="w3-input w3-animate-input" type="text" style="width:60%" id="phone" type="text" name="phone" value="${tempForMember.m_phone }">
 			    	<label for="address" class="w3-tangerine w3-xxlarge  w3-padding-5">Address:</label><span>${wrongMemberFormat.address }</span> 

@@ -489,9 +489,11 @@ body {
 						<a href="" class="ThisWeek">巴黎世家搶手帆布包</a>
 					</div>
 
+					<span><button class="btn btn-danger navbar-btn" style="font-family: 微軟正黑體; background-color: #EE3B3B; border: #EE3B3B; color: white; margin-left: 70px;">新手上路</button></span>
+				</div>
+
   
-             <button  class="btn btn-danger navbar-btn" style="font-family:微軟正黑體;
-                background-color:#EE3B3B;border:#EE3B3B;color:white;margin-left:70px;" >新手上路</button>
+             
        </div>
     </div><!--row結束-->
 </div><!--container結束-->  
