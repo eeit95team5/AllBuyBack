@@ -114,8 +114,8 @@
 			</div>
 			</c:forEach>
   </div>
-<br /><br />
- 
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+ <br><br>
 <br /></div><!--兩邊空白結束-->
 
 
@@ -131,7 +131,7 @@
     <a href="#">&raquo;</a>
   </div>
 </div>
-
+<br /><br /><br />
 
 
 <jsp:include page="_Footer.jsp"></jsp:include>
