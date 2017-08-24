@@ -41,9 +41,11 @@ public class ShopController extends HttpServlet {
 		if ("MallInsert".equals(action)) {
 
 			int id = new Integer(request.getParameter("m_id").trim());
+			String aboutYou = request.getParameter("aboutYou");
 
 			ShopVO shopVO = new ShopVO();
 			shopVO.setS_id(id);
+			shopVO.setS_aboutMe(aboutYou);
 
 			MemVO memVO = new MemVO();
 			memVO.setM_id(id);
