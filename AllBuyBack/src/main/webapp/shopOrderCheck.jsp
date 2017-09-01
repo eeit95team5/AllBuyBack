@@ -283,7 +283,7 @@
 					<div id="dialog" title="請給予買家評價" style='display:none'>
 					<form action="Order.do" method="post">
 						<label>評分：</label>
-							<select name="s_score">
+							<select name="m_score">
 								<option value="5">5分(非常滿意)</option>
 								<option value="4">4分(滿意)</option>
 								<option value="3">3分(普通)</option>
