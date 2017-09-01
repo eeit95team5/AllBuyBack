@@ -279,6 +279,7 @@ $(function() {
                 
                 <!-- ============位置已定!============ -->
 				<button type="button" id="keepitem"  class="favorite">加入收藏</button><span id="KeepItemMsg"></span>
+			
 				<!-- ============位置已定!============ -->
 
             </div><!--productArea1區域-->
@@ -300,26 +301,27 @@ $(function() {
   </ul>
 
   <div class="tab-content">
-    <div id="menu1" class="tab-pane fade in active">
+    <div id="menu1" class="tab-pane fade in active" style="padding-right:40px;padding-left: 40px;padding-top:10px;letter-spacing: 2px;font-family: 微軟正黑體;font-size: 20px;line-height: 35px;">
       <h3 id="point">商品描述</h3>
-      <p>${itemVO.i_describe}</p>
+      <p><mark>${itemVO.i_describe}</mark></p>
     </div>
-    <div id="menu2" class="tab-pane fade">
+    <div id="menu2" class="tab-pane fade" style="padding-right:40px;padding-left: 40px;padding-top:10px;letter-spacing: 2px;font-family: 微軟正黑體;font-size: 20px;line-height: 35px;">
       <h3>費用與寄送資訊</h3>
       <c:forEach items="${shipway.shipway}" var="sw" varStatus="varS">
       	<p>${sw.sw_name }：${sw.sw_price }元</p>
       </c:forEach>
       
     </div>
-    <div id="menu3" class="tab-pane fade">
+    <div id="menu3" class="tab-pane fade" style="padding-left: 40px;padding-top:10px;">
       <h3>問與答</h3>
+       <div style="margin-left:15px;margin-top:15px;font-family:微軟正黑體;font-size:18px;letter-spacing:4px;font-weight:600">|我想問</div>
       <span id="itemmsg"></span>
       
 <form>
 	<input type="hidden" name="i_id" id="hidden" value="${itemVO.i_id }" />
 	<input type="hidden" name="action" value="Insert" />
-	<textarea name="im_content" id="im_content" ></textarea>
-	<button type="button" id="insertitemmessage">送出</button><span id="showerror">${errors.login }${errors.noempty }</span>
+	<textarea name="im_content" id="im_content" rows="6" cols="60"  style="margin-left: 5px;margin-top: 10px;"></textarea>
+	<button type="button" id="insertitemmessage" style="position:absolute;top:300px;left:220px;color:white;font-family:微軟正黑體;font-size:18px;background-color: black;border:black;border-radius:5px 5px;padding:5px 15px">送出留言</button><span id="showerror">${errors.login }${errors.noempty }</span>
 </form>
     </div>
   </div>
@@ -352,7 +354,7 @@ border-radius:5px 5px;text-align:center;font-size:20px;font-family:微軟正黑�
                 <div style="color:gray;font-family:微軟正黑體;font-size:12px;text-align:center;margin-top:20px;font-family:微軟正黑體;">評價 | 關於我 | 代購商品</div>
 
                  <div style="text-align:center;margin-top:20px;"><button id="keep_shop" value="${shop.s_id }" style="border-radius:5px 5px;border:black;background-color:black;color:white;width:250px;padding:7px 10px;"> <span class="glyphicon glyphicon-eye-open"><span style="margin-left:10px;font-size:20px;font-family:微軟正黑體;">&nbsp訂閱我</span></button></div>
-                 <span id="spanmsg2">　</span>
+                	 <span id="spanmsg2" style="margin-left: 110px">　</span>
                  <div id="keepshopcount" style="color:gray;font-family:微軟正黑體;font-size:12px;text-align:center;margin-top:20px;">目前共有${keepshopcount}人訂閱</div>
                   
                 <div style="padding:2px 20px;color:#8B7B8B;font-family:微軟正黑體;font-size:15px;text-align:center;margin-top:20px;">喜歡賣家代購的好物？<br />訂閱即可在第一時間收到代購分享的最新代購文章、商品資訊和專欄喔！</div>

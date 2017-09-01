@@ -177,9 +177,15 @@ $(function() {
                   <c:when test="${LoginOK.m_id == shop.s_id }">
                   
                  
-                  <form action="<c:url value='/insertitem.html'/>" method="post"><button type="submit" name="s_id" value="${shop.s_id}" id="insertitem" style="position:absolute;top:1px;left:650px;color:white;font-family:微軟正黑體;font-size:18px;background-color: gray;border:gray;border-radius:15px 15px;padding:5px 15px;"><span class="glyphicon glyphicon-plus" style="margin-right:6px;"></span>新增商品</button></form>
-                  <button style="position:absolute;top:1px;left:800px;color:white;font-family:微軟正黑體;font-size:18px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-wrench" style="margin-right:6px;"></span>修改商店資訊</button>
-                  <button id="seller"  style="position:absolute;top:1px;left:990px;color:white;font-family:微軟正黑體;font-size:18px;background-color: #EE9572;border:#EE9572;border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-bullhorn" style="margin-right:6px;"></span>買家訊息</button>
+                  <form action="<c:url value='/insertitem.html'/>" method="post"><button type="submit" name="s_id" value="${shop.s_id}" id="insertitem" style="position:absolute;top:1px;left:550px;color:white;font-family:微軟正黑體;font-size:18px;background-color: gray;border:gray;border-radius:15px 15px;padding:5px 15px;"><span class="glyphicon glyphicon-plus" style="margin-right:6px;"></span>新增商品</button></form>
+                  <button style="position:absolute;top:1px;left:700px;color:white;font-family:微軟正黑體;font-size:18px;background-color:rgb(42,186,171);border:rgb(42,186,171);border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-wrench" style="margin-right:6px;"></span>修改商店資訊</button>
+                  <button id="seller"  style="position:absolute;top:1px;left:880px;color:white;font-family:微軟正黑體;font-size:18px;background-color: #EE9572;border:#EE9572;border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-bullhorn" style="margin-right:6px;"></span>買家訊息</button>
+				                
+				 <form action="Order.do">
+					<input type="submit" value="查看訂單" style="position:absolute;top:1px;left:1020px;color:white;font-family:微軟正黑體;font-size:18px;background-color: #607B8B;border:#607B8B;border-radius:15px 15px;padding:5px 15px;">
+					<input type="hidden" name="action" value="sGetAll" />
+				 </form>
+                 
                   </c:when>
                   <c:otherwise>
                   <button id="keep_shop" style="position:absolute;top:1px;left:850px;color:white;font-family:微軟正黑體;font-size:18px;background-color: gray;border:gray;border-radius:15px 15px;padding:5px 15px"><span class="glyphicon glyphicon-eye-open" style="margin-right:6px;"></span>訂閱我</button>
@@ -261,7 +267,7 @@ $(function() {
     
 	 </div>
 	 
-	 <br>
+	 <br><br>
 	 <div class="row">
 	     <div class="col-sm-3">
 	      <c:if test="${ not empty items[4][1]}">
@@ -329,7 +335,7 @@ $(function() {
 	    	<c:if test="${(booksperpagebean.pageNo + 1 >= 1) && (booksperpagebean.pageNo + 1 <= booksperpagebean.totalPages)}"><a href="<c:url value="shop.html?s_id=${shop.s_id}&pageNO=${booksperpagebean.pageNo + 1}"/>">${booksperpagebean.pageNo + 1}</a></c:if>
 	    	<c:if test="${(booksperpagebean.pageNo + 2 >= 1) && (booksperpagebean.pageNo + 2 <= booksperpagebean.totalPages)}"><a href="<c:url value="shop.html?s_id=${shop.s_id}&pageNO=${booksperpagebean.pageNo + 2}"/>">${booksperpagebean.pageNo + 2}</a></c:if>
 		    <a href="<c:url value="shop.html?s_id=${shop.s_id}&pageNO=${booksperpagebean.totalPages }"/>">&raquo;</a>
-		    <input type="number" id="pageNo" name="pageNo" min="1" max="${booksperpagebean.totalPages}"  style="height:42px;margin-left: 5px"/><button type="button" style="height:42px;margin-right: 10px">前往</button><span>共${booksperpagebean.totalPages }頁</span>
+		    <input type="number" id="pageNo" name="pageNo" min="1" max="${booksperpagebean.totalPages}"  style="height:42px;margin-left: 5px"/><button id="goPage" type="button" style="height:42px;margin-right: 10px">前往</button><span>共${booksperpagebean.totalPages }頁</span>
 		  </div>
 		</div>
 	 
@@ -413,7 +419,15 @@ $(function(){
 	$('#keep_shop').click(function(){
 		keep_shop();
 	})
+	$('#goPage').click(function(){
+		goPage();
+	})
 })
+
+function goPage(){
+	var url = "${pageContext.request.contextPath}/shop.html?s_id=${shop.s_id}&pageNO=" + $('#pageNo').val();
+	window.location.href = url;
+}
 
 function insertItemMessage(){
 	if(<c:out value="${empty LoginOK}">true</c:out>){

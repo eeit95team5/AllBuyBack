@@ -366,7 +366,7 @@
             <a href="ShoppingCart.go?action=select">我的購物車</a>
             <a href="Order.do?action=cGetAll">我的購買訂單</a>
            <c:if test="${LoginOK.m_authority==2}"><a href="shop.html?s_id=${LoginOK.m_id}">我的賣場</a></c:if>
-           <c:if test="${LoginOK.m_authority==1}"><a href="MallInsert.jsp">申請賣場</a></c:if>
+           <c:if test="${LoginOK.m_authority==1}"><a href="_SellerApplication.jsp">申請賣場</a></c:if>
             <a href="checkGB.do">ALLBUYBACK金頭腦</a>
             <a href="LogoutServlet" >登出</a>
          </div>
@@ -395,7 +395,7 @@
                <h3 style="color:white;margin-top:26px;float:left;font-family:微軟正黑體;margin-right:25px">本週頭條&nbsp&nbsp</h3> 
                 <div style="margin-top:20px">
                   <h3 style="float:left;margin-top:6px;margin-right:10px;"><span class="glyphicon glyphicon-star-empty icon-success"></span></h3>             
-                  <a href="item.html?i_id=1000042" class="ThisWeek">Timberland聖誕假期促銷</a>
+                  <a href="item.html?i_id=1000042" class="ThisWeek">Timberland海灘派對促銷</a>
                   <h3 style="float:left;margin-top:6px;margin-right:10px;"><span class="glyphicon glyphicon-star-empty icon-success"></span></h3>             
                   <a href="" class="ThisWeek">FURLA緊急折扣全面7折</a>
                   <h3 style="float:left;margin-top:6px;margin-right:10px;"><span class="glyphicon glyphicon-star-empty icon-success"></span></h3>                
@@ -431,7 +431,7 @@
           </div>
           <div class="form-group">
             <label for="usrname" style="font-family:Comic Sans MS;color:#ff944d;font-size:25px"><span class="glyphicon glyphicon-grain"></span>Password</label>
-            <input type="text" class="form-control" id="usrname" name="password" >
+            <input type="password" class="form-control" id="usrname" name="password" >
           </div>
           <button type="submit" class="btn btn-block" style="font-family:Comic Sans MS;color:#ff944d;font-size:25px">Commit 
             <span class="glyphicon glyphicon-ok"></span>
